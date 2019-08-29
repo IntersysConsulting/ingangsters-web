@@ -1,0 +1,10 @@
+.navbar,
+.navbar-default {
+    background-color:  #55565A !important;
+    text-align: center;
+}
+
+.navbar-brand{
+    text-align: center;
+    margin: 0, auto;
+}
