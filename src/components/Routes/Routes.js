@@ -6,7 +6,6 @@ import SigninAdmin from "../Sign/SigninAdmin";
 import Signup from "../Sign/Signup";
 import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
-import Sample from "../SampleComponent/Sample";
 import { Provider } from "react-redux";
 import store from "../../store";
 

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import sample from "./samples";
+import products from "./products";
 
 // const mainReducer = (state = initialState, action) => {
 //   return {
@@ -7,7 +8,7 @@ import sample from "./samples";
 //   };
 // };
 
-const reducerCombined = combineReducers({ sample });
+const reducerCombined = combineReducers({ sample, products });
 
 export const initialState = {
   userData: {
