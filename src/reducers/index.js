@@ -3,6 +3,8 @@ import sample from "./samples";
 import navBar from "./navBar";
 import shadow from "./shadow";
 import auth from "./auth";
+import products from "./products";
+
 // const mainReducer = (state = initialState, action) => {
 //   return {
 //     sample: sample(state.sample, action)

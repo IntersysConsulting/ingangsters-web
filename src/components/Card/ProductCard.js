@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
+import { connect } from "react-redux";
+import { getProducts } from "../../actions/creators/products";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ getProducts, product }) => {
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
   return (
     <div className="container-fluid">
       <div className="row m-1 product-card">
@@ -33,4 +39,12 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+const mapStateToProps = state => ({
+  products: state.products.items,
+  error: state.products.error
+});
+
+export default connect(
+  mapStateToProps,
+  { getProducts }
+)(ProductCard);
