@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import sample from "./samples";
+import navBar from "./navBar";
 
 // const mainReducer = (state = initialState, action) => {
 //   return {
@@ -7,7 +8,7 @@ import sample from "./samples";
 //   };
 // };
 
-const reducerCombined = combineReducers({ sample });
+const reducerCombined = combineReducers({ sample, navBar });
 
 export const initialState = {
   userData: {
@@ -29,6 +30,11 @@ export const initialState = {
   sample: {
     myNumber: 10,
     myString: "Hola mundo!!!!"
+  },
+
+  navBar: {
+    mouseOverAccountButton: false,
+    mouseOverCartButton: false
   }
 };
 export default reducerCombined;

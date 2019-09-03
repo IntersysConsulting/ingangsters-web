@@ -1,0 +1,10 @@
+.navbar,
+.navbar-bg-gray {
+  background-color: #55565a;
+}
+
+.btn,
+.btn-searchBar {
+  height: 30px;
+  color: white;
+}

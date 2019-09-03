@@ -7,6 +7,7 @@ import Signup from "../Sign/Signup";
 import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
 import Sample from "../SampleComponent/Sample";
+import NavBar from "../NavBar/NavBar";
 import { Provider } from "react-redux";
 import store from "../../store";
 
@@ -15,7 +16,7 @@ function Routes() {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={NavBar} />
           <Route path="/signin" exact component={Signin} />
           <Route path="/signin/admin" exact component={SigninAdmin} />
           <Route path="/signup" exact component={Signup} />
