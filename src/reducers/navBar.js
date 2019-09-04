@@ -15,6 +15,10 @@ export default (state = {}, action) => {
     case types.ACCOUNT_BUTTON_CLICKED:
       return Object.assign({}, state, { accountButtonActive: true });
 
+    case types.TOGGLE_MENU_RESPONSIVE:
+      return Object.assign({}, state, {
+        responsiveMenuActive: !state.responsiveMenuActive
+      });
     default:
       return state;
   }

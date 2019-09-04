@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/creators/navBar";
+import "../NavBar.css";
+
 const IconButton = ({
   isOver,
   setMouseOut,
@@ -32,8 +34,8 @@ const IconButton = ({
         marginRight: "5px"
       }}
     >
-      <Icon color="#fff" size="2.3em" className="mx-auto" />
-      <p style={{ color: "#fff" }}>{`${Label}`}</p>
+      <Icon color="#fff" className="mx-auto buttonIcon" />
+      <p className="buttonLabel" style={{ color: "#fff" }}>{`${Label}`}</p>
     </div>
   );
 };

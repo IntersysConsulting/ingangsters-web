@@ -3,20 +3,12 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdSearch } from "react-icons/md";
 import Button from "react-bootstrap/Button";
-
+import "../NavBar.css";
 const SearchBar = () => (
-  <Form>
+  <Form className="searchBarWrapper">
     <Form.Group>
-      <InputGroup style={{ height: "35px" }}>
-        <InputGroup.Prepend
-          style={{
-            backgroundColor: "#ffffff",
-            borderTopLeftRadius: "5px",
-            borderBottomLeftRadius: "5px",
-            borderColor: null,
-            height: "100%"
-          }}
-        >
+      <InputGroup className="searchBar">
+        <InputGroup.Prepend className="prepend">
           <MdSearch
             size="1.8em"
             color="#353535"
@@ -29,31 +21,27 @@ const SearchBar = () => (
           />
         </InputGroup.Prepend>
         <Form.Control
+          className="searchBox"
           type="text"
           placeholder="Search here"
           aria-describedby="inputGroupPrepend"
-          name="username"
-          style={{
-            width: "450px",
-            fontSize: "14px",
-            height: "100%",
-            border: "none"
-          }}
+          name="searchTerm"
         />
-        <InputGroup.Append style={{}}>
-          <Button
-            variant="searchbar"
-            style={{
-              backgroundColor: "#6CC04A",
-              borderTopRightRadius: "5px",
-              borderBottomRightRadius: "5px",
-              borderColor: "#6CC04A",
-              fontSize: "14px",
-              height: "100%"
-            }}
-          >
+        <InputGroup.Append className="append">
+          <Button className="searchButton" variant="searchbar">
             Search
           </Button>
+          <MdSearch
+            size="1.8em"
+            color="#353535"
+            className="rightSearchIcon"
+            style={{
+              position: "relative",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)"
+            }}
+          />
         </InputGroup.Append>
       </InputGroup>
     </Form.Group>

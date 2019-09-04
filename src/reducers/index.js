@@ -35,7 +35,8 @@ export const initialState = {
   navBar: {
     mouseOverAccountButton: false,
     mouseOverCartButton: false,
-    accountButtonActive: false
+    accountButtonActive: false,
+    responsiveMenuActive: false
   },
 
   shadow: {

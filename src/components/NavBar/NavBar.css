@@ -9,3 +9,136 @@
   height: 30px;
   color: white;
 }
+
+.searchBar {
+  height: 35px;
+  --borderRadious: 10px;
+}
+
+.searchBar .prepend {
+  background-color: #ffffff;
+  border-top-left-radius: var(--borderRadious);
+  border-bottom-left-radius: var(--borderRadious);
+  border-color: none;
+  height: 100%;
+}
+
+.navbar-responsive .iconButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchBar .searchBox {
+  width: 500px;
+  font-size: 14px;
+  height: 100%;
+  border-width: 0;
+}
+
+.searchBar .rightSearchIcon {
+  display: none;
+}
+
+.searchBar .searchButton {
+  background-color: #6cc04a;
+  border-top-right-radius: var(--borderRadious) !important;
+  border-bottom-right-radius: var(--borderRadious) !important;
+  border-color: #6cc04a;
+  font-size: 14px;
+  height: 100%;
+}
+
+.navbar-responsive {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-responsive .cbButton,
+.cbSeparator {
+  display: none;
+}
+
+.navbar-responsive .buttonIcon {
+  font-size: 2.3em;
+}
+
+@media screen and (max-width: 900px) {
+  .searchBar .searchBox {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .searchBar .searchBox {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .searchBar .searchBox {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .navbar-responsive {
+    flex-direction: column;
+    overflow: hidden;
+    height: 90px;
+    transition: height 0.3s ease-in;
+  }
+
+  .navbar-responsive .iconButtonWrapper {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .navbar-responsive.active {
+    height: 200px;
+    transition: height 0.3s ease-out;
+  }
+
+  .navbar-responsive .buttonLabel {
+    display: none;
+  }
+
+  .navbar-responsive .buttonIcon {
+    font-size: 3.4em;
+  }
+
+  .searchBarWrapper {
+    width: 100%;
+  }
+
+  .searchBar .searchBox {
+    width: 80%;
+    border-top-left-radius: var(--borderRadious) !important;
+    border-bottom-left-radius: var(--borderRadious) !important;
+  }
+  .navbar-responsive .cbButton {
+    display: inline;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .searchBar .searchButton {
+    display: none;
+  }
+
+  .searchBar .rightSearchIcon {
+    display: inline;
+  }
+
+  .searchBar .prepend {
+    display: none;
+  }
+
+  .searchBar .append {
+    background-color: #ffffff;
+    border-top-right-radius: var(--borderRadious);
+    border-bottom-right-radius: var(--borderRadious);
+    border-color: none;
+    height: 100%;
+  }
+}

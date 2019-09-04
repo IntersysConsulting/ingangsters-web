@@ -11,3 +11,7 @@ export function setMouseOverCartButton(isOverButton) {
 export function setAccountButtonClicked() {
   return { type: types.ACCOUNT_BUTTON_CLICKED };
 }
+
+export function toggleMenuResponsive() {
+  return { type: types.TOGGLE_MENU_RESPONSIVE };
+}
