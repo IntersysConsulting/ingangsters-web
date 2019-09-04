@@ -13,16 +13,7 @@ export default (state = {}, action) => {
       });
 
     case types.ACCOUNT_BUTTON_CLICKED:
-      return Object.assign({}, state, {
-        accountButtonActive: true,
-        shadowOut: false
-      });
-
-    case types.SHADOW_CLICKED:
-      return Object.assign({}, state, {
-        accountButtonActive: false,
-        shadowOut: true
-      });
+      return Object.assign({}, state, { accountButtonActive: true });
 
     default:
       return state;

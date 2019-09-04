@@ -7,14 +7,18 @@ const IconButton = ({
   setMouseOver,
   Icon,
   Label,
-  clickHandler
+  dispatchEvent,
+  ClickEvent = () => {
+    console.log("Click default");
+  }
 }) => {
   return (
     <div
       onMouseEnter={setMouseOver}
       onMouseLeave={setMouseOut}
       onClick={() => {
-        clickHandler();
+        ClickEvent();
+        dispatchEvent();
       }}
       style={{
         backgroundColor: isOver ? "#6c6d73" : "#55565A",
@@ -44,12 +48,12 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   var key = `setMouseOver${ownProps.Label}Button`;
   let additionalEvents = {};
-  if (ownProps.hasOwnProperty("ClickEvent")) {
-    additionalEvents.clickHandler = () => {
-      dispatch(ownProps.ClickEvent);
+  if (ownProps.hasOwnProperty("Dispatch")) {
+    additionalEvents.dispatchEvent = () => {
+      dispatch(ownProps.Dispatch);
     };
   } else {
-    additionalEvents.clickHandler = () => {};
+    additionalEvents.dispatchEvent = () => {};
   }
   return {
     setMouseOver() {

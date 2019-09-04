@@ -6,11 +6,12 @@ import IconButton from "./IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
 import { setAccountButtonClicked } from "../../actions/creators/navBar";
-import { shadowClicked } from "../../actions/creators/navBar";
+import { showShadow } from "../../actions/creators/shadow";
+import { hideShadow } from "../../actions/creators/shadow";
 import { connect } from "react-redux";
 import "./NavBar.css";
 
-const NavBarComponent = ({ accountButtonClicked }) => (
+const NavBarComponent = ({ shadowActive }) => (
   <NavBar bg="bg-gray" style={{ display: "flex", flexDirection: "row" }}>
     <NavBarBrand>
       <img
@@ -28,21 +29,22 @@ const NavBarComponent = ({ accountButtonClicked }) => (
       <IconButton
         Icon={MdPerson}
         Label="Account"
-        ClickEvent={
-          accountButtonClicked ? shadowClicked() : setAccountButtonClicked()
-        }
+        ClickEvent={() => {
+          console.log("clicked account");
+        }}
+        Dispatch={shadowActive ? hideShadow() : showShadow()}
       />
       <IconButton
         Icon={MdShoppingCart}
         Label="Cart"
-        ClickEvent={() => ({ type: "NAAN" })}
+        Dispatch={{ type: "NAAN" }}
       />
     </div>
   </NavBar>
 );
 
 const mapStateToProps = state => ({
-  accountButtonClicked: state.navBar.accountButtonActive
+  shadowActive: state.shadow.active
 });
 export default connect(
   mapStateToProps,
