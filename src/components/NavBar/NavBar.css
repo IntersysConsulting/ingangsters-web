@@ -118,7 +118,7 @@
   .navbar-responsive .cbButton {
     display: inline;
     position: absolute;
-    right: 0;
+    right: 10px;
     cursor: pointer;
   }
 
