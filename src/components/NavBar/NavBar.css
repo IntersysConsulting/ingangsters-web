@@ -1,6 +1,7 @@
 .navbar,
 .navbar-bg-gray {
   background-color: #55565a;
+  z-index: 100;
 }
 
 .btn,

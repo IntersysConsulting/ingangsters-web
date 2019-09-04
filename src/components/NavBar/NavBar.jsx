@@ -5,9 +5,12 @@ import SearchBar from "./SearchBar/SearchBar";
 import IconButton from "./IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
+import { setAccountButtonClicked } from "../../actions/creators/navBar";
+import { shadowClicked } from "../../actions/creators/navBar";
+import { connect } from "react-redux";
 import "./NavBar.css";
 
-const NavBarComponent = () => (
+const NavBarComponent = ({ accountButtonClicked }) => (
   <NavBar bg="bg-gray" style={{ display: "flex", flexDirection: "row" }}>
     <NavBarBrand>
       <img
@@ -22,10 +25,26 @@ const NavBarComponent = () => (
     <SearchBar />
     <div style={{ flex: 1 }} />
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <IconButton Icon={MdPerson} Label="Account" />
-      <IconButton Icon={MdShoppingCart} Label="Cart" />
+      <IconButton
+        Icon={MdPerson}
+        Label="Account"
+        ClickEvent={
+          accountButtonClicked ? shadowClicked() : setAccountButtonClicked()
+        }
+      />
+      <IconButton
+        Icon={MdShoppingCart}
+        Label="Cart"
+        ClickEvent={() => ({ type: "NAAN" })}
+      />
     </div>
   </NavBar>
 );
 
-export default NavBarComponent;
+const mapStateToProps = state => ({
+  accountButtonClicked: state.navBar.accountButtonActive
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(NavBarComponent);

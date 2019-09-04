@@ -34,7 +34,8 @@ export const initialState = {
 
   navBar: {
     mouseOverAccountButton: false,
-    mouseOverCartButton: false
+    mouseOverCartButton: false,
+    accountButtonActive: false
   }
 };
 export default reducerCombined;

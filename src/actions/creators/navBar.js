@@ -7,3 +7,11 @@ export function setMouseOverAccountButton(isOverButton) {
 export function setMouseOverCartButton(isOverButton) {
   return { type: types.SET_MOUSE_OVER_CART_BUTTON, isOverButton };
 }
+
+export function setAccountButtonClicked() {
+  return { type: types.ACCOUNT_BUTTON_CLICKED };
+}
+
+export function shadowClicked() {
+  return { type: types.SHADOW_CLICKED };
+}
