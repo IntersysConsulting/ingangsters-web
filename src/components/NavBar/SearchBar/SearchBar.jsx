@@ -3,7 +3,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdSearch } from "react-icons/md";
 import Button from "react-bootstrap/Button";
-import "../NavBar.css";
+import "./SearchBar.css";
+
 const SearchBar = () => (
   <Form className="searchBarWrapper">
     <Form.Group>

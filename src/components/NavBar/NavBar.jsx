@@ -14,12 +14,14 @@ import { hideShadow } from "../../actions/creators/shadow";
 import { connect } from "react-redux";
 import { MdMenu } from "react-icons/md";
 import { FaRegWindowClose } from "react-icons/fa";
+import "../../css/colors.css";
 import "./NavBar.css";
 
 const NavBarComponent = ({
   shadowActive,
   responsiveMenuActive,
-  toggleMenuResponsive
+  toggleMenuResponsive,
+  _dispatch
 }) => {
   var navBarClassList = ["navbar-responsive"];
   let ToggleButton;
@@ -41,7 +43,7 @@ const NavBarComponent = ({
           className="mx-auto"
         />
         <ToggleButton
-          size="3em"
+          size="2.4em"
           color="#ffffff"
           className="cbButton"
           onClick={() => {
@@ -58,14 +60,12 @@ const NavBarComponent = ({
           Label="Account"
           ClickEvent={() => {
             console.log("clicked account");
+            if (shadowActive) _dispatch(hideShadow());
+            else _dispatch(showShadow());
           }}
-          Dispatch={shadowActive ? hideShadow() : showShadow()}
         />
-        <IconButton
-          Icon={MdShoppingCart}
-          Label="Cart"
-          Dispatch={{ type: "NAAN" }}
-        />
+        <div className="verticalSeparator" />
+        <IconButton Icon={MdShoppingCart} Label="Cart" />
       </div>
     </NavBar>
   );
@@ -79,6 +79,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleMenuResponsive() {
     dispatch(toggleMenuResponsive());
+  },
+  _dispatch(action) {
+    dispatch(action);
   }
 });
 export default connect(
