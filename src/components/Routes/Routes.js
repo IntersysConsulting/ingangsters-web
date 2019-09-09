@@ -8,6 +8,7 @@ import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
 import { Provider } from "react-redux";
 import store from "../../store";
+import "../../css/colors.css";
 
 function Routes() {
   return (
