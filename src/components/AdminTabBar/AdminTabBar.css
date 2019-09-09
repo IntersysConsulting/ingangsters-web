@@ -1,0 +1,7 @@
+.AdminTabBar {
+  text-align: center;
+}
+button {
+  background-color: var(--green) !important;
+  border-color: var(--green) !important;
+}
