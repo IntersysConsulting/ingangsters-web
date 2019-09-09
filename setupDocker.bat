@@ -15,8 +15,6 @@ IF "%ERRORLEVEL%"=="0" (
     )
     docker run -v %CD%:/app -p 3000:3000 --name ingangsters-web -it ingangsters-web
     FOR /F "tokens=*" %%g IN ('docker inspect ingangsters-web --format={{.State.ExitCode}}') do (SET dockerExitCode=%%g)
-    ECHO --r ErrorLevel %ErrorLevel%
-    ECHO --d ErrorLevel %dockerExitCode%
     IF NOT "%dockerExitCode%"=="0" (
         ECHO Sharing...
         goto :shareFolder
@@ -28,7 +26,6 @@ IF "%ERRORLEVEL%"=="0" (
     ECHO Preparing development environment, this may take a while....
     :build
     docker build . -t ingangsters-web
-    ECHO --b ErrorLevel %ErrorLevel%
     IF NOT "%ErrorLevel%"=="0" (
         :shareFolder
         CALL shareFolder %CD% 
