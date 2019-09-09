@@ -12,7 +12,7 @@ const Card = ({ productName, productStock, productImage }) => {
     stocklevel = "low";
   }
   return (
-    <div className="productCard">
+    <Col lg={true} className="productCard">
       <img src={productImage} alt={productName} />
       <div className="productData">
         <p className="productName">{productName}</p>
@@ -20,7 +20,7 @@ const Card = ({ productName, productStock, productImage }) => {
           Stock: <span className={stocklevel}>{productStock}</span>
         </p>
       </div>
-    </div>
+    </Col>
   );
 };
 
