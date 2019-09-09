@@ -1,36 +1,24 @@
-export const signin = async user => {
-  console.log("signin", user);
+import { LOGIN_SUCCESS, LOGIN_FAIL } from "../../actions/types/auth";
+import axios from "axios";
+import { API } from "../../config";
+
+export const login = (email, password) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const body = JSON.stringify({ email, password });
   try {
-    const response = await fetch("http://127.0.0.1:5000/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
+    const res = await axios.post(`${API}/user/login`, body, config);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
     });
-    console.log("Correct response: ", response);
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const authenticate = (response, next) => {
-  if (typeof window !== "undefined") {
-    console.log("Authenticate", response.data.token);
-    localStorage.setItem("jwt", JSON.stringify(response.data.token));
-    next();
-  }
-};
-
-export const isAuthenticated = () => {
-  if (typeof window == "undefined") {
-    return false;
-  }
-  if (localStorage.getItem("jwt")) {
-    return JSON.parse(localStorage.getItem("jwt"));
-  } else {
-    return false;
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: LOGIN_FAIL
+    });
   }
 };

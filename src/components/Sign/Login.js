@@ -1,46 +1,32 @@
 import React, { useState } from "react";
 import SimpleNavBar from "../SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
-import {
-  signin,
-  authenticate,
-  isAuthenticated
-} from "../../actions/creators/auth";
 import "./Login.css";
 import "../../css/colors.css";
 import { FaEye } from "react-icons/fa";
+import { connect } from "react-redux";
+import { login } from "../../actions/creators/auth";
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
   const [values, setValues] = useState({
     email: "",
-    password: "",
-    redirectToReferrer: false
+    password: ""
   });
 
-  const { email, password, redirectToReferrer } = values;
-  const { user } = isAuthenticated();
+  const { email, password } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const clickSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
-    setValues({ ...values });
-    signin({ email, password }).then(data => {
-      authenticate(data, () => {
-        setValues({
-          ...values
-        });
-      });
-    });
+    login(email, password);
   };
 
-  const redirectUser = () => {
-    if (isAuthenticated()) {
-      return <Redirect to="/" />;
-    }
-  };
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   const toggleShow = () => {
     alert("clicked");
@@ -89,7 +75,7 @@ const Login = () => {
             <p className="link">Forgot password</p>
             <div className="mb-4 text-center">
               <button
-                onClick={clickSubmit}
+                onClick={onSubmit}
                 className="btn btn-intersys btn-block my-3"
               >
                 Login
@@ -108,9 +94,15 @@ const Login = () => {
     <div>
       <SimpleNavBar />
       {signUpForm()}
-      {redirectUser()}
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
