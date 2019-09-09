@@ -1,8 +1,13 @@
 * {
   --dark-grey: #55565a;
-  --light-grey: #c4c4c4;
+  --light-grey: #e7e7e7;
   --green: #6cc04a;
   --light-blue: #0071ce;
   --orange: #f98f3e;
   --red: #ce2500;
+  --white: #ffff;
+}
+
+body {
+  background-color: var(--light-grey);
 }

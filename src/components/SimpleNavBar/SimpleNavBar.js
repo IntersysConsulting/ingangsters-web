@@ -10,7 +10,6 @@ class SimpleNavBar extends Component {
       <Navbar
         bg="dark"
         variant="dark"
-        fixedTop
         sticky="top"
         className="justify-content-center navbar"
       >
