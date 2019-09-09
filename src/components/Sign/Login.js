@@ -13,6 +13,8 @@ const Login = ({ login, isAuthenticated }) => {
     password: ""
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const { email, password } = values;
 
   const handleChange = name => event => {
@@ -29,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   const toggleShow = () => {
-    alert("clicked");
+    setShowPassword(!showPassword);
   };
 
   const signUpForm = () => (
@@ -53,22 +55,17 @@ const Login = ({ login, isAuthenticated }) => {
             <div className="form-group">
               <label className="text-muted">Password</label>
               <div className="row">
-                <div className="col-11">
+                <div className="col-10 col-sm-10 col-md-11 col-lg-11 pr-0">
                   <input
                     onChange={handleChange("password")}
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="password"
                     className="form-control"
                     value={password}
                   />
                 </div>
-                <div
-                  className="col"
-                  onClick={() => {
-                    toggleShow();
-                  }}
-                >
-                  <FaEye />
+                <div className="col-1 text-center" onClick={toggleShow}>
+                  <FaEye size={32} />
                 </div>
               </div>
             </div>
