@@ -2,13 +2,14 @@ import { combineReducers } from "redux";
 import sample from "./samples";
 import navBar from "./navBar";
 import shadow from "./shadow";
+import auth from "./auth";
 // const mainReducer = (state = initialState, action) => {
 //   return {
 //     sample: sample(state.sample, action)
 //   };
 // };
 
-const reducerCombined = combineReducers({ sample, navBar, shadow });
+const reducerCombined = combineReducers({ sample, navBar, shadow, auth });
 
 export const initialState = {
   navBar: {
