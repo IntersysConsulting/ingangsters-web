@@ -9,6 +9,7 @@ import Cart from "../Cart/Cart";
 import Sample from "../SampleComponent/Sample";
 import { Provider } from "react-redux";
 import store from "../../store";
+import "../../css/colors.css";
 
 function Routes() {
   return (
