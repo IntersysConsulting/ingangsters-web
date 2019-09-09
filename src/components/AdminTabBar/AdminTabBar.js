@@ -8,7 +8,7 @@ class AdminTabBar extends Component {
   render() {
     return (
       <div className="AdminTabBar">
-        <ButtonGroup className="mt-3">
+        <ButtonGroup className="tabButtonGroup" size="lg">
           <Button>Users</Button>
           <Button>Products</Button>
           <Button>Orders</Button>
