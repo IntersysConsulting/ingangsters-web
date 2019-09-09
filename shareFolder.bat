@@ -7,6 +7,11 @@ IF %ErrorLevel%==1 (
     ECHO Warning! Alternative user does not exist, creating it now, you will be prompted for your password...
     net user /add %UserName% *
     net localgroup administrators %ComputerName%\%UserName% /add
+
+    REM Dummy container to prompt permissions
+    docker run --rm -v c:/Users:/data alpine
+
+    icacls %UserProfile%/Documents /t /c /q /grant %ComputerName%\%UserName%:F
 )
 IF "%~1"=="" goto printUsage
 
@@ -28,7 +33,7 @@ IF "%1"=="" (
 
 :end
 ECHO Done
-EXIT /b 0
+EXIT /B 0
 
 :printUsage
 ECHO Usage:
@@ -39,4 +44,3 @@ ECHO.
 ECHO Example
 ECHO.
 ECHO shell^>shareFolder C:\Users\Me\Documents\projects\thisProject "C:\Users\Me\Documents\otherFolder\folder with spaces"
-
