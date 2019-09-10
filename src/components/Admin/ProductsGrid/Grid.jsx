@@ -1,20 +1,36 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Product from "./ProductCard/Card";
-const ProductsGrid = () => {
-  return (
-    <Container>
-      <Row>
-        <Product
-          productName="This product"
-          productStock={10}
-          productImage="https://img.icons8.com/cute-clipart/64/000000/box.png"
-        />
-      </Row>
-    </Container>
-  );
+import "./Grid.css";
+import { connect } from "react-redux";
+import LoadingBall from "./LoadingBall/LoadingBall";
+
+const ProductsGrid = ({ items, loading }) => {
+  if (loading) {
+    return (
+      <div className="row">
+        <LoadingBall />
+      </div>
+    );
+  } else {
+    const cards = items.map(item => (
+      <Product
+        {...item}
+        key={item._id}
+        onClick={() => {
+          console.log("Clicked " + item._id);
+        }}
+      />
+    ));
+    return <div className="row">{cards}</div>;
+  }
 };
 
-export default ProductsGrid;
+const mapStateToProps = state => ({
+  items: state.adminProducts.list,
+  loading: state.adminProducts.fetching
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(ProductsGrid);
