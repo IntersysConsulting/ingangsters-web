@@ -2,6 +2,7 @@
 .navbar-bg-gray {
   background-color: var(--dark-grey);
   z-index: 100;
+  border-bottom: 3px solid var(--light-blue);
 }
 
 .navbar-responsive .iconButtonWrapper {
@@ -32,6 +33,7 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    border-bottom: none;
   }
   .navbar-responsive {
     flex-direction: column;
