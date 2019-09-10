@@ -2,9 +2,9 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import "./Card.css";
 
-const Card = ({ productName, productStock, productImage }) => {
+const Card = ({ productName, productStock, productImage, onClick }) => {
   var stocklevel;
-  if (productStock >= 40) {
+  if (productStock >= 35) {
     stocklevel = "high";
   } else if (productStock >= 20) {
     stocklevel = "medium";
@@ -12,7 +12,7 @@ const Card = ({ productName, productStock, productImage }) => {
     stocklevel = "low";
   }
   return (
-    <Col lg={true} className="productCard">
+    <Col className="productCard" onClick={onClick}>
       <img src={productImage} alt={productName} />
       <div className="productData">
         <p className="productName">{productName}</p>
