@@ -37,9 +37,21 @@
   height: 100%;
 }
 
+@media screen and (max-width: 915px) {
+  .searchBar .searchBox {
+    width: 400px;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .searchBar .searchBox {
     width: 350px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .searchBar .searchBox {
+    width: 300px;
   }
 }
 
