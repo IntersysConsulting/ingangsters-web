@@ -6,6 +6,7 @@ import SigninAdmin from "../Sign/SigninAdmin";
 import Signup from "../Sign/Signup";
 import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
+import ProductDetails from "../Home/ProductDetails/ProductsDetails";
 import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
@@ -21,6 +22,7 @@ function Routes() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/cart" exact component={Cart} />
+          <Route path="/details" exact component={ProductDetails} />
         </Switch>
       </BrowserRouter>
     </Provider>
