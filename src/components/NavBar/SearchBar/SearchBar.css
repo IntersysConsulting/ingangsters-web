@@ -49,9 +49,21 @@
   }
 }
 
+@media screen and (max-width: 665px) {
+  .searchBar .searchBox {
+    width: 160px;
+  }
+}
+
 @media screen and (max-width: 650px) {
   .searchBar .searchBox {
     width: 150px;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .searchBar .searchBox {
+    width: 130px;
   }
 }
 
