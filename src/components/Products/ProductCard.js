@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
-import { connect } from "react-redux";
-import { getProducts } from "../../actions/creators/products";
 
-const ProductCard = ({ getProducts, product }) => {
-  useEffect(() => {
-    getProducts();
-  }, [getProducts]);
-
+const ProductCard = ({ product }) => {
   return (
     <div className="container-fluid">
       <div className="row m-1 product-card">
-        <div className="col-4 text-center">
+        <div className="col-4 text-center vertical-center">
           <img
-            src={product.img}
+            src={product.image}
             alt={product.name}
-            className="img-fluid"
+            className="img-fluid py-2"
             style={{ maxHeight: "100%", maxWidth: "100%", height: "auto" }}
           />
         </div>
@@ -30,7 +24,7 @@ const ProductCard = ({ getProducts, product }) => {
               </button>
             </div>
             <div className="col">
-              <p style={{ color: "#116CB4" }}>${product.cost}</p>
+              <p style={{ color: "#116CB4" }}>${product.price}</p>
             </div>
           </div>
         </div>
@@ -39,12 +33,4 @@ const ProductCard = ({ getProducts, product }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  products: state.products.items,
-  error: state.products.error
-});
-
-export default connect(
-  mapStateToProps,
-  { getProducts }
-)(ProductCard);
+export default ProductCard;

@@ -5,13 +5,13 @@ import shadow from "./shadow";
 import auth from "./auth";
 import products from "./products";
 
-// const mainReducer = (state = initialState, action) => {
-//   return {
-//     sample: sample(state.sample, action)
-//   };
-// };
-
-const reducerCombined = combineReducers({ sample, navBar, shadow, auth });
+const reducerCombined = combineReducers({
+  sample,
+  navBar,
+  shadow,
+  auth,
+  products
+});
 
 export const initialState = {
   navBar: {

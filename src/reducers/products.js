@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: payload,
+        products: payload.data,
         loading: false
       };
 
