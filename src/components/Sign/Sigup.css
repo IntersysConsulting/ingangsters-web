@@ -1,0 +1,20 @@
+svg {
+  color: var(--white);
+}
+
+.btn-intersys {
+  color: var(--white);
+  background-color: var(--green);
+}
+
+.link {
+  color: var(--light-blue);
+}
+
+.login-form {
+  background-color: var(--light-grey);
+}
+
+h2,h5 {
+  color: var(--light-blue);
+}
