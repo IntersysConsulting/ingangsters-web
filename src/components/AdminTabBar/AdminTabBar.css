@@ -3,9 +3,6 @@
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
-.tabButtonGroup {
-  align-self: center;
-}
 .AdminTabBar button {
   background-color: var(--green);
   border-color: var(--green);
