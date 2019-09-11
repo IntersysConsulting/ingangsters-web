@@ -14,17 +14,18 @@ const ProductCard = ({ product }) => {
             style={{ maxHeight: "100%", maxWidth: "100%", height: "auto" }}
           />
         </div>
-        <div className="col text-center">
-          <p>{product.name}</p>
-          <hr />
+        <div className="col-8 content-center">
+          <div className="product-title">
+            <p className="line-clamp">{product.name}</p>
+          </div>
           <div className="row">
-            <div className="col">
+            <div className="col-lg-3 col-md-12 col-sm-12">
+              <p className="price">${product.price}</p>
+            </div>
+            <div className="col-lg-9 col-md-12 col-sm-12">
               <button type="button" className="btn btn-success btn-block">
                 Add <FaCartPlus />
               </button>
-            </div>
-            <div className="col">
-              <p style={{ color: "#116CB4" }}>${product.price}</p>
             </div>
           </div>
         </div>

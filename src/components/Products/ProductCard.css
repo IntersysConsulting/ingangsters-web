@@ -1,5 +1,5 @@
 .product-card {
-  border: 1px solid #b4d1e7;
+  border: 2px solid #b4d1e7;
   border-radius: 30px;
   background-color: var(--white);
 }
@@ -14,7 +14,26 @@
   display: table;
   width: 100%;
 }
-.col {
-  display: table-cell;
-  padding: 16px;
+
+.content-center {
+  text-align: center !important;
+  height: 170px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.product-title {
+  border-bottom: 2px solid #b4d1e7;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price {
+  color: var(--light-blue);
 }
