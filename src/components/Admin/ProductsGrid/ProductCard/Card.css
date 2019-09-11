@@ -49,13 +49,10 @@
   font-weight: bold;
   text-align: center;
   margin: auto;
-<<<<<<< HEAD
   overflow: hidden;
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-=======
->>>>>>> d09192a970245d198952305f96d67842e8bcb2b1
 }
 
 .productCard > .productData > .productStock {

@@ -1,9 +1,6 @@
 import * as types from "../types/adminProducts";
-<<<<<<< HEAD
 import { API } from "../../config";
 import axios from "axios";
-=======
->>>>>>> d09192a970245d198952305f96d67842e8bcb2b1
 
 export const updateAdminProducts = newProductList => ({
   type: types.UPDATE_PRODUCTS,
@@ -17,7 +14,6 @@ export const startFetchProducts = () => ({
 export const endFetchProducts = () => ({
   type: types.FINISHED_FETCHING_PRODUCTS
 });
-<<<<<<< HEAD
 
 export const fetchProducts = pageRequested => async dispatch => {
   const numberOfProducts = window.innerWidth <= 550 ? 10 : 20;
@@ -38,5 +34,3 @@ export const fetchProducts = pageRequested => async dispatch => {
     console.log(err);
   }
 };
-=======
->>>>>>> d09192a970245d198952305f96d67842e8bcb2b1
