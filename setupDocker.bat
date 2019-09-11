@@ -4,7 +4,7 @@ net user | find /i "%UserName%" > nul
 IF %ErrorLevel%==1 (
     GOTO shareFolder
 )
-
+IF "%1"=="force" goto forceBuild
 REM Check if image exists
 docker images | find /i "ingangsters-web" > nul
 IF "%ERRORLEVEL%"=="0" (
@@ -23,9 +23,10 @@ IF "%ERRORLEVEL%"=="0" (
         goto attemptRun
     )
 ) ELSE (   
+    :forceBuild
     ECHO Preparing development environment, this may take a while....
-    npm install  
     :build
+    CALL npm install  
     docker build . -t ingangsters-web
     IF NOT "%ErrorLevel%"=="0" (
         :shareFolder
