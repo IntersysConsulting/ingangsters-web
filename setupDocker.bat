@@ -24,6 +24,7 @@ IF "%ERRORLEVEL%"=="0" (
     )
 ) ELSE (   
     ECHO Preparing development environment, this may take a while....
+    npm install  
     :build
     docker build . -t ingangsters-web
     IF NOT "%ErrorLevel%"=="0" (
