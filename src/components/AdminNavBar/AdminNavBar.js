@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Navbar";
 import NavBarBrand from "react-bootstrap/NavbarBrand";
 import IconButton from "../NavBar/IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
@@ -26,7 +27,7 @@ const NavBarComponent = ({ shadowActive, _dispatch }) => {
         />
       </NavBarBrand>
       <div className="flexSeparator" style={{ flex: 1 }} />
-      <div className="iconButtonWrapper">
+      <Nav className="iconButtonWrapper">
         <IconButton
           Icon={MdPerson}
           Label="Account"
@@ -36,7 +37,7 @@ const NavBarComponent = ({ shadowActive, _dispatch }) => {
             else _dispatch(showShadow());
           }}
         />
-      </div>
+      </Nav>
     </NavBar>
   );
 };
