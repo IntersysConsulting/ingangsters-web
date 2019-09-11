@@ -31,7 +31,7 @@ export const initialState = {
     outEffect: false
   },
 
-  AdminTabBar: {
+  adminTabBar: {
     activeButton: "Users"
   }
 };

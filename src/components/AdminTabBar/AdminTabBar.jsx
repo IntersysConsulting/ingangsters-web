@@ -27,7 +27,7 @@ const AdminTabBar = ({ active, handleClick }) => {
 
 function mapStateToProps(state) {
   return {
-    active: state.shadow.active
+    active: state.adminTabBar.activeButton
   };
 }
 
