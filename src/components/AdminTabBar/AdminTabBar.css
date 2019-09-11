@@ -1,5 +1,6 @@
 .AdminTabBar {
   text-align: center;
+  align-self: center;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }

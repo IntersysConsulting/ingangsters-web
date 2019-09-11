@@ -34,7 +34,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleClick(e) {
-      console.log("Click");
       dispatch(setActiveAdminBarButton(e.target.value));
     }
   };

@@ -1,0 +1,93 @@
+.navbar,
+.navbar-bg-gray {
+  background-color: var(--dark-grey);
+  z-index: 100;
+}
+
+.navbar-responsive .iconButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-responsive {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-responsive .cbButton,
+.cbSeparator {
+  display: none;
+}
+
+.navbar-responsive .buttonIcon {
+  font-size: 2.3em;
+}
+
+.navbar-responsive .buttonLabel {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .navbar {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar-responsive {
+    flex-direction: column;
+    overflow: hidden;
+    height: 90px;
+    transition: height 0.3s ease-in;
+    width: 100%;
+    padding: 0 !important;
+  }
+
+  .navbar-responsive .navbar-brand {
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0 !important;
+    border-bottom: 3px solid var(--light-blue);
+  }
+
+  .navbar-responsive .iconButtonWrapper {
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 0;
+  }
+
+  .navbar-responsive .iconButtonWrapper .verticalSeparator {
+    width: 2px;
+    background-color: var(--light-blue);
+    height: 80%;
+  }
+
+  .navbar-responsive.active {
+    height: 200px;
+    transition: all 0.3s ease-out;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .navbar-responsive .buttonLabel {
+    display: none;
+  }
+
+  .navbar-responsive .buttonIcon {
+    font-size: 3.4em;
+  }
+
+  .navbar-responsive .cbButton {
+    display: inline;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    top: 20px;
+  }
+}
+.navbar-elements {
+  text-align: center;
+}
