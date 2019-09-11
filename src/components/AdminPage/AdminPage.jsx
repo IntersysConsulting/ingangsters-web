@@ -1,5 +1,6 @@
 import React from "react";
-import NavBar from "../AdminNavBar/AdminNavBar";
+import IconButton from "../NavBar/IconButton/IconButton";
+import { MdMenu } from "react-icons/md";
 import AdminTabBar from "../AdminTabBar/AdminTabBar";
 import Shadow from "../Shadow/Shadow";
 import { connect } from "react-redux";
@@ -11,17 +12,19 @@ const AdminPage = ({ adminOption }) => {
       <AdminNavBar />
       <Shadow />
       <AdminTabBar />
+      <br />
+      <br />
       {adminOption == "Users" ? (
         <center>
-          <h1>Users</h1>
+          <p>Users</p>
         </center>
       ) : adminOption == "Products" ? (
         <center>
-          <h1>Products</h1>
+          <p>Products</p>
         </center>
       ) : (
         <center>
-          <h1>Orders</h1>
+          <p>Orders</p>
         </center>
       )}
     </div>
