@@ -5,6 +5,7 @@ import auth from "./auth";
 import products from "./products";
 import adminTabBar from "./AdminTabBar";
 import adminProducts from "./adminProducts";
+import modal from "./modal";
 
 const reducerCombined = combineReducers({
   navBar,
@@ -12,7 +13,8 @@ const reducerCombined = combineReducers({
   auth,
   products,
   adminTabBar,
-  adminProducts
+  adminProducts,
+  modal
 });
 
 export const initialState = {
@@ -30,6 +32,11 @@ export const initialState = {
 
   adminTabBar: {
     activeButton: "Users"
+  },
+
+  modal: {
+    active: false,
+    outEffect: false
   }
 
   // cart: []

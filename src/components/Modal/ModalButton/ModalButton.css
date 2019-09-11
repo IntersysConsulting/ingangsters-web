@@ -1,0 +1,38 @@
+.buttonOne {
+  background-color: var(--green);
+  border-color: var(--green);
+  margin: 5px 8px 5px 8px;
+  line-height: 100%;
+}
+.buttonOne:hover {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+.buttonTwo {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: black;
+  margin: 5px 8px 5px 8px;
+  line-height: 100%;
+}
+.buttonTwo:hover {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: black;
+}
+
+@media screen and (max-width: 550px) {
+  .buttonOne {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 40px;
+  }
+
+  .buttonTwo {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 40px;
+  }
+}

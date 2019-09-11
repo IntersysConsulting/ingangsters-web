@@ -13,6 +13,9 @@ import { MdMenu } from "react-icons/md";
 import { FaRegWindowClose } from "react-icons/fa";
 import "../../../css/colors.css";
 import "./NavBar.css";
+import { hideModal } from "../../actions/creators/modal";
+import { showModal } from "../../actions/creators/modal";
+import Modal from "../Modal/Modal";
 
 const NavBarComponent = ({
   shadowActive,
@@ -30,6 +33,7 @@ const NavBarComponent = ({
   }
 
   return (
+<<<<<<< development:src/components/NavBars/GeneralNavBar/NavBar.jsx
     <NavBar bg="bg-gray" className={navBarClassList.join(" ")}>
       <NavBarBrand>
         <img
@@ -64,6 +68,52 @@ const NavBarComponent = ({
         <IconButton Icon={MdShoppingCart} Label="Cart" />
       </div>
     </NavBar>
+=======
+    <div>
+      <NavBar bg="bg-gray" className={navBarClassList.join(" ")}>
+        <NavBarBrand>
+          <img
+            alt=""
+            src="/assets/logo.png"
+            width="75"
+            height="75"
+            className="mx-auto"
+          />
+          <ToggleButton
+            size="2.4em"
+            color="#ffffff"
+            className="cbButton"
+            onClick={() => {
+              toggleMenuResponsive();
+            }}
+          />
+        </NavBarBrand>
+        <div className="flexSeparator" style={{ flex: 1 }} />
+        <SearchBar />
+        <div className="flexSeparator" style={{ flex: 1 }} />
+        <div className="iconButtonWrapper">
+          <IconButton
+            Icon={MdPerson}
+            Label="Account"
+            ClickEvent={() => {
+              console.log("clicked account");
+              if (shadowActive) {
+                _dispatch(hideModal());
+                _dispatch(hideShadow());
+              } else {
+                _dispatch(showModal());
+                _dispatch(showShadow());
+              }
+            }}
+          />
+          <div className="verticalSeparator" />
+
+          <IconButton Icon={MdShoppingCart} Label="Cart" />
+        </div>
+      </NavBar>
+      <Modal />
+    </div>
+>>>>>>> Responsive modal and the respective labels appears:src/components/NavBar/NavBar.jsx
   );
 };
 
