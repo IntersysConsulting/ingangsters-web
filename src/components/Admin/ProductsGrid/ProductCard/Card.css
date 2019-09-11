@@ -49,6 +49,10 @@
   font-weight: bold;
   text-align: center;
   margin: auto;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .productCard > .productData > .productStock {
@@ -66,6 +70,19 @@
 
 .productCard > .productData > .productStock > span.low {
   color: var(--red);
+}
+
+@media screen and (min-width: 1600px) {
+  .productCard {
+    height: 160px;
+    max-width: 400px;
+  }
+  .productCard > .productData > .productName {
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
 }
 
 @media screen and (max-width: 550px) {

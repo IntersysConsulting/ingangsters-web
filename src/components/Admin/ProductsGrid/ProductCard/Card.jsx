@@ -2,22 +2,22 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import "./Card.css";
 
-const Card = ({ productName, productStock, productImage, onClick }) => {
+const Card = ({ name, stock, image, onClick }) => {
   var stocklevel;
-  if (productStock >= 35) {
+  if (stock >= 35) {
     stocklevel = "high";
-  } else if (productStock >= 20) {
+  } else if (stock >= 20) {
     stocklevel = "medium";
   } else {
     stocklevel = "low";
   }
   return (
     <Col className="productCard" onClick={onClick}>
-      <img src={productImage} alt={productName} />
+      <img src={image} alt={name} />
       <div className="productData">
-        <p className="productName">{productName}</p>
+        <p className="productName">{name}</p>
         <p className="productStock">
-          Stock: <span className={stocklevel}>{productStock}</span>
+          Stock: <span className={stocklevel}>{stock}</span>
         </p>
       </div>
     </Col>

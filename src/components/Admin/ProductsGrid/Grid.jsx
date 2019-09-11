@@ -3,8 +3,12 @@ import Product from "./ProductCard/Card";
 import "./Grid.css";
 import { connect } from "react-redux";
 import LoadingBall from "./LoadingBall/LoadingBall";
+import { fetchProducts } from "../../../actions/creators/adminProducts";
 
-const ProductsGrid = ({ items, loading }) => {
+const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
+  if (items.length === 0 && !loading && !finishedFetch) {
+    fetchProducts(1);
+  }
   if (loading) {
     return (
       <div className="row">
@@ -32,5 +36,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchProducts }
 )(ProductsGrid);
