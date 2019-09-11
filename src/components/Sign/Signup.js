@@ -3,10 +3,10 @@ import SimpleNavBar from "../SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
 import "./Sigup.css";
 import "../../css/colors.css";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaCentercode } from "react-icons/fa";
 import { connect } from "react-redux";
 import { login } from "../../actions/creators/auth";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 
 const Login = ({ login, isAuthenticated }) => {
   const [values, setValues] = useState({
@@ -14,13 +14,31 @@ const Login = ({ login, isAuthenticated }) => {
     password: ""
   });
 
+  const [validated, setValidated] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
-  const { firstName, lastName,phone, email, password,passwordConfirm } = values;
+  const {
+    firstName,
+    lastName,
+    phone,
+    email,
+    password,
+    passwordConfirm
+  } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+  const handleSubmit = event => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
   };
 
   const onSubmit = async event => {
@@ -33,14 +51,14 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   const toggleShow = () => {
-      setShowPassword(!showPassword);
+    setShowPassword(!showPassword);
   };
   const toggleShowConfirm = () => {
     setShowPasswordConfirm(!showPasswordConfirm);
-};
+  };
 
   const signUpForm = () => (
-    <div className="container mt-5">
+    /* <div className="container mt-5">
       <div className="row login-form">
         <div className="col-12">
           <h2>Sign up</h2>
@@ -137,6 +155,86 @@ const Login = ({ login, isAuthenticated }) => {
               </Link>
             </div>
           </form>
+        </div>
+      </div>
+    </div> */
+
+    <div className="container mt-5">
+      <div className="row login-form">
+        <div className="col-12">
+          <h2>Sign up</h2>
+          <h5>Please fill this form to create an account! </h5>
+          <hr />
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Row>
+              <Form.Group as={Col} md="6" controlId="validationFirstName">
+                <Form.Label>First name</Form.Label>
+                <Form.Control required type="text" placeholder="First name" />
+                <Form.Control.Feedback type="invalid">
+                  Please provide your first name.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" controlId="validationLastName">
+                <Form.Label>Last name</Form.Label>
+                <Form.Control required type="text" placeholder="Last name" />
+                <Form.Control.Feedback type="invalid">
+                  Please provide your lasts name.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="12" controlId="validationEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control required type="email" placeholder="Email" />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a valid email.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="12" controlId="validationPhone">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  type="tel"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  placeholder="Phone (optional)"
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a valid phone.
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Col} md="12" controlId="validationPassword">
+                <Form.Label>Password</Form.Label>
+
+                <InputGroup>
+                  
+                  <Form.Control
+                    required
+                    onChange={handleChange("password")}
+                    type={showPassword ? "text" : "password"}
+                    placeholder="password"
+                    className="form-control"
+                    value={password}
+                  />
+                  <InputGroup.Prepend>
+                    {/* <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text> */}
+                    <div className="col-1 text-center" onClick={toggleShowConfirm}>
+                  <FaEye size={32} />
+                </div>
+
+                  </InputGroup.Prepend>
+                  <Form.Control.Feedback as={Col} md="12" type="invalid">
+                    Please provide a password.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+            </Form.Row>
+            <Form.Group>
+              <Form.Check
+                required
+                label="Agree to terms and conditions"
+                feedback="You must agree before submitting."
+              />
+            </Form.Group>
+            <Button type="submit">Submit form</Button>
+          </Form>
         </div>
       </div>
     </div>
