@@ -9,6 +9,8 @@
   border-color: var(--green);
   width: 100%;
   height: 100%;
+  font-size: 14px !important;
+  font-weight: 300 !important;
 }
 .AdminTabBar button:hover {
   background-color: var(--green);

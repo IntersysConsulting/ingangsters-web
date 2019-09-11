@@ -1,4 +1,8 @@
 .navbar,
+.navbar-default {
+  background-color: transparent;
+}
+.navbar,
 .navbar-bg-gray {
   background-color: var(--dark-grey);
   z-index: 100;
@@ -20,7 +24,7 @@
 }
 
 .navbar-responsive .buttonIcon {
-  font-size: 2.3em;
+  font-size: 1.5em;
 }
 
 .navbar-responsive .buttonLabel {
@@ -40,5 +44,8 @@
     transition: height 0.3s ease-in;
     width: 100%;
     padding: 0 !important;
+  }
+  .navbar-responsive .buttonIcon {
+    font-size: 2.3em;
   }
 }
