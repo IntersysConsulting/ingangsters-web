@@ -11,12 +11,22 @@ export const startFetchProducts = () => ({
   type: types.FETCHING_PRODUCTS
 });
 
-export const endFetchProducts = () => ({
-  type: types.FINISHED_FETCHING_PRODUCTS
+export const endFetchProducts = (totalItems, itemsPerPage, currentPage) => ({
+  type: types.FINISHED_FETCHING_PRODUCTS,
+  totalItems,
+  itemsPerPage,
+  currentPage
+});
+
+export const updatePaginator = (totalItems, itemsPerPage, currentPage) => ({
+  type: types.UPADTE_PAGINATOR,
+  totalItems,
+  itemsPerPage,
+  currentPage
 });
 
 export const fetchProducts = pageRequested => async dispatch => {
-  const numberOfProducts = window.innerWidth <= 550 ? 10 : 20;
+  const numberOfProducts = window.innerWidth <= 550 ? 10 : 1;
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -27,9 +37,9 @@ export const fetchProducts = pageRequested => async dispatch => {
     dispatch(startFetchProducts());
     console.log("GET " + endpoint);
     const result = await axios.get(endpoint, config);
-    const { products } = result.data.data;
+    const { products, total_products } = result.data.data;
     dispatch(updateAdminProducts(products));
-    dispatch(endFetchProducts());
+    dispatch(endFetchProducts(total_products, numberOfProducts, pageRequested));
   } catch (err) {
     console.log(err);
   }
