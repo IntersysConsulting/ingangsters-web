@@ -1,14 +1,34 @@
 import React from "react";
 import Grid from "./Grid/Grid";
 import Paginator from "./Paginator/Paginator";
-
-const AdminProducts = () => {
+import { connect } from "react-redux";
+import { fetchProducts } from "../../../actions/creators/adminProducts";
+const AdminProducts = ({
+  currentPage,
+  totalItems,
+  itemsPerPage,
+  fetchProducts
+}) => {
   return (
     <div>
       <Grid />
-      <Paginator />
+      <Paginator
+        currentPage={currentPage}
+        totalItems={totalItems}
+        itemsPerPage={itemsPerPage}
+        navigateFunction={fetchProducts}
+      />
     </div>
   );
 };
 
-export default AdminProducts;
+const mapStateToProps = state => ({
+  currentPage: state.adminProducts.currentPage,
+  totalItems: state.adminProducts.totalItems,
+  itemsPerPage: state.adminProducts.itemsPerPage
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchProducts }
+)(AdminProducts);

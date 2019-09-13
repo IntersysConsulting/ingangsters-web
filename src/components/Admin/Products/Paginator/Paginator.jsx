@@ -1,8 +1,6 @@
 import React from "react";
 import Pagination from "react-bootstrap/Pagination";
 import "./Paginator.css";
-import { connect } from "react-redux";
-import { fetchProducts } from "../../../../actions/creators/adminProducts";
 
 const Paginator = ({
   currentPage,
@@ -117,15 +115,4 @@ const Paginator = ({
   );
 };
 
-const mapStateToProps = state => ({
-  currentPage: state.adminProducts.currentPage,
-  totalItems: state.adminProducts.totalItems,
-  itemsPerPage: state.adminProducts.itemsPerPage,
-  allowRender:
-    !state.adminProducts.fetching && state.adminProducts.finishedFetching
-});
-
-export default connect(
-  mapStateToProps,
-  { navigateFunction: fetchProducts }
-)(Paginator);
+export default Paginator;
