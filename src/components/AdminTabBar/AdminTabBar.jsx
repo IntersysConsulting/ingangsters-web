@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import "./AdminTabBar.css";
@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../actions/creators/AdminTabBar";
 
 const AdminTabBar = ({ active, handleClick }) => {
-  console.log(active);
   return (
     <div className="AdminTabBar">
       <ButtonGroup size="lg">

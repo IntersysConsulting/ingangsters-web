@@ -1,59 +1,3 @@
-/* .navbar,
-.navbar-default {
-  background-color: var(--dark-grey);
-}
-.navbar,
-.navbar-bg-gray {
-  background-color: var(--dark-grey);
-  z-index: 100;
-}
-
-.navbar-responsive .iconButtonWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar-responsive {
-  display: flex;
-  flex-direction: row;
-}
-
-.navbar-responsive .cbButton,
-.cbSeparator {
-  display: none;
-}
-
-.navbar-responsive .buttonIcon {
-  font-size: 1.5em;
-}
-
-.navbar-responsive .buttonLabel {
-  margin-bottom: 0;
-}
-
-@media screen and (max-width: 550px) {
-  .navbar {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  .navbar-responsive {
-    flex-direction: row;
-    overflow: hidden;
-    height: 90px;
-    transition: height 0.3s ease-in;
-    width: 100%;
-    padding: 0 !important;
-  }
-  .navbar-responsive .buttonIcon {
-    font-size: 2.3em;
-  }
-  .mr-auto {
-    align-self: center;
-    position: relative;
-  }
-} */
-
 .navbar,
 .navbar-default {
   background-color: var(--dark-grey) !important;
@@ -68,6 +12,6 @@
 @media screen and (max-width: 550px) {
   .navbar-brand {
     margin: auto;
-    width: 52%;
+    width: 50%;
   }
 }
