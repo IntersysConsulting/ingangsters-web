@@ -1,6 +1,6 @@
-.navbar,
+/* .navbar,
 .navbar-default {
-  background-color: transparent;
+  background-color: var(--dark-grey);
 }
 .navbar,
 .navbar-bg-gray {
@@ -47,5 +47,27 @@
   }
   .navbar-responsive .buttonIcon {
     font-size: 2.3em;
+  }
+  .mr-auto {
+    align-self: center;
+    position: relative;
+  }
+} */
+
+.navbar,
+.navbar-default {
+  background-color: var(--dark-grey) !important;
+}
+
+.iconButtonWrapper,
+.IconButton {
+  position: absolute;
+  right: 0px;
+}
+
+@media screen and (max-width: 550px) {
+  .navbar-brand {
+    margin: auto;
+    width: 52%;
   }
 }
