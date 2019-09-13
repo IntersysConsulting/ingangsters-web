@@ -1,0 +1,130 @@
+.productCard {
+  width: 100%;
+  flex: 0 0 30%;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.productCard:hover {
+  cursor: pointer;
+  background-color: var(--green);
+  color: white;
+}
+
+.productCard:hover > .productData > .productStock > span {
+  color: white !important;
+  font-weight: bold;
+}
+
+.productCard > img {
+  width: 45px;
+  height: auto;
+}
+
+.productCard > .productData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  margin: auto;
+}
+.productCard > .productData > .productName {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.productCard > .productData > .productStock {
+  font-size: 14px;
+  margin: auto;
+}
+
+.productCard > .productData > .productStock > span.high {
+  color: var(--green);
+}
+
+.productCard > .productData > .productStock > span.medium {
+  color: var(--orange);
+}
+
+.productCard > .productData > .productStock > span.low {
+  color: var(--red);
+}
+
+@media screen and (min-width: 1600px) {
+  .productCard {
+    height: 160px;
+    max-width: 400px;
+  }
+  .productCard > .productData > .productName {
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .productCard {
+    flex: 1;
+    width: 100%;
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .productCard {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .productCard > img {
+    width: 40px;
+    height: auto;
+  }
+
+  .productCard > .productData {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .productCard > img {
+    width: 30px;
+    height: auto;
+  }
+
+  .productCard {
+    min-width: 170px;
+    justify-content: space-between;
+  }
+
+  .productCard > .productData > .productName {
+    font-size: 16px;
+  }
+
+  .productCard > .productData > .productStock {
+    font-size: 12px;
+  }
+}
