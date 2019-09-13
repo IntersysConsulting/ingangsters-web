@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import Shadow from "../Shadow/Shadow";
-
 const Home = () => {
   return (
     <div>
