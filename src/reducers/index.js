@@ -3,7 +3,7 @@ import sample from "./samples";
 import navBar from "./navBar";
 import shadow from "./shadow";
 import auth from "./auth";
-import AdminTabBar from "./AdminTabBar";
+import adminTabBar from "./AdminTabBar";
 // const mainReducer = (state = initialState, action) => {
 //   return {
 //     sample: sample(state.sample, action)
@@ -15,7 +15,7 @@ const reducerCombined = combineReducers({
   navBar,
   shadow,
   auth,
-  AdminTabBar
+  adminTabBar
 });
 
 export const initialState = {
