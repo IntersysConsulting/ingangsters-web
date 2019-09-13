@@ -16,7 +16,7 @@ const Products = ({ getProducts, product: { products, loading } }) => {
         <h1>Products</h1>
         <div className="row">
           {products.map((product, i) => (
-            <div key={i} className="col-lg-3 col-sm-6 col-xs-12">
+            <div key={i} className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
               <ProductCard product={product} />
             </div>
           ))}

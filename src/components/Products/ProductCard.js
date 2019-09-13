@@ -10,8 +10,8 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="container-fluid">
-      <div className="row m-1 product-card highlight">
-        <div className="col-4 text-center vertical-center">
+      <div className="row my-1 product-card highlight">
+        <div className="col-12 col-sm-12 col-md-4 col-lg-5 text-center vertical-center">
           <Link to={`/details/${product._id}`}>
             <img
               src={product.image}
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
             />
           </Link>
         </div>
-        <div className="col-8 content-center">
+        <div className="col-12 col-sm-12 col-md-8 col-lg-7  content-center">
           <Link to={`/details/${product._id}`} className="title-link">
             <div className="product-title">
               <p className="line-clamp title-link">{product.name}</p>
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
             <div className="col-lg-3 col-md-12 col-sm-12">
               <p className="price">${product.price}</p>
             </div>
-            <div className="col-lg-9 col-md-12 col-sm-12">
+            <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
               <button
                 type="button"
                 className="btn btn-success btn-block"
