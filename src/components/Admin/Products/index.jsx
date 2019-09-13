@@ -3,6 +3,8 @@ import Grid from "./Grid/Grid";
 import Paginator from "./Paginator/Paginator";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
+import AdminNav from "../../AdminNavBar/AdminNavBar";
+import AdminTab from "../../AdminTabBar/AdminTabBar";
 const AdminProducts = ({
   currentPage,
   totalItems,
@@ -11,6 +13,8 @@ const AdminProducts = ({
 }) => {
   return (
     <div>
+      <AdminNav />
+      <AdminTab />
       <Grid />
       <Paginator
         currentPage={currentPage}
