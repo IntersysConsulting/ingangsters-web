@@ -12,13 +12,15 @@ const Products = ({ getProducts, product: { products, loading } }) => {
     <p>CARGANDO.....</p>
   ) : (
     <Fragment>
-      <h1>Products</h1>
-      <div className="row">
-        {products.map((product, i) => (
-          <div key={i} className="col-lg-3 col-sm-6 col-xs-12">
-            <ProductCard product={product} />
-          </div>
-        ))}
+      <div className="container-fluid">
+        <h1>Products</h1>
+        <div className="row">
+          {products.map((product, i) => (
+            <div key={i} className="col-lg-3 col-sm-6 col-xs-12">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     </Fragment>
   );
