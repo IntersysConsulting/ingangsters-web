@@ -7,7 +7,7 @@ import { fetchProducts } from "../../../../actions/creators/adminProducts";
 
 const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
   if (items.length === 0 && !loading && !finishedFetch) {
-    fetchProducts(7);
+    fetchProducts(1);
   }
   if (loading) {
     return (

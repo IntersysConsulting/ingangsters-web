@@ -29,3 +29,9 @@
 .page-item.arrow.disabled > .page-link {
   background-color: transparent !important;
 }
+
+@media screen and (max-width: 335px) {
+  .removable {
+    display: none;
+  }
+}

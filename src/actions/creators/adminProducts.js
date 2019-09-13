@@ -26,7 +26,7 @@ export const updatePaginator = (totalItems, itemsPerPage, currentPage) => ({
 });
 
 export const fetchProducts = pageRequested => async dispatch => {
-  const numberOfProducts = window.innerWidth <= 550 ? 10 : 1;
+  const numberOfProducts = window.innerWidth <= 550 ? 1 : 1;
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -35,7 +35,6 @@ export const fetchProducts = pageRequested => async dispatch => {
   const endpoint = `${API}/products/${numberOfProducts}/${pageRequested}`;
   try {
     dispatch(startFetchProducts());
-    console.log("GET " + endpoint);
     const result = await axios.get(endpoint, config);
     const { products, total_products } = result.data.data;
     dispatch(updateAdminProducts(products));
