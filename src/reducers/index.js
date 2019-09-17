@@ -31,7 +31,7 @@ export const initialState = {
   },
 
   adminTabBar: {
-    activeButton: "Users"
+    activeButton: "Products"
   }
 };
 export default reducerCombined;

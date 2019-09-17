@@ -10,13 +10,14 @@ import ProductDetails from "../Home/ProductDetails/ProductsDetails";
 import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
+import AdminPage from "../AdminPage/AdminPage";
 
 function Routes() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={AdminPage} />
           <Route path="/signin" exact component={Login} />
           <Route path="/signin/admin" exact component={SigninAdmin} />
           <Route path="/signup" exact component={Signup} />
