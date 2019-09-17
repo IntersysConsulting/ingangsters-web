@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
-import IconButtonAdmin from "./IconButtonAdmin/IconButtonAdmin";
+import IconButtonAdmin from "../NavBar/IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
 import { showShadow } from "../../actions/creators/shadow";
 import { hideShadow } from "../../actions/creators/shadow";
@@ -24,7 +24,7 @@ const NavBarComponent = ({ shadowActive, _dispatch }) => {
       <div className="iconButtonWrapper">
         <IconButtonAdmin
           Icon={MdPerson}
-          Label="Account"
+          Label=""
           ClickEvent={() => {
             console.log("clicked account");
             if (shadowActive) _dispatch(hideShadow());
