@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import BouncingBall from "../LoadingBall/LoadingBall";
 import { API } from "../../../../config";
 import axios from "axios";
+import Shadow from "../../../Shadow/Shadow";
 import "./ProductView.css";
 
 const loadProduct = async (id, setData, setLoading) => {
@@ -41,6 +42,7 @@ const ProductView = ({ match }) => {
     loadProduct(id, setData, setLoading);
     return (
       <React.Fragment>
+        <Shadow />
         <Bar />
         <Tabs />
         <br />
@@ -55,6 +57,7 @@ const ProductView = ({ match }) => {
     console.log(data);
     return (
       <React.Fragment>
+        <Shadow />
         <Bar />
         <Tabs />
         <br />
