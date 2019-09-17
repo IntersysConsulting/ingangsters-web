@@ -1,0 +1,20 @@
+.productForm img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  max-width: 350px;
+}
+
+.productForm .btn {
+  height: auto;
+  display: block;
+  margin: auto;
+  min-width: 100px;
+}
+
+.productForm .bottomButtonBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
