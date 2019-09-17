@@ -19,7 +19,9 @@ const AdminPage = ({ adminOption }) => {
           <p>Users</p>
         </center>
       ) : adminOption == "Products" ? (
-        <AdminProducts></AdminProducts>
+        <center>
+          <AdminProducts></AdminProducts>
+        </center>
       ) : (
         <center>
           <p>Orders</p>
