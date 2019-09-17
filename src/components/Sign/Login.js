@@ -34,7 +34,7 @@ const Login = ({ login, isAuthenticated }) => {
     setShowPassword(!showPassword);
   };
 
-  const signUpForm = () => (
+  const loginForm = () => (
     <div className="container mt-5">
       <div className="row login-form">
         <div className="col-12">
@@ -90,7 +90,7 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <div>
       <SimpleNavBar />
-      {signUpForm()}
+      {loginForm()}
     </div>
   );
 };

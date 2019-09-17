@@ -1,0 +1,20 @@
+.price {
+    color: var(--light-blue);
+}
+
+.product-container {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--light-blue);
+    border-radius: 25px;
+}
+
+.btn-intersys {
+    background-color: var(--green);
+}
+
+.btn-intersys:hover {
+    color: black;
+    background-color: var(--green);
+}
