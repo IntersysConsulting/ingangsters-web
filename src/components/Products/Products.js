@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { connect } from "react-redux";
 import { getProducts } from "../../actions/creators/product";
+import "./Products.css";
 
 const Products = ({ getProducts, product: { products, loading } }) => {
   useEffect(() => {
@@ -16,7 +17,10 @@ const Products = ({ getProducts, product: { products, loading } }) => {
         <h1>Products</h1>
         <div className="row">
           {products.map((product, i) => (
-            <div key={i} className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div
+              key={i}
+              className="col-xs-12 col-sm-12 col-md-6 col-lg-4 row-eq-height"
+            >
               <ProductCard product={product} />
             </div>
           ))}

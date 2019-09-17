@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
         <div className="col-12 col-sm-12 col-md-4 col-lg-5 text-center vertical-center">
           <Link to={`/details/${product._id}`}>

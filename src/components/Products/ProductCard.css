@@ -53,3 +53,10 @@
   text-decoration: none !important;
   color: var(--light-blue);
 }
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
