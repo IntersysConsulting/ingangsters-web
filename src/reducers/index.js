@@ -4,13 +4,17 @@ import navBar from "./navBar";
 import shadow from "./shadow";
 import auth from "./auth";
 import products from "./products";
+import adminTabBar from "./AdminTabBar";
+import adminProducts from "./adminProducts";
 
 const reducerCombined = combineReducers({
   sample,
   navBar,
   shadow,
   auth,
-  products
+  products,
+  adminTabBar,
+  adminProducts
 });
 
 export const initialState = {
@@ -24,6 +28,10 @@ export const initialState = {
   shadow: {
     active: false,
     outEffect: false
+  },
+
+  adminTabBar: {
+    activeButton: "Users"
   }
 };
 export default reducerCombined;

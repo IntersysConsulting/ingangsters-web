@@ -5,10 +5,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import IconButton from "./IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
-import {
-  setAccountButtonClicked,
-  toggleMenuResponsive
-} from "../../actions/creators/navBar";
+import { toggleMenuResponsive } from "../../actions/creators/navBar";
 import { showShadow } from "../../actions/creators/shadow";
 import { hideShadow } from "../../actions/creators/shadow";
 import { connect } from "react-redux";
