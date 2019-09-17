@@ -22,7 +22,7 @@ function Routes() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/cart" exact component={Cart} />
-          <Route path="/details" exact component={ProductDetails} />
+          <Route path="/details/:id" component={ProductDetails} />
         </Switch>
       </BrowserRouter>
     </Provider>
