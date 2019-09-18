@@ -21,7 +21,7 @@ const NavBarComponent = ({ shadowActive, _dispatch }) => {
           className="mx-auto"
         />
       </NavbarBrand>
-      <div className="iconButtonWrapper">
+      <div className="iconButtonWrapper admin">
         <IconButtonAdmin
           Icon={MdPerson}
           Label=""

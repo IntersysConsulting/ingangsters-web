@@ -1,20 +1,21 @@
 .navbar,
 .navbar-default {
-  background-color: var(--dark-grey) !important;
+    background-color: var(--dark-grey) !important;
 }
 
-.iconButtonWrapper,
-.IconButton {
-  position: absolute;
-  right: 0px;
+.iconButtonWrapper.admin,
+.admin>.IconButton {
+    position: absolute;
+    right: 0px;
 }
+
 .buttonIcon {
-  font-size: 2.8em;
+    font-size: 2.8em;
 }
 
 @media screen and (max-width: 550px) {
-  .navbar-brand {
-    margin: auto;
-    width: 50%;
-  }
+    .navbar-brand {
+        margin: auto;
+        width: 50%;
+    }
 }
