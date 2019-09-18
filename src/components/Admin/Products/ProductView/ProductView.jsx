@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Bar from "../../../AdminNavBar/AdminNavBar";
 import Tabs from "../../../AdminTabBar/AdminTabBar";
 import Row from "react-bootstrap/Row";
@@ -12,7 +12,8 @@ import axios from "axios";
 import Shadow from "../../../Shadow/Shadow";
 import "./ProductView.css";
 
-const loadProduct = async (id, setData, setLoading) => {
+const getToken = () => localStorage.getItem("token");
+const loadProduct = async (id, setData) => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -23,23 +24,71 @@ const loadProduct = async (id, setData, setLoading) => {
   try {
     const res = await axios.post(endpoint, body, config);
     const { status, data } = res;
-    setData({ ...data, showDelete: true });
-    if (status === 200) setLoading(false);
+    var loadingNow = status !== 200;
+    setData({
+      ...data,
+      showDelete: true,
+      isLoading: loadingNow,
+      submit: updateProduct,
+      _id: id
+    });
   } catch (err) {
     console.log(err);
   }
 };
 
+const updateProduct = async (data, form) => {
+  console.log("Updating...");
+  const body = {
+    _id: data._id,
+    name: form.target.name.value,
+    description: form.target.description.value,
+    price: parseInt(form.target.price.value),
+    stock: parseInt(form.target.stock.value),
+    image: data.image,
+    shippable: data.shippable,
+    available: data.available
+  };
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken()
+    }
+  };
+  const endpoint = `${API}/products/update`;
+  try {
+    const res = await axios.put(endpoint, body, config);
+    if (res.status) {
+      alert("Saved successfully");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const newProduct = async data => {
+  console.log("Creating new...");
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }
+  // };
+  // const endpoint = `${API}/products/create`;
+};
+
 const ProductView = ({ match }) => {
   const { id } = match.params;
-  const [isLoading, setLoading] = useState(id !== "new");
-  const [data, setData] = useState({ showDelete: false });
+  const [data, setData] = useState({
+    showDelete: false,
+    isLoading: id !== "new",
+    submit: newProduct
+  });
   let deleteVariant;
   if (data.showDelete) deleteVariant = <Button variant="danger">Delete</Button>;
   else deleteVariant = <span />;
 
-  if (isLoading) {
-    loadProduct(id, setData, setLoading);
+  if (data.isLoading) {
+    loadProduct(id, setData);
     return (
       <React.Fragment>
         <Shadow />
@@ -47,14 +96,13 @@ const ProductView = ({ match }) => {
         <Tabs />
         <br />
         <Container>
-          <Row>
+          <Row className="row adminProductGrid">
             <BouncingBall />
           </Row>
         </Container>
       </React.Fragment>
     );
   } else {
-    console.log(data);
     return (
       <React.Fragment>
         <Shadow />
@@ -64,7 +112,13 @@ const ProductView = ({ match }) => {
         <Container>
           <h1>{data.name ? data.name : "New Product"}</h1>
           <br />
-          <Form className="productForm">
+          <Form
+            className="productForm"
+            onSubmit={event => {
+              event.preventDefault();
+              data.submit(data, event);
+            }}
+          >
             <Row>
               <Col>
                 <Form.Group controlId="name">
@@ -73,6 +127,7 @@ const ProductView = ({ match }) => {
                     type="text"
                     placeholder="e.g. Fabuloso"
                     defaultValue={data.name}
+                    required
                   />
                 </Form.Group>
                 <Form.Group controlId="price">
@@ -81,6 +136,8 @@ const ProductView = ({ match }) => {
                     type="number"
                     placeholder="e.g. 5"
                     defaultValue={data.price}
+                    required
+                    min={1}
                   />
                 </Form.Group>
                 <Form.Group controlId="stock">
@@ -89,6 +146,8 @@ const ProductView = ({ match }) => {
                     type="number"
                     placeholder="e.g. 37"
                     defaultValue={data.stock}
+                    required
+                    min={1}
                   />
                 </Form.Group>
                 <Form.Group controlId="description">
@@ -98,6 +157,7 @@ const ProductView = ({ match }) => {
                     rows="4"
                     placeholder="This is an awesome product"
                     defaultValue={data.description}
+                    required
                   />
                 </Form.Group>
               </Col>
@@ -119,7 +179,7 @@ const ProductView = ({ match }) => {
             <br />
             <Row>
               <Col className="bottomButtonBar">
-                <Button variant="primary" className="mx-auto">
+                <Button variant="primary" className="mx-auto" type="submit">
                   Save
                 </Button>
                 {deleteVariant}
