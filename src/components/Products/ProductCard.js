@@ -16,12 +16,11 @@ const ProductCard = ({ product }) => {
             <img
               src={product.image}
               alt={product.name}
-              className="img-fluid py-2"
-              style={{ maxHeight: "100%", maxWidth: "100%", height: "auto" }}
+              className="img-fluid img-resize py-2"
             />
           </Link>
         </div>
-        <div className="col-12 col-sm-12 col-md-8 col-lg-7  content-center">
+        <div className="col-12 col-sm-12 col-md-8 col-lg-7 content-center">
           <Link to={`/details/${product._id}`} className="title-link">
             <div className="product-title">
               <p className="line-clamp title-link">{product.name}</p>
