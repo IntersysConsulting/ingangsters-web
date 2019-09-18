@@ -14,11 +14,11 @@ const AdminPage = ({ adminOption }) => {
       <br />
       <br />
 
-      {adminOption == "Users" ? (
+      {adminOption === "Users" ? (
         <center>
           <p>Users</p>
         </center>
-      ) : adminOption == "Products" ? (
+      ) : adminOption === "Products" ? (
         <center>
           <p>Products</p>
           <AdminProducts></AdminProducts>
