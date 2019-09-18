@@ -10,7 +10,8 @@ import ProductDetails from "../Home/ProductDetails/ProductsDetails";
 import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
-
+import Product from "../Admin/Products/ProductView/ProductView";
+import AdminProducts from "../Admin/Products";
 function Routes() {
   return (
     <Provider store={store}>
@@ -23,6 +24,8 @@ function Routes() {
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/details/:id" component={ProductDetails} />
+          <Route path="/admin/product/:id" component={Product} />
+          <Route path="/admin/product" exact component={AdminProducts} />
         </Switch>
       </BrowserRouter>
     </Provider>

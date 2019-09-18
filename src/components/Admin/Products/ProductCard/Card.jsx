@@ -1,5 +1,5 @@
 import React from "react";
-import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = ({ name, stock, image, onClick }) => {
@@ -12,7 +12,7 @@ const Card = ({ name, stock, image, onClick }) => {
     stocklevel = "low";
   }
   return (
-    <Col className="productCard" onClick={onClick}>
+    <Link className="productCard" to={onClick}>
       <img src={image} alt={name} />
       <div className="productData">
         <p className="productName">{name}</p>
@@ -20,7 +20,7 @@ const Card = ({ name, stock, image, onClick }) => {
           Stock: <span className={stocklevel}>{stock}</span>
         </p>
       </div>
-    </Col>
+    </Link>
   );
 };
 
