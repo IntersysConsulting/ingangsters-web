@@ -9,13 +9,13 @@
 }
 
 @media screen and (max-width: 550px) {
-    .row {
+    .row.adminProductGrid {
         flex-direction: column;
     }
 }
 
 @media screen and (max-width: 380px) {
-    .row {
+    .row.adminProductGrid {
         width: 90%;
     }
 }
