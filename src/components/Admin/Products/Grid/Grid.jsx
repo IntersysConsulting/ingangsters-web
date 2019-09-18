@@ -20,9 +20,7 @@ const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
       <Product
         {...item}
         key={item._id}
-        onClick={() => {
-          console.log("Clicked " + item._id);
-        }}
+        onClick={"/admin/product/" + item._id}
       />
     ));
     return <div className="row">{cards}</div>;

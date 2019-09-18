@@ -1,7 +1,7 @@
 .shadow {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;

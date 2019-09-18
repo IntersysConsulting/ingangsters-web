@@ -33,5 +33,7 @@ export const initialState = {
   adminTabBar: {
     activeButton: "Products"
   }
+
+  // cart: []
 };
 export default reducerCombined;
