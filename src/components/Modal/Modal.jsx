@@ -24,7 +24,7 @@ const Modal = ({ show, modalOut }) => {
           <ModalButton
             label="Logout"
             className="buttonTwo"
-            onClick={this.logout()}
+            onClick={logout()}
           ></ModalButton>
         </Card>
       );
