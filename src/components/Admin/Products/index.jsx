@@ -14,8 +14,6 @@ const AdminProducts = ({
 }) => {
   return (
     <div>
-      <AdminNav />
-      <AdminTab />
       <Shadow />
       <br />
       <Grid />

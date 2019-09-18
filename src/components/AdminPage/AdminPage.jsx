@@ -3,6 +3,7 @@ import AdminTabBar from "../AdminTabBar/AdminTabBar";
 import Shadow from "../Shadow/Shadow";
 import { connect } from "react-redux";
 import AdminNavBar from "../AdminNavBar/AdminNavBar";
+import AdminProducts from "../Admin/Products/index";
 
 const AdminPage = ({ adminOption }) => {
   return (
@@ -20,6 +21,7 @@ const AdminPage = ({ adminOption }) => {
       ) : adminOption == "Products" ? (
         <center>
           <p>Products</p>
+          <AdminProducts></AdminProducts>
         </center>
       ) : (
         <center>
