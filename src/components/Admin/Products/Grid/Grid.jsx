@@ -11,7 +11,7 @@ const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
   }
   if (loading) {
     return (
-      <div className="row">
+      <div className="row adminProductGrid">
         <LoadingBall />
       </div>
     );
@@ -23,7 +23,7 @@ const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
         onClick={"/admin/product/" + item._id}
       />
     ));
-    return <div className="row">{cards}</div>;
+    return <div className="row adminProductGrid">{cards}</div>;
   }
 };
 
