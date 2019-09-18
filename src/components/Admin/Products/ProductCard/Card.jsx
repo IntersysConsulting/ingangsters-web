@@ -13,7 +13,9 @@ const Card = ({ name, stock, image, onClick }) => {
   }
   return (
     <Link className="productCard" to={onClick}>
-      <img src={image} alt={name} />
+      <div className="productImage">
+        <img src={image} alt={name} />
+      </div>
       <div className="productData">
         <p className="productName">{name}</p>
         <p className="productStock">
