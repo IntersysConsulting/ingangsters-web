@@ -6,7 +6,6 @@ import { API } from "../../config";
 export const getProducts = () => async dispatch => {
   try {
     const res = await axios.get(`${API}/products`);
-    console.log("getProducts() from creators", res);
     dispatch({
       type: GET_PRODUCTS,
       payload: res.data
