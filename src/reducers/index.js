@@ -31,7 +31,7 @@ export const initialState = {
   },
 
   adminTabBar: {
-    activeButton: "Products"
+    activeButton: "Users"
   }
 
   // cart: []

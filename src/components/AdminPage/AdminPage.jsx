@@ -20,6 +20,7 @@ const AdminPage = ({ adminOption }) => {
         </center>
       ) : adminOption == "Products" ? (
         <center>
+          <p>Products</p>
           <AdminProducts></AdminProducts>
         </center>
       ) : (
