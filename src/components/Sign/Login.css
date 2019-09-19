@@ -1,7 +1,3 @@
-svg {
-  color: var(--white);
-}
-
 .btn-intersys {
   color: var(--white);
   background-color: var(--green);
@@ -13,4 +9,19 @@ svg {
 
 .login-form {
   background-color: var(--light-grey);
+}
+
+.icon {
+  color: white;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: var(--light-blue);
+  cursor: pointer;
+}
+
+.form-title {
+  color: var(--light-blue);
+  border-bottom: 2px solid var(--light-blue);
 }

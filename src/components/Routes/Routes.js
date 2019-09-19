@@ -21,14 +21,14 @@ function Routes() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
-          <Route path="/login/admin" exact component={LoginAdmin} />
+          <Route path="/admin/login" exact component={LoginAdmin} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/details/:id" component={ProductDetails} />
-          <Route path="/admin/product/:id" component={Product} />
-          <Route path="/admin/product" exact component={AdminPage} />
+          <AdminRoute path="/admin/product/:id" component={Product} />
+          <AdminRoute path="/admin/product" exact component={AdminPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

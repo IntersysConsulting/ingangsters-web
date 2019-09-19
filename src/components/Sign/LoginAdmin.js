@@ -38,8 +38,7 @@ const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
     <div className="container mt-5">
       <div className="row login-form">
         <div className="col-12">
-          <h2>Admin's Login</h2>
-          <hr />
+          <h2 className="form-title pb-3 mb-4">Admin's Login</h2>
           <form>
             <div className="form-group">
               <label className="text-muted">Email</label>
@@ -64,7 +63,7 @@ const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
                     value={password}
                   />
                 </div>
-                <div className="col-1 text-center" onClick={toggleShow}>
+                <div className="col-1 text-center icon" onClick={toggleShow}>
                   <FaEye size={32} />
                 </div>
               </div>
