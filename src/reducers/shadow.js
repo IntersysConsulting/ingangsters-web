@@ -1,6 +1,11 @@
 import * as types from "../actions/types/shadow";
 
-export default (state = {}, action) => {
+const initialState = {
+  active: false,
+  outEffect: true
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case types.HIDE_SHADOW:
 <<<<<<< development

@@ -96,7 +96,7 @@ const NavBarComponent = ({
             Icon={MdPerson}
             Label="Account"
             ClickEvent={() => {
-              console.log("clicked account");
+              //console.log("clicked account");
               if (shadowActive) {
                 _dispatch(hideModal());
                 _dispatch(hideShadow());

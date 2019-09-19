@@ -3,65 +3,47 @@ import ModalButton from "./ModalButton/ModalButton";
 import "./Modal.css";
 import Card from "react-bootstrap/Card";
 import { connect } from "react-redux";
-import { isAuthenticated } from "../../utils/auth";
 import { Link } from "react-router-dom";
 
-const Modal = ({ show, modalOut }) => {
-  var logged = isAuthenticated();
+const Modal = ({ show, isAuthenticated }) => {
   //console.log("Logueado: " + logged);
-  if (logged) {
-    if (show)
+  if (show) {
+    if (isAuthenticated) {
       return (
         <Card>
           {/* Para ir al account que no tenemos */}
-          <Link to={`/esta_pagina_sera_account_details`}>
+          <Link to="/esta_pagina_sera_account_details">
             <ModalButton
               label="Account Details"
               className="buttonOne"
             ></ModalButton>
           </Link>
-
-          <ModalButton
-            label="Logout"
-            className="buttonTwo"
-            onClick={logout()}
-          ></ModalButton>
+          <Link to="/logout">
+            <ModalButton label="Logout" className="buttonTwo"></ModalButton>
+          </Link>
         </Card>
       );
-    return <div />;
-  } else {
-    if (show)
+    } else {
       return (
         <Card>
-          <Link to={`/signin`}>
+          <Link to="/signin">
             <ModalButton label="Login" className="buttonOne"></ModalButton>
           </Link>
-          <Link to={"/signup"}>
+          <Link to="/signup">
             <ModalButton label="Sign Up" className="buttonTwo"></ModalButton>
           </Link>
         </Card>
       );
-    return <div />;
+    }
   }
+  return <div />;
 };
 
 function mapStateToProps(state) {
   return {
     show: state.modal.active,
-    modalOut: state.modal.outEffect
+    isAuthenticated: state.auth.isAuthenticated
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-function logout() {
-  localStorage.clear();
-  return <Link className="link" to="/"></Link>;
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Modal);
+export default connect(mapStateToProps)(Modal);

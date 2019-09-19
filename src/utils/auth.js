@@ -4,3 +4,8 @@ export const isAuthenticated = () => {
   }
   return localStorage.getItem("token") ? true : false;
 };
+
+export const logoutModal = () => {
+  console.log("click logout");
+  localStorage.removeItem("token");
+};
