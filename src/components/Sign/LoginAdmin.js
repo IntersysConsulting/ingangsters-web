@@ -5,9 +5,9 @@ import "./Login.css";
 import "../../css/colors.css";
 import { FaEye } from "react-icons/fa";
 import { connect } from "react-redux";
-import { login } from "../../actions/creators/auth";
+import { adminLogin } from "../../actions/creators/auth";
 
-const Login = ({ login, isAuthenticated }) => {
+const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
   const [values, setValues] = useState({
     email: "",
     password: ""
@@ -23,11 +23,11 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async event => {
     event.preventDefault();
-    login(email, password);
+    adminLogin(email, password);
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   const toggleShow = () => {
@@ -38,7 +38,7 @@ const Login = ({ login, isAuthenticated }) => {
     <div className="container mt-5">
       <div className="row login-form">
         <div className="col-12">
-          <h2 className="form-title pb-3 mb-4">Login</h2>
+          <h2 className="form-title pb-3 mb-4">Admin's Login</h2>
           <form>
             <div className="form-group">
               <label className="text-muted">Email</label>
@@ -100,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
-)(Login);
+  { adminLogin }
+)(LoginAdmin);
