@@ -1,70 +1,62 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import { SIGNUP_SUCCESS, SIGNUP_FAIL } from "../../actions/types/signUp";
 import SimpleNavBar from "../SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
 import "./Signup.css";
 import "../../css/colors.css";
-import { FaEye, FaCentercode } from "react-icons/fa";
-import { connect } from "react-redux";
-import { login } from "../../actions/creators/auth";
-import { Form, Row, Col, InputGroup, Button, FormCheck } from "react-bootstrap";
-import { Formik, FormikProps, Field, ErrorMessage } from "formik";
+import { FaEye } from "react-icons/fa";
+import { signUp } from "../../actions/creators/signUp";
+import { Form, Col, InputGroup, Button, Alert } from "react-bootstrap";
+import { Formik } from "formik";
 import * as yup from "yup";
 
-const Login = ({ login, isAuthenticated }) => {
-  const [values, setValues] = useState({
-    email: "",
-    password: ""
-  });
-
-  const [validated, setValidated] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
-  /*   const {
-    firstName,
-    lastName,
-    phone,
-    email,
-    password,
-    passwordConfirm
-  } = values;
-
-  const handleChange = name => event => {
-    console.log("Hola Mundo")
-    setValues({ ...values, error: false, [name]: event.target.value });
-  };
-
-  const handleSubmit = event => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
-
-  const onSubmit = async event => {
-    event.preventDefault();
-    login(email, password);
-  };
-
-  if (isAuthenticated) {
-    return <Redirect to="/" />;
-  } */
-
-  const toggleShow = () => {
-    setShowPassword(!showPassword);
-  };
-  const toggleShowConfirm = () => {
-    setShowPasswordConfirm(!showPasswordConfirm);
-  };
-
-  function isValidEmail(mail) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPassword: false,
+      showPasswordConfirm: false,
+      alertVisible: false,
+      redirect: false
+    };
   }
 
-  const schema = yup.object({
+  alertVariant = "danger";
+  alertMessage = "";
+
+  toggleShow = () => {
+    this.setState({
+      showPassword: !this.state.showPassword
+    });
+  };
+  toggleShowConfirm = () => {
+    this.setState({
+      showPasswordConfirm: !this.state.showPasswordConfirm
+    });
+  };
+  isAlertVisible = status => {
+    if (status) {
+      this.setState({
+        alertVisible: true
+      });
+    } else {
+      this.setState({
+        alertVisible: false
+      });
+    }
+  };
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/signin" />
+    }
+  }
+
+  schema = yup.object({
     firstName: yup.string().required("First name is required."),
     lastName: yup.string().required("Last name is required."),
     phone: yup
@@ -81,16 +73,43 @@ const Login = ({ login, isAuthenticated }) => {
       .required("Password is required."),
     passwordConfirm: yup
       .string()
-      .oneOf([yup.ref('password'),null], 'Passwords are not the same!')
+      .oneOf([yup.ref("password"), null], "Passwords are not the same!")
       .min(8, "Min 8 characters.")
       .required("Password confirmation is required."),
     terms: yup.bool().required()
   });
 
-  const signUpForm = () => (
+  signUpForm = () => (
     <Formik
-      validationSchema={schema}
-      onSubmit={console.log}
+      validationSchema={this.schema}
+      onSubmit={async values => {
+        let response = "";
+        // console.log(values);
+        response = await signUp(
+          values.firstName + " " + values.lastName,
+          values.email,
+          values.password,
+          values.phone
+        );
+        if (response.type === SIGNUP_SUCCESS) {
+          this.alertVariant = "success";
+          this.alertMessage = "Register success.";
+          this.isAlertVisible(true);
+          setTimeout(() => {
+            this.setRedirect();
+          }, 3000);
+          console.log("Register success");
+        } else if (response.type === SIGNUP_FAIL) {
+          if (response.status === 409) {
+            this.alertVariant = "danger";
+            this.alertMessage = "Error!!! The email already exists.";
+            this.isAlertVisible(true);
+          } else if (response.status >= 400) {
+            this.alertVariant = "danger";
+            this.alertMessage = "Exist a error.";
+          }
+        }
+      }}
       initialValues={{
         firstName: "",
         lastName: "",
@@ -107,15 +126,24 @@ const Login = ({ login, isAuthenticated }) => {
         values,
         touched,
         isValid,
-        errors 
+        errors
       }) => (
         <div className="container mt-5">
+          <Alert
+            key="alert"
+            variant={this.alertVariant}
+            onClose={() => this.isAlertVisible(false)}
+            show={this.state.alertVisible}
+            dismissible
+          >
+            {this.alertMessage}
+          </Alert>
           <div className="row login-form">
             <div className="col-12">
               <h2>Sign up</h2>
               <h5>Please fill this form to create an account! </h5>
               <hr />
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form noValidate onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col} md="6" controlId="validationFirstName">
                     <Form.Label>First name</Form.Label>
@@ -157,6 +185,7 @@ const Login = ({ login, isAuthenticated }) => {
                       value={values.email}
                       onChange={handleChange}
                       isValid={touched.email && !errors.email}
+                      // isInvalid={!!errors.email}
                       isInvalid={!!errors.email}
                     />
                     <Form.Control.Feedback type="invalid">
@@ -183,7 +212,7 @@ const Login = ({ login, isAuthenticated }) => {
                     <Form.Label>Password</Form.Label>
                     <InputGroup>
                       <Form.Control
-                        type={showPassword ? "text" : "password"}
+                        type={this.state.showPassword ? "text" : "password"}
                         name="password"
                         placeholder="password"
                         value={values.password}
@@ -192,7 +221,10 @@ const Login = ({ login, isAuthenticated }) => {
                         isInvalid={!!errors.password}
                       />
                       <InputGroup.Prepend>
-                        <div className="col-1 text-center" onClick={toggleShow}>
+                        <div
+                          className="col-1 text-center"
+                          onClick={this.toggleShow}
+                        >
                           <FaEye size={32} />
                         </div>
                       </InputGroup.Prepend>
@@ -209,7 +241,9 @@ const Login = ({ login, isAuthenticated }) => {
                     <Form.Label>Confirm Password</Form.Label>
                     <InputGroup>
                       <Form.Control
-                        type={showPasswordConfirm ? "text" : "password"}
+                        type={
+                          this.state.showPasswordConfirm ? "text" : "password"
+                        }
                         name="passwordConfirm"
                         placeholder="confirm password"
                         value={values.passwordConfirm}
@@ -218,12 +252,11 @@ const Login = ({ login, isAuthenticated }) => {
                           touched.passwordConfirm && !errors.passwordConfirm
                         }
                         isInvalid={!!errors.passwordConfirm}
-
                       />
                       <InputGroup.Prepend>
                         <div
                           className="col-1 text-center"
-                          onClick={toggleShowConfirm}
+                          onClick={this.toggleShowConfirm}
                         >
                           <FaEye size={32} />
                         </div>
@@ -256,10 +289,7 @@ const Login = ({ login, isAuthenticated }) => {
                     }
                   ></Form.Check>
                 </Form.Group>
-                <Button
-                className="btn btn-intersys col-md-2"
-                  type="submit"
-                >
+                <Button className="btn btn-intersys col-md-2" type="submit">
                   Sign Up
                 </Button>
               </Form>
@@ -270,19 +300,14 @@ const Login = ({ login, isAuthenticated }) => {
     </Formik>
   );
 
-  return (
-    <div>
-      <SimpleNavBar />
-      {signUpForm()}
-    </div>
-  );
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+  render() {
+    return (
+      <div>
+        {this.renderRedirect()}
+        <SimpleNavBar />
+        {this.signUpForm()}
+      </div>
+    );
+  }
+}
+export default SignUp;
