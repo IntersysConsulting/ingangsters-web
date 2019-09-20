@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SIGNUP_SUCCESS, SIGNUP_FAIL } from "../../actions/types/signUp";
-import SimpleNavBar from "../SimpleNavBar/SimpleNavBar";
+import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
 import "./Signup.css";
 import "../../css/colors.css";
@@ -9,6 +9,8 @@ import { signUp } from "../../actions/creators/signUp";
 import { Form, Col, InputGroup, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
+import Loading from "../UI/Loading/Loading";
+import { isAuthenticated } from "../../utils/auth";
 
 class SignUp extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class SignUp extends Component {
       showPassword: false,
       showPasswordConfirm: false,
       alertVisible: false,
-      redirect: false
+      redirect: false,
+      isAuthenticated: isAuthenticated()
     };
   }
 
@@ -48,13 +51,24 @@ class SignUp extends Component {
   setRedirect = () => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
   renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/signin" />
+    if(this.state.isAuthenticated){
+      return <Redirect to="/" />;
     }
-  }
+    if (this.state.redirect) {
+      return (
+        <React.Fragment>
+          <div className="offset-5 col-2">
+            <Loading />
+          </div>
+          <Redirect to="/login" />
+        </React.Fragment>
+      );
+      // return <Redirect to="/login" />;
+    }
+  };
 
   schema = yup.object({
     firstName: yup.string().required("First name is required."),
@@ -97,7 +111,7 @@ class SignUp extends Component {
           this.isAlertVisible(true);
           setTimeout(() => {
             this.setRedirect();
-          }, 3000);
+          }, 1500);
           console.log("Register success");
         } else if (response.type === SIGNUP_FAIL) {
           if (response.status === 409) {
@@ -138,15 +152,16 @@ class SignUp extends Component {
           >
             {this.alertMessage}
           </Alert>
-          <div className="row login-form">
+          <div className="row signup-form">
             <div className="col-12">
               <h2>Sign up</h2>
-              <h5>Please fill this form to create an account! </h5>
-              <hr />
+              <h5 className="form-title pb-3 mb-4">
+                Please fill this form to create an account!{" "}
+              </h5>
               <Form noValidate onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col} md="6" controlId="validationFirstName">
-                    <Form.Label>First name</Form.Label>
+                    <Form.Label className="text-muted">First name</Form.Label>
                     <Form.Control
                       type="text"
                       name="firstName"
@@ -161,7 +176,7 @@ class SignUp extends Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="6" controlId="validationLastName">
-                    <Form.Label>Last name</Form.Label>
+                    <Form.Label className="text-muted">Last name</Form.Label>
                     <Form.Control
                       type="text"
                       name="lastName"
@@ -176,7 +191,7 @@ class SignUp extends Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="validationEmail">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="text-muted">Email</Form.Label>
                     <Form.Control
                       type="email"
                       pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/"
@@ -193,7 +208,7 @@ class SignUp extends Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="validationPhone">
-                    <Form.Label>Phone</Form.Label>
+                    <Form.Label className="text-muted">Phone</Form.Label>
                     <Form.Control
                       type="tel"
                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
@@ -209,7 +224,7 @@ class SignUp extends Component {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="validationPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label className="text-muted">Password</Form.Label>
                     <InputGroup>
                       <Form.Control
                         type={this.state.showPassword ? "text" : "password"}
@@ -222,7 +237,7 @@ class SignUp extends Component {
                       />
                       <InputGroup.Prepend>
                         <div
-                          className="col-1 text-center"
+                          className="col-1 text-center icon"
                           onClick={this.toggleShow}
                         >
                           <FaEye size={32} />
@@ -238,7 +253,9 @@ class SignUp extends Component {
                     md="12"
                     controlId="validationConfirmPassword"
                   >
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label className="text-muted">
+                      Confirm Password
+                    </Form.Label>
                     <InputGroup>
                       <Form.Control
                         type={
@@ -255,7 +272,7 @@ class SignUp extends Component {
                       />
                       <InputGroup.Prepend>
                         <div
-                          className="col-1 text-center"
+                          className="col-1 text-center icon"
                           onClick={this.toggleShowConfirm}
                         >
                           <FaEye size={32} />
