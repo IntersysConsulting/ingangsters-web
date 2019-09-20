@@ -1,12 +1,8 @@
 import React from "react";
 import "./Shadow.css";
 import { connect } from "react-redux";
-<<<<<<< development:src/components/UI/Shadow/Shadow.jsx
-import { hideShadow } from "../../../actions/creators/shadow";
-=======
 import { hideShadow } from "../../actions/creators/shadow";
 import { hideModal } from "../../actions/creators/modal";
->>>>>>> Responsive modal and the respective labels appears:src/components/Shadow/Shadow.jsx
 const ShadowComponent = ({ show, handleClick, shadowOut }) => {
   var classList = ["shadow"];
   if (show) classList.push("show");
