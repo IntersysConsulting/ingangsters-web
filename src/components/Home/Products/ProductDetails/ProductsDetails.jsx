@@ -3,8 +3,9 @@ import NavBar from "../../../NavBars/GeneralNavBar/NavBar";
 import axios from "axios";
 import { connect } from "react-redux";
 import { API } from "../../../../config";
-import { addProductToCart } from "../../../../actions/creators/cart";
-import BouncingBall from "../../../UI/Loading/Loading";
+import { addProductToCart } from "../../../Cart/ProductsManager";
+import { uploadAndUpdateCart } from "../../../../actions/creators/cart";
+import Loading from "../../../UI/Loading/Loading";
 
 import "./ProductDetails.css";
 
@@ -30,7 +31,7 @@ const loadProductData = async (productId, setProductData, setLoading) => {
   }
 };
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = ({ match, uploadAndUpdateCart }) => {
   const productId = match.params.id;
   const [productData, setProductData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ const ProductDetails = ({ match }) => {
       <React.Fragment>
         <NavBar />
         <div className="offset-5 col-2">
-          <BouncingBall />
+          <Loading />
         </div>
       </React.Fragment>
     );
@@ -54,7 +55,7 @@ const ProductDetails = ({ match }) => {
             <div className="row py-4">
               <div className="col-12 col-sm-12 col-md-5 col-lg-5 my-auto text-center">
                 <img
-                  className="img-fluid"
+                  className="img-fluid size-image"
                   alt="product_image"
                   src={productData.image}
                 ></img>
@@ -78,8 +79,17 @@ const ProductDetails = ({ match }) => {
           </div>
           <div className="col-12 mt-4">
             <div className="row">
-              <div className="col-6 offset-3 col-sm-6 offset-sm3 col-md-5 offset-md-7">
-                <button className="btn-lg btn-intersys btn-block">
+              <div className="col-6 offset-3 col-sm-6 offset-sm3 col-md-5 offset-md-7 pb-4">
+                <button
+                  className="btn-lg btn-intersys btn-block"
+                  onClick={() => {
+                    addProductToCart(
+                      productData,
+                      productId,
+                      uploadAndUpdateCart
+                    );
+                  }}
+                >
                   Add to cart
                 </button>
               </div>
@@ -91,17 +101,9 @@ const ProductDetails = ({ match }) => {
   }
 };
 
-const mapStateToProps = state => ({
-  cart: state.cart
-});
-
-const mapDispatchToProps = dispatch => ({
-  addProductToCart() {
-    dispatch(addProductToCart());
-  }
-});
+const mapStateToProps = state => ({});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { uploadAndUpdateCart }
 )(ProductDetails);

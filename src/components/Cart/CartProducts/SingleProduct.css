@@ -1,0 +1,44 @@
+.priceColor {
+    color: var(--light-blue);
+}
+
+.item-cell {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--light-blue);
+    border-radius: 25px;
+}
+
+.btn-intersys-cart {
+    min-width: 50px;
+    max-width: 80px;
+    color: white;
+    width: 100%;
+    background-color: var(--green);
+}
+
+.btn-intersys-cart:hover {
+    color: black;
+    background-color: var(--green);
+}
+
+.line-clamp-cart {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.image-max {
+    max-height: 150px
+}
+
+@media screen and (min-width: 720px) {
+    .priceColor {
+        font-size: 30px;
+    }
+    .name-text {
+        font-size: 25px;
+    }
+}

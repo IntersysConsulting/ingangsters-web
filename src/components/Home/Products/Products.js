@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Loading from "../../UI/Loading/Loading";
 import { connect } from "react-redux";
-import { getProducts } from "../../../actions/creators/product";
+import { getProducts } from "../../../actions/creators/products";
 import "./Products.css";
 
 const Products = ({ getProducts, product: { products, loading } }) => {
