@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { connect } from "react-redux";
-import { getProducts } from "../../actions/creators/product";
+import { getProducts } from "../../../actions/creators/product";
 import "./Products.css";
 
 const Products = ({ getProducts, product: { products, loading } }) => {
