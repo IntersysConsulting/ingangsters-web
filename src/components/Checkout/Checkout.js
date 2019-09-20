@@ -1,16 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Checkout.css";
+import ShippingForm from "./ShippingForm/ShippingForm";
+import BillingForm from "./BillingForm/BillingForm";
+import { connect } from "react-redux";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
-import PaymentMethods from "./PaymentMethods/PaymentMethods";
 
-const Checkout = () => {
+const Checkout = ({ isAuthenticated }) => {
+  const [useBillingAddress, setUseBillingAddress] = useState(true);
+
+  const displayLoginBtn = () => {
+    if (!isAuthenticated)
+      return (
+        <div className="text-center">
+          <Link to="/login">
+            <button className="btn checkout-btn">
+              Login for faster Checkout
+            </button>
+          </Link>
+          <p>...or continue as a guest</p>
+        </div>
+      );
+  };
+
+  const displayBillingForm = () =>
+    !useBillingAddress ? <BillingForm /> : null;
+
+  const handleCheck = () => {
+    setUseBillingAddress(!useBillingAddress);
+  };
+
   return (
     <div>
       <SimpleNavBar />
-      <h1>Checkout</h1>
-
-      <PaymentMethods />
+      <div className="container-fluid mt-5">
+        <div className="row">
+          <div className="col-md-6 col-lg-6">
+            {displayLoginBtn()}
+            <ShippingForm />
+            <label className="mt-4">
+              <input
+                name="isGoing"
+                type="checkbox"
+                checked={useBillingAddress}
+                onChange={handleCheck}
+              />
+              Use this address for billing
+            </label>
+            {displayBillingForm()}
+            <div className="text-center mt-5">
+              <button className="btn checkout-btn">Continue to Payment</button>
+            </div>
+          </div>
+          <div className="col-md-6 col-lg-6">
+            <h1>Your Order</h1>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Checkout;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Checkout);

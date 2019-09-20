@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { API } from "../../config";
-import LoadingBall from "../UI/Loading/Loading";
+import Loading from "../UI/Loading/Loading";
 
 const checkIfAdmin = async (setLoading, setIsAdmin) => {
   const token = localStorage.getItem("token");
@@ -33,7 +33,7 @@ const AdminRoute = ({
     checkIfAdmin(setLoading, setIsAdmin);
     return (
       <div className="offset-5 col-2">
-        <LoadingBall />
+        <Loading />
       </div>
     );
   } else {
