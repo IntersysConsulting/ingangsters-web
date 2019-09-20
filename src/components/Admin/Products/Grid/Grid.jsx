@@ -2,7 +2,7 @@ import React from "react";
 import Product from "../ProductCard/Card";
 import "./Grid.css";
 import { connect } from "react-redux";
-import LoadingBall from "../LoadingBall/LoadingBall";
+import LoadingBall from "../../../UI/Loading/Loading";
 import { fetchProducts } from "../../../../actions/creators/adminProducts";
 
 const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {

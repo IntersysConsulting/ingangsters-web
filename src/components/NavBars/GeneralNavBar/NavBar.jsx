@@ -5,13 +5,13 @@ import SearchBar from "./SearchBar/SearchBar";
 import IconButton from "./IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
-import { toggleMenuResponsive } from "../../actions/creators/navBar";
-import { showShadow } from "../../actions/creators/shadow";
-import { hideShadow } from "../../actions/creators/shadow";
+import { toggleMenuResponsive } from "../../../actions/creators/navBar";
+import { showShadow } from "../../../actions/creators/shadow";
+import { hideShadow } from "../../../actions/creators/shadow";
 import { connect } from "react-redux";
 import { MdMenu } from "react-icons/md";
 import { FaRegWindowClose } from "react-icons/fa";
-import "../../css/colors.css";
+import "../../../css/colors.css";
 import "./NavBar.css";
 
 const NavBarComponent = ({
@@ -56,7 +56,6 @@ const NavBarComponent = ({
           Icon={MdPerson}
           Label="Account"
           ClickEvent={() => {
-            console.log("clicked account");
             if (shadowActive) _dispatch(hideShadow());
             else _dispatch(showShadow());
           }}

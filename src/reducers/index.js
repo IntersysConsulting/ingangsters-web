@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import sample from "./samples";
 import navBar from "./navBar";
 import shadow from "./shadow";
 import auth from "./auth";
@@ -8,7 +7,6 @@ import adminTabBar from "./AdminTabBar";
 import adminProducts from "./adminProducts";
 
 const reducerCombined = combineReducers({
-  sample,
   navBar,
   shadow,
   auth,

@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { API } from "../../config";
-import LoadingBall from "../Admin/Products/LoadingBall/LoadingBall";
+import LoadingBall from "../UI/Loading/Loading";
 
 const checkIfAdmin = async (setLoading, setIsAdmin) => {
   const token = localStorage.getItem("token");
@@ -32,11 +32,9 @@ const AdminRoute = ({
   if (loading) {
     checkIfAdmin(setLoading, setIsAdmin);
     return (
-      <Fragment>
-        <div className="offset-5 col-2">
-          <LoadingBall />
-        </div>
-      </Fragment>
+      <div className="offset-5 col-2">
+        <LoadingBall />
+      </div>
     );
   } else {
     return (

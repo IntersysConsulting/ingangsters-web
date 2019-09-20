@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Fragment } from "react";
-import NavBar from "../../NavBar/NavBar";
-import Shadow from "../../Shadow/Shadow";
+import React, { useState } from "react";
+import NavBar from "../../../NavBars/GeneralNavBar/NavBar";
+import Shadow from "../../../UI/Shadow/Shadow";
 import axios from "axios";
 import { connect } from "react-redux";
-import { API } from "../../../config";
-import { addProductToCart } from "../../../actions/creators/cart";
-import BouncingBall from "../../Admin/Products/LoadingBall/LoadingBall";
+import { API } from "../../../../config";
+import { addProductToCart } from "../../../../actions/creators/cart";
+import BouncingBall from "../../../UI/Loading/Loading";
 
 import "./ProductDetails.css";
 
@@ -17,13 +17,11 @@ const loadProductData = async (productId, setProductData, setLoading) => {
         "Content-Type": "application/json"
       }
     };
-    console.log(`${API}/products/single`);
     await axios
       .post(`${API}/products/single`, body, config)
       .then(response => {
         setProductData(response.data);
         setLoading(false);
-        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -37,7 +35,6 @@ const ProductDetails = ({ match }) => {
   const productId = match.params.id;
   const [productData, setProductData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  console.log("isloading: ", isLoading);
 
   if (isLoading) {
     loadProductData(productId, setProductData, setLoading);

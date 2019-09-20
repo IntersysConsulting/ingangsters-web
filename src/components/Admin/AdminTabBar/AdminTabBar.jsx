@@ -2,9 +2,9 @@ import React from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import "./AdminTabBar.css";
-import "../../css/colors.css";
+import "../../../css/colors.css";
 import { connect } from "react-redux";
-import { setActiveAdminBarButton } from "../../actions/creators/AdminTabBar";
+import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 
 const AdminTabBar = ({ active, handleClick }) => {
   return (
