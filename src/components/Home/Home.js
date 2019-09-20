@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
-import Shadow from "../Shadow/Shadow";
+import NavBar from "../NavBars/GeneralNavBar/NavBar";
+import Shadow from "../UI/Shadow/Shadow";
 import Products from "../Products/Products";
 
 const Home = () => {

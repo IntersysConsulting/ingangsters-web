@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SimpleNavBar from "../SimpleNavBar/SimpleNavBar";
+import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import "../../css/colors.css";

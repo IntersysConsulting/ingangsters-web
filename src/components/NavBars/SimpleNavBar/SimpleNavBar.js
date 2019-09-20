@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
 import "./SimpleNavBar.css";
-import "../../css/colors.css";
+import "../../../css/colors.css";
 
 class SimpleNavBar extends Component {
   render() {

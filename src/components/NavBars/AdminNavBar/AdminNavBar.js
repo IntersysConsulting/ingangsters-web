@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
-import IconButtonAdmin from "../NavBar/IconButton/IconButton";
+import IconButtonAdmin from "../GeneralNavBar/IconButton/IconButton";
 import { MdPerson } from "react-icons/md";
-import { showShadow } from "../../actions/creators/shadow";
-import { hideShadow } from "../../actions/creators/shadow";
+import { showShadow } from "../../../actions/creators/shadow";
+import { hideShadow } from "../../../actions/creators/shadow";
 import { connect } from "react-redux";
-import "../../css/colors.css";
+import "../../../css/colors.css";
 import "./AdminNavBar.css";
 
 const NavBarComponent = ({ shadowActive, _dispatch }) => {
@@ -26,7 +26,6 @@ const NavBarComponent = ({ shadowActive, _dispatch }) => {
           Icon={MdPerson}
           Label=""
           ClickEvent={() => {
-            console.log("clicked account");
             if (shadowActive) _dispatch(hideShadow());
             else _dispatch(showShadow());
           }}

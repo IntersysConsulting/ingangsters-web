@@ -1,7 +1,7 @@
 import React from "react";
 import "./Shadow.css";
 import { connect } from "react-redux";
-import { hideShadow } from "../../actions/creators/shadow";
+import { hideShadow } from "../../../actions/creators/shadow";
 const ShadowComponent = ({ show, handleClick, shadowOut }) => {
   var classList = ["shadow"];
   if (show) classList.push("show");

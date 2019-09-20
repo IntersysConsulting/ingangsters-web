@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Bar from "../../../AdminNavBar/AdminNavBar";
-import Tabs from "../../../AdminTabBar/AdminTabBar";
+import Bar from "../../../NavBars/AdminNavBar/AdminNavBar";
+import Tabs from "../../AdminTabBar/AdminTabBar";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import BouncingBall from "../LoadingBall/LoadingBall";
+import BouncingBall from "../../../UI/Loading/Loading";
 import { API } from "../../../../config";
 import axios from "axios";
-import Shadow from "../../../Shadow/Shadow";
+import Shadow from "../../../UI/Shadow/Shadow";
 import "./ProductView.css";
 
 const getToken = () => localStorage.getItem("token");
@@ -38,7 +38,6 @@ const loadProduct = async (id, setData) => {
 };
 
 const updateProduct = async (data, form) => {
-  console.log("Updating...");
   const body = {
     _id: data._id,
     name: form.target.name.value,
@@ -67,7 +66,6 @@ const updateProduct = async (data, form) => {
 };
 
 const newProduct = async data => {
-  console.log("Creating new...");
   // const config = {
   //   headers: {
   //     "Content-Type": "application/json"

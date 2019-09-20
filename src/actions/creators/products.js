@@ -5,7 +5,6 @@ import axios from "axios";
 export const getProducts = () => async dispatch => {
   try {
     const res = await axios.get("https://www.reddit.com/r/reactjs.json");
-    console.log("getProducts() from creators", res);
     dispatch({
       type: GET_PRODUCTS,
       payload: res
