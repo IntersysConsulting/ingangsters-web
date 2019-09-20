@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { SIGNUP_SUCCESS, SIGNUP_FAIL } from "../../actions/types/signUp";
+import { SIGNUP_SUCCESS, SIGNUP_FAIL } from "../../actions/types/auth";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
-import "./Signup.css";
+import "./Sign.css";
 import "../../css/colors.css";
 import { FaEye } from "react-icons/fa";
-import { signUp } from "../../actions/creators/signUp";
+import { signUp } from "../../actions/creators/auth";
 import { Form, Col, InputGroup, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -54,7 +54,7 @@ class SignUp extends Component {
     });
   };
   renderRedirect = () => {
-    if(this.state.isAuthenticated){
+    if (this.state.isAuthenticated) {
       return <Redirect to="/" />;
     }
     if (this.state.redirect) {
@@ -66,7 +66,6 @@ class SignUp extends Component {
           <Redirect to="/login" />
         </React.Fragment>
       );
-      // return <Redirect to="/login" />;
     }
   };
 
@@ -98,7 +97,6 @@ class SignUp extends Component {
       validationSchema={this.schema}
       onSubmit={async values => {
         let response = "";
-        // console.log(values);
         response = await signUp(
           values.firstName + " " + values.lastName,
           values.email,
@@ -152,7 +150,7 @@ class SignUp extends Component {
           >
             {this.alertMessage}
           </Alert>
-          <div className="row signup-form">
+          <div className="row sign-form">
             <div className="col-12">
               <h2>Sign up</h2>
               <h5 className="form-title pb-3 mb-4">
@@ -200,7 +198,6 @@ class SignUp extends Component {
                       value={values.email}
                       onChange={handleChange}
                       isValid={touched.email && !errors.email}
-                      // isInvalid={!!errors.email}
                       isInvalid={!!errors.email}
                     />
                     <Form.Control.Feedback type="invalid">
