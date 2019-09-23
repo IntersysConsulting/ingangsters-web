@@ -1,0 +1,109 @@
+.orderSummaryItem {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.orderSummaryItem {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.orderSummaryItem > .productQuantity {
+  position: absolute;
+  float: right;
+  z-index: 50;
+  background-color: var(--orange);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  top: -10px;
+  right: -10px;
+  border-radius: 15px;
+  color: white;
+}
+
+.orderSummaryItem > .productImage {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.3;
+}
+
+.orderSummaryItem > .productImage > img {
+  max-width: 80%;
+  max-height: 80%;
+  height: auto;
+  width: auto;
+}
+
+.orderSummaryItem > div {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.orderSummaryItem > div > .productName {
+  font-weight: bold;
+  font-size: 18px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 90%;
+}
+
+.orderSummaryItem > div > .extra {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 5px;
+  font-size: 14px;
+}
+
+.orderSummaryItem > div > .extra > .remove {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--orange);
+}
+
+.orderSummaryItem > div > .extra > .priceTag,
+.orderSummaryTotal > span {
+  color: var(--light-blue);
+}
+
+.orderSummaryTotal {
+  width: 100%;
+  text-align: right;
+}
+
+@media screen and (max-width: 300px) {
+  .orderSummaryItem > .productImage {
+    flex: 0.4;
+  }
+  .orderSummaryItem > div {
+    flex: 0.6;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .orderSummaryItem > .productImage {
+    flex: 1;
+    min-width: 60px;
+  }
+  .orderSummaryItem > div {
+    flex: 0.5;
+  }
+}
