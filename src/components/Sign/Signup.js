@@ -26,6 +26,7 @@ class SignUp extends Component {
 
   alertVariant = "danger";
   alertMessage = "";
+  phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   toggleShow = () => {
     this.setState({
@@ -72,10 +73,7 @@ class SignUp extends Component {
   schema = yup.object({
     firstName: yup.string().required("First name is required."),
     lastName: yup.string().required("Last name is required."),
-    phone: yup
-      .number()
-      .integer()
-      .positive(),
+    phone: yup.string().matches(this.phoneRegExp, "Phone number is not valid"),
     email: yup
       .string()
       .email("Invalid email")
