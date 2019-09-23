@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import { Redirect, Link } from "react-router-dom";
-import "./Login.css";
+import "./Sign.css";
 import "../../css/colors.css";
 import { FaEye } from "react-icons/fa";
 import { connect } from "react-redux";
@@ -36,7 +36,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   const loginForm = () => (
     <div className="container mt-5">
-      <div className="row login-form">
+      <div className="row sign-form">
         <div className="col-12">
           <h2 className="form-title pb-3 mb-4">Login</h2>
           <form>

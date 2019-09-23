@@ -2,7 +2,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGINADMIN_SUCCESS,
-  LOGIN_ADMINFAIL
+  LOGIN_ADMINFAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
@@ -46,5 +48,28 @@ export const adminLogin = (email, password) => async dispatch => {
     dispatch({
       type: LOGIN_ADMINFAIL
     });
+  }
+};
+
+export async function signUp(name, email, password, phone) {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const body = JSON.stringify({ name, email, password, phone });
+  try {
+    const res = await axios.post(`${API}/user/signup`, body, config);
+    return {
+      type: SIGNUP_SUCCESS,
+      payload: res.data,
+      status: 201
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      type: SIGNUP_FAIL,
+      status: err.response.status
+    };
   }
 };
