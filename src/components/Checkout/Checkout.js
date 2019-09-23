@@ -30,6 +30,21 @@ const Checkout = ({ isAuthenticated }) => {
     setUseBillingAddress(!useBillingAddress);
   };
 
+  const onSubmit = () => {
+    const shippingAddressForm = document.forms.shippingForm;
+    const shippingFormValues = {
+      name: shippingAddressForm.elements.name.value,
+      street: shippingAddressForm.elements.address.value,
+      country: shippingAddressForm.elements.country.value,
+      state: shippingAddressForm.elements.state.value,
+      city: shippingAddressForm.elements.city.value,
+      zipCode: shippingAddressForm.elements.zipCode.value,
+      phone: shippingAddressForm.elements.phone.value,
+      email: shippingAddressForm.elements.email.value
+    };
+    console.log(shippingFormValues);
+  };
+
   return (
     <div>
       <SimpleNavBar />
@@ -49,7 +64,9 @@ const Checkout = ({ isAuthenticated }) => {
             </label>
             {displayBillingForm()}
             <div className="text-center mt-5">
-              <button className="btn checkout-btn">Continue to Payment</button>
+              <button className="btn checkout-btn" onClick={onSubmit}>
+                Continue to Payment
+              </button>
             </div>
           </div>
           <div className="col-md-6 col-lg-6">
