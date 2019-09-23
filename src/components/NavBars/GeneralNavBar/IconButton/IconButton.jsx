@@ -2,6 +2,7 @@ import React from "react";
 import "../NavBar.css";
 import "./IconButton.css";
 import { Link } from "react-router-dom";
+import Shadow from "../../../UI/Shadow/Shadow";
 
 class IconButton extends React.Component {
   constructor(props) {
@@ -19,44 +20,55 @@ class IconButton extends React.Component {
     // this.props.Label === "Cart" ? this.setState({openCart: true}) : this.setState({showShadow: false});
     // this.props.Label === "Cart" ? console.log("Cart") : console.log("User");
     // console.log("Label: "+this.props.Label);
-    // console.log("Show shadow: "+this.state.showShadow);
-    // console.log("Cart: "+this.state.openCart);
+    console.log("Show shadow: " + this.state.showShadow);
+    //console.log("Cart: " + this.state.openCart);
   }
 
-  componentDidMount() {
-    this.handleClick();
-  }
+  // componentDidMount() {
+  //   this.setState({ showShadow: false, openCart: false });
+  //   this.handleClick();
+  // }
 
   renderContent() {
     if (this.state.showShadow) {
       return (
         <div onClick={this.handleClick} className="iconButton">
-          {/* ////////////////////////////cuidado con este link */}
-          <Link to="/showShadow">
           <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
           <p
             className="buttonLabel"
             style={{ color: "#fff" }}
           >{`${this.props.Label}`}</p>
-          </Link>
+          <Shadow active={""+this.state.showShadow} />
+        </div>
+      );
+    } else if (this.state.showShadow !== true && this.props.Label !== "Cart") {
+      return (
+        <div onClick={this.handleClick} className="iconButton">
+          <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
+          <p
+            className="buttonLabel"
+            style={{ color: "#fff" }}
+          >{`${this.props.Label}`}</p>
+          <Shadow active={""+this.state.showShadow} />
         </div>
       );
     }
+
     return (
       <div onClick={this.handleClick} className="iconButton">
         <Link to="/cart">
-        <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
-        <p
-          className="buttonLabel"
-          style={{ color: "#fff" }}
-        >{`${this.props.Label}`}</p>
+          <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
+          <p
+            className="buttonLabel"
+            style={{ color: "#fff" }}
+          >{`${this.props.Label}`}</p>
         </Link>
       </div>
     );
   }
 
   render() {
-    return (this.renderContent());
+    return this.renderContent();
   }
 }
 

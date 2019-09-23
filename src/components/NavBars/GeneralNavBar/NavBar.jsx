@@ -82,7 +82,7 @@ const NavBarComponent = ({
 };
 
 const mapStateToProps = state => ({
-  shadowActive: state.shadow.active,
+  //shadowActive: state.shadow.active,
   responsiveMenuActive: state.navBar.responsiveMenuActive
 });
 
