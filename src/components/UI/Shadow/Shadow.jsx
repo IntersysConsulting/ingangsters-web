@@ -4,30 +4,24 @@ import "../Shadow/Shadow.css";
 
 class Shadow extends React.Component {
   //{active: false, logged: false, admin: false};
-  
+
   constructor(props) {
     super(props);
-    this.state = { active: false, logged: false, shadowClass: "shadow initial" };
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      active: false,
+      logged: false,
+      shadowClass: "shadow initial"
+    };
+    //this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.state.active ? this.setState({ active: false }) : this.setState({ active: true });    
+  typeOfShadow() {
+    return this.props.active ? "shadow show" : "shadow out";
   }
 
-  componentDidMount(){
-    console.log("shadow state: "+this.props.active);
-    //this.setState({active: this.props.active});
-    // this.setState({logged: isAuthenticated()});
-  }
-
-  typeOfShadow(){
-    return this.state.active ? "shadow show" : "shadow out";
-  }
-
-  render(){
-    console.log("Type of shadow: "+this.typeOfShadow());
-    return <div className={this.typeOfShadow()}></div>
+  render() {
+    console.log("Type of shadow: " + this.typeOfShadow());
+    return <div className={this.typeOfShadow()}></div>;
   }
 }
 

@@ -7,53 +7,25 @@ import Shadow from "../../../UI/Shadow/Shadow";
 class IconButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showShadow: false, openCart: false };
+    this.state = { showShadow: false };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.props.Label === "Cart"
-      ? this.setState({ openCart: true })
-      : this.state.showShadow
-      ? this.setState({ showShadow: false })
-      : this.setState({ showShadow: true });
-    // this.props.Label === "Cart" ? this.setState({openCart: true}) : this.setState({showShadow: false});
-    // this.props.Label === "Cart" ? console.log("Cart") : console.log("User");
-    // console.log("Label: "+this.props.Label);
-    console.log("Show shadow: " + this.state.showShadow);
-    //console.log("Cart: " + this.state.openCart);
+    if (this.props.Label !== "Cart") {
+      if (!this.state.showShadow) {
+        this.setState({ showShadow: true });
+        this.renderContentShadow();
+      } else {
+        this.setState({ showShadow: false });
+        this.renderContentShadow();
+      }
+    } else {
+      this.renderContentCart();
+    }
   }
 
-  // componentDidMount() {
-  //   this.setState({ showShadow: false, openCart: false });
-  //   this.handleClick();
-  // }
-
-  renderContent() {
-    if (this.state.showShadow) {
-      return (
-        <div onClick={this.handleClick} className="iconButton">
-          <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
-          <p
-            className="buttonLabel"
-            style={{ color: "#fff" }}
-          >{`${this.props.Label}`}</p>
-          <Shadow active={""+this.state.showShadow} />
-        </div>
-      );
-    } else if (this.state.showShadow !== true && this.props.Label !== "Cart") {
-      return (
-        <div onClick={this.handleClick} className="iconButton">
-          <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
-          <p
-            className="buttonLabel"
-            style={{ color: "#fff" }}
-          >{`${this.props.Label}`}</p>
-          <Shadow active={""+this.state.showShadow} />
-        </div>
-      );
-    }
-
+  renderContentCart() {
     return (
       <div onClick={this.handleClick} className="iconButton">
         <Link to="/cart">
@@ -67,8 +39,29 @@ class IconButton extends React.Component {
     );
   }
 
+  renderContentShadow() {
+    // this.state.showShadow
+    //   ? this.setState({ showShadow: false })
+    //   : this.setState({ showShadow: true });
+    console.log("Shadow: " + this.state.showShadow);
+    return (
+      <div onClick={this.handleClick} className="iconButton">
+        <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
+        <p
+          className="buttonLabel"
+          style={{ color: "#fff" }}
+        >{`${this.props.Label}`}</p>
+        <Shadow active={this.state.showShadow} />
+      </div>
+    );
+  }
+
   render() {
-    return this.renderContent();
+    if (this.props.Label !== "Cart") {
+      return this.renderContentShadow();
+    } else {
+      return this.renderContentCart();
+    }
   }
 }
 
