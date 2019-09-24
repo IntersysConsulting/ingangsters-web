@@ -7,79 +7,17 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import BouncingBall from "../../../UI/Loading/Loading";
-import { API } from "../../../../config";
-import axios from "axios";
 import Shadow from "../../../UI/Shadow/Shadow";
 import "./ProductView.css";
-
-const getToken = () => localStorage.getItem("token");
-const loadProduct = async (id, setData) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-  const endpoint = `${API}/products/single`;
-  const body = JSON.stringify({ _id: id });
-  try {
-    const res = await axios.post(endpoint, body, config);
-    const { status, data } = res;
-    var loadingNow = status !== 200;
-    setData({
-      ...data,
-      showDelete: true,
-      isLoading: loadingNow,
-      submit: updateProduct,
-      _id: id
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const updateProduct = async (data, form) => {
-  const body = {
-    _id: data._id,
-    name: form.target.name.value,
-    description: form.target.description.value,
-    price: parseInt(form.target.price.value),
-    stock: parseInt(form.target.stock.value),
-    image: data.image,
-    shippable: data.shippable,
-    available: data.available
-  };
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getToken()
-    }
-  };
-  const endpoint = `${API}/products/update`;
-  try {
-    const res = await axios.put(endpoint, body, config);
-    if (res.status) {
-      alert("Saved successfully");
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const newProduct = async data => {
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }
-  // };
-  // const endpoint = `${API}/products/create`;
-};
+import { newProduct, loadProduct, imageChange } from "./Connections";
 
 const ProductView = ({ match }) => {
   const { id } = match.params;
   const [data, setData] = useState({
     showDelete: false,
     isLoading: id !== "new",
-    submit: newProduct
+    submit: newProduct,
+    disableSave: false
   });
   let deleteVariant;
   if (data.showDelete) deleteVariant = <Button variant="danger">Delete</Button>;
@@ -116,9 +54,10 @@ const ProductView = ({ match }) => {
               event.preventDefault();
               data.submit(data, event);
             }}
+            encType="multipart/form-data"
           >
             <Row>
-              <Col>
+              <Col md={6} sm={12}>
                 <Form.Group controlId="name">
                   <Form.Label>Product Name</Form.Label>
                   <Form.Control
@@ -159,7 +98,7 @@ const ProductView = ({ match }) => {
                   />
                 </Form.Group>
               </Col>
-              <Col className="mx-auto">
+              <Col md={6} sm={12} className="mx-auto imageWrapper">
                 <img
                   alt="my product"
                   src={
@@ -167,17 +106,31 @@ const ProductView = ({ match }) => {
                       ? data.image
                       : "http://mpmco.com/wp-content/uploads/2018/02/placeholder.jpg"
                   }
+                  id="productImagePreview"
                 />
                 <br />
-                <Button variant="success" className="mx-auto">
-                  Upload an image
-                </Button>
+                <Form.Group controlId="image">
+                  <Form.Label className="mx-auto btn btn-success">
+                    Upload an image
+                  </Form.Label>
+                  <Form.Control
+                    type="file"
+                    required={!data.image}
+                    className="inputfile"
+                    onChange={imageChange(setData)}
+                  />
+                </Form.Group>
               </Col>
             </Row>
             <br />
             <Row>
               <Col className="bottomButtonBar">
-                <Button variant="primary" className="mx-auto" type="submit">
+                <Button
+                  variant="primary"
+                  className="mx-auto"
+                  type="submit"
+                  disabled={data.disableSave}
+                >
                   Save
                 </Button>
                 {deleteVariant}
