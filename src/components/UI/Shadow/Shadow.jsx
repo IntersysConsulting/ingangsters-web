@@ -1,18 +1,19 @@
 import React from "react";
-//import { isAuthenticated } from "../../../utils/auth";
+import { isAuthenticated } from "../../../utils/auth";
 import "../Shadow/Shadow.css";
+import Modal from "../../Modal/Modal";
 
 class Shadow extends React.Component {
-  //{active: false, logged: false, admin: false};
-
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
       logged: false,
       shadowClass: "shadow initial"
     };
-    //this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ logged: isAuthenticated() });
   }
 
   typeOfShadow() {
@@ -20,8 +21,12 @@ class Shadow extends React.Component {
   }
 
   render() {
-    console.log("Type of shadow: " + this.typeOfShadow());
-    return <div className={this.typeOfShadow()}></div>;
+    // console.log(this.state.logged);
+    return (
+      <div className={this.typeOfShadow()}>
+        <Modal log={this.state.logged}></Modal>
+      </div>
+    );
   }
 }
 

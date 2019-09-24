@@ -43,7 +43,7 @@ class IconButton extends React.Component {
     // this.state.showShadow
     //   ? this.setState({ showShadow: false })
     //   : this.setState({ showShadow: true });
-    console.log("Shadow: " + this.state.showShadow);
+    //console.log("Shadow: " + this.state.showShadow);
     return (
       <div onClick={this.handleClick} className="iconButton">
         <this.props.Icon color="#fff" className="mx-auto buttonIcon" />

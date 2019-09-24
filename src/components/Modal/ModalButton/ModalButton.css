@@ -6,6 +6,7 @@
   border-color: var(--green);
   margin: 5px 8px 5px 8px;
   line-height: 100%;
+  border-radius: 5px;
 }
 .buttonOne:hover {
   background-color: var(--green);
@@ -17,6 +18,7 @@
   color: black;
   margin: 5px 8px 5px 8px;
   line-height: 100%;
+  border-radius: 5px;
 }
 .buttonTwo:hover {
   background-color: var(--white);
