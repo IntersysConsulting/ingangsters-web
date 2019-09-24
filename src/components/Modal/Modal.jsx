@@ -16,17 +16,13 @@ class Shadow extends React.Component {
       return (
         <Card>
           {/* Para ir al account que no tenemos */}
-          <Link
-            to="/details/5d7676f35db4e862cc84027d"
-            className="buttonOne"
-            key="l"
-          >
+          <Link to="/details/5d7676f35db4e862cc84027d">
             <ModalButton
               label="Account Details"
               className="buttonOne"
             ></ModalButton>
           </Link>
-          <Link to="/logout" className="buttonTwo">
+          <Link to="/logout">
             <ModalButton label="Logout" className="buttonTwo"></ModalButton>
           </Link>
         </Card>
@@ -34,10 +30,10 @@ class Shadow extends React.Component {
     } else {
       return (
         <Card>
-          <Link to="/login" className="buttonOne">
+          <Link to="/login">
             <ModalButton label="Login" className="buttonOne"></ModalButton>
           </Link>
-          <Link to="/signup" className="buttonTwo">
+          <Link to="/signup">
             <ModalButton label="Sign Up" className="buttonTwo"></ModalButton>
           </Link>
         </Card>

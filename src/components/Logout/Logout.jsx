@@ -1,12 +1,31 @@
-import React from "react";
-//import { logoutModal } from "../../utils/auth";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { login } from "../../actions/creators/auth";
+import { connect } from "react-redux";
+import { LOGIN_FAIL } from "../../actions/types/auth";
+import Loading from "../UI/Loading/Loading";
 
-const LogoutComponent = () => {
-  login("", "");
-  //logoutModal();
-  return <Redirect to="/" />;
+const LogoutComponent = ({ logout }) => {
+  const [loading, setLoading] = useState(true);
+  if (loading) {
+    setTimeout(setLoading, 2000, false);
+    return <Loading className="center-horizontally" />;
+  } else {
+    logout();
+    return <Redirect to="/" />;
+  }
 };
 
-export default LogoutComponent;
+const mapDispatchToProps = dispatch => ({
+  logout() {
+    dispatch({ type: LOGIN_FAIL });
+  }
+});
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogoutComponent);

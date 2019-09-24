@@ -1,12 +1,13 @@
-.wrap {
+/* .wrap {
   width: 100px;
-}
+} */
 .buttonOne {
   background-color: var(--green);
   border-color: var(--green);
   margin: 5px 8px 5px 8px;
   line-height: 100%;
   border-radius: 5px;
+  width: 90%;
 }
 .buttonOne:hover {
   background-color: var(--green);
@@ -19,6 +20,7 @@
   margin: 5px 8px 5px 8px;
   line-height: 100%;
   border-radius: 5px;
+  width: 90%;
 }
 .buttonTwo:hover {
   background-color: var(--white);
