@@ -5,8 +5,9 @@ import ShippingForm from "./ShippingForm/ShippingForm";
 import BillingForm from "./BillingForm/BillingForm";
 import { connect } from "react-redux";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
+import Loading from "../UI/Loading/Loading";
 
-const Checkout = ({ isAuthenticated }) => {
+const Checkout = ({ isAuthenticated, loading }) => {
   const [useBillingAddress, setUseBillingAddress] = useState(true);
 
   const displayLoginBtn = () => {
@@ -45,7 +46,11 @@ const Checkout = ({ isAuthenticated }) => {
     console.log(shippingFormValues);
   };
 
-  return (
+  return loading ? (
+    <div className="offset-5 col-2">
+      <Loading />
+    </div>
+  ) : (
     <div>
       <SimpleNavBar />
       <div className="container-fluid mt-5">
@@ -79,7 +84,8 @@ const Checkout = ({ isAuthenticated }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading
 });
 
 export default connect(mapStateToProps)(Checkout);

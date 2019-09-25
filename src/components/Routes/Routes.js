@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Login from "../Sign/Login";
@@ -14,7 +14,13 @@ import store from "../../store";
 import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../Logout/Logout";
+import { getUser } from "../../actions/creators/auth";
+
 function Routes() {
+  useEffect(() => {
+    store.dispatch(getUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <BrowserRouter>

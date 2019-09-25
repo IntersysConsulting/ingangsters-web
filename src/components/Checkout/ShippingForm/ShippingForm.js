@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import { connect } from "react-redux";
 import "./ShippingForm.css";
 
-const ShippingForm = () => {
+const ShippingForm = ({ isAuthenticated, user }) => {
+  const [selectedAddress, setSelectedAddress] = useState({
+    alias: "",
+    city: "",
+    country: "",
+    number: "",
+    state: "",
+    street: "",
+    type: "",
+    zipCode: ""
+  });
+
+  const handleSelect = evt => {
+    const address = JSON.parse(evt);
+    setSelectedAddress(address);
+    console.log(selectedAddress);
+  };
+
   const displayAddressesDropdown = () => {
-    return (
-      <DropdownButton
-        id="addresses-dropdown"
-        title="Addresses"
-        className="dropdown"
-      >
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </DropdownButton>
-    );
+    if (isAuthenticated) {
+      const { addresses } = user;
+      return (
+        <DropdownButton
+          id="addresses-dropdown"
+          title={
+            selectedAddress.alias === "" ? "Addresses" : selectedAddress.alias
+          }
+          className="dropdown"
+          onSelect={handleSelect}
+        >
+          {addresses.map((address, i) => (
+            <Dropdown.Item key={i} eventKey={JSON.stringify(address)}>
+              {address.alias}
+            </Dropdown.Item>
+          ))}
+        </DropdownButton>
+      );
+    }
   };
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -40,14 +66,15 @@ const ShippingForm = () => {
     <Formik
       initialValues={{
         name: "",
-        address: "",
-        country: "",
-        state: "",
-        city: "",
-        zipCode: "",
+        address: selectedAddress.street,
+        country: selectedAddress.country,
+        state: selectedAddress.state,
+        city: selectedAddress.city,
+        zipCode: selectedAddress.zipCode,
         phone: "",
         email: ""
       }}
+      enableReinitialize
       validationSchema={ShippingFormSchema}
     >
       {({ errors, touched }) => {
@@ -202,4 +229,9 @@ const ShippingForm = () => {
   );
 };
 
-export default ShippingForm;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps)(ShippingForm);
