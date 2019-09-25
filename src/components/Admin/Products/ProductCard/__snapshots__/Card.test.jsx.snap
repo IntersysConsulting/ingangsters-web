@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ADMIN: Product Card renders with random props 1`] = `
+<Link
+  className="productCard"
+  to="/random/Path"
+>
+  <div
+    className="productImage"
+  >
+    <img
+      alt="LOREM"
+      src="https://makeitreal.camp/assets/react-logo-ac85b6b5793992bc49365c389fe88d09b100c758d6981653724ad613764911b2.png"
+    />
+  </div>
+  <div
+    className="productData"
+  >
+    <p
+      className="productName"
+    >
+      LOREM
+    </p>
+    <p
+      className="productStock"
+    >
+      Stock: 
+      <span
+        className="high"
+      >
+        123
+      </span>
+    </p>
+  </div>
+</Link>
+`;

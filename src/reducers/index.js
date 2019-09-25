@@ -17,9 +17,6 @@ const reducerCombined = combineReducers({
 
 export const initialState = {
   navBar: {
-    mouseOverAccountButton: false,
-    mouseOverCartButton: false,
-    accountButtonActive: false,
     responsiveMenuActive: false
   },
 
