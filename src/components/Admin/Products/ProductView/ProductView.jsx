@@ -7,8 +7,6 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import BouncingBall from "../../../UI/Loading/Loading";
-import { API } from "../../../../config";
-import axios from "axios";
 import "./ProductView.css";
 import { newProduct, loadProduct, imageChange } from "./Connections";
 
