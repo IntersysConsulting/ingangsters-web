@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ADMIN: Products renders properly 1`] = `
+<ContextProvider
+  value={null}
+>
+  <AdminProducts
+    currentPage={1}
+    dispatch={null}
+    fetchProducts={[Function]}
+    itemsPerPage={10}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    totalItems={16}
+  />
+</ContextProvider>
+`;

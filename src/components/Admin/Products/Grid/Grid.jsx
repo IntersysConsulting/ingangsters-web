@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 import LoadingBall from "../../../UI/Loading/Loading";
 import { fetchProducts } from "../../../../actions/creators/adminProducts";
 
-const ProductsGrid = ({ items, loading, finishedFetch, fetchProducts }) => {
+export const ProductsGrid = ({
+  items,
+  loading,
+  finishedFetch,
+  fetchProducts
+}) => {
   if (items.length === 0 && !loading && !finishedFetch) {
     fetchProducts(1);
   }

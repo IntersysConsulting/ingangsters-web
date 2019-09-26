@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ADMIN: Products - Product View renders "new product" form 1`] = `
+<Fragment>
+  <Connect(ShadowComponent) />
+  <Connect(NavBarComponent) />
+  <Connect(AdminTabBar) />
+  <br />
+  <Container
+    fluid={false}
+  >
+    <h1>
+      New Product
+    </h1>
+    <br />
+    <Form
+      className="productForm"
+      encType="multipart/form-data"
+      inline={false}
+      onSubmit={[Function]}
+    >
+      <ForwardRef
+        noGutters={false}
+      >
+        <Col
+          md={6}
+          sm={12}
+        >
+          <FormGroup
+            controlId="name"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Product Name
+            </FormLabel>
+            <FormControl
+              placeholder="e.g. Fabuloso"
+              required={true}
+              type="text"
+            />
+          </FormGroup>
+          <FormGroup
+            controlId="price"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Price
+            </FormLabel>
+            <FormControl
+              min={1}
+              placeholder="e.g. 5"
+              required={true}
+              type="number"
+            />
+          </FormGroup>
+          <FormGroup
+            controlId="stock"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Stock
+            </FormLabel>
+            <FormControl
+              min={1}
+              placeholder="e.g. 37"
+              required={true}
+              type="number"
+            />
+          </FormGroup>
+          <FormGroup
+            controlId="description"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Description
+            </FormLabel>
+            <FormControl
+              as="textarea"
+              placeholder="This is an awesome product"
+              required={true}
+              rows="4"
+            />
+          </FormGroup>
+        </Col>
+        <Col
+          className="mx-auto imageWrapper"
+          md={6}
+          sm={12}
+        >
+          <img
+            alt="my product"
+            id="productImagePreview"
+            src="http://mpmco.com/wp-content/uploads/2018/02/placeholder.jpg"
+          />
+          <br />
+          <FormGroup
+            controlId="image"
+          >
+            <FormLabel
+              className="mx-auto btn btn-success"
+              column={false}
+              srOnly={false}
+            >
+              Upload an image
+            </FormLabel>
+            <FormControl
+              className="inputfile"
+              onChange={[Function]}
+              required={true}
+              type="file"
+            />
+          </FormGroup>
+        </Col>
+      </ForwardRef>
+      <br />
+      <ForwardRef
+        noGutters={false}
+      >
+        <Col
+          className="bottomButtonBar"
+        >
+          <Button
+            active={false}
+            className="mx-auto"
+            disabled={false}
+            type="submit"
+            variant="primary"
+          >
+            Save
+          </Button>
+          <span />
+        </Col>
+        <br />
+      </ForwardRef>
+      <br />
+    </Form>
+  </Container>
+</Fragment>
+`;
