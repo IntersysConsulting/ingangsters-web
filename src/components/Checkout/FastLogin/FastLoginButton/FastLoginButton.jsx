@@ -2,9 +2,20 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "./FastLoginButton.css";
 import "../../../../css/colors.css";
+import { connect } from "react-redux";
 
-const FastLoginButton = () => {
-  return <Button className="FastLoginButton">Login for faster Checkout</Button>;
+const FastLoginButton = ({ isAuthenticated }) => {
+  if (!isAuthenticated) {
+    return (
+      <Button className="FastLoginButton">Login for faster Checkout</Button>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
-export default FastLoginButton;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(FastLoginButton);
