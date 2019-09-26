@@ -8,7 +8,7 @@ const Products = ({ getProducts, product: { products, loading } }) => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
-  console.log(products);
+
   return loading ? (
     <p>CARGANDO.....</p>
   ) : (

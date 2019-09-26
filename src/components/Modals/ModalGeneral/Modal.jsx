@@ -12,8 +12,6 @@ function ModalSchema() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log("Authenticated: " + isAuthenticated());
-
   if (isAuthenticated()) {
     return (
       <React.Fragment>
@@ -33,13 +31,13 @@ function ModalSchema() {
             <Link to="/esta_pagina_sera_account_details">
               <ModalButton
                 label="Account Details"
-                className="buttonOne modalButton"
+                className="accountButton modalButton"
               ></ModalButton>
             </Link>
             <Link to="/logout">
               <ModalButton
                 label="Logout"
-                className="buttonTwo modalButton"
+                className="logoutButton modalButton"
               ></ModalButton>
             </Link>
           </Modal.Body>

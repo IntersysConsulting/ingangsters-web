@@ -27,7 +27,6 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    console.log("Me sacó del login");
     return <Redirect to="/" />;
   }
 

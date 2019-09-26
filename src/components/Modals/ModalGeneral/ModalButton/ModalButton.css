@@ -1,4 +1,4 @@
-.buttonOne.modalButton {
+.accountButton.modalButton {
   background-color: var(--green);
   border-color: var(--green);
   margin: 5px 8px 5px 8px;
@@ -6,11 +6,11 @@
   border-radius: 5px;
   width: 90%;
 }
-.buttonOne:hover {
+.accountButton:hover {
   background-color: var(--green);
   border-color: var(--green);
 }
-.buttonTwo.modalButton {
+.logoutButton.modalButton {
   background-color: var(--white);
   border-color: var(--white);
   color: black;
@@ -19,21 +19,15 @@
   border-radius: 5px;
   width: 90%;
 }
-.button_two:hover {
+.logoutButton:hover {
   background-color: var(--white);
   border-color: var(--white);
   color: black;
 }
 
 @media screen and (max-width: 550px) {
-  .button-one {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    height: 40px;
-  }
-
-  .button-two {
+  .accountButton,
+  .logoutButton {
     margin-left: auto;
     margin-right: auto;
     width: 90%;

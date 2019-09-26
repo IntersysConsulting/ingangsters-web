@@ -5,7 +5,6 @@ import { LOGIN_FAIL } from "../../actions/types/auth";
 import Loading from "../UI/Loading/Loading";
 
 const LogoutComponent = ({ logout }) => {
-  //console.log(props.type);
   const [loading, setLoading] = useState(true);
   if (loading) {
     setTimeout(setLoading, 2000, false);

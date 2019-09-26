@@ -27,7 +27,8 @@ function Routes() {
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/details/:id" component={ProductDetails} />
-          <Route path="/admin/product/:id" component={Product} />
+          <AdminRoute path="/admin/product/:id" component={Product} />
+          <AdminRoute path="/admin/product" exact component={AdminPage} />
           <Route path="/admin/product" exact component={AdminPage} />
           <Route path="/logout" exact component={Logout} />
         </Switch>

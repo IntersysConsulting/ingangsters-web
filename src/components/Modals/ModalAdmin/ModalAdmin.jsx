@@ -30,13 +30,13 @@ function ModalAdmin() {
           <Link to="/admin/dashboard">
             <ModalButton
               label="Admin Page"
-              className="buttonOne modalButton"
+              className="accountButton modalButton"
             ></ModalButton>
           </Link>
           <Link to="/logout">
             <ModalButton
               label="Logout"
-              className="buttonTwo modalButton"
+              className="logoutButton modalButton"
             ></ModalButton>
           </Link>
         </Modal.Body>
