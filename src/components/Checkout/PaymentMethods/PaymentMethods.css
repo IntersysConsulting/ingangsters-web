@@ -1,0 +1,27 @@
+.paymentMethodsTitle {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.paymentOption {
+  width: 25% !important;
+  border-color: var(--dark-grey);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  height: 40px;
+  background-color: var(--white);
+  padding-top: 5px;
+}
+
+.paymentButton {
+  width: 32px;
+  background-color: var(--light-blue) !important;
+}
+
+.paymentTag {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
