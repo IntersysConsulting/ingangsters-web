@@ -77,20 +77,26 @@ export async function signUp(name, email, password, phone) {
 }
 
 export const getUser = () => async dispatch => {
-  try {
-    const AuthStr = `Bearer ${localStorage.getItem("token")}`;
-    const res = await axios.get("http://127.0.0.1:5000/user/", {
-      headers: { Authorization: AuthStr }
-    });
+  if (localStorage.token) {
+    try {
+      const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+      const res = await axios.get(`${API}/user`, {
+        headers: { Authorization: AuthStr }
+      });
+      dispatch({
+        type: GET_USER,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: AUTH_ERROR,
+        payload: err
+      });
+    }
+  } else {
     dispatch({
-      type: GET_USER,
-      payload: res.data
-    });
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: AUTH_ERROR,
-      payload: err
+      type: AUTH_ERROR
     });
   }
 };

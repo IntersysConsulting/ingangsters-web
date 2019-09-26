@@ -1,0 +1,17 @@
+#shipping-addresses-dropdown,
+#billing-addresses-dropdown {
+  background-color: black;
+  border-color: black;
+}
+
+#shipping-addresses-dropdown:hover,
+#billing-addresses-dropdown:hover {
+  color: #fff;
+  background-color: black;
+  border-color: var(--dark-grey);
+}
+
+#shipping-addresses-dropdown:focus,
+#billing-addresses-dropdown:focus {
+  box-shadow: 0 0 0 0.2rem var(--dark-grey);
+}

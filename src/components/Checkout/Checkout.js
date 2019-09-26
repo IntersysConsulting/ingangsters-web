@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./Checkout.css";
 import ShippingForm from "./ShippingForm/ShippingForm";
@@ -47,9 +47,12 @@ const Checkout = ({ isAuthenticated, loading }) => {
   };
 
   return loading ? (
-    <div className="offset-5 col-2">
-      <Loading />
-    </div>
+    <Fragment>
+      <SimpleNavBar />
+      <div className="d-flex justify-content-center">
+        <Loading />
+      </div>
+    </Fragment>
   ) : (
     <div>
       <SimpleNavBar />
@@ -58,15 +61,21 @@ const Checkout = ({ isAuthenticated, loading }) => {
           <div className="col-md-6 col-lg-6">
             {displayLoginBtn()}
             <ShippingForm />
-            <label className="mt-4">
+            <div className="custom-control custom-checkbox my-4 ml-3">
               <input
-                name="isGoing"
                 type="checkbox"
+                className="custom-control-input"
+                id="customControlValidation1"
                 checked={useBillingAddress}
                 onChange={handleCheck}
               />
-              Use this address for billing
-            </label>
+              <label
+                className="custom-control-label"
+                htmlFor="customControlValidation1"
+              >
+                Use this address for billing
+              </label>
+            </div>
             {displayBillingForm()}
             <div className="text-center mt-5">
               <button className="btn checkout-btn" onClick={onSubmit}>
