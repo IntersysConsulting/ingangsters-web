@@ -22,6 +22,7 @@ class PaymentMethods extends React.Component {
       <div className="PaymentMethods">
         <h1 className="paymentMethodsTitle">Select Payment Method</h1>
         <br />
+
         <div className="paymentOption">
           <input
             type="radio"
@@ -34,6 +35,7 @@ class PaymentMethods extends React.Component {
           <span className="paymentTag">Oxxo Pay</span>
         </div>
         <br />
+
         <div className="paymentOption">
           <input
             type="radio"
@@ -46,6 +48,7 @@ class PaymentMethods extends React.Component {
           <span className="paymentTag">PayPal</span>
         </div>
         <br />
+
         <div className="paymentOption">
           <input
             type="radio"
@@ -55,7 +58,7 @@ class PaymentMethods extends React.Component {
             className="paymentButton"
           />
           <img src="/assets/card-logo.png" width="65" height="auto" />
-          <span className="paymentTag">Tarjeta</span>
+          <span className="paymentTag">Card</span>
         </div>
       </div>
     );
