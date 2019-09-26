@@ -21,6 +21,7 @@ class PaymentMethods extends React.Component {
     return (
       <div className="PaymentMethods">
         <h1 className="paymentMethodsTitle">Select Payment Method</h1>
+        <br />
         <div className="paymentOption">
           <input
             type="radio"
