@@ -63,13 +63,13 @@ function ModalSchema() {
             <Link to="/login">
               <ModalButton
                 label="Login"
-                className="buttonOne modalButton"
+                className="accountButton modalButton"
               ></ModalButton>
             </Link>
             <Link to="/signup">
               <ModalButton
                 label="Sign Up"
-                className="buttonTwo modalButton"
+                className="logoutButton modalButton"
               ></ModalButton>
             </Link>
           </Modal.Body>
