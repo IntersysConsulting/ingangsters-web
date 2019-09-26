@@ -29,7 +29,6 @@ function Routes() {
           <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/product/:id" component={Product} />
           <AdminRoute path="/admin/product" exact component={AdminPage} />
-          <Route path="/admin/product" exact component={AdminPage} />
           <Route path="/logout" exact component={Logout} />
         </Switch>
       </BrowserRouter>
