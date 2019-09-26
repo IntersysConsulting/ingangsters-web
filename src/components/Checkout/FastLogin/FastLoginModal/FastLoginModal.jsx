@@ -24,6 +24,7 @@ const FastLoginModal = ({ login, isAuthenticated }) => {
     event.preventDefault();
     login(email, password);
   };
+
   return (
     <div className="fastLoginModal">
       <div className="LoginModalContent">
