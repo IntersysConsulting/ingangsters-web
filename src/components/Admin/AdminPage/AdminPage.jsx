@@ -1,6 +1,5 @@
 import React from "react";
 import AdminTabBar from "../AdminTabBar/AdminTabBar";
-import Shadow from "../../UI/Shadow/Shadow";
 import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
@@ -9,7 +8,6 @@ const AdminPage = ({ adminOption }) => {
   return (
     <div>
       <AdminNavBar />
-      <Shadow />
       <AdminTabBar />
       <br />
       <br />

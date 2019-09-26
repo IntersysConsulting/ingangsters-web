@@ -3,7 +3,6 @@ import Grid from "./Grid/Grid";
 import Paginator from "./Paginator/Paginator";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
-import Shadow from "../../UI/Shadow/Shadow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 const AdminProducts = ({
@@ -14,7 +13,6 @@ const AdminProducts = ({
 }) => {
   return (
     <div>
-      <Shadow />
       <br />
       <Grid />
       <Paginator

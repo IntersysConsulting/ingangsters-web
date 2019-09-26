@@ -7,7 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import BouncingBall from "../../../UI/Loading/Loading";
-import Shadow from "../../../UI/Shadow/Shadow";
+import { API } from "../../../../config";
+import axios from "axios";
 import "./ProductView.css";
 import { newProduct, loadProduct, imageChange } from "./Connections";
 
@@ -27,7 +28,6 @@ const ProductView = ({ match }) => {
     loadProduct(id, setData);
     return (
       <React.Fragment>
-        <Shadow />
         <Bar />
         <Tabs />
         <br />
@@ -41,7 +41,6 @@ const ProductView = ({ match }) => {
   } else {
     return (
       <React.Fragment>
-        <Shadow />
         <Bar />
         <Tabs />
         <br />

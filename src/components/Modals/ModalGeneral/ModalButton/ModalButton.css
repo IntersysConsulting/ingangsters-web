@@ -1,7 +1,4 @@
-/* .wrap {
-  width: 100px;
-} */
-.buttonOne {
+.buttonOne.modalButton {
   background-color: var(--green);
   border-color: var(--green);
   margin: 5px 8px 5px 8px;
@@ -13,7 +10,7 @@
   background-color: var(--green);
   border-color: var(--green);
 }
-.buttonTwo {
+.buttonTwo.modalButton {
   background-color: var(--white);
   border-color: var(--white);
   color: black;
@@ -22,21 +19,21 @@
   border-radius: 5px;
   width: 90%;
 }
-.buttonTwo:hover {
+.button_two:hover {
   background-color: var(--white);
   border-color: var(--white);
   color: black;
 }
 
 @media screen and (max-width: 550px) {
-  .buttonOne {
+  .button-one {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
     height: 40px;
   }
 
-  .buttonTwo {
+  .button-two {
     margin-left: auto;
     margin-right: auto;
     width: 90%;

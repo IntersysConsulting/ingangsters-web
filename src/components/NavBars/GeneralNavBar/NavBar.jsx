@@ -3,25 +3,16 @@ import NavBar from "react-bootstrap/Navbar";
 import NavBarBrand from "react-bootstrap/NavbarBrand";
 import SearchBar from "./SearchBar/SearchBar";
 import IconButton from "./IconButton/IconButton";
-import { MdPerson } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
 import { toggleMenuResponsive } from "../../../actions/creators/navBar";
-// import { showShadow } from "../../../actions/creators/shadow";
-// import { hideShadow } from "../../../actions/creators/shadow";
 import { connect } from "react-redux";
 import { MdMenu } from "react-icons/md";
 import { FaRegWindowClose } from "react-icons/fa";
+import ModalComponent from "../../Modals/ModalGeneral/Modal";
 import "../../../css/colors.css";
 import "./NavBar.css";
-// import { hideModal, showModal } from "../../../actions/creators/modal";
-// import Modal from "../../Modal/Modal";
 
-const NavBarComponent = ({
-  shadowActive,
-  responsiveMenuActive,
-  toggleMenuResponsive,
-  _dispatch
-}) => {
+const NavBarComponent = ({ responsiveMenuActive, toggleMenuResponsive }) => {
   var navBarClassList = ["navbar-responsive"];
   let ToggleButton;
   if (responsiveMenuActive) {
@@ -30,8 +21,6 @@ const NavBarComponent = ({
   } else {
     ToggleButton = MdMenu;
   }
-
-  
 
   return (
     <div>
@@ -57,32 +46,16 @@ const NavBarComponent = ({
         <SearchBar />
         <div className="flexSeparator" style={{ flex: 1 }} />
         <div className="iconButtonWrapper">
-          <IconButton
-            Icon={MdPerson}
-            Label="Account"
-            // ClickEvent={() => {
-            //   //console.log("clicked account");
-            //   if (shadowActive) {
-            //     // _dispatch(hideModal());
-            //     // _dispatch(hideShadow());
-            //   } else {
-            //     // _dispatch(showModal());
-            //     // _dispatch(showShadow());
-            //   }
-            // }}
-          />
+          <ModalComponent />
           <div className="verticalSeparator" />
-
           <IconButton Icon={MdShoppingCart} Label="Cart" />
         </div>
       </NavBar>
-      {/* <Modal /> */}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  //shadowActive: state.shadow.active,
   responsiveMenuActive: state.navBar.responsiveMenuActive
 });
 
