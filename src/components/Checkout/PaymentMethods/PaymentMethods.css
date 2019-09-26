@@ -15,13 +15,30 @@
   padding-top: 5px;
 }
 
-.paymentButton {
-  width: 32px;
-  background-color: var(--light-blue) !important;
+input {
+  border: 5px solid #0dff92;
 }
 
+input[type="radio"]:checked ~ .check::before {
+  background: #0dff92;
+  width: 35px;
+}
+.paymentButton {
+  width: 35px;
+}
 .paymentTag {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   text-align: center;
+}
+
+.paymentOption img {
+  margin-right: 50px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .paymentOption {
+    width: 100% !important;
+  }
 }
