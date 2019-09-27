@@ -13,7 +13,7 @@
 }
 
 .my-rectangle {
-    min-width: 60px;
+    min-width: 45px;
     max-width: 60px;
     border-color: black;
     border: 5px;
@@ -23,5 +23,11 @@
     .btn-intersys-btn {
         font-size: 25px;
         max-width: 50px;
+    }
+    .my-rectangle {
+        min-width: 60px;
+        max-width: 60px;
+        border-color: black;
+        border: 5px;
     }
 }

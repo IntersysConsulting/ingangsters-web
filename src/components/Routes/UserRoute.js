@@ -5,9 +5,9 @@ import axios from "axios";
 import { API } from "../../config";
 import Loading from "../UI/Loading/Loading";
 import { getUser } from "../../actions/creators/auth";
-import { uploadAndUpdateCart } from "../../actions/creators/cart";
+import { updateCartStore } from "../../actions/creators/cart";
 
-const getCart = async setLoading => {
+export const getCart = async setLoading => {
   const token = localStorage.getItem("token");
   if (token) {
     const config = {
@@ -19,7 +19,6 @@ const getCart = async setLoading => {
 
     try {
       await axios.get(`${API}/cart`, config).then(function(response) {
-        console.log(response);
         if (response.status === 200) {
           localStorage.setItem("cart", JSON.stringify(response.data.data));
           setLoading(false);
@@ -27,14 +26,13 @@ const getCart = async setLoading => {
       });
     } catch (err) {
       console.log(err.response);
-      localStorage.removeItem("cart");
       setLoading(false);
     }
   }
   setLoading(false);
 };
 
-const UserRoute = ({ component: Component, getUser, uploadAndUpdateCart }) => {
+const UserRoute = ({ component: Component, getUser, updateCartStore }) => {
   useEffect(() => {
     getUser();
   }, [getUser]);
@@ -48,7 +46,7 @@ const UserRoute = ({ component: Component, getUser, uploadAndUpdateCart }) => {
       </div>
     );
   } else {
-    uploadAndUpdateCart();
+    updateCartStore();
     return <Route render={props => <Component {...props} />} />;
   }
 };
@@ -57,5 +55,5 @@ const mapStateToProps = state => ({});
 
 export default connect(
   mapStateToProps,
-  { getUser, uploadAndUpdateCart }
+  { getUser, updateCartStore }
 )(UserRoute);

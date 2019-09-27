@@ -17,17 +17,17 @@ const SingleProduct = ({ data, uploadAndUpdateCart }) => {
             src={data.image}
           />
         </div>
-        <div className="col-5 col-md-7 my-auto text-center">
+        <div className="col-5 col-md-7 my-auto text-center pt-1">
           <div className="line-clamp-cart name-text">{data.name}</div>
           <div className="row justify-content-center pt-3 pb-2">
             <PlusLessButtons data={data} />
           </div>
         </div>
-        <div className="col-3 col-md-2 my-auto text-center">
+        <div className="col-3 col-md-2 my-auto">
           <div className="col-12 text-center">
-            <h5 className="priceColor">${data.price / 100}</h5>
+            <p className="priceColor">${data.price / 100}</p>
           </div>
-          <div className="col-12 pt-4">
+          <div className="col-12 pt-3 pb-2 text-center">
             <button
               className="btn btn-md btn-intersys-cart"
               onClick={() => {

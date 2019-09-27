@@ -24,9 +24,7 @@ const loadCartData = async (currentCart, setLoading, setCartData) => {
     await axios
       .post(`${API}/cart/summary`, body, config)
       .then(response => {
-        var cartData = response.data.data;
-
-        setCartData(cartData);
+        setCartData(response.data.data);
         setLoading(false);
       })
       .catch(error => {
@@ -46,7 +44,12 @@ const CartProducts = ({ cartItems, total, uploadAndUpdateCart }) => {
   const currentCart = JSON.parse(localStorage.getItem("cart"));
 
   if (isLoading) {
-    loadCartData(currentCart, setLoading, setCartData);
+    if (currentCart) {
+      loadCartData(currentCart, setLoading, setCartData);
+    } else {
+      setLoading(false);
+    }
+
     return (
       <React.Fragment>
         <div className="d-flex justify-content-center">
@@ -55,17 +58,18 @@ const CartProducts = ({ cartItems, total, uploadAndUpdateCart }) => {
       </React.Fragment>
     );
   } else {
-    for (var i = 0; i < currentCart.length; i++) {
-      var actualItemData = cartData[currentCart[i]["_id"]];
-      if (actualItemData) {
-        currentCart[i]["image"] = actualItemData.image;
-        currentCart[i]["name"] = actualItemData.name;
-        currentCart[i]["stock"] = actualItemData.stock;
-      } else {
-        deleteProductFromCart(currentCart[i]["_id"], uploadAndUpdateCart);
+    if (currentCart) {
+      for (var i = 0; i < currentCart.length; i++) {
+        var actualItemData = cartData[currentCart[i]["_id"]];
+        if (actualItemData) {
+          currentCart[i]["image"] = actualItemData.image;
+          currentCart[i]["name"] = actualItemData.name;
+          currentCart[i]["stock"] = actualItemData.stock;
+        } else {
+          deleteProductFromCart(currentCart[i]["_id"], uploadAndUpdateCart);
+        }
       }
     }
-    console.log("current Cart: ", currentCart);
 
     return currentCart && currentCart.length > 0 ? (
       <div className="row">

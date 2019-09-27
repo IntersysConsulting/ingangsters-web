@@ -33,10 +33,29 @@ export const uploadAndUpdateCart = () => async dispatch => {
   try {
     dispatch(updateCart(totalItems, greatTotalPrice));
     if (token) {
-      console.log("Body: ", body);
-      const result = await axios.post(`${API}/cart`, body, config);
-      console.log("Result: " + result);
+      await axios.post(`${API}/cart`, body, config).then(function(response) {
+        if (response.status === 200) {
+        }
+      });
     }
+  } catch (err) {
+    console.log(err.response);
+  }
+};
+
+export const updateCartStore = () => async dispatch => {
+  var totalItems = 0;
+  var greatTotalPrice = 0;
+
+  const actualCart = JSON.parse(localStorage.getItem("cart"));
+  if (actualCart) {
+    for (var i = 0; i < actualCart.length; i++) {
+      totalItems += actualCart[i].quantity;
+      greatTotalPrice += actualCart[i].price * actualCart[i].quantity;
+    }
+  }
+  try {
+    dispatch(updateCart(totalItems, greatTotalPrice));
   } catch (err) {
     console.log(err.response);
   }
