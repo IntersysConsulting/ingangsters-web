@@ -3,6 +3,7 @@ import AdminTabBar from "../AdminTabBar/AdminTabBar";
 import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
+
 const AdminPage = ({ adminOption }) => {
   return (
     <div>
