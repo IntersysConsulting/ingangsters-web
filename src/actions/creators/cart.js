@@ -16,9 +16,8 @@ export const uploadAndUpdateCart = () => async dispatch => {
   };
   const actualCart = JSON.parse(localStorage.getItem("cart"));
   if (actualCart) {
-    body = {
-      items: actualCart
-    };
+    body = JSON.stringify({ items: actualCart });
+
     for (var i = 0; i < actualCart.length; i++) {
       totalItems += actualCart[i].quantity;
       greatTotalPrice += actualCart[i].price * actualCart[i].quantity;
@@ -27,7 +26,7 @@ export const uploadAndUpdateCart = () => async dispatch => {
   const token = localStorage.getItem("token");
   const config = {
     headers: {
-      "Content-Type": "aplicattion/json",
+      "Content-Type": "application/json",
       Authorization: "Bearer " + token
     }
   };

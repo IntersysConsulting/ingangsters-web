@@ -3,19 +3,11 @@ export const addProductToCart = (
   productId,
   uploadAndUpdateCart
 ) => {
-  const productData = {
-    price: 0,
-    quantity: 0,
-    name: "",
-    image: ""
-  };
+  const productData = {};
 
   productData["_id"] = productId;
   productData["price"] = newProductData["price"];
   productData["quantity"] = 1;
-  productData["name"] = newProductData["name"];
-  productData["image"] = newProductData["image"];
-  productData["stock"] = newProductData["stock"];
 
   var actualCart = [];
   if (localStorage.getItem("cart")) {

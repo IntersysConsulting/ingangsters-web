@@ -11,9 +11,11 @@ const Products = ({ getProducts, product: { products, loading } }) => {
   }, [getProducts]);
 
   return loading ? (
-    <div className="offset-5 col-2">
-      <Loading />
-    </div>
+    <React.Fragment>
+      <div className="d-flex justify-content-center">
+        <Loading />
+      </div>
+    </React.Fragment>
   ) : (
     <div className="container-fluid">
       <h1>Products</h1>

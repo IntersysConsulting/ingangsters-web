@@ -32,7 +32,7 @@ const AdminRoute = ({
   if (loading) {
     checkIfAdmin(setLoading, setIsAdmin);
     return (
-      <div className="offset-5 col-2">
+      <div className="d-flex justify-content-center">
         <Loading />
       </div>
     );

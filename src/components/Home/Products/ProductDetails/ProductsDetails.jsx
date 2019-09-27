@@ -25,9 +25,11 @@ const loadProductData = async (productId, setProductData, setLoading) => {
       })
       .catch(error => {
         console.log(error);
+        setLoading(false);
       });
   } catch (err) {
     console.log(err);
+    setLoading(false);
   }
 };
 
