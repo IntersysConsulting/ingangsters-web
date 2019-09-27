@@ -1,0 +1,51 @@
+.paymentMethodsTitle {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.paymentOption {
+  border-color: var(--dark-grey);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  height: 40px;
+  background-color: var(--white);
+  padding-top: 5px;
+}
+.paymentButton {
+  width: 35px;
+}
+.paymentTag {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+.paymentOption img {
+  margin-right: 50px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .paymentOption {
+    width: 100% !important;
+  }
+
+  .PaymentMethods {
+    margin: auto;
+  }
+}
+@media screen and (min-width: 550px) {
+  .paymentOption {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .paymentOption {
+    width: 20%;
+  }
+  .PaymentMethods {
+    margin-left: 15%;
+  }
+}
