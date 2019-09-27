@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
-
+import Logout from "../Logout/Logout";
 function Routes() {
   return (
     <Provider store={store}>
@@ -29,6 +29,7 @@ function Routes() {
           <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/product/:id" component={Product} />
           <AdminRoute path="/admin/product" exact component={AdminPage} />
+          <Route path="/logout" exact component={Logout} />
         </Switch>
       </BrowserRouter>
     </Provider>

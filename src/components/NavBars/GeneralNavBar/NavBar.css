@@ -3,6 +3,10 @@
   background-color: var(--dark-grey);
   z-index: 100;
   border-bottom: 3px solid var(--light-blue);
+  position: relative;
+  /* position: fixed;
+  width: 100%;
+  top: 0px; */
 }
 
 .navbar-responsive .iconButtonWrapper {

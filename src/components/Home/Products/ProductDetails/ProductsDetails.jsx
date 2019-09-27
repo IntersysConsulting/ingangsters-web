@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import NavBar from "../../../NavBars/GeneralNavBar/NavBar";
-import Shadow from "../../../UI/Shadow/Shadow";
 import axios from "axios";
 import { connect } from "react-redux";
 import { API } from "../../../../config";
@@ -41,7 +40,6 @@ const ProductDetails = ({ match }) => {
     return (
       <React.Fragment>
         <NavBar />
-        <Shadow />
         <div className="offset-5 col-2">
           <BouncingBall />
         </div>
@@ -51,7 +49,6 @@ const ProductDetails = ({ match }) => {
     return (
       <div>
         <NavBar />
-        <Shadow />
         <div className="container mt-5">
           <div className="col-12 product-container">
             <div className="row py-4">

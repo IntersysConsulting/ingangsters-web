@@ -9,6 +9,10 @@
   margin-right: 5px;
 }
 
+.iconAdmin.iconButton {
+  vertical-align: middle;
+}
+
 .iconButton:hover {
   background-color: var(--light-grey);
 }

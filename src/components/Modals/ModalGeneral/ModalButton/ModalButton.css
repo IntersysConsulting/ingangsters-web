@@ -1,0 +1,36 @@
+.accountButton.modalButton {
+  background-color: var(--green);
+  border-color: var(--green);
+  margin: 5px 8px 5px 8px;
+  line-height: 100%;
+  border-radius: 5px;
+  width: 90%;
+}
+.accountButton:hover {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+.logoutButton.modalButton {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: black;
+  margin: 5px 8px 5px 8px;
+  line-height: 100%;
+  border-radius: 5px;
+  width: 90%;
+}
+.logoutButton:hover {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: black;
+}
+
+@media screen and (max-width: 550px) {
+  .accountButton,
+  .logoutButton {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 40px;
+  }
+}
