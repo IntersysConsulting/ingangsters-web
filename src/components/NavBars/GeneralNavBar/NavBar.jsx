@@ -8,6 +8,7 @@ import { toggleMenuResponsive } from "../../../actions/creators/navBar";
 import { connect } from "react-redux";
 import { MdMenu } from "react-icons/md";
 import { FaRegWindowClose } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import ModalComponent from "../../Modals/ModalGeneral/Modal";
 import "../../../css/colors.css";
 import "./NavBar.css";
@@ -26,13 +27,15 @@ const NavBarComponent = ({ responsiveMenuActive, toggleMenuResponsive }) => {
     <div>
       <NavBar bg="bg-gray" className={navBarClassList.join(" ")}>
         <NavBarBrand>
-          <img
-            alt=""
-            src="/assets/logo.png"
-            width="75"
-            height="75"
-            className="mx-auto"
-          />
+          <Link to="/">
+            <img
+              alt=""
+              src="/assets/logo.png"
+              width="75"
+              height="75"
+              className="mx-auto"
+            />
+          </Link>
           <ToggleButton
             size="2.4em"
             color="#ffffff"
