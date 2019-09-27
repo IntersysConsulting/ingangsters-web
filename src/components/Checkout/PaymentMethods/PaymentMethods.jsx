@@ -32,13 +32,16 @@ class PaymentMethods extends React.Component {
             onChange={this.radioChange}
             className="paymentButton"
           />
-          <img
-            alt="oxxo-pay"
-            src="/assets/Oxxo_logo.svg"
-            width="55"
-            height="auto"
-          />
-          <span className="paymentTag">Oxxo Pay</span>
+
+          <label for="oxxoPay" className="paymentTag">
+            <img
+              alt="oxxo-pay"
+              src="/assets/Oxxo_logo.svg"
+              width="55"
+              height="auto"
+            />
+            Oxxo Pay
+          </label>
         </div>
         <br />
 
@@ -51,13 +54,16 @@ class PaymentMethods extends React.Component {
             onChange={this.radioChange}
             className="paymentButton"
           />
-          <img
-            alt="PayPal"
-            src="/assets/PayPal-Logo.png"
-            width="65"
-            height="auto"
-          />
-          <span className="paymentTag">PayPal</span>
+
+          <label for="payPal" className="paymentTag">
+            <img
+              alt="PayPal"
+              src="/assets/PayPal-Logo.png"
+              width="65"
+              height="auto"
+            />
+            PayPal
+          </label>
         </div>
         <br />
 
@@ -70,13 +76,16 @@ class PaymentMethods extends React.Component {
             onChange={this.radioChange}
             className="paymentButton"
           />
-          <img
-            alt="card"
-            src="/assets/card-logo.png"
-            width="65"
-            height="auto"
-          />
-          <span className="paymentTag">Card</span>
+
+          <label for="card" className="paymentTag">
+            <img
+              alt="card"
+              src="/assets/card-logo.png"
+              width="65"
+              height="auto"
+            />
+            Card
+          </label>
         </div>
       </div>
     );
