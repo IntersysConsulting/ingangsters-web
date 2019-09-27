@@ -13,15 +13,6 @@
   background-color: var(--white);
   padding-top: 5px;
 }
-
-input {
-  border: 5px solid #0dff92;
-}
-
-input[type="radio"]:checked ~ .check::before {
-  background: #0dff92;
-  width: 35px;
-}
 .paymentButton {
   width: 35px;
 }
