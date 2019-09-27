@@ -50,24 +50,3 @@ const SearchBar = () => (
 );
 
 export default SearchBar;
-
-// <Form.Group as={Col} md="4" controlId="validationFormikUsername">
-//               <Form.Label>Username</Form.Label>
-//               <InputGroup>
-//                 <InputGroup.Prepend>
-//                   <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-//                 </InputGroup.Prepend>
-//                 <Form.Control
-//                   type="text"
-//                   placeholder="Username"
-//                   aria-describedby="inputGroupPrepend"
-//                   name="username"
-//                   value={values.username}
-//                   onChange={handleChange}
-//                   isInvalid={!!errors.username}
-//                 />
-//                 <Form.Control.Feedback type="invalid">
-//                   {errors.username}
-//                 </Form.Control.Feedback>
-//               </InputGroup>
-//             </Form.Group>

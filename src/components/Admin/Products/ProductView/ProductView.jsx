@@ -10,20 +10,21 @@ import BouncingBall from "../../../UI/Loading/Loading";
 import "./ProductView.css";
 import { newProduct, loadProduct, imageChange } from "./Connections";
 
-const ProductView = ({ match }) => {
+const ProductView = ({ match, history }) => {
   const { id } = match.params;
   const [data, setData] = useState({
     showDelete: false,
     isLoading: id !== "new",
     submit: newProduct,
-    disableSave: false
+    disableSave: false,
+    requireImage: true
   });
   let deleteVariant;
   if (data.showDelete) deleteVariant = <Button variant="danger">Delete</Button>;
   else deleteVariant = <span />;
 
   if (data.isLoading) {
-    loadProduct(id, setData);
+    loadProduct(id, setData, history.push);
     return (
       <React.Fragment>
         <Bar />
@@ -49,7 +50,7 @@ const ProductView = ({ match }) => {
             className="productForm"
             onSubmit={event => {
               event.preventDefault();
-              data.submit(data, event);
+              data.submit(data, event, history.push);
             }}
             encType="multipart/form-data"
           >
@@ -112,7 +113,7 @@ const ProductView = ({ match }) => {
                   </Form.Label>
                   <Form.Control
                     type="file"
-                    required={!data.image}
+                    required={data.requireImage}
                     className="inputfile"
                     onChange={imageChange(setData)}
                   />

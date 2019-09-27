@@ -31,7 +31,7 @@ export const updateProduct = async (data, form) => {
   }
 };
 
-export const loadProduct = async (id, setData) => {
+export const loadProduct = async (id, setData, nav) => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -49,20 +49,42 @@ export const loadProduct = async (id, setData) => {
       showDelete: true,
       isLoading: loadingNow,
       submit: updateProduct,
-      _id: id
+      _id: id,
+      requireImage: false
     }));
   } catch (err) {
     console.log(err);
+    nav("/productNotFoundError");
   }
 };
 
-export const newProduct = async data => {
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }
-  // };
-  // const endpoint = `${API}/products/create`;
+export const newProduct = async (data, form, nav) => {
+  console.log("Saving...");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken()
+    }
+  };
+  const body = {
+    name: form.target.name.value,
+    description: form.target.description.value,
+    price: parseInt(form.target.price.value),
+    stock: parseInt(form.target.stock.value),
+    image: data.image,
+    shippable: true
+  };
+  const endpoint = `${API}/products/create`;
+  try {
+    const res = await axios.post(endpoint, body, config);
+    if (res.status) {
+      alert("New product created successfully");
+      window.location.reload();
+    }
+  } catch (err) {
+    alert("Product not saved");
+    console.log(err);
+  }
 };
 
 const uploadImage = async image => {
