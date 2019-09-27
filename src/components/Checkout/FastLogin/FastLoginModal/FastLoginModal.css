@@ -1,0 +1,49 @@
+.fastLoginModal {
+  width: 270px;
+  height: 170px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  align-content: center;
+  border-radius: 5px;
+}
+.LoginModalContent {
+  margin: auto;
+}
+.form-group-modal {
+  height: 40px;
+  margin-right: 25%;
+}
+.modal-body {
+  padding: 0;
+}
+
+.form-control-modal {
+  border-color: #000000;
+  border-width: 1px;
+  height: 30px;
+  margin-right: 25%;
+  width: 200px;
+  border-radius: 5%;
+}
+.modal-content {
+  border: 0;
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.form-control-modal::placeholder {
+  color: var(--light-grey) !important;
+}
+.fastLoginButtonModal {
+  background-color: var(--green) !important;
+  border-radius: 5px !important;
+  border-color: var(--green) !important;
+  width: 150px;
+  height: 40px;
+  display: block;
+  margin: auto;
+}
