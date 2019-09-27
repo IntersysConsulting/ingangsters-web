@@ -3,22 +3,18 @@ import AdminTabBar from "../AdminTabBar/AdminTabBar";
 import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
-
 const AdminPage = ({ adminOption }) => {
   return (
     <div>
       <AdminNavBar />
       <AdminTabBar />
-      <br />
-      <br />
-
       {adminOption === "Users" ? (
         <center>
           <p>Users</p>
         </center>
       ) : adminOption === "Products" ? (
         <center>
-          <AdminProducts></AdminProducts>
+          <AdminProducts />
         </center>
       ) : (
         <center>
