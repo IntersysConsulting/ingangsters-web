@@ -6,7 +6,6 @@ import "../../../../css/colors.css";
 import "./FastLoginModal.css";
 import { connect } from "react-redux";
 import { login } from "../../../../actions/creators/auth";
-import { isAuthenticated } from "../../../../utils/auth";
 
 function FastLoginModal({ login, isAuthenticated }) {
   const [values, setValues] = useState({
