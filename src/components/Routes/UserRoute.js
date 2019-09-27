@@ -5,9 +5,9 @@ import axios from "axios";
 import { API } from "../../config";
 import Loading from "../UI/Loading/Loading";
 import { getUser } from "../../actions/creators/auth";
+import { uploadAndUpdateCart } from "../../actions/creators/cart";
 
 const getCart = async setLoading => {
-  console.log("getCart");
   const token = localStorage.getItem("token");
   if (token) {
     const config = {
@@ -34,12 +34,10 @@ const getCart = async setLoading => {
   setLoading(false);
 };
 
-const UserRoute = ({ component: Component, getUser }) => {
+const UserRoute = ({ component: Component, getUser, uploadAndUpdateCart }) => {
   useEffect(() => {
     getUser();
   }, [getUser]);
-
-  console.log("userRoute");
 
   const [loading, setLoading] = useState(true);
   if (loading) {
@@ -50,6 +48,7 @@ const UserRoute = ({ component: Component, getUser }) => {
       </div>
     );
   } else {
+    uploadAndUpdateCart();
     return <Route render={props => <Component {...props} />} />;
   }
 };
@@ -58,5 +57,5 @@ const mapStateToProps = state => ({});
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, uploadAndUpdateCart }
 )(UserRoute);

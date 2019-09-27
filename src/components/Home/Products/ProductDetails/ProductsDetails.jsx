@@ -43,7 +43,7 @@ const ProductDetails = ({ match, uploadAndUpdateCart }) => {
     return (
       <React.Fragment>
         <NavBar />
-        <div className="offset-5 col-2">
+        <div className="d-flex justify-content-center">
           <Loading />
         </div>
       </React.Fragment>
@@ -85,6 +85,7 @@ const ProductDetails = ({ match, uploadAndUpdateCart }) => {
                 <button
                   className="btn-lg btn-intersys btn-block"
                   onClick={() => {
+                    //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
                     addProductToCart(
                       productData,
                       productId,

@@ -10,7 +10,6 @@ const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
       <button
         className="btn btn-sm btn-intersys-btn"
         onClick={() => {
-          data.quantity -= 1;
           removeProductFromCart(data._id, uploadAndUpdateCart);
         }}
       >
@@ -20,8 +19,11 @@ const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
       <button
         className="btn btn-sm btn-intersys-btn"
         onClick={() => {
-          data.quantity += 1;
-          addProductToCart(data, data._id, uploadAndUpdateCart);
+          if (data.stock >= data.quantity + 1) {
+            addProductToCart(data, data._id, uploadAndUpdateCart);
+          } else {
+            //WIP: Set alert, without stock
+          }
         }}
       >
         +

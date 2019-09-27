@@ -15,7 +15,6 @@ import store from "../../store";
 import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../Logout/Logout";
-import { getUser } from "../../actions/creators/auth";
 
 function Routes() {
   return (
@@ -23,15 +22,15 @@ function Routes() {
       <BrowserRouter>
         <Switch>
           <UserRoute path="/" exact component={Home} />
-          <UserRoute path="/login" exact component={Login} />
-          <UserRoute path="/admin/login" exact component={LoginAdmin} />
-          <UserRoute path="/signup" exact component={Signup} />
           <UserRoute path="/checkout" exact component={Checkout} />
           <UserRoute path="/cart" exact component={Cart} />
-          <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
           <AdminRoute path="/admin/product" exact component={AdminPage} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/admin/login" exact component={LoginAdmin} />
+          <Route path="/details/:id" component={ProductDetails} />
           <Route path="/logout" exact component={Logout} />
         </Switch>
       </BrowserRouter>
