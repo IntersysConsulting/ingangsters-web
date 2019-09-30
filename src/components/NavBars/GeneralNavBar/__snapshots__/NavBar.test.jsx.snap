@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General Navbar renders correctly 1`] = `
+<div>
+  <Navbar
+    bg="bg-gray"
+    className="navbar-responsive"
+    collapseOnSelect={false}
+    expand={true}
+    variant="light"
+  >
+    <NavbarBrand>
+      <Link
+        to="/"
+      >
+        <img
+          alt=""
+          className="mx-auto"
+          height="75"
+          src="/assets/logo.png"
+          width="75"
+        />
+      </Link>
+      <MdMenu
+        className="cbButton"
+        color="#ffffff"
+        onClick={[Function]}
+        size="2.4em"
+      />
+    </NavbarBrand>
+    <div
+      className="flexSeparator"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+    <SearchBar />
+    <div
+      className="flexSeparator"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+    <div
+      className="iconButtonWrapper"
+    >
+      <ModalSchema />
+      <div
+        className="verticalSeparator"
+      />
+      <IconButton
+        Icon={[Function]}
+        Label="Cart"
+      />
+    </div>
+  </Navbar>
+</div>
+`;

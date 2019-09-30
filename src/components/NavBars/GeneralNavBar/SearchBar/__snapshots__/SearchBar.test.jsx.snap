@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General Navbar: Search Bar renders 1`] = `
+<Form
+  className="searchBarWrapper"
+  inline={false}
+>
+  <FormGroup>
+    <InputGroup
+      className="searchBar"
+    >
+      <InputGroupPrepend
+        className="prepend"
+      >
+        <MdSearch
+          color="#353535"
+          size="1.8em"
+          style={
+            Object {
+              "left": "50%",
+              "position": "relative",
+              "top": "50%",
+              "transform": "translate(-50%, -50%)",
+            }
+          }
+        />
+      </InputGroupPrepend>
+      <FormControl
+        aria-describedby="inputGroupPrepend"
+        className="searchBox"
+        name="searchTerm"
+        placeholder="Search here"
+        type="text"
+      />
+      <InputGroupAppend
+        className="append"
+      >
+        <Button
+          active={false}
+          className="searchButton"
+          disabled={false}
+          type="button"
+          variant="searchbar"
+        >
+          Search
+        </Button>
+        <MdSearch
+          className="rightSearchIcon"
+          color="#353535"
+          size="1.8em"
+          style={
+            Object {
+              "left": "50%",
+              "position": "relative",
+              "top": "50%",
+              "transform": "translate(-50%, -50%)",
+            }
+          }
+        />
+      </InputGroupAppend>
+    </InputGroup>
+  </FormGroup>
+</Form>
+`;
