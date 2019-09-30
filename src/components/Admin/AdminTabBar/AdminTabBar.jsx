@@ -10,9 +10,13 @@ import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 const AdminTabBar = ({ handleClick }) => {
   return (
     <div className="AdminTabBar">
-      <ButtonGroup size="lg">
+      <ButtonGroup className="buttonGroupAdmin" size="lg">
         <Link to="/admin/dashboard">
-          <Button onClick={handleClick} value="Users">
+          <Button
+            className="tabBarFirstButton"
+            onClick={handleClick}
+            value="Users"
+          >
             Users
           </Button>
         </Link>
@@ -24,7 +28,11 @@ const AdminTabBar = ({ handleClick }) => {
         </Link>
 
         <Link to="/admin/dashboard">
-          <Button onClick={handleClick} value="Orders">
+          <Button
+            className="tabBarLastButton"
+            onClick={handleClick}
+            value="Orders"
+          >
             Orders
           </Button>
         </Link>

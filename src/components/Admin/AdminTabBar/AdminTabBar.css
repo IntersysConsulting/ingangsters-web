@@ -13,6 +13,16 @@
   font-size: 14px !important;
   font-weight: 300 !important;
 }
+.buttonGroupAdmin button {
+  border-radius: 0;
+}
+.buttonGroupAdmin .tabBarFirstButton {
+  border-radius: 5px 0 0 5px;
+}
+.buttonGroupAdmin .tabBarLastButton {
+  border-radius: 0 5px 5px 0;
+}
+
 .AdminTabBar button:hover {
   background-color: var(--green);
   border-color: var(--gren);
