@@ -9,7 +9,7 @@ class ErrorPage extends Component {
     return (
       <div>
         <SimpleNavBar />
-        <div className="container">
+        <div className="error-page-container">
           <p className="first-line">Looks like you're lost</p>
           <p className="second-line">
             the page you are looking for is not available!
