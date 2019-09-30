@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
+import SimpleNavBar from "../../NavBars/SimpleNavBar/SimpleNavBar";
 import "./ErrorPage.css";
 
 class ErrorPage extends Component {
@@ -9,15 +9,14 @@ class ErrorPage extends Component {
     return (
       <div>
         <SimpleNavBar />
-        <div className="text-error">
-          <p>404</p>
-
-          <img src="/assets/logoColor.png" alt="" className="img-error" />
-
-          <p className="first-line">Look like you're lost</p>
+        <div className="container">
+          <p className="first-line">Looks like you're lost</p>
           <p className="second-line">
             the page you are looking for is not available!
           </p>
+          <div>
+            <img src="/assets/logoColor.png" alt="" className="img-error" />
+          </div>
           <Link to="/">
             <Button className="errorButton">Go to home</Button>
           </Link>

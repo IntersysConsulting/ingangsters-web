@@ -14,19 +14,15 @@ class SimpleNavBar extends Component {
         sticky="top"
         className="justify-content-center navbar"
       >
-        <center>
-          <NavbarBrand className="navbar-brand">
-            <Link to="/">
-              <img
-                alt=""
-                src="/assets/logo.png"
-                width="75"
-                height="75"
-                className="mx-auto"
-              />
-            </Link>
-          </NavbarBrand>
-        </center>
+        <NavbarBrand href="/" className="navbar-brand">
+          <img
+            alt=""
+            src="/assets/logo.png"
+            width="75"
+            height="75"
+            className="mx-auto"
+          />
+        </NavbarBrand>
       </Navbar>
     );
   }

@@ -14,8 +14,8 @@ import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
-import Logout from "../Logout/Logout";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import Logout from "../UI/Logout/Logout";
+import ErrorPage from "../UI/ErrorPage/ErrorPage";
 function Routes() {
   return (
     <Provider store={store}>

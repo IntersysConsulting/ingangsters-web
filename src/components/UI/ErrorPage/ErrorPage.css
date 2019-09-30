@@ -1,0 +1,151 @@
+.container {
+  text-align: center;
+}
+.img-error {
+  animation: rotation 6s infinite linear;
+  width: 25%;
+  height: 25%;
+}
+
+.errorButton {
+  background-color: var(--green);
+  border-color: var(--green);
+  margin: 5px 8px 5px 8px;
+  line-height: 100%;
+  border-radius: 5px;
+  width: 30%;
+}
+
+.errorButton:hover {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+.first-line,
+.second-line {
+  margin: auto;
+}
+
+@media only screen and (max-width: 200px) {
+  .first-line {
+    font-size: 8vw;
+    padding-top: 1vh;
+  }
+
+  .second-line {
+    font-size: 6vw;
+    padding-top: 1vh;
+  }
+
+  .img-error {
+    padding-top: 2vh;
+  }
+
+  .errorButton {
+    line-height: 100%;
+    width: 90%;
+    font-size: 7vw;
+  }
+}
+
+@media (min-width: 201px) and (max-width: 500px) {
+  .first-line {
+    font-size: 8vw;
+    padding-top: 1vh;
+  }
+
+  .second-line {
+    font-size: 5vw;
+    padding-top: 1vh;
+  }
+
+  .img-error {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+  }
+
+  .errorButton {
+    line-height: 100%;
+    width: 90%;
+    font-size: 6vw;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 800px) {
+  .first-line {
+    font-size: 8vw;
+    padding-top: 1vh;
+  }
+
+  .second-line {
+    font-size: 5vw;
+    padding-top: 1vh;
+  }
+
+  .img-error {
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
+  .errorButton {
+    line-height: 150%;
+    width: 80%;
+    font-size: 4vw;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .first-line {
+    font-size: 7vw;
+    padding-top: 1vh;
+  }
+
+  .second-line {
+    font-size: 4vw;
+    padding-top: 1vh;
+  }
+
+  .img-error {
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
+  .errorButton {
+    line-height: 150%;
+    width: 60%;
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .first-line {
+    font-size: 6vw;
+    padding-top: 1vh;
+  }
+
+  .second-line {
+    font-size: 3vw;
+    padding-top: 1vh;
+  }
+
+  .img-error {
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
+  .errorButton {
+    line-height: 150%;
+    width: 50%;
+    font-size: 3vw;
+    margin-bottom: 2vh;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
