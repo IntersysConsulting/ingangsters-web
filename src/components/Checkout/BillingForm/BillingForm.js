@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../Forms.css";
+import { validateBillingForm } from "../../../actions/creators/checkoutForms";
 
-const BillingForm = ({ isAuthenticated, user }) => {
+const BillingForm = ({ isAuthenticated, user, dispatch }) => {
   const [selectedAddress, setSelectedAddress] = useState({
     alias: "",
     city: "",
@@ -16,6 +17,8 @@ const BillingForm = ({ isAuthenticated, user }) => {
     type: "",
     zipCode: ""
   });
+
+  const [name, setName] = useState("");
 
   const handleSelect = evt => {
     const address = JSON.parse(evt);
@@ -47,17 +50,43 @@ const BillingForm = ({ isAuthenticated, user }) => {
     }
   };
 
+  const handleChange = () => {
+    setName(document.forms.shippingForm.elements.name.value);
+  };
+
+  const validateForm = (errors, values) => {
+    const isValid = Object.keys(errors).length === 0;
+    let allFieldsFilled = true;
+    for (var key in values) {
+      if (values[key] === "") {
+        allFieldsFilled = false;
+      }
+    }
+    dispatch(validateBillingForm(isValid && allFieldsFilled));
+  };
+
   const BillingFormSchema = Yup.object().shape({
-    address: Yup.string().required("Address is required"),
-    country: Yup.string().required("Country is required"),
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
-    zipCode: Yup.string().required("Zip code is required")
+    address: Yup.string()
+      .required("Address is required")
+      .trim(),
+    country: Yup.string()
+      .required("Country is required")
+      .trim(),
+    state: Yup.string()
+      .required("State is required")
+      .trim(),
+    city: Yup.string()
+      .required("City is required")
+      .trim(),
+    zipCode: Yup.number()
+      .typeError("Zip code must be a number")
+      .required("Zip code is required")
   });
 
-  const shippingForm = () => (
+  const billingForm = () => (
     <Formik
       initialValues={{
+        name: name,
         address: selectedAddress.street,
         country: selectedAddress.country,
         state: selectedAddress.state,
@@ -67,9 +96,26 @@ const BillingForm = ({ isAuthenticated, user }) => {
       enableReinitialize
       validationSchema={BillingFormSchema}
     >
-      {({ errors, touched }) => {
+      {({ errors, touched, values }) => {
+        validateForm(errors, values);
         return (
-          <Form className="mt-4" name="shippingForm">
+          <Form className="mt-4" name="billingForm" onChange={handleChange}>
+            <div className="form-group">
+              <Field
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                className={`form-control ${
+                  touched.name && errors.name ? "is-invalid" : ""
+                }`}
+              />
+              <ErrorMessage
+                component="div"
+                name="name"
+                className="invalid-feedback"
+              />
+            </div>
+
             <div className="form-group">
               <Field
                 type="text"
@@ -167,7 +213,7 @@ const BillingForm = ({ isAuthenticated, user }) => {
         </div>
         <div className="col text-right">{displayAddressesDropdown()}</div>
       </div>
-      {shippingForm()}
+      {billingForm()}
     </div>
   );
 };
