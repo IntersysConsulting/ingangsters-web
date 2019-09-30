@@ -13,7 +13,10 @@ import ModalComponent from "../../Modals/ModalGeneral/Modal";
 import "../../../css/colors.css";
 import "./NavBar.css";
 
-const NavBarComponent = ({ responsiveMenuActive, toggleMenuResponsive }) => {
+export const NavBarComponent = ({
+  responsiveMenuActive,
+  toggleMenuResponsive
+}) => {
   var navBarClassList = ["navbar-responsive"];
   let ToggleButton;
   if (responsiveMenuActive) {
