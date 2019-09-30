@@ -1,69 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import "./OrderSummary.css";
+import axios from "axios";
+import { API } from "../../../config";
+import Loading from "../../UI/Loading/Loading";
+import { prettifyCents } from "../../../utils/utils";
+import { connect } from "react-redux";
+import { deleteProductFromCart } from "../../Cart/ProductsManager";
+import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 
-const mockData = [
-  {
-    name: "Play Station 4 Pro",
-    qty: 2,
-    image:
-      "https://media.playstation.com/is/image/SCEA/playstation-4-pro-vertical-product-shot-01-us-07sep16?$native_t$",
-    price: "$6,500.00"
-  },
-  {
-    name: "Marvel's Spiderman for PS4",
-    qty: 1,
-    image:
-      "https://i11d.3djuegos.com/juegos/13417/spiderman_ps4__nombre_provisional_/fotos/ficha/spiderman_ps4__nombre_provisional_-4004811.jpg",
-    price: "$1,100.00"
-  },
-  {
-    name: "Red Dead Redemption 2",
-    qty: 1,
-    image:
-      "https://media.gamestop.com/i/gamestop/10138091/Red-Dead-Redemption-2",
-    price: "$1,050.00"
-  },
-  {
-    name: "God of War",
-    qty: 1,
-    image: "https://media.gamestop.com/i/gamestop/10131619/God-of-War",
-    price: "$900.00"
+const loadCartData = async (currentCart, setLoading, setCartData) => {
+  var arrayIds = [];
+  for (var i = 0; i < currentCart.length; i++) {
+    arrayIds.push(currentCart[i]._id);
   }
-];
 
-const mockTotal = "$16,050.00";
-
-function getCartData() {
-  return mockData;
-}
-
-const OrderSummary = () => {
-  const cartItems = getCartData().map((item, index) => (
-    <div className="orderSummaryItem" key={index}>
-      <div className="productQuantity">{item.qty}</div>
-      <div className="productImage">
-        <img src={item.image} alt={item.name} />
-      </div>
-      <div>
-        <p className="productName">{item.name}</p>
-        <div className="extra">
-          <p className="remove">Remove</p>
-          <p className="priceTag">{item.price}</p>
-        </div>
-      </div>
-    </div>
-  ));
-  const total = mockTotal;
-  return (
-    <React.Fragment>
-      <h3>Your order</h3>
-      <div className="orderSummaryContainer">{cartItems}</div>
-      <br />
-      <p className="orderSummaryTotal">
-        Total: <span>{total}</span>
-      </p>
-    </React.Fragment>
-  );
+  try {
+    const body = JSON.stringify({ _ids: arrayIds });
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    await axios
+      .post(`${API}/cart/summary`, body, config)
+      .then(response => {
+        var cartData = arrayIds.map((_id, i) => {
+          var quantity = currentCart[i].quantity;
+          return {
+            name: response.data.data[_id].name,
+            price: response.data.data[_id].price,
+            image: response.data.data[_id].image,
+            quantity: quantity,
+            _id: _id
+          };
+        });
+        console.log(cartData);
+        setCartData(cartData);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
+      });
+  } catch (err) {
+    console.log(err);
+    setLoading(false);
+  }
 };
 
-export default OrderSummary;
+const OrderSummary = ({ total }) => {
+  const [isLoading, setLoading] = useState(true);
+  const [cartData, setCartData] = useState([]);
+  const currentCart = JSON.parse(localStorage.getItem("cart"));
+
+  if (isLoading) {
+    loadCartData(currentCart, setLoading, setCartData);
+    return <Loading />;
+  } else {
+    const cartItems = cartData.map((item, index) => (
+      <div className="orderSummaryItem" key={index}>
+        <div className="productQuantity">{item.quantity}</div>
+        <div className="productImage">
+          <img src={item.image} alt={item.name} />
+        </div>
+        <div>
+          <p className="productName">{item.name}</p>
+          <div className="extra">
+            <p
+              className="remove"
+              onClick={() => {
+                deleteProductFromCart(item._id, uploadAndUpdateCart);
+                window.location.reload();
+              }}
+            >
+              Remove
+            </p>
+            <p className="priceTag">{prettifyCents(item.price)}</p>
+          </div>
+        </div>
+      </div>
+    ));
+    return (
+      <React.Fragment>
+        <div className="orderSummaryContainer">{cartItems}</div>
+        <br />
+        <p className="orderSummaryTotal">
+          Total: <span>{prettifyCents(total)}</span>
+        </p>
+      </React.Fragment>
+    );
+  }
+};
+
+function mapStateToProps(state) {
+  return { total: state.cart.total };
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+)(OrderSummary);
