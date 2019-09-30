@@ -9,16 +9,13 @@ const AdminPage = ({ adminOption }) => {
     <div>
       <AdminNavBar />
       <AdminTabBar />
-      <br />
-      <br />
-
       {adminOption === "Users" ? (
         <center>
           <p>Users</p>
         </center>
       ) : adminOption === "Products" ? (
         <center>
-          <AdminProducts></AdminProducts>
+          <AdminProducts />
         </center>
       ) : (
         <center>
