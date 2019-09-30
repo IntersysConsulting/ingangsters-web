@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import "./AdminProducts.css";
+
 const AdminProducts = ({
   currentPage,
   totalItems,
@@ -15,17 +17,17 @@ const AdminProducts = ({
     <div>
       <br />
       <Grid />
-      <Paginator
-        currentPage={currentPage}
-        totalItems={totalItems}
-        itemsPerPage={itemsPerPage}
-        navigateFunction={fetchProducts}
-      />
-      <br />
-      <Link to="/admin/product/new">
-        <Button variant="primary">New product</Button>
-      </Link>
-      <br />
+      <div className="bottomWrapper">
+        <Paginator
+          currentPage={currentPage}
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          navigateFunction={fetchProducts}
+        />
+        <Link to="/admin/product/new" className="newProductWrapper">
+          <Button variant="primary">New product</Button>
+        </Link>
+      </div>
     </div>
   );
 };

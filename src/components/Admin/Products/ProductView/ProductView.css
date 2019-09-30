@@ -17,6 +17,7 @@
   display: block;
   margin: auto;
   min-width: 100px;
+  cursor: pointer;
 }
 
 .productForm .bottomButtonBar {
@@ -26,10 +27,9 @@
 }
 
 .inputfile {
-  width: 0.1px;
-  height: 0.1px;
   opacity: 0;
   overflow: hidden;
-  position: absolute;
+  top: -20px;
+  position: relative;
   z-index: -1;
 }
