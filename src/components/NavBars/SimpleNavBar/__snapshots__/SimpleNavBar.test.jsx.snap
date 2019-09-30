@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleNavBar renders correctly 1`] = `
+<Navbar
+  bg="dark"
+  className="justify-content-center navbar"
+  collapseOnSelect={false}
+  expand={true}
+  sticky="top"
+  variant="dark"
+>
+  <NavbarBrand
+    className="navbar-brand"
+    href="/"
+  >
+    <img
+      alt=""
+      className="mx-auto"
+      height="75"
+      src="/assets/logo.png"
+      width="75"
+    />
+  </NavbarBrand>
+</Navbar>
+`;
