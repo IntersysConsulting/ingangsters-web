@@ -14,8 +14,8 @@ import { Provider } from "react-redux";
 import store from "../../store";
 import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
-import Logout from "../Logout/Logout";
-
+import Logout from "../UI/Logout/Logout";
+import ErrorPage from "../UI/ErrorPage/ErrorPage";
 function Routes() {
   return (
     <Provider store={store}>
@@ -32,6 +32,7 @@ function Routes() {
           <Route path="/login" exact component={Login} />
           <Route path="/admin/login" exact component={LoginAdmin} />
           <Route path="/logout" exact component={Logout} />
+          <Route component={ErrorPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

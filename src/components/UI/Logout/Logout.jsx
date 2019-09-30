@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { LOGIN_FAIL } from "../../actions/types/auth";
-import Loading from "../UI/Loading/Loading";
+import { LOGIN_FAIL } from "../../../actions/types/auth";
+import Loading from "../Loading/Loading";
 
 const LogoutComponent = ({ logout }) => {
   const [loading, setLoading] = useState(true);
