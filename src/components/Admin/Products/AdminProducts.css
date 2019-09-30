@@ -1,0 +1,7 @@
+.bottomWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  max-width: 1300px;
+  margin: 25px 0px;
+}
