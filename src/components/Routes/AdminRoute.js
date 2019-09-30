@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { API } from "../../config";
 import Loading from "../UI/Loading/Loading";
+import ErrorPage from "../UI/ErrorPage/ErrorPage";
 
 const checkIfAdmin = async (setLoading, setIsAdmin) => {
   const token = localStorage.getItem("token");
@@ -41,13 +42,7 @@ const AdminRoute = ({
       <Route
         {...rest}
         render={props =>
-          isAuthenticated && isAdmin ? (
-            <Component {...props} />
-          ) : (
-            <div>
-              <p>No autorizado....</p>
-            </div>
-          )
+          isAuthenticated && isAdmin ? <Component {...props} /> : <ErrorPage />
         }
       />
     );
