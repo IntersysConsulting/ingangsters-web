@@ -7,7 +7,12 @@ import { connect } from "react-redux";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import Loading from "../UI/Loading/Loading";
 
-const Checkout = ({ isAuthenticated, loading }) => {
+const Checkout = ({
+  isAuthenticated,
+  loading,
+  isShippingFormValid,
+  isBillingFormValid
+}) => {
   const [useBillingAddress, setUseBillingAddress] = useState(true);
 
   const displayLoginBtn = () => {
@@ -43,7 +48,28 @@ const Checkout = ({ isAuthenticated, loading }) => {
       phone: shippingAddressForm.elements.phone.value,
       email: shippingAddressForm.elements.email.value
     };
-    console.log(shippingFormValues);
+    let billingFormValues = {};
+    if (useBillingAddress) {
+      billingFormValues = { ...shippingFormValues };
+    } else {
+      const billingAddressForm = document.forms.billingForm;
+      billingFormValues = {
+        name: billingAddressForm.elements.name.value,
+        street: billingAddressForm.elements.address.value,
+        country: billingAddressForm.elements.country.value,
+        state: billingAddressForm.elements.state.value,
+        city: billingAddressForm.elements.city.value,
+        zipCode: billingAddressForm.elements.zipCode.value
+      };
+    }
+    console.log("shippingFormValues", shippingFormValues);
+    console.log("billingAddressForm", billingFormValues);
+  };
+
+  const disabledPaymentBtn = () => {
+    return useBillingAddress
+      ? !isShippingFormValid
+      : !(isShippingFormValid && isBillingFormValid);
   };
 
   return loading ? (
@@ -78,7 +104,11 @@ const Checkout = ({ isAuthenticated, loading }) => {
             </div>
             {displayBillingForm()}
             <div className="text-center mt-5">
-              <button className="btn checkout-btn" onClick={onSubmit}>
+              <button
+                className="btn checkout-btn"
+                onClick={onSubmit}
+                disabled={disabledPaymentBtn()}
+              >
                 Continue to Payment
               </button>
             </div>
@@ -94,7 +124,9 @@ const Checkout = ({ isAuthenticated, loading }) => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading
+  loading: state.auth.loading,
+  isShippingFormValid: state.checkoutForms.isShippingFormValid,
+  isBillingFormValid: state.checkoutForms.isBillingFormValid
 });
 
 export default connect(mapStateToProps)(Checkout);

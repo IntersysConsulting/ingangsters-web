@@ -5,6 +5,7 @@ import products from "./products";
 import adminTabBar from "./AdminTabBar";
 import adminProducts from "./adminProducts";
 import cart from "./cart";
+import checkoutForms from "./checkoutForms";
 
 const reducerCombined = combineReducers({
   navBar,
@@ -12,7 +13,8 @@ const reducerCombined = combineReducers({
   products,
   adminTabBar,
   adminProducts,
-  cart
+  cart,
+  checkoutForms
 });
 
 export const initialState = {
