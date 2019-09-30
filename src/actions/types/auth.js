@@ -4,3 +4,5 @@ export const LOGINADMIN_SUCCESS = "LOGINADMIN_SUCCESS";
 export const LOGIN_ADMINFAIL = "LOGIN_ADMINFAIL";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
+export const GET_USER = "GET_USER";
+export const AUTH_ERROR = "AUTH_ERROR";

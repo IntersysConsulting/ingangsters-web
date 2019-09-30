@@ -1,0 +1,33 @@
+.btn-intersys-btn {
+    font-size: 25px;
+    max-width: 35px;
+    padding: 0% 0;
+    color: white;
+    width: 50%;
+    background-color: var(--green);
+}
+
+.btn-intersys-btn:hover {
+    color: black;
+    background-color: var(--green);
+}
+
+.my-rectangle {
+    min-width: 45px;
+    max-width: 60px;
+    border-color: black;
+    border: 5px;
+}
+
+@media screen and (min-width: 720px) {
+    .btn-intersys-btn {
+        font-size: 25px;
+        max-width: 50px;
+    }
+    .my-rectangle {
+        min-width: 60px;
+        max-width: 60px;
+        border-color: black;
+        border: 5px;
+    }
+}

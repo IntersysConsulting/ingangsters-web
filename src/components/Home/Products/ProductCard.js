@@ -2,12 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
+import { addProductToCart } from "../../Cart/ProductsManager";
+import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 
 const ProductCard = ({ product }) => {
-  const addToCart = () => {
-    alert("Added to cart");
-  };
-
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -34,7 +32,10 @@ const ProductCard = ({ product }) => {
               <button
                 type="button"
                 className="btn btn-success btn-block"
-                onClick={addToCart}
+                onClick={() => {
+                  //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
+                  addProductToCart(product, product._id, uploadAndUpdateCart);
+                }}
               >
                 Add <FaCartPlus />
               </button>

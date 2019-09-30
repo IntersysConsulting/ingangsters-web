@@ -1,0 +1,9 @@
+.checkout-btn {
+  color: var(--white);
+  background-color: var(--green);
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  background-color: var(--green);
+}

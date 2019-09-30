@@ -2,10 +2,10 @@ import * as types from "../actions/types/cart";
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case types.ADD_PRODUCT:
+    case types.UPDATE_CART:
       return Object.assign({}, state, {
-        ...state,
-        products: action.ProductData
+        cartItems: action.numItems,
+        total: action.total
       });
     default:
       return state;

@@ -4,7 +4,9 @@ import {
   LOGINADMIN_SUCCESS,
   LOGIN_ADMINFAIL,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL
+  SIGNUP_FAIL,
+  GET_USER,
+  AUTH_ERROR
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
@@ -71,5 +73,30 @@ export async function signUp(name, email, password, phone) {
       type: SIGNUP_FAIL,
       status: err.response.status
     };
+  }
+}
+
+export const getUser = () => async dispatch => {
+  if (localStorage.token) {
+    try {
+      const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+      const res = await axios.get(`${API}/user`, {
+        headers: { Authorization: AuthStr }
+      });
+      dispatch({
+        type: GET_USER,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: AUTH_ERROR,
+        payload: err
+      });
+    }
+  } else {
+    dispatch({
+      type: AUTH_ERROR
+    });
   }
 };
