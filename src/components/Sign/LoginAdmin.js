@@ -6,24 +6,14 @@ import "../../css/colors.css";
 import { FaEye } from "react-icons/fa";
 import { connect } from "react-redux";
 import { adminLogin } from "../../actions/creators/auth";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
-  const [values, setValues] = useState({
-    email: "",
-    password: ""
-  });
-
   const [showPassword, setShowPassword] = useState(false);
 
-  const { email, password } = values;
-
-  const handleChange = name => event => {
-    setValues({ ...values, error: false, [name]: event.target.value });
-  };
-
-  const onSubmit = async event => {
-    event.preventDefault();
-    adminLogin(email, password);
+  const handleSubmit = async values => {
+    adminLogin(values.email, values.password);
   };
 
   if (isAuthenticated) {
@@ -34,62 +24,96 @@ const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
     setShowPassword(!showPassword);
   };
 
-  const loginForm = () => (
-    <div className="container mt-5">
-      <div className="row sign-form">
-        <div className="col-12">
-          <h2 className="form-title pb-3 mb-4">Admin's Login</h2>
-          <form>
-            <div className="form-group">
-              <label className="text-muted">Email</label>
-              <input
-                onChange={handleChange("email")}
-                type="email"
-                placeholder="email"
-                className="form-control"
-                value={email}
-              />
-            </div>
+  const loginFormSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email")
+      .trim(),
+    password: Yup.string()
+      .required("Password is required")
+      .trim()
+  });
 
-            <div className="form-group">
-              <label className="text-muted">Password</label>
-              <div className="row">
-                <div className="col-10 col-sm-10 col-md-11 col-lg-11 pr-0">
-                  <input
-                    onChange={handleChange("password")}
-                    type={showPassword ? "text" : "password"}
-                    placeholder="password"
-                    className="form-control"
-                    value={password}
-                  />
-                </div>
-                <div className="col-1 text-center icon" onClick={toggleShow}>
-                  <FaEye size={32} />
-                </div>
+  const adminLoginForm = () => (
+    <Formik
+      initialValues={{
+        email: "",
+        password: ""
+      }}
+      validationSchema={loginFormSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ errors, touched, values, handleChange, handleSubmit }) => (
+        <Form className="mt-4" name="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="text-muted">Email</label>
+            <Field
+              name="email"
+              onChange={handleChange}
+              type="email"
+              placeholder="email"
+              value={values.email}
+              className={`form-control ${
+                touched.email && errors.email ? "is-invalid" : ""
+              }`}
+            />
+            <ErrorMessage
+              component="div"
+              name="email"
+              className="invalid-feedback"
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="text-muted">Password</label>
+            <div className="row">
+              <div className="col-10 col-sm-10 col-md-11 col-lg-11 pr-0">
+                <Field
+                  name="password"
+                  onChange={handleChange}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="password"
+                  value={values.password}
+                  className={`form-control ${
+                    touched.password && errors.password ? "is-invalid" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  component="div"
+                  name="password"
+                  className="invalid-feedback"
+                />
+              </div>
+              <div className="col-1 text-center icon" onClick={toggleShow}>
+                <FaEye size={32} id="adminlogin-eye-icon" />
               </div>
             </div>
-            <p className="link">Forgot password</p>
+            <p className="link my-4">Forgot password</p>
             <div className="mb-4 text-center">
-              <button
-                onClick={onSubmit}
-                className="btn btn-intersys btn-block my-3"
-              >
+              <button type="submit" className="btn btn-intersys btn-block my-3">
                 Login
               </button>
               <Link className="link" to="/signup">
                 Create an account
               </Link>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 
   return (
     <div>
       <SimpleNavBar />
-      {loginForm()}
+      <div className="container mt-5">
+        <div className="row sign-form">
+          <div className="col-12">
+            <h2 className="form-title pb-3 mb-4">Admin's Login</h2>
+            {adminLoginForm()}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
