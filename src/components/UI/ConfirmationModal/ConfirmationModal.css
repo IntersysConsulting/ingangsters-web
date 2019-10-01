@@ -1,0 +1,19 @@
+.confirmationModalHeader {
+  background-color: var(--green);
+  color: white;
+}
+
+.confirmationNegativeButton,
+.confirmationAffirmativeButton {
+  background-color: none;
+}
+
+.confirmationAffirmativeButton {
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+.confirmationNegativeButton {
+  border: 1px solid var(--light-blue);
+  color: var(--light-blue);
+}

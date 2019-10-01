@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import BouncingBall from "../../../UI/Loading/Loading";
 import "./ProductView.css";
 import { newProduct, loadProduct, imageChange } from "./Connections";
+import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 
 const ProductView = ({ match, history }) => {
   const { id } = match.params;
@@ -19,6 +20,7 @@ const ProductView = ({ match, history }) => {
     disableSave: false,
     requireImage: true
   });
+  const [showModal, setShowModal] = useState(false);
   let deleteVariant;
   if (data.showDelete) deleteVariant = <Button variant="danger">Delete</Button>;
   else deleteVariant = <span />;
@@ -43,6 +45,14 @@ const ProductView = ({ match, history }) => {
         <Bar />
         <Tabs />
         <br />
+        <ConfirmationModal
+          show={showModal}
+          title="Product Deletion"
+          negativeText="No"
+          negativeAction={() => {
+            console.log("");
+          }}
+        />
         <Container>
           <h1>{data.name ? data.name : "New Product"}</h1>
           <br />
