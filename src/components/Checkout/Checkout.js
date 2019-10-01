@@ -5,6 +5,7 @@ import ShippingForm from "./ShippingForm/ShippingForm";
 import BillingForm from "./BillingForm/BillingForm";
 import { connect } from "react-redux";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
+import OrderSummary from "./OrderSummary/OrderSummary";
 import Loading from "../UI/Loading/Loading";
 
 const Checkout = ({
@@ -114,7 +115,8 @@ const Checkout = ({
             </div>
           </div>
           <div className="col-md-6 col-lg-6">
-            <h1>Your Order</h1>
+            <h3>Your order</h3>
+            <OrderSummary />
           </div>
         </div>
       </div>
