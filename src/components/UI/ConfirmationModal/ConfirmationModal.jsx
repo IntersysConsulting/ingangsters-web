@@ -9,7 +9,6 @@ const ConfirmationModal = ({
   negativeAction,
   affirmativeText = "Yes",
   affirmativeAction,
-  affirmativeFirst = false,
   show,
   closeAction = () => {}
 }) => {
@@ -20,10 +19,15 @@ const ConfirmationModal = ({
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
       <Modal.Footer className="confirmationModalFooter">
-        <Button className="confirmationNegativeButton" onClick={negativeAction}>
+        <Button
+          variant="light"
+          className="confirmationNegativeButton"
+          onClick={negativeAction}
+        >
           {negativeText}
         </Button>
         <Button
+          variant="light"
           className="confirmationAffirmativeButton"
           onClick={affirmativeAction}
         >
@@ -33,3 +37,5 @@ const ConfirmationModal = ({
     </Modal>
   );
 };
+
+export default ConfirmationModal;
