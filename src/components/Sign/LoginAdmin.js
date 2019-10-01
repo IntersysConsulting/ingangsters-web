@@ -43,7 +43,7 @@ const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
       validationSchema={loginFormSchema}
       onSubmit={handleSubmit}
     >
-      {({ errors, touched, values, handleChange, handleSubmit }) => (
+      {({ errors, isValid, touched, values, handleChange, handleSubmit }) => (
         <Form className="mt-4" name="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="text-muted">Email</label>
@@ -90,7 +90,11 @@ const LoginAdmin = ({ adminLogin, isAuthenticated }) => {
             </div>
             <p className="link my-4">Forgot password</p>
             <div className="mb-4 text-center">
-              <button type="submit" className="btn btn-intersys btn-block my-3">
+              <button
+                type="submit"
+                disabled={!isValid}
+                className="btn btn-intersys btn-block my-3"
+              >
                 Login
               </button>
               <Link className="link" to="/signup">
