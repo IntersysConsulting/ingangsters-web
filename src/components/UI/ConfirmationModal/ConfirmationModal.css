@@ -3,17 +3,27 @@
   color: white;
 }
 
+.confirmationModalHeader > .close {
+  color: white;
+}
+
 .confirmationNegativeButton,
 .confirmationAffirmativeButton {
-  background-color: none;
+  background-color: transparent;
 }
 
 .confirmationAffirmativeButton {
   border: 1px solid var(--red);
-  color: var(--red);
+  color: var(--red) !important;
 }
 
 .confirmationNegativeButton {
   border: 1px solid var(--light-blue);
-  color: var(--light-blue);
+  color: var(--light-blue) !important;
+}
+
+.affirmativeFirst {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }

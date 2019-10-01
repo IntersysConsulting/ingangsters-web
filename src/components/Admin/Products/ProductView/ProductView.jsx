@@ -22,7 +22,17 @@ const ProductView = ({ match, history }) => {
   });
   const [showModal, setShowModal] = useState(false);
   let deleteVariant;
-  if (data.showDelete) deleteVariant = <Button variant="danger">Delete</Button>;
+  if (data.showDelete)
+    deleteVariant = (
+      <Button
+        variant="danger"
+        onClick={() => {
+          setShowModal(true);
+        }}
+      >
+        Delete
+      </Button>
+    );
   else deleteVariant = <span />;
 
   if (data.isLoading) {
@@ -48,10 +58,16 @@ const ProductView = ({ match, history }) => {
         <ConfirmationModal
           show={showModal}
           title="Product Deletion"
-          negativeText="No"
+          message={`Are you sure you want to delete this product? \n This operation can not de undone`}
+          negativeText="Keep product"
           negativeAction={() => {
-            console.log("");
+            console.log("NOT removing product");
           }}
+          affirmativeText="Delete"
+          affirmativeAction={() => {
+            console.log("Removing " + id + "...");
+          }}
+          closeAction={() => setShowModal(false)}
         />
         <Container>
           <h1>{data.name ? data.name : "New Product"}</h1>
