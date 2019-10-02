@@ -8,7 +8,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import BouncingBall from "../../../UI/Loading/Loading";
 import "./ProductView.css";
-import { newProduct, loadProduct, imageChange } from "./Connections";
+import {
+  newProduct,
+  loadProduct,
+  imageChange,
+  removeProduct
+} from "./Connections";
 import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 
 const ProductView = ({ match, history }) => {
@@ -62,10 +67,12 @@ const ProductView = ({ match, history }) => {
           negativeText="Keep product"
           negativeAction={() => {
             console.log("NOT removing product");
+            setShowModal(false);
           }}
           affirmativeText="Delete"
           affirmativeAction={() => {
-            console.log("Removing " + id + "...");
+            removeProduct(id, history.push);
+            setShowModal(false);
           }}
           closeAction={() => setShowModal(false)}
         />
