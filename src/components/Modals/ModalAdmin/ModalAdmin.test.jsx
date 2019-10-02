@@ -8,15 +8,33 @@ import ModalButton from "../ModalGeneral/ModalButton/ModalButton";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("ModalAdmin", () => {
-  let wrapper;
-
   it("Renders correctly", () => {
     const tree = renderer.create(<ModalAdmin />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
 
-it("counst ", () => {
+it("Should show two buttons", () => {
   const wrapper = shallow(<ModalAdmin />);
-  expect(wrapper.find(ModalButton)).toBe(2);
+  expect(wrapper.find(ModalButton)).toHaveLength(2);
+});
+
+it("Should show an account button", () => {
+  const wrapper = shallow(<ModalAdmin />);
+  expect(wrapper.find(".accountButton")).toHaveLength(1);
+});
+
+it("Should show a logout button", () => {
+  const wrapper = shallow(<ModalAdmin />);
+  expect(wrapper.find(".logoutButton")).toHaveLength(1);
+});
+
+it("includes a Link to admin dashboard (Admin Page button)", () => {
+  const wrapper = shallow(<ModalAdmin />);
+  expect(wrapper.find("#dashboardB").props().to).toBe("/admin/dashboard");
+});
+
+it("includes a Link to logout", () => {
+  const wrapper = shallow(<ModalAdmin />);
+  expect(wrapper.find("#logoutB").props().to).toBe("/logout");
 });
