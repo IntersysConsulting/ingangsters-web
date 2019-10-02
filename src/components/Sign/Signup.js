@@ -235,7 +235,7 @@ class SignUp extends Component {
                           className="col-1 text-center icon"
                           onClick={this.toggleShow}
                         >
-                          <FaEye size={32} />
+                          <FaEye id="signup-icon-eye" size={32} />
                         </div>
                       </InputGroup.Prepend>
                       <Form.Control.Feedback as={Col} md="12" type="invalid">
