@@ -123,3 +123,29 @@ export const imageChange = setData => async evt => {
     }));
   }
 };
+
+export const removeProduct = async (productID, nav) => {
+  // Logic removal
+  console.log(getToken());
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken()
+    },
+    data: {
+      _id: productID
+    }
+  };
+  const endpoint = `${API}/products/delete`;
+
+  try {
+    const response = await axios.delete(endpoint, config);
+    const { status } = response;
+    if (status === 200) {
+      alert("Removed successfully");
+    }
+  } catch (err) {
+    console.log(err);
+    alert("An error occurred");
+  }
+};
