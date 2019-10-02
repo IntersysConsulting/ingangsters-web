@@ -21,9 +21,3 @@
   border: 1px solid var(--light-blue);
   color: var(--light-blue) !important;
 }
-
-.affirmativeFirst {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-}
