@@ -5,6 +5,17 @@ exports[`ADMIN: Products - Product View renders "new product" form 1`] = `
   <Connect(NavBarComponent) />
   <Connect(AdminTabBar) />
   <br />
+  <ConfirmationModal
+    affirmativeAction={[Function]}
+    affirmativeText="Delete"
+    closeAction={[Function]}
+    message="Are you sure you want to delete this product? 
+ This operation can not de undone"
+    negativeAction={[Function]}
+    negativeText="Keep product"
+    show={false}
+    title="Product Deletion"
+  />
   <Container
     fluid={false}
   >
