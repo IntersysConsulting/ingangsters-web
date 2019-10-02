@@ -48,7 +48,7 @@ const loadCartData = async (currentCart, setLoading, setCartData) => {
   }
 };
 
-const OrderSummary = ({ total }) => {
+const OrderSummary = ({ total, uploadAndUpdateCart }) => {
   const [isLoading, setLoading] = useState(true);
   const [cartData, setCartData] = useState([]);
   const currentCart = JSON.parse(localStorage.getItem("cart"));
@@ -70,7 +70,7 @@ const OrderSummary = ({ total }) => {
               className="remove"
               onClick={() => {
                 deleteProductFromCart(item._id, uploadAndUpdateCart);
-                window.location.reload();
+                setLoading(true);
               }}
             >
               Remove
@@ -98,5 +98,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {}
+  { uploadAndUpdateCart }
 )(OrderSummary);
