@@ -2,7 +2,6 @@
 
 exports[`ADMIN: Products - Product View renders "new product" form 1`] = `
 <Fragment>
-  <Connect(ShadowComponent) />
   <Connect(NavBarComponent) />
   <Connect(AdminTabBar) />
   <br />
