@@ -20,7 +20,7 @@ const loadProductData = async (productId, setProductData, setLoading) => {
     await axios
       .post(`${API}/products/single`, body, config)
       .then(response => {
-        setProductData(response.data);
+        setProductData(response.data.data);
         setLoading(false);
       })
       .catch(error => {
