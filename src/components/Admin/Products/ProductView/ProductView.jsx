@@ -66,7 +66,6 @@ const ProductView = ({ match, history }) => {
           message={`Are you sure you want to delete this product? \n This operation can not de undone`}
           negativeText="Keep product"
           negativeAction={() => {
-            console.log("NOT removing product");
             setShowModal(false);
           }}
           affirmativeText="Delete"
