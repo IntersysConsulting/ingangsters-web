@@ -14,11 +14,11 @@ describe("ADMIN: Products - Product View", () => {
 
   it("renders bouncing ball when loading from database", () => {
     const history = createMemoryHistory(
-      "/admin/product/5d7676f35db4e862cc84027d"
+      "/admin/product/5d8e482ed10a23999a8b232d"
     );
     const wrapper = shallow(
       <ProductView
-        match={{ params: { id: "5d7676f35db4e862cc84027d" } }}
+        match={{ params: { id: "5d8e482ed10a23999a8b232d" } }}
         history={history}
       />
     );
