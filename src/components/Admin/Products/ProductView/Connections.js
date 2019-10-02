@@ -44,7 +44,7 @@ export const loadProduct = async (id, setData, nav) => {
     const { status, data } = res;
     var loadingNow = status !== 200;
     setData(prev => ({
-      ...data,
+      ...data.data,
       ...prev,
       showDelete: true,
       isLoading: loadingNow,
