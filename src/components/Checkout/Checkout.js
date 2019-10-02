@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
 import "./Checkout.css";
 import ShippingForm from "./ShippingForm/ShippingForm";
 import BillingForm from "./BillingForm/BillingForm";
@@ -7,12 +6,17 @@ import { connect } from "react-redux";
 import SimpleNavBar from "../NavBars/SimpleNavBar/SimpleNavBar";
 import OrderSummary from "./OrderSummary/OrderSummary";
 import Loading from "../UI/Loading/Loading";
+import FastLoginModal from "./FastLogin/FastLoginModal/FastLoginModal";
+import PaymentMethods from "./PaymentMethods/PaymentMethods";
+import { displayPaymentMethods } from "../../actions/creators/checkout";
 
 const Checkout = ({
   isAuthenticated,
   loading,
   isShippingFormValid,
-  isBillingFormValid
+  isBillingFormValid,
+  displayPaymentMethods,
+  displayAction
 }) => {
   const [useBillingAddress, setUseBillingAddress] = useState(true);
 
@@ -20,16 +24,11 @@ const Checkout = ({
     if (!isAuthenticated)
       return (
         <div className="text-center">
-          <Link to="/login">
-            <button className="btn checkout-btn">
-              Login for faster Checkout
-            </button>
-          </Link>
+          <FastLoginModal />
           <p>...or continue as a guest</p>
         </div>
       );
   };
-
   const displayBillingForm = () =>
     !useBillingAddress ? <BillingForm /> : null;
 
@@ -65,6 +64,7 @@ const Checkout = ({
     }
     console.log("shippingFormValues", shippingFormValues);
     console.log("billingAddressForm", billingFormValues);
+    displayAction();
   };
 
   const disabledPaymentBtn = () => {
@@ -86,32 +86,47 @@ const Checkout = ({
       <div className="container-fluid mt-5">
         <div className="row">
           <div className="col-md-6 col-lg-6">
-            {displayLoginBtn()}
-            <ShippingForm />
-            <div className="custom-control custom-checkbox my-4 ml-3">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="customControlValidation1"
-                checked={useBillingAddress}
-                onChange={handleCheck}
-              />
-              <label
-                className="custom-control-label"
-                htmlFor="customControlValidation1"
-              >
-                Use this address for billing
-              </label>
-            </div>
-            {displayBillingForm()}
-            <div className="text-center mt-5">
-              <button
-                className="btn checkout-btn"
-                onClick={onSubmit}
-                disabled={disabledPaymentBtn()}
-              >
-                Continue to Payment
-              </button>
+            <div className="checkout-form">
+              {!displayPaymentMethods ? (
+                <div>
+                  {displayLoginBtn()}
+                  <ShippingForm />
+                  <div className="custom-control custom-checkbox my-4 ml-3">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customControlValidation1"
+                      checked={useBillingAddress}
+                      onChange={handleCheck}
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customControlValidation1"
+                    >
+                      Use this address for billing
+                    </label>
+                  </div>
+                  {displayBillingForm()}
+                  <div className="text-center mt-5">
+                    <button
+                      className="btn checkout-btn"
+                      onClick={onSubmit}
+                      disabled={disabledPaymentBtn()}
+                    >
+                      Continue to Payment
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <PaymentMethods />
+                  <div className="text-center mt-5">
+                    <button className="btn checkout-btn" onClick="">
+                      Confirm Order
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="col-md-6 col-lg-6">
@@ -128,7 +143,17 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   loading: state.auth.loading,
   isShippingFormValid: state.checkoutForms.isShippingFormValid,
-  isBillingFormValid: state.checkoutForms.isBillingFormValid
+  isBillingFormValid: state.checkoutForms.isBillingFormValid,
+  displayPaymentMethods: state.checkout.displayPaymentMethods
 });
-
-export default connect(mapStateToProps)(Checkout);
+function mapDispatchToProps(dispatch) {
+  return {
+    displayAction() {
+      dispatch(displayPaymentMethods());
+    }
+  };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);

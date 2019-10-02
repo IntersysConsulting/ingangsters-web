@@ -38,12 +38,12 @@
 }
 @media screen and (min-width: 550px) {
   .paymentOption {
-    width: 40%;
+    width: 90%;
   }
 }
 @media screen and (min-width: 1600px) {
   .paymentOption {
-    width: 20%;
+    width: 90%;
   }
   .PaymentMethods {
     margin-left: 15%;

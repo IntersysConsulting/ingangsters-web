@@ -27,6 +27,14 @@ export default function(state = initialState, action) {
         user: payload
       };
     case LOGIN_SUCCESS:
+      localStorage.setItem("token", payload.data.token);
+      return {
+        ...state,
+        token: localStorage.getItem("token"),
+        isAuthenticated: true,
+        loading: false,
+        user: payload.data
+      };
     case LOGINADMIN_SUCCESS:
       localStorage.setItem("token", payload.data.token);
       return {

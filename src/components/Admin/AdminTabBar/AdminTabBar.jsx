@@ -7,7 +7,7 @@ import "../../../css/colors.css";
 import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 
-const AdminTabBar = ({ handleClick }) => {
+const AdminTabBar = ({ handleClick, dispatch }) => {
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
@@ -53,7 +53,6 @@ function mapDispatchToProps(dispatch) {
   return {
     handleClick(e) {
       dispatch(setActiveAdminBarButton(e.target.value));
-      console.log("State Changed");
     }
   };
 }
