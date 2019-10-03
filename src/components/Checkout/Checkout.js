@@ -9,6 +9,7 @@ import Loading from "../UI/Loading/Loading";
 import FastLoginModal from "./FastLogin/FastLoginModal/FastLoginModal";
 import PaymentMethods from "./PaymentMethods/PaymentMethods";
 import { displayPaymentMethods } from "../../actions/creators/checkout";
+import { Link } from "react-router-dom";
 
 const Checkout = ({
   isAuthenticated,
@@ -121,9 +122,13 @@ const Checkout = ({
                 <div>
                   <PaymentMethods />
                   <div className="text-center mt-5">
-                    <button className="btn checkout-btn" onClick="">
-                      Confirm Order
-                    </button>
+                    {/* we'll save the data in the DB in this button, 
+                  meanwhile I'll use Link and props until de endpoints are ready*/}
+                    <Link to="/thankyou">
+                      <button className="btn checkout-btn" onClick="">
+                        Confirm Order
+                      </button>
+                    </Link>
                   </div>
                 </div>
               )}

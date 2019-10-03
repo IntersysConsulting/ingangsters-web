@@ -16,6 +16,8 @@ import "../../css/colors.css";
 import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../UI/Logout/Logout";
 import ErrorPage from "../UI/ErrorPage/ErrorPage";
+import ThankYou from "../Checkout/ThankYou/ThankYou";
+
 function Routes() {
   return (
     <Provider store={store}>
@@ -24,6 +26,7 @@ function Routes() {
           <UserRoute path="/" exact component={Home} />
           <UserRoute path="/checkout" exact component={Checkout} />
           <UserRoute path="/cart" exact component={Cart} />
+          <UserRoute path="/thankyou" exact component={ThankYou} />
           <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
