@@ -22,5 +22,13 @@ describe("AdminTabBar", () => {
         <AdminTabBar store={fakeStore} dispatch={null} />
       </MemoryRouter>
     );
+    let linkElement = wrapper.find("#adminTabBarUsersButton");
+    expect(linkElement.find("Link").prop("to")).toBe("/admin/dashboard");
+
+    linkElement = wrapper.find("#adminTabBarProductsButton");
+    expect(linkElement.find("Link").prop("to")).toBe("/admin/dashboard");
+
+    linkElement = wrapper.find("#adminTabBarOrdersButton");
+    expect(linkElement.find("Link").prop("to")).toBe("/admin/dashboard");
   });
 });
