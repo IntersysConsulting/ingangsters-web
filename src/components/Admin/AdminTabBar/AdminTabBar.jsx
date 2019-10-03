@@ -11,7 +11,7 @@ const AdminTabBar = ({ handleClick }) => {
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
-        <Link to="/admin/dashboard">
+        <Link id="firstTabBarButtonLink" to="/admin/dashboard">
           <Button
             className="tabBarFirstButton"
             onClick={handleClick}
