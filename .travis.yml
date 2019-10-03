@@ -3,11 +3,11 @@ services:
   - docker
 
 notifications:
-  slack: intersysconsulting:hs8Bgk1ky4iAKc1tuX9oDlSX
+  slack: intersysconsulting:Ps1F9l0Wa26G9o1AxcbyFcCM
 
 branches:
   only:
-    - travis
+    - development
 
 before_install:
   - docker build -t ingangsters/react-ecommerce -f Dockerfile.dev .
