@@ -11,31 +11,37 @@ const AdminTabBar = ({ handleClick, dispatch }) => {
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
-        <Link id="firstTabBarButtonLink" to="/admin/dashboard">
-          <Button
-            className="tabBarFirstButton"
-            onClick={handleClick}
-            value="Users"
-          >
-            Users
-          </Button>
-        </Link>
+        <div id="adminTabBarUsersButton">
+          <Link to="/admin/dashboard">
+            <Button
+              className="tabBarFirstButton"
+              onClick={handleClick}
+              value="Users"
+            >
+              Users
+            </Button>
+          </Link>
+        </div>
 
-        <Link to="/admin/dashboard">
-          <Button onClick={handleClick} value="Products">
-            Products
-          </Button>
-        </Link>
+        <div id="adminTabBarProductsButton">
+          <Link to="/admin/dashboard">
+            <Button onClick={handleClick} value="Products">
+              Products
+            </Button>
+          </Link>
+        </div>
 
-        <Link to="/admin/dashboard">
-          <Button
-            className="tabBarLastButton"
-            onClick={handleClick}
-            value="Orders"
-          >
-            Orders
-          </Button>
-        </Link>
+        <div id="adminTabBarOrdersButton">
+          <Link to="/admin/dashboard">
+            <Button
+              className="tabBarLastButton"
+              onClick={handleClick}
+              value="Orders"
+            >
+              Orders
+            </Button>
+          </Link>
+        </div>
       </ButtonGroup>
       <br />
       <br />
