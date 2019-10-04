@@ -73,7 +73,10 @@ const ProductView = ({ match, history }) => {
             removeProduct(id, history.push);
             setShowModal(false);
           }}
-          closeAction={() => setShowModal(false)}
+          closeAction={() => {
+            console.log("CLOSED");
+            setShowModal(false);
+          }}
         />
         <Container>
           <h1>{data.name ? data.name : "New Product"}</h1>
