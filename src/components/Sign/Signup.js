@@ -333,9 +333,14 @@ class SignUp extends Component {
                         }
                       ></Form.Check>
                     </Form.Group>
-                    <Button className="btn btn-intersys col-md-2" type="submit">
-                      Sign Up
-                    </Button>
+                    <Form.Group style={{ paddingBottom: "10px" }}>
+                      <Button
+                        className="btn btn-intersys col-md-2"
+                        type="submit"
+                      >
+                        Sign Up
+                      </Button>
+                    </Form.Group>
                   </Form>
                 </div>
               </div>
