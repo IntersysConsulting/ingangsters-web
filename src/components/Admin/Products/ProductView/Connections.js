@@ -25,13 +25,14 @@ export const updateProduct = async (data, form) => {
     const res = await axios.put(endpoint, body, config);
     if (res.status) {
       alert("Saved successfully");
+      window.location.pathname = "admin/product/" + data._id;
     }
   } catch (err) {
     console.log(err);
   }
 };
 
-export const loadProduct = async (id, setData, nav) => {
+export const loadProduct = async (id, setData) => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -54,11 +55,11 @@ export const loadProduct = async (id, setData, nav) => {
     }));
   } catch (err) {
     console.log(err);
-    nav("/productNotFoundError");
+    window.location.pathname = "productNotFound";
   }
 };
 
-export const newProduct = async (data, form, nav) => {
+export const newProduct = async (data, form) => {
   console.log("Saving...");
   const config = {
     headers: {
@@ -79,7 +80,7 @@ export const newProduct = async (data, form, nav) => {
     const res = await axios.post(endpoint, body, config);
     if (res.status) {
       alert("New product created successfully");
-      window.location.reload();
+      window.location.pathname = "admin/product/" + res.data.data;
     }
   } catch (err) {
     alert("Product not saved");
@@ -124,9 +125,8 @@ export const imageChange = setData => async evt => {
   }
 };
 
-export const removeProduct = async (productID, nav) => {
+export const removeProduct = async productID => {
   // Logic removal
-  console.log(getToken());
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -143,6 +143,7 @@ export const removeProduct = async (productID, nav) => {
     const { status } = response;
     if (status === 200) {
       alert("Removed successfully");
+      window.location.pathname = "admin/dashboard";
     }
   } catch (err) {
     console.log(err);
