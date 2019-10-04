@@ -1,11 +1,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import { MemoryRouter, Provider } from "react-router-dom";
 import AdminPage from "./AdminPage";
-import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
-import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import renderer from "react-test-renderer";
+import toJson from "enzyme-to-json";
 
 describe("Admin Page", () => {
   const initialState = {
@@ -20,6 +19,6 @@ describe("Admin Page", () => {
 
   it("renders correctly", () => {
     const wrapper = shallow(<AdminPage store={store} dispatch={null} />);
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
