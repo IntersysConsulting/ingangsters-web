@@ -1,8 +1,9 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import AdminNavBar from "./AdminNavBar";
 import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
+import renderer from "react-test-renderer";
 
 describe("AdminNavBar", () => {
   const fakeStore = configureStore()({
@@ -12,7 +13,11 @@ describe("AdminNavBar", () => {
   });
 
   it("renders correctly", () => {
-    const wrapper = shallow(<AdminNavBar store={fakeStore} dispatch={null} />);
+    const wrapper = renderer.create(
+      <MemoryRouter>
+        <AdminNavBar store={fakeStore} dispatch={null} />
+      </MemoryRouter>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 

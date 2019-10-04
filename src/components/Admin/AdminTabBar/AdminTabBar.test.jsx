@@ -7,6 +7,7 @@ import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 import * as types from "../../../actions/types/AdminTabBar";
 import reducer from "../../../reducers/AdminTabBar";
 import thunk from "redux-thunk";
+import renderer from "react-test-renderer";
 
 describe("AdminTabBar", () => {
   const initialState = {
@@ -20,7 +21,11 @@ describe("AdminTabBar", () => {
   const store = mockStore(initialState, actions);
 
   it("renders correctly", () => {
-    const wrapper = shallow(<AdminTabBar store={store} dispatch={null} />);
+    const wrapper = renderer.create(
+      <MemoryRouter>
+        <AdminTabBar store={store} dispatch={null} />
+      </MemoryRouter>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 

@@ -10,17 +10,21 @@ const AdminPage = ({ adminOption }) => {
       <AdminNavBar />
       <AdminTabBar />
       {adminOption === "Users" ? (
-        <center>
-          <p>Users</p>
-        </center>
+        <div id="AdminPageContent">
+          <center>
+            <p>Users</p>
+          </center>
+        </div>
       ) : adminOption === "Products" ? (
-        <center>
+        <div id="AdminPageContent">
           <AdminProducts />
-        </center>
+        </div>
       ) : (
-        <center>
-          <p>Orders</p>
-        </center>
+        <div id="AdminPageContent">
+          <center>
+            <p>Orders</p>
+          </center>
+        </div>
       )}
     </div>
   );
@@ -32,11 +36,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminPage);
+export default connect(mapStateToProps)(AdminPage);

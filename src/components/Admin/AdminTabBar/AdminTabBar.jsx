@@ -7,7 +7,7 @@ import "../../../css/colors.css";
 import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 
-const AdminTabBar = ({ handleClick, dispatch }) => {
+const AdminTabBar = ({ handleClick }) => {
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
