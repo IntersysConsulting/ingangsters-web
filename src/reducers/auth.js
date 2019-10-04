@@ -4,7 +4,9 @@ import {
   LOGINADMIN_SUCCESS,
   LOGIN_ADMINFAIL,
   GET_USER,
-  AUTH_ERROR
+  AUTH_ERROR,
+  CONFIRM_PASSWORD_SUCCESS,
+  CONFIRM_PASSWORD_FAIL
 } from "../actions/types/auth";
 import { isAuthenticated } from "../utils/auth";
 
@@ -12,7 +14,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: isAuthenticated(),
   loading: true,
-  user: null
+  user: null,
+  confirmed_password: null
 };
 
 export default function(state = initialState, action) {
@@ -55,6 +58,16 @@ export default function(state = initialState, action) {
         loading: false,
         error: payload,
         user: null
+      };
+    case CONFIRM_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        confirmed_password: true
+      };
+    case CONFIRM_PASSWORD_FAIL:
+      return {
+        ...state,
+        confirmed_password: false
       };
     default:
       return state;

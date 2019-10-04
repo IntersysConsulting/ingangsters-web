@@ -6,7 +6,9 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   GET_USER,
-  AUTH_ERROR
+  AUTH_ERROR,
+  CONFIRM_PASSWORD_SUCCESS,
+  CONFIRM_PASSWORD_FAIL
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
@@ -32,6 +34,25 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
+export const checkPassword = password => async dispatch => {
+  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+  const body = JSON.stringify({ password });
+  console.log(body);
+  try {
+    const res = await axios.post(`${API}/admin/confirm`, body, {
+      headers: { "Content-Type": "application/json", Authorization: AuthStr }
+    });
+    dispatch({
+      type: CONFIRM_PASSWORD_SUCCESS,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: CONFIRM_PASSWORD_FAIL
+    });
+  }
+};
 export const adminLogin = (email, password) => async dispatch => {
   const config = {
     headers: {
@@ -59,6 +80,7 @@ export async function signUp(name, email, password, phone) {
       "Content-Type": "application/json"
     }
   };
+
   const body = JSON.stringify({ name, email, password, phone });
   try {
     const res = await axios.post(`${API}/user/signup`, body, config);
