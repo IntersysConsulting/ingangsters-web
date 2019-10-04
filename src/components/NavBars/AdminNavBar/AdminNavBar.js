@@ -13,6 +13,7 @@ const NavBarComponent = () => {
       <NavbarBrand className="navbar-brand">
         <Link to="/admin/dashboard">
           <img
+            id="adminNavBarLogo"
             alt=""
             src="/assets/logo.png"
             width="75"

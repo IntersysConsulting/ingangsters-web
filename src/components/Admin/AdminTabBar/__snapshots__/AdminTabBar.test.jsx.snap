@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminTabBar renders correctly 1`] = `
+<div
+  className="AdminTabBar"
+>
+  <div
+    className="buttonGroupAdmin btn-group btn-group-lg"
+    role="group"
+  >
+    <div
+      id="adminTabBarUsersDiv"
+    >
+      <a
+        href="/admin/dashboard"
+        onClick={[Function]}
+      >
+        <button
+          className="tabBarFirstButton btn btn-primary"
+          disabled={false}
+          id="adminTabBarUsersButton"
+          onClick={[Function]}
+          type="button"
+          value="Users"
+        >
+          Users
+        </button>
+      </a>
+    </div>
+    <div
+      id="adminTabBarProductsDiv"
+    >
+      <a
+        href="/admin/dashboard"
+        onClick={[Function]}
+      >
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          id="adminTabBarProductsButton"
+          onClick={[Function]}
+          type="button"
+          value="Products"
+        >
+          Products
+        </button>
+      </a>
+    </div>
+    <div
+      id="adminTabBarOrdersDiv"
+    >
+      <a
+        href="/admin/dashboard"
+        onClick={[Function]}
+      >
+        <button
+          className="tabBarLastButton btn btn-primary"
+          disabled={false}
+          id="adminTabBarOrdersButton"
+          onClick={[Function]}
+          type="button"
+          value="Orders"
+        >
+          Orders
+        </button>
+      </a>
+    </div>
+  </div>
+  <br />
+  <br />
+</div>
+`;

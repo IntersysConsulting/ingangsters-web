@@ -7,35 +7,47 @@ import "../../../css/colors.css";
 import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 
-const AdminTabBar = ({ handleClick, dispatch }) => {
+const AdminTabBar = ({ handleClick }) => {
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
-        <Link to="/admin/dashboard">
-          <Button
-            className="tabBarFirstButton"
-            onClick={handleClick}
-            value="Users"
-          >
-            Users
-          </Button>
-        </Link>
+        <div id="adminTabBarUsersDiv">
+          <Link to="/admin/dashboard">
+            <Button
+              id="adminTabBarUsersButton"
+              className="tabBarFirstButton"
+              onClick={handleClick}
+              value="Users"
+            >
+              Users
+            </Button>
+          </Link>
+        </div>
 
-        <Link to="/admin/dashboard">
-          <Button onClick={handleClick} value="Products">
-            Products
-          </Button>
-        </Link>
+        <div id="adminTabBarProductsDiv">
+          <Link to="/admin/dashboard">
+            <Button
+              id="adminTabBarProductsButton"
+              onClick={handleClick}
+              value="Products"
+            >
+              Products
+            </Button>
+          </Link>
+        </div>
 
-        <Link to="/admin/dashboard">
-          <Button
-            className="tabBarLastButton"
-            onClick={handleClick}
-            value="Orders"
-          >
-            Orders
-          </Button>
-        </Link>
+        <div id="adminTabBarOrdersDiv">
+          <Link to="/admin/dashboard">
+            <Button
+              id="adminTabBarOrdersButton"
+              className="tabBarLastButton"
+              onClick={handleClick}
+              value="Orders"
+            >
+              Orders
+            </Button>
+          </Link>
+        </div>
       </ButtonGroup>
       <br />
       <br />
