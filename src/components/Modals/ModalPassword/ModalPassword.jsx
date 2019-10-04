@@ -28,13 +28,11 @@ function ModalPassword({ checkPassword, confirmed_password }) {
   if (confirmed_password) {
     alert("Password Confirmed");
   }
-  if (confirmed_password === false) {
-    alert("Password Incorrect!");
-  }
+
   return (
     <React.Fragment>
       <RegisterButton onClick={handleShow} />
-      {confirmed_password != true ? (
+      {confirmed_password !== true ? (
         <Modal show={show} onHide={handleClose} className="AskPasswordModal">
           <Modal.Body className="PasswordModalContent">
             <form>
