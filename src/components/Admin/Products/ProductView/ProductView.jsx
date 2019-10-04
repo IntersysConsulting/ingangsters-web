@@ -70,7 +70,7 @@ const ProductView = ({ match, history }) => {
           }}
           affirmativeText="Delete"
           affirmativeAction={() => {
-            removeProduct(id, history.push);
+            removeProduct(id);
             setShowModal(false);
           }}
           closeAction={() => setShowModal(false)}
@@ -82,7 +82,7 @@ const ProductView = ({ match, history }) => {
             className="productForm"
             onSubmit={event => {
               event.preventDefault();
-              data.submit(data, event, history.push);
+              data.submit(data, event);
             }}
             encType="multipart/form-data"
           >
