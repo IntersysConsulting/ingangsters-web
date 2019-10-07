@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FastLoginModal Renders Correctly 1`] = `
+<button
+  className="FastLoginButton btn btn-primary"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  Login for faster Checkout
+</button>
+`;
