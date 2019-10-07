@@ -1,0 +1,42 @@
+.filterWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.filterWrapper > .dropdown {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.filterWrapper > .dropdown > .btn {
+  background-color: var(--light-blue) !important;
+  border-color: var(--light-blue) !important;
+  color: white;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.filterWrapper > .btn-toolbar {
+  height: 35px;
+}
+
+.filterWrapper > .btn-toolbar > .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.filterWrapper > .btn-toolbar > .btn-success {
+  background-color: var(--green);
+  border-color: var(--green);
+}
