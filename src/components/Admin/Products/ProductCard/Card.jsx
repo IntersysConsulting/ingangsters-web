@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.css";
 
-const Card = ({ name, stock, image, onClick }) => {
+const Card = ({ name, stock, image, onClick, available }) => {
   var stocklevel;
   if (stock >= 35) {
     stocklevel = "high";
@@ -11,8 +11,9 @@ const Card = ({ name, stock, image, onClick }) => {
   } else {
     stocklevel = "low";
   }
+  const classUnavailable = available ? "" : "unavailable";
   return (
-    <Link className="productCard" to={onClick}>
+    <Link className={"productCard " + classUnavailable} to={onClick}>
       <div className="productImage">
         <img src={image} alt={name} />
       </div>
