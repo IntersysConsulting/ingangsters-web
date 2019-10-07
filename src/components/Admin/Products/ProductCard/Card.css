@@ -20,6 +20,11 @@
   color: black;
 }
 
+.productCard.unavailable {
+  background-color: var(--dark-grey);
+  color: white !important;
+}
+
 .productCard:hover {
   cursor: pointer;
   background-color: var(--green);
@@ -83,6 +88,11 @@
 
 .productCard > .productData > .productStock > span.low {
   color: var(--red);
+}
+
+.productCard.unavailable > .productData > .productStock > span {
+  color: white;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 1600px) {
