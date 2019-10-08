@@ -121,9 +121,7 @@ const Checkout = ({
                 <div>
                   <PaymentMethods />
                   <div className="text-center mt-5">
-                    <button className="btn checkout-btn" onClick="">
-                      Confirm Order
-                    </button>
+                    <button className="btn checkout-btn">Confirm Order</button>
                   </div>
                 </div>
               )}
