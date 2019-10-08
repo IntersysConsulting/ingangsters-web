@@ -60,7 +60,6 @@ export const loadProduct = async (id, setData) => {
 };
 
 export const newProduct = async (data, form) => {
-  console.log("Saving...");
   const config = {
     headers: {
       "Content-Type": "application/json",
