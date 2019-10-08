@@ -31,12 +31,22 @@ describe("FastLoginModal", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  let wrapper = mount(
+    <MemoryRouter>
+      <FastLoginModal store={store} dispatch={null} />
+    </MemoryRouter>
+  );
+
+  it("Doens't display Modal before FastLoginButton Click", () => {
+    expect(wrapper.find(".LoginModalContent")).toHaveLength(0);
+  });
+
+  it("Displays Modal after FastLoginButton click", () => {
+    wrapper.find(FastLoginButton).simulate("click");
+    expect(wrapper.find(".LoginModalContent")).toHaveLength(2);
+  });
+
   it("Contains two input fields and 1 Login Button", () => {
-    const wrapper = mount(
-      <MemoryRouter>
-        <FastLoginModal store={store} dispatch={null} />
-      </MemoryRouter>
-    );
     wrapper.find(FastLoginButton).simulate("click");
     expect(wrapper.find("#emailInput").length).toEqual(1);
     expect(wrapper.find("#passwordInput").length).toEqual(1);

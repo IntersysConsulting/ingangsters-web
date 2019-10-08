@@ -27,7 +27,6 @@ function FastLoginModal({ login, isAuthenticated }) {
   const handleShow = () => setShow(true);
 
   if (!isAuthenticated) {
-    console.log("Me renderizo");
     return (
       <React.Fragment>
         <FastLoginButton onClick={handleShow} />
