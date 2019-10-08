@@ -1,0 +1,107 @@
+@import "../../../css/colors.css";
+
+.ty-container {
+  text-align: center;
+  margin: auto;
+}
+.ty-message,
+.ty-order-sent {
+  color: var(--light-blue);
+}
+.address-data {
+  text-align: center;
+}
+.address-data-text {
+  display: inline-block;
+  text-align: justify;
+}
+
+.button-ty-page {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+@media (min-width: 1201px) {
+  .ty-message {
+    padding-top: 2vh;
+    font-size: 5.5vh;
+  }
+  .ty-order-sent {
+    font-size: 3.5vh;
+  }
+  .address-data-text {
+    font-size: 2.5vh;
+    padding-bottom: 1.5vh;
+  }
+
+  .button-ty-page {
+    font-size: 2.5vh;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .ty-message {
+    padding-top: 2vh;
+    font-size: 5vh;
+  }
+  .ty-order-sent {
+    font-size: 3vh;
+  }
+  .address-data-text {
+    font-size: 2vh;
+    padding-bottom: 1.5vh;
+  }
+
+  .button-ty-page {
+    font-size: 2.2vh;
+  }
+}
+@media (min-width: 501px) and (max-width: 800px) {
+  .ty-message {
+    padding-top: 2vh;
+    font-size: 4.5vh;
+  }
+  .ty-order-sent {
+    font-size: 3vh;
+  }
+  .address-data-text {
+    font-size: 2vh;
+    padding-bottom: 1.5vh;
+  }
+
+  .button-ty-page {
+    font-size: 2.2vh;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 500px) {
+  .ty-message {
+    padding-top: 2vh;
+    font-size: 4vh;
+  }
+  .ty-order-sent {
+    font-size: 2.5vh;
+  }
+  .address-data-text {
+    font-size: 2vh;
+    padding-bottom: 1vh;
+  }
+
+  .button-ty-page {
+    font-size: 2vh;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .ty-message {
+    padding-top: 2vh;
+    font-size: 3vh;
+  }
+  .ty-order-sent {
+    font-size: 2vh;
+  }
+  .address-data-text {
+    font-size: 1.5vh;
+    padding-bottom: 1vh;
+  }
+}
