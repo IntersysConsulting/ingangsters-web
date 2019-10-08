@@ -10,10 +10,31 @@ import * as adminProductsActions from "../../../../actions/creators/adminProduct
 import { fetchProducts } from "../../../../actions/creators/adminProducts";
 import "./Filters.css";
 const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
+  let nameFilterLabel = "Skip name",
+    priceFilterLabel = "Skip price",
+    stockFilterLabel = "Skip stock",
+    digitalFilterLabel = "Digital and Physical",
+    availableFilterLabel = "Available and Unavailable";
+  if (filtersStatus.nameAZ) nameFilterLabel = "Order by name (A-Z)";
+  else if (filtersStatus.nameZA) nameFilterLabel = "Order by name (Z-A)";
+
+  if (filtersStatus.priceLTH) priceFilterLabel = "Lower prices";
+  else if (filtersStatus.priceHTL) priceFilterLabel = "Higher prices";
+
+  if (filtersStatus.stockLTH) stockFilterLabel = "Lower stock";
+  else if (filtersStatus.stockHTL) stockFilterLabel = "Higher stock";
+
+  if (filtersStatus.shippableFalse) digitalFilterLabel = "Only digital";
+  else if (filtersStatus.shippableTrue) digitalFilterLabel = "Only physical";
+
+  if (filtersStatus.availableTrue) availableFilterLabel = "Only available";
+  else if (filtersStatus.availableFalse)
+    availableFilterLabel = "Only unavailable";
+
   return (
     <div className="filterWrapper">
       <DropdownButton
-        title="Order by name"
+        title={nameFilterLabel}
         id="nameSortingCriterium"
         key="nameSortingCriterium"
       >
@@ -41,7 +62,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
       </DropdownButton>
 
       <DropdownButton
-        title="Order by price"
+        title={priceFilterLabel}
         id="priceSortingCriterium"
         key="priceSortingCriterium"
       >
@@ -69,7 +90,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
       </DropdownButton>
 
       <DropdownButton
-        title="Order by stock"
+        title={stockFilterLabel}
         id="stockSortingCriterium"
         key="stockSortingCriterium"
       >
@@ -97,7 +118,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
       </DropdownButton>
 
       <DropdownButton
-        title="Filter digital"
+        title={digitalFilterLabel}
         id="shippableFilterCriterium"
         key="shippableFilterCriterium"
       >
@@ -125,7 +146,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
       </DropdownButton>
 
       <DropdownButton
-        title="Filter availability"
+        title={availableFilterLabel}
         id="availableFilterCriterium"
         key="availableFilterCriterium"
       >
