@@ -26,7 +26,7 @@ function Routes() {
           <UserRoute path="/" exact component={Home} />
           <UserRoute path="/checkout" exact component={Checkout} />
           <UserRoute path="/cart" exact component={Cart} />
-          <UserRoute path="/thankyou" exact component={ThankYou} />
+          <UserRoute path="/checkout/thankyou" exact component={ThankYou} />
           <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
