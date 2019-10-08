@@ -114,7 +114,6 @@ function getFilterParams() {
 
   if (filtersConfig.shippableTrue) params.shippable = "TRUE";
   else if (filtersConfig.shippableFalse) params.shippable = "FALSE";
-  console.log(params);
   return params;
 }
 
