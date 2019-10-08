@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Loading from "../../UI/Loading/Loading";
 import { connect } from "react-redux";
@@ -11,18 +11,18 @@ const Products = ({ getProducts, product: { products, loading } }) => {
   }, [getProducts]);
 
   return loading ? (
-    <React.Fragment>
+    <Fragment>
       <div className="d-flex justify-content-center">
         <Loading />
       </div>
-    </React.Fragment>
+    </Fragment>
   ) : (
     <div className="container-fluid">
       <h1>Products</h1>
       <div className="row">
-        {products.map((product, i) => (
+        {products.map(product => (
           <div
-            key={i}
+            key={`product-${product._id}`}
             className="col-xs-12 col-sm-12 col-md-6 col-lg-4 row-eq-height"
           >
             <ProductCard product={product} />
