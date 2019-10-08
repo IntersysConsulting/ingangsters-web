@@ -1,7 +1,7 @@
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
-import Enzyme, { shallow, mount } from "enzyme";
-import { MemoryRouter, Provider } from "react-router-dom";
+import Enzyme, { mount } from "enzyme";
+import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import FastLoginModal from "./FastLoginModal";
@@ -30,10 +30,10 @@ describe("FastLoginModal", () => {
       .toJSON();
     expect(wrapper).toMatchSnapshot();
   });
-
+  let submit = jest.fn();
   let wrapper = mount(
     <MemoryRouter>
-      <FastLoginModal store={store} dispatch={null} />
+      <FastLoginModal store={store} dispatch={null} onSubmit={submit} />
     </MemoryRouter>
   );
 
@@ -46,7 +46,7 @@ describe("FastLoginModal", () => {
     expect(wrapper.find(".LoginModalContent")).toHaveLength(2);
   });
 
-  it("Contains two input fields and 1 Login Button", () => {
+  it("Contains two input fields and one Login Button", () => {
     wrapper.find(FastLoginButton).simulate("click");
     expect(wrapper.find("#emailInput").length).toEqual(1);
     expect(wrapper.find("#passwordInput").length).toEqual(1);
