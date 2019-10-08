@@ -23,8 +23,6 @@
   background-color: var(--light-blue) !important;
   border-color: var(--light-blue) !important;
   color: white;
-  min-width: 150px;
-  max-width: 150px;
 }
 
 .filterWrapper > .btn-toolbar {
@@ -39,4 +37,14 @@
 .filterWrapper > .btn-toolbar > .btn-success {
   background-color: var(--green);
   border-color: var(--green);
+}
+
+.filterWrapper > .btn-toolbar > .btn-outline-danger {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.filterWrapper > .btn-toolbar > .btn-outline-danger:hover {
+  background-color: var(--red);
+  color: white;
 }

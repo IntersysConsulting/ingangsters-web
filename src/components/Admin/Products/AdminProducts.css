@@ -3,5 +3,10 @@
   display: flex;
   justify-content: space-around;
   max-width: 1300px;
-  margin: 25px 0px;
+  margin: 25px auto;
+}
+
+.newProductWrapper > .btn {
+  background-color: var(--light-blue);
+  border-color: var(--light-blue);
 }
