@@ -107,6 +107,3 @@ TC_010
 
 #TC_015
 # Verify if a user should not be allowed to log in with different credentials from the same browser at the same time. (pending)
-
-#TC_016
-# Verify if a user should be able to login with the same credentials in different browsers at the same time.
