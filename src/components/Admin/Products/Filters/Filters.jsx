@@ -113,7 +113,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           active={filtersStatus.shippableTrue}
           onClick={filtersActions.enableShippableTrue}
         >
-          Only phisical
+          Only physical
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="disableShippable"
