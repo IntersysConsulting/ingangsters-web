@@ -5,7 +5,7 @@ import "./UserCard.css";
 
 const UserCard = ({ name, email, onClick }) => {
   return (
-    <Link className="productCard" to={onClick}>
+    <Link className="productCard usersCard" to={onClick}>
       <div className="UserData">
         <p className="UserName leftText">{name}</p>
         <p className="UserEmail leftText">{email}</p>
