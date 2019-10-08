@@ -35,6 +35,7 @@ function FastLoginModal({ login, isAuthenticated }) {
             <form>
               <div className="form-group-modal">
                 <input
+                  id="emailInput"
                   onChange={handleChange("email")}
                   type="email"
                   placeholder="  Email"
@@ -43,6 +44,7 @@ function FastLoginModal({ login, isAuthenticated }) {
               </div>
               <div className="form-group-modal">
                 <input
+                  id="passwordInput"
                   onChange={handleChange("password")}
                   type={"password"}
                   placeholder="  Password"
@@ -50,9 +52,11 @@ function FastLoginModal({ login, isAuthenticated }) {
                 />
               </div>
             </form>
-            <Button className="fastLoginButtonModal" onClick={onSubmit}>
-              Login
-            </Button>
+            <div className="form-button-modal">
+              <Button className="fastLoginButtonModal" onClick={onSubmit}>
+                Login
+              </Button>
+            </div>
           </Modal.Body>
         </Modal>
       </React.Fragment>

@@ -74,7 +74,6 @@ const ProductView = ({ match, history }) => {
             setShowModal(false);
           }}
           closeAction={() => {
-            console.log("CLOSED");
             setShowModal(false);
           }}
         />
