@@ -147,7 +147,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           size="sm"
           onClick={() => {
             filtersActions.clearFilters();
-            fetchProducts(currentPage)(dispatch);
+            fetchProducts(1)(dispatch);
           }}
         >
           Clear
