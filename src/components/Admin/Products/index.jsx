@@ -6,6 +6,7 @@ import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./AdminProducts.css";
+import Filters from "./Filters/Filters";
 
 const AdminProducts = ({
   currentPage,
@@ -16,6 +17,7 @@ const AdminProducts = ({
   return (
     <div>
       <br />
+      <Filters />
       <Grid />
       <div className="bottomWrapper">
         <Paginator
