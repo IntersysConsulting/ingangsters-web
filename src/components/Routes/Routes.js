@@ -17,7 +17,7 @@ import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../UI/Logout/Logout";
 import ErrorPage from "../UI/ErrorPage/ErrorPage";
 import ThankYou from "../Checkout/ThankYou/ThankYou";
-
+import Search from "../Search/Search";
 function Routes() {
   return (
     <Provider store={store}>
@@ -26,6 +26,7 @@ function Routes() {
           <UserRoute path="/" exact component={Home} />
           <UserRoute path="/checkout" exact component={Checkout} />
           <UserRoute path="/cart" exact component={Cart} />
+          <UserRoute path="/products/search" component={Search} />
           <UserRoute path="/checkout/thankyou" exact component={ThankYou} />
           <Route path="/details/:id" component={ProductDetails} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />

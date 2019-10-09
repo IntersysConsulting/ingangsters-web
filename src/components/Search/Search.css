@@ -1,0 +1,14 @@
+.warning-search {
+  color: var(--light-blue);
+}
+
+.alert-info-search {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: var(--info);
+}
+
+.result-text {
+  font-size: xx-large;
+  color: var(--light-blue);
+}
