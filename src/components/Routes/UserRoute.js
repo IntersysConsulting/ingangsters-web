@@ -20,12 +20,12 @@ export const getCart = async setLoading => {
     try {
       await axios.get(`${API}/cart`, config).then(function(response) {
         if (response.status === 200) {
-          localStorage.setItem("cart", JSON.stringify(response.data.data));
           setLoading(false);
+          localStorage.setItem("cart", JSON.stringify(response.data.data));
         }
       });
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
       setLoading(false);
     }
   }
