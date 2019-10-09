@@ -5,7 +5,7 @@ import Tabs from "../../AdminTabBar/AdminTabBar";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import "./MerchantView.css";
-import { loadAdmin, deleteAdmin } from "./Connections";
+import { loadAdmin, deleteAdmin, createNewAdmin } from "./Connections";
 const MerchantView = ({ match }) => {
   const { id } = match.params;
   const [showPassword, setShowPassword] = useState(false);
@@ -19,14 +19,13 @@ const MerchantView = ({ match }) => {
     email: "",
     phone: "",
     password: "",
-    passwordConf: ""
+    passwordConf: "",
+    submitAction: createNewAdmin
   });
   if (loading) {
     loadAdmin(id, setLoading, setFormData);
   }
-  let content;
-
-  let deleteButton;
+  let content, deleteButton;
   if (formData.showDeleteButton)
     deleteButton = (
       <Button className="deleteAdmin" onClick={() => deleteAdmin(id)}>
@@ -38,7 +37,14 @@ const MerchantView = ({ match }) => {
   if (loading) content = <LoadingBall />;
   else
     content = (
-      <Form className="merchantForm">
+      <Form
+        className="merchantForm"
+        onSubmit={evt => {
+          evt.preventDefault();
+          formData.submitAction(evt);
+          return false;
+        }}
+      >
         <h3>Add Administrator</h3>
         <br />
         <Row>
@@ -47,7 +53,7 @@ const MerchantView = ({ match }) => {
               type="text"
               name="merchantName"
               placeholder="Name"
-              value={formData.name}
+              defaultValue={formData.name}
               required
             />
           </Form.Group>
@@ -56,7 +62,7 @@ const MerchantView = ({ match }) => {
               type="text"
               name="merchantLastName"
               placeholder="Last name"
-              value={formData.lastName}
+              defaultValue={formData.lastName}
               required
             />
           </Form.Group>
@@ -67,7 +73,7 @@ const MerchantView = ({ match }) => {
               type="email"
               name="merchantEmail"
               placeholder="Email"
-              value={formData.email}
+              defaultValue={formData.email}
               required
             />
           </Form.Group>
@@ -78,7 +84,7 @@ const MerchantView = ({ match }) => {
               type="phone"
               name="merchantPhone"
               placeholder="Phone (Optional)"
-              value={formData.phone}
+              defaultValue={formData.phone}
             />
           </Form.Group>
         </Row>
@@ -129,7 +135,7 @@ const MerchantView = ({ match }) => {
             Save
           </Button>
           {deleteButton}
-          <Button
+          {/* <Button
             variant="primary"
             type="submit"
             className="backButton"
@@ -138,7 +144,7 @@ const MerchantView = ({ match }) => {
             }}
           >
             Back
-          </Button>
+          </Button> */}
         </Row>
       </Form>
     );
