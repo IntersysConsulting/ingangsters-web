@@ -75,7 +75,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     name: Yup.string()
       .required("Name is required")
       .trim(),
-    street: Yup.string()
+    address: Yup.string()
       .required("Address is required")
       .trim(),
     country: Yup.string()
