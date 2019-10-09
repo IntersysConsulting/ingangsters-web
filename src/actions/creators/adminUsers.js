@@ -45,3 +45,22 @@ export const fetchAdminUsers = pageRequested => async dispatch => {
     console.log(err);
   }
 };
+
+export const getAdminUsers = () => async dispatch => {
+  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+  try {
+    const res = await axios.get(`${API}/admin/users`, {
+      headers: { "Content-Type": "application/json", Authorization: AuthStr }
+    });
+    dispatch({
+      type: types.GET_ADMIN_USER,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: types.ADMIN_USERS_ERROR,
+      payload: err
+    });
+  }
+};

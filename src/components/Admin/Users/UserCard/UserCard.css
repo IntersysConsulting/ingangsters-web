@@ -5,6 +5,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+  margin-top: 5%;
 }
 .UserEmail,
 .UserName {
@@ -19,5 +20,5 @@
   width: 40%;
 }
 .usersCard {
-  height: 100px;
+  height: 150px;
 }

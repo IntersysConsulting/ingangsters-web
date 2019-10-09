@@ -33,6 +33,16 @@ export default (state = initialState, action) => {
         currentPage_users: action.currentPage
       });
 
+    case types.GET_ADMIN_USER:
+      return Object.assign({}, state, {
+        adminList: action.payload.data
+      });
+
+    case types.ADMIN_USERS_ERROR:
+      return Object.assign({}, state, {
+        adminList: action.payload
+      });
+
     default:
       return state;
   }
