@@ -137,7 +137,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           variant="success"
           size="sm"
           onClick={() => {
-            fetchProducts(currentPage)(dispatch);
+            fetchProducts(1)(dispatch);
           }}
         >
           Apply
