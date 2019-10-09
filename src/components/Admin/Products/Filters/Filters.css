@@ -48,3 +48,11 @@
   background-color: var(--red);
   color: white;
 }
+
+.dropdown-item.active {
+  background-color: var(--light-blue);
+}
+
+.dropdown-item {
+  font-size: 15px;
+}
