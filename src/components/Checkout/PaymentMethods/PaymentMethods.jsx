@@ -33,7 +33,7 @@ class PaymentMethods extends React.Component {
             className="paymentButton"
           />
 
-          <label for="oxxoPay" className="paymentTag">
+          <label htmlFor="oxxoPay" className="paymentTag">
             <img
               alt="oxxo-pay"
               src="/assets/Oxxo_logo.svg"
@@ -55,7 +55,7 @@ class PaymentMethods extends React.Component {
             className="paymentButton"
           />
 
-          <label for="payPal" className="paymentTag">
+          <label htmlFor="payPal" className="paymentTag">
             <img
               alt="PayPal"
               src="/assets/PayPal-Logo.png"
@@ -77,7 +77,7 @@ class PaymentMethods extends React.Component {
             className="paymentButton"
           />
 
-          <label for="card" className="paymentTag">
+          <label htmlFor="card" className="paymentTag">
             <img
               alt="card"
               src="/assets/card-logo.png"

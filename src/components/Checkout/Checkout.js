@@ -125,7 +125,7 @@ const Checkout = ({
                     {/* we'll save the data in the DB in this button, 
                   meanwhile I'll use Link and props until de endpoints are ready*/}
                     <Link to="/checkout/thankyou">
-                      <button className="btn checkout-btn" onClick="">
+                      <button className="btn checkout-btn">
                         Confirm Order
                       </button>
                     </Link>
