@@ -104,9 +104,7 @@ const ProductDetails = ({ match, uploadAndUpdateCart }) => {
   }
 };
 
-const mapStateToProps = state => ({});
-
 export default connect(
-  mapStateToProps,
+  null,
   { uploadAndUpdateCart }
 )(ProductDetails);

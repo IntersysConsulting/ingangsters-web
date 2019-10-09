@@ -32,9 +32,7 @@ const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
   );
 };
 
-const mapStateToProps = state => ({});
-
 export default connect(
-  mapStateToProps,
+  null,
   { uploadAndUpdateCart }
 )(PlusLessButtons);

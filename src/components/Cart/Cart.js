@@ -33,9 +33,7 @@ const Cart = ({ updateCartStore }) => {
   }
 };
 
-const mapStateToProps = state => ({});
-
 export default connect(
-  mapStateToProps,
+  null,
   { updateCartStore }
 )(Cart);

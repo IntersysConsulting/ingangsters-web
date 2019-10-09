@@ -51,9 +51,7 @@ const UserRoute = ({ component: Component, getUser, updateCartStore }) => {
   }
 };
 
-const mapStateToProps = state => ({});
-
 export default connect(
-  mapStateToProps,
+  null,
   { getUser, updateCartStore }
 )(UserRoute);

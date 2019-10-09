@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, uploadAndUpdateCart }) => {
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -47,4 +48,7 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default connect(
+  null,
+  { uploadAndUpdateCart }
+)(ProductCard);
