@@ -10,34 +10,10 @@ import * as adminProductsActions from "../../../../actions/creators/adminProduct
 import { fetchProducts } from "../../../../actions/creators/adminProducts";
 import "./Filters.css";
 const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
-  let nameFilterLabel = "Skip name",
-    priceFilterLabel = "Skip price",
-    stockFilterLabel = "Skip stock",
-    digitalFilterLabel = "Digital and Physical",
-    availableFilterLabel = "Available and Unavailable";
-  if (filtersStatus.nameAZ) nameFilterLabel = "Order by name (A-Z)";
-  else if (filtersStatus.nameZA) nameFilterLabel = "Order by name (Z-A)";
-
-  if (filtersStatus.priceLTH) priceFilterLabel = "Lower prices";
-  else if (filtersStatus.priceHTL) priceFilterLabel = "Higher prices";
-
-  if (filtersStatus.stockLTH) stockFilterLabel = "Lower stock";
-  else if (filtersStatus.stockHTL) stockFilterLabel = "Higher stock";
-
-  if (filtersStatus.shippableFalse) digitalFilterLabel = "Only digital";
-  else if (filtersStatus.shippableTrue) digitalFilterLabel = "Only physical";
-
-  if (filtersStatus.availableTrue) availableFilterLabel = "Only available";
-  else if (filtersStatus.availableFalse)
-    availableFilterLabel = "Only unavailable";
-
   return (
     <div className="filterWrapper">
-      <DropdownButton
-        title={nameFilterLabel}
-        id="nameSortingCriterium"
-        key="nameSortingCriterium"
-      >
+      <DropdownButton title="Sorting" id="sortingRules" key="sortingRules">
+        <Dropdown.Header>Sort by name</Dropdown.Header>
         <Dropdown.Item
           eventKey="nameAZ"
           active={filtersStatus.nameAZ}
@@ -59,13 +35,9 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
         >
           Skip
         </Dropdown.Item>
-      </DropdownButton>
 
-      <DropdownButton
-        title={priceFilterLabel}
-        id="priceSortingCriterium"
-        key="priceSortingCriterium"
-      >
+        <Dropdown.Divider />
+        <Dropdown.Header>Sort by price</Dropdown.Header>
         <Dropdown.Item
           eventKey="priceLTH"
           active={filtersStatus.priceLTH}
@@ -87,13 +59,9 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
         >
           Skip
         </Dropdown.Item>
-      </DropdownButton>
 
-      <DropdownButton
-        title={stockFilterLabel}
-        id="stockSortingCriterium"
-        key="stockSortingCriterium"
-      >
+        <Dropdown.Divider />
+        <Dropdown.Header>Sort by stock</Dropdown.Header>
         <Dropdown.Item
           eventKey="stockLTH"
           active={filtersStatus.stockLTH}
@@ -116,12 +84,8 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           Skip
         </Dropdown.Item>
       </DropdownButton>
-
-      <DropdownButton
-        title={digitalFilterLabel}
-        id="shippableFilterCriterium"
-        key="shippableFilterCriterium"
-      >
+      <DropdownButton title="Filters" id="filterRules" key="filterRules">
+        <Dropdown.Header>Physical or Digital?</Dropdown.Header>
         <Dropdown.Item
           eventKey="shippableFalse"
           active={filtersStatus.shippableFalse}
@@ -143,13 +107,9 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
         >
           Both
         </Dropdown.Item>
-      </DropdownButton>
 
-      <DropdownButton
-        title={availableFilterLabel}
-        id="availableFilterCriterium"
-        key="availableFilterCriterium"
-      >
+        <Dropdown.Divider />
+        <Dropdown.Header>Available or Unavailable?</Dropdown.Header>
         <Dropdown.Item
           eventKey="availableTrue"
           active={filtersStatus.availableTrue}
