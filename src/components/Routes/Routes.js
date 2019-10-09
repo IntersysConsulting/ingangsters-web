@@ -17,6 +17,7 @@ import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../UI/Logout/Logout";
 import ErrorPage from "../UI/ErrorPage/ErrorPage";
 import ThankYou from "../Checkout/ThankYou/ThankYou";
+import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 
 function Routes() {
   return (
@@ -28,9 +29,9 @@ function Routes() {
           <UserRoute path="/cart" exact component={Cart} />
           <UserRoute path="/checkout/thankyou" exact component={ThankYou} />
           <Route path="/details/:id" component={ProductDetails} />
+          <AdminRoute path="/admin/merchant/:id" component={MerchantView} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
-          <AdminRoute path="/admin/product" exact component={AdminPage} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/admin/login" exact component={LoginAdmin} />
