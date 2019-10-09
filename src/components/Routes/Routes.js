@@ -20,6 +20,7 @@ import ThankYou from "../Checkout/ThankYou/ThankYou";
 import AccountDetails from "../AccountDetails/AccountDetails";
 import Search from "../Search/Search";
 import Footer from "../UI/Footer/Footer";
+import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 
 function Routes() {
   return (
@@ -33,9 +34,9 @@ function Routes() {
           <UserRoute path="/checkout/thankyou" exact component={ThankYou} />
           <UserRoute path="/account" exact component={AccountDetails} />
           <Route path="/details/:id" component={ProductDetails} />
+          <AdminRoute path="/admin/merchant/:id" component={MerchantView} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
-          <AdminRoute path="/admin/product" exact component={AdminPage} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/admin/login" exact component={LoginAdmin} />
