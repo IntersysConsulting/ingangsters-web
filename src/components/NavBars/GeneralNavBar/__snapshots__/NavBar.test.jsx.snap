@@ -36,7 +36,7 @@ exports[`General Navbar renders correctly 1`] = `
         }
       }
     />
-    <SearchBar />
+    <Connect(withRouter(SearchBar)) />
     <div
       className="flexSeparator"
       style={
