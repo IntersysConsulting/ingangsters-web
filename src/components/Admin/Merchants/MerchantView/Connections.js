@@ -1,14 +1,59 @@
 import { API } from "../../../../config";
 import axios from "axios";
 
-export function loadAdmin(id, setLoading, setData) {
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+export async function loadAdmin(id, setData) {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "application/json"
+    }
+  };
+  const endpoint = `${API}/admin/get`;
+  const body = {
+    _id: id
+  };
+  try {
+    const res = await axios.post(endpoint, body, config);
+    console.log(res);
+    if (res.status === 200) {
+      const fullName = res.data.data.name.split(" ");
+      const firstName = fullName.shift();
+      setData(prev => ({
+        ...prev,
+        showDeleteButton: true,
+        title: "Update Administrator",
+        name: firstName,
+        lastName: fullName.join(" "),
+        email: res.data.data.email,
+        submitAction: updateAdmin,
+        isLoading: false
+      }));
+    }
+  } catch (err) {
+    window.location.replace("/404");
+  }
 }
 
-export function deleteAdmin(id) {
-  console.log("Deleting " + id);
+export async function deleteAdmin(id) {
+  const endpoint = `${API}/admin/delete`;
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token")
+    },
+    data: {
+      _id: id
+    }
+  };
+  try {
+    const res = await axios.delete(endpoint, config);
+    if (res.status === 200) {
+      alert("Successfully deleted");
+      window.location.replace("/admin/dashboard");
+    }
+  } catch (err) {
+    alert("An error occurred. Try again later");
+  }
 }
 
 export async function createNewAdmin(evt) {
