@@ -26,7 +26,7 @@ export const updatePaginator = (totalUsers, usersPerPage, currentPage) => ({
 });
 
 export const fetchAdminUsers = pageRequested => async dispatch => {
-  const numberOfUsers = window.innerWidth <= 550 ? 3 : 4;
+  const numberOfUsers = window.innerWidth <= 550 ? 3 : 3;
   const AuthStr = `Bearer ${localStorage.getItem("token")}`;
 
   const endpoint = `${API}/admin/${numberOfUsers}/${pageRequested}`;
@@ -37,9 +37,9 @@ export const fetchAdminUsers = pageRequested => async dispatch => {
     });
 
     const adminUsers = result.data.data.admin_users;
-    const total_admin_users = result.data.data.total_admin_users;
+    const total_admin_users = result.data.data.total_users;
 
-    console.log(adminUsers);
+    console.log(total_admin_users);
     dispatch(updateAdminUsers(adminUsers));
     dispatch(
       endFetchAdminUsers(total_admin_users, numberOfUsers, pageRequested)
