@@ -1,0 +1,20 @@
+.searchBox-adminPage {
+  width: 300px !important;
+  margin: auto;
+  background-color: var(--light-grey);
+}
+.rightSearchIcon-AdminPage {
+  position: absolute;
+}
+.searchBox-input-adminPage {
+  width: 200px;
+  background-color: var(--light-grey);
+  border-color: var(--light-grey);
+  border-bottom-color: var(--dark-grey);
+}
+
+@media screen and (max-width: 550px) {
+  .searchBox-adminPage {
+    width: 90%;
+  }
+}
