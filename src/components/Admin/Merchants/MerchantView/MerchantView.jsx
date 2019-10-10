@@ -6,11 +6,11 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import "./MerchantView.css";
 import { loadAdmin, deleteAdmin, createNewAdmin } from "./Connections";
+import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 const MerchantView = ({ match }) => {
   const { id } = match.params;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [loading, setLoading] = useState(id !== "new");
   const [formData, setFormData] = useState({
     showDeleteButton: false,
     title: "Add Administrator",
@@ -20,22 +20,21 @@ const MerchantView = ({ match }) => {
     phone: "",
     password: "",
     passwordConf: "",
-    submitAction: createNewAdmin
+    submitAction: createNewAdmin,
+    isLoading: id !== "new",
+    showConfirmationModal: false
   });
-  if (loading) {
-    loadAdmin(id, setLoading, setFormData);
-  }
-  let content, deleteButton;
-  if (formData.showDeleteButton)
-    deleteButton = (
-      <Button className="deleteAdmin" onClick={() => deleteAdmin(id)}>
-        Delete
-      </Button>
-    );
-  else deleteButton = null;
-
-  if (loading) content = <LoadingBall />;
-  else
+  let content;
+  const toggleConfirmationModal = () => {
+    setFormData(prev => ({
+      ...prev,
+      showConfirmationModal: !prev.showConfirmationModal
+    }));
+  };
+  if (formData.isLoading) {
+    loadAdmin(id, setFormData);
+    content = <LoadingBall />;
+  } else {
     content = (
       <Form
         className="merchantForm"
@@ -45,7 +44,7 @@ const MerchantView = ({ match }) => {
           return false;
         }}
       >
-        <h3>Add Administrator</h3>
+        <h3>{formData.title}</h3>
         <br />
         <Row>
           <Form.Group as={Col}>
@@ -134,7 +133,14 @@ const MerchantView = ({ match }) => {
           <Button variant="primary" type="submit" className="saveButton">
             Save
           </Button>
-          {deleteButton}
+          <Button
+            className={
+              "deleteAdmin" + (formData.showDeleteButton ? "" : " hide")
+            }
+            onClick={toggleConfirmationModal}
+          >
+            Delete
+          </Button>
           {/* <Button
             variant="primary"
             type="submit"
@@ -143,11 +149,25 @@ const MerchantView = ({ match }) => {
               window.history.back();
             }}
           >
-            Back
+          Back
           </Button> */}
         </Row>
+        <ConfirmationModal
+          title="Delete admin"
+          message="Are you sure you want to delete this administrator? This is a PERMANENT operation"
+          affirmativeText="Confirm"
+          affirmativeAction={() => {
+            deleteAdmin(id);
+            toggleConfirmationModal();
+          }}
+          negativeText="No"
+          negativeAction={toggleConfirmationModal}
+          closeAction={toggleConfirmationModal}
+          show={formData.showConfirmationModal}
+        />
       </Form>
     );
+  }
 
   return (
     <React.Fragment>
