@@ -6,130 +6,148 @@ import {
   Button,
   ButtonToolbar
 } from "react-bootstrap";
-import * as adminProductsActions from "../../../../actions/creators/adminProducts";
-import { fetchProducts } from "../../../../actions/creators/adminProducts";
+import * as filtersActions from "../../../../actions/creators/filters";
 import "./Filters.css";
-const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
+const Filters = ({ config, dispatch, refreshFunction }) => {
+  let orderByDropdownLabel;
+  if (config.orderCriteria.nameAZ) orderByDropdownLabel = "Order by Name (A-Z)";
+  else if (config.orderCriteria.nameZA)
+    orderByDropdownLabel = "Order by Name (Z - A)";
+  else if (config.orderCriteria.priceLTH)
+    orderByDropdownLabel = "Order by lower prices";
+  else if (config.orderCriteria.priceHTL)
+    orderByDropdownLabel = "Order by higher prices";
+  else if (config.orderCriteria.stockLTH)
+    orderByDropdownLabel = "Order by lower stock";
+  else if (config.orderCriteria.stockHTL)
+    orderByDropdownLabel = "Order by higher stock";
+  else orderByDropdownLabel = "Select order criterium";
   return (
     <div className="filterWrapper">
-      <DropdownButton title="Sorting" id="sortingRules" key="sortingRules">
+      <DropdownButton
+        title={orderByDropdownLabel}
+        id="sortingRules"
+        key="sortingRules"
+      >
         <Dropdown.Header>Sort by name</Dropdown.Header>
         <Dropdown.Item
           eventKey="nameAZ"
-          active={filtersStatus.nameAZ}
-          onClick={filtersActions.enableNameAZ}
+          active={config.orderCriteria.nameAZ}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByNameAZ());
+          }}
         >
           A to Z
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="nameZA"
-          active={filtersStatus.nameZA}
-          onClick={filtersActions.enableNameZA}
+          active={config.orderCriteria.nameZA}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByNameZA());
+          }}
         >
           Z to A
-        </Dropdown.Item>
-        <Dropdown.Item
-          eventKey="clearName"
-          active={!filtersStatus.nameZA && !filtersStatus.nameAZ}
-          onClick={filtersActions.disableName}
-        >
-          Skip
         </Dropdown.Item>
 
         <Dropdown.Divider />
         <Dropdown.Header>Sort by price</Dropdown.Header>
         <Dropdown.Item
           eventKey="priceLTH"
-          active={filtersStatus.priceLTH}
-          onClick={filtersActions.enablePriceLTH}
+          active={config.orderCriteria.priceLTH}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByPriceLTH());
+          }}
         >
           Lower to higher
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="priceHTL"
-          active={filtersStatus.priceHTL}
-          onClick={filtersActions.enablePriceHTL}
+          active={config.orderCriteria.priceHTL}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByPriceHTL());
+          }}
         >
           Higher to lower
-        </Dropdown.Item>
-        <Dropdown.Item
-          eventKey="clearPrice"
-          active={!filtersStatus.priceHTL && !filtersStatus.priceLTH}
-          onClick={filtersActions.disablePrice}
-        >
-          Skip
         </Dropdown.Item>
 
         <Dropdown.Divider />
         <Dropdown.Header>Sort by stock</Dropdown.Header>
         <Dropdown.Item
           eventKey="stockLTH"
-          active={filtersStatus.stockLTH}
-          onClick={filtersActions.enableStockLTH}
+          active={config.orderCriteria.stockLTH}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByStockLTH());
+          }}
         >
           Lower to higher
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="stockHTL"
-          active={filtersStatus.stockHTL}
-          onClick={filtersActions.enableStockHTL}
+          active={config.orderCriteria.stockHTL}
+          onClick={() => {
+            dispatch(filtersActions.enableOrderByStockHTL());
+          }}
         >
           Higher to lower
         </Dropdown.Item>
-        <Dropdown.Item
-          eventKey="clearStock"
-          active={!filtersStatus.stockLTH && !filtersStatus.stockHTL}
-          onClick={filtersActions.disableStock}
-        >
-          Skip
-        </Dropdown.Item>
       </DropdownButton>
+
       <DropdownButton title="Filters" id="filterRules" key="filterRules">
         <Dropdown.Header>Physical or Digital?</Dropdown.Header>
         <Dropdown.Item
           eventKey="shippableFalse"
-          active={filtersStatus.shippableFalse}
-          onClick={filtersActions.enableShippableFalse}
+          active={config.filtersEnabled.shippableFalse}
+          onClick={() => {
+            dispatch(
+              filtersActions.setShippableFalseFilter(
+                !config.filtersEnabled.shippableFalse
+              )
+            );
+          }}
         >
-          Only digital
+          Digital products
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="shippableTrue"
-          active={filtersStatus.shippableTrue}
-          onClick={filtersActions.enableShippableTrue}
+          active={config.filtersEnabled.shippableTrue}
+          onClick={() => {
+            dispatch(
+              filtersActions.setShippableTrueFilter(
+                !config.filtersEnabled.shippableTrue
+              )
+            );
+          }}
         >
-          Only physical
-        </Dropdown.Item>
-        <Dropdown.Item
-          eventKey="disableShippable"
-          active={!filtersStatus.shippableFalse && !filtersStatus.shippableTrue}
-          onClick={filtersActions.disableShippable}
-        >
-          Both
+          Physical products
         </Dropdown.Item>
 
         <Dropdown.Divider />
         <Dropdown.Header>Available or Unavailable?</Dropdown.Header>
         <Dropdown.Item
           eventKey="availableTrue"
-          active={filtersStatus.availableTrue}
-          onClick={filtersActions.enableAvailableTrue}
+          active={config.filtersEnabled.availableTrue}
+          onClick={() => {
+            dispatch(
+              filtersActions.setAvailableTrueFilter(
+                !config.filtersEnabled.availableTrue
+              )
+            );
+          }}
         >
-          Only available
+          Available products
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="availableFalse"
-          active={filtersStatus.availableFalse}
-          onClick={filtersActions.enableAvailableFalse}
+          active={config.filtersEnabled.availableFalse}
+          onClick={() => {
+            dispatch(
+              filtersActions.setAvailableFalseFilter(
+                !config.filtersEnabled.availableFalse
+              )
+            );
+          }}
         >
-          Only unavailable
-        </Dropdown.Item>
-        <Dropdown.Item
-          eventKey="clearAvailable"
-          active={!filtersStatus.availableTrue && !filtersStatus.availableFalse}
-          onClick={filtersActions.disableAvailable}
-        >
-          Both
+          Unavailable products
         </Dropdown.Item>
       </DropdownButton>
       <ButtonToolbar>
@@ -137,7 +155,7 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           variant="success"
           size="sm"
           onClick={() => {
-            fetchProducts(1)(dispatch);
+            refreshFunction();
           }}
         >
           Apply
@@ -146,8 +164,9 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
           variant="outline-danger"
           size="sm"
           onClick={() => {
-            filtersActions.clearFilters();
-            fetchProducts(1)(dispatch);
+            dispatch(filtersActions.clearFilters());
+            dispatch(filtersActions.disableOrderBy());
+            refreshFunction();
           }}
         >
           Clear
@@ -159,68 +178,12 @@ const Filters = ({ filtersStatus, filtersActions, dispatch, currentPage }) => {
 
 function mapStateToProps(state) {
   return {
-    filtersStatus: { ...state.adminProducts.filtersStatus },
+    config: { ...state.filters },
     currentPage: state.adminProducts.currentPage
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    filtersActions: {
-      enablePriceLTH() {
-        dispatch(adminProductsActions.enablePriceLTHFilter());
-      },
-      enablePriceHTL() {
-        dispatch(adminProductsActions.enablePriceHTLFilter());
-      },
-      disablePrice() {
-        dispatch(adminProductsActions.disablePriceFilter());
-      },
-      enableNameAZ() {
-        dispatch(adminProductsActions.enableNameAZFilter());
-      },
-      enableNameZA() {
-        dispatch(adminProductsActions.enableNameZAFilter());
-      },
-      disableName() {
-        dispatch(adminProductsActions.disnableNameFilter());
-      },
-      enableStockLTH() {
-        dispatch(adminProductsActions.enableStockLTHFilter());
-      },
-      enableStockHTL() {
-        dispatch(adminProductsActions.enableStockHTLFilter());
-      },
-      disableStock() {
-        dispatch(adminProductsActions.disableStockFilter());
-      },
-      enableShippableTrue() {
-        dispatch(adminProductsActions.enableShippableTrueFilter());
-      },
-      enableShippableFalse() {
-        dispatch(adminProductsActions.enableShippableFalseFilter());
-      },
-      disableShippable() {
-        dispatch(adminProductsActions.disableShippableFilter());
-      },
-      enableAvailableTrue() {
-        dispatch(adminProductsActions.enableAvailableTrueFilter());
-      },
-      enableAvailableFalse() {
-        dispatch(adminProductsActions.enableAvailableFalseFilter());
-      },
-      disableAvailable() {
-        dispatch(adminProductsActions.disableAvailableFilter());
-      },
-      clearFilters() {
-        dispatch(adminProductsActions.clearFilters());
-      }
-    },
-    dispatch: dispatch
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  dispatch => ({ dispatch: dispatch })
 )(Filters);

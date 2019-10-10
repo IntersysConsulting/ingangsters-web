@@ -17,7 +17,11 @@ const AdminProducts = ({
   return (
     <div>
       <br />
-      <Filters />
+      <Filters
+        refreshFunction={() => {
+          fetchProducts(1);
+        }}
+      />
       <Grid />
       <div className="bottomWrapper">
         <Paginator
