@@ -3,7 +3,6 @@ import UserGrid from "./UserGrid/UserGrid";
 import Paginator from "../Products/Paginator/Paginator";
 import { connect } from "react-redux";
 import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../Products/AdminProducts.css";
 
@@ -24,9 +23,7 @@ const AdminUsers = ({
           itemsPerPage={usersPerPage}
           navigateFunction={fetchAdminUsers}
         />
-        {/* <Link to="/admin/product/new" className="newProductWrapper"> */}
-        <Button variant="primary">New Admin User</Button>
-        {/*   </Link> */}
+        <Button variant="primary">Add User</Button>
       </div>
     </div>
   );
