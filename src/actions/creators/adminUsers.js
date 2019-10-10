@@ -40,7 +40,6 @@ export const fetchAdminUsers = pageRequested => async dispatch => {
     const adminUsers = result.data.data.admin_users;
     const total_admin_users = result.data.data.total_users;
 
-    console.log(total_admin_users);
     dispatch(updateAdminUsers(adminUsers));
     dispatch(
       endFetchAdminUsers(total_admin_users, numberOfUsers, pageRequested)
