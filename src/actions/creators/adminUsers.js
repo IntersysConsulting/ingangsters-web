@@ -26,17 +26,20 @@ export const updatePaginator = (totalUsers, usersPerPage, currentPage) => ({
 });
 
 export const fetchAdminUsers = pageRequested => async dispatch => {
-  const numberOfUsers = window.innerWidth <= 550 ? 10 : 20;
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
+  const numberOfUsers = window.innerWidth <= 550 ? 3 : 4;
+  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+
   const endpoint = `${API}/admin/${numberOfUsers}/${pageRequested}`;
   try {
     dispatch(startFetchAdminUsers());
-    const result = await axios.get(endpoint, config);
-    const { adminUsers, total_admin_users } = result.data.data;
+    const result = await axios.get(endpoint, {
+      headers: { "Content-Type": "application/json", Authorization: AuthStr }
+    });
+
+    const adminUsers = result.data.data.admin_users;
+    const total_admin_users = result.data.data.total_admin_users;
+
+    console.log(adminUsers);
     dispatch(updateAdminUsers(adminUsers));
     dispatch(
       endFetchAdminUsers(total_admin_users, numberOfUsers, pageRequested)

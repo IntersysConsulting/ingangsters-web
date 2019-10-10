@@ -3,17 +3,16 @@ import UserCard from "../UserCard/UserCard";
 import "../../Products/Grid/Grid.css";
 import { connect } from "react-redux";
 import LoadingBall from "../../../UI/Loading/Loading";
-import { getAdminUsers } from "../../../../actions/creators/adminUsers";
+import { fetchAdminUsers } from "../../../../actions/creators/adminUsers";
 
 export const UsersGrid = ({
   users,
   loading,
-  //finishedFetchUser,
-  // fetchAdminUsers,
-  getAdminUsers
+  finishedFetchUser,
+  fetchAdminUsers
 }) => {
-  if (users.length === 0 /* && !loading  && !finishedFetch */) {
-    getAdminUsers();
+  if (users.length === 0 && !loading && !finishedFetchUser) {
+    fetchAdminUsers(1);
   }
   if (loading) {
     return (
@@ -36,11 +35,11 @@ export const UsersGrid = ({
 
 const mapStateToProps = state => ({
   users: state.adminUsers.adminList,
-  loading: state.adminUsers.fetching_users
-  // finishedFetch: state.adminProducts.finishedFetching
+  loading: state.adminUsers.fetching_users,
+  finishedFetchUser: state.adminUsers.finishedFetching_users
 });
 
 export default connect(
   mapStateToProps,
-  { getAdminUsers }
+  { fetchAdminUsers }
 )(UsersGrid);
