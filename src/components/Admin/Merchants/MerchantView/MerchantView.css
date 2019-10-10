@@ -19,7 +19,8 @@
   color: #d5d5d5;
 }
 
-.deleteAdmin {
+.deleteAdmin,
+.deleteAdmin:hover {
   background-color: var(--red);
   border-color: var(--red);
   color: white;
@@ -40,4 +41,8 @@
   color: white;
   background-color: var(--dark-grey);
   border-color: var(--dark-grey);
+}
+
+.btn.hide {
+  display: none;
 }
