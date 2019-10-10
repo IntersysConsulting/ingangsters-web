@@ -27,7 +27,7 @@ export const updatePaginator = (totalUsers, usersPerPage, currentPage) => ({
 
 export const fetchAdminUsers = pageRequested => async dispatch => {
   const numberOfUsers =
-    window.innerWidth <= 550 ? 3 : window.innerWidth <= 1600 ? 9 : 12;
+    window.innerWidth <= 550 ? 3 : window.innerWidth <= 1440 ? 9 : 12;
   const AuthStr = `Bearer ${localStorage.getItem("token")}`;
 
   const endpoint = `${API}/admin/${numberOfUsers}/${pageRequested}`;
