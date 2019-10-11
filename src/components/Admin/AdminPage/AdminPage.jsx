@@ -33,6 +33,10 @@ const AdminPage = ({ adminOption }) => {
               </div>
             )}
           </div>
+      <AdminTabBar />
+      {adminOption === "Users" ? (
+        <div id="AdminPageContent">
+          <UsersGrid />
         </div>
       </div>
     </div>
