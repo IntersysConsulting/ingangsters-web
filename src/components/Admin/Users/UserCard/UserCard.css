@@ -1,0 +1,30 @@
+.leftText {
+  text-align: left !important;
+  margin-bottom: 10%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 5%;
+}
+.UserEmail,
+.UserName {
+  margin-left: -50% !important;
+}
+.UserName {
+  font-weight: bold;
+  font-size: 18px;
+}
+.UserData {
+  height: 50%;
+  width: 40%;
+}
+.usersCard {
+  height: 100px;
+}
+
+@media screen and (max-width: 550px) {
+  .usersCard {
+    height: 150px;
+  }
+}
