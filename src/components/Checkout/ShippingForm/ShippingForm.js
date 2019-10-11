@@ -15,16 +15,22 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     state: "",
     street: "",
     type: "",
-    zipCode: ""
+    zip: "",
+    email: "",
+    phone: ""
   });
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  let formFormik;
 
   const handleSelect = evt => {
     const address = JSON.parse(evt);
-    setSelectedAddress(address);
+
+    setSelectedAddress({
+      ...address,
+      email: formFormik.state.values.email,
+      phone: formFormik.state.values.phone
+    });
+    formFormik.resetForm();
   };
 
   const displayAddressesDropdown = () => {
@@ -52,13 +58,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     }
   };
 
-  const handleChange = () => {
-    setName(document.forms.shippingForm.elements.name.value);
-    setPhone(document.forms.shippingForm.elements.phone.value);
-    setEmail(document.forms.shippingForm.elements.email.value);
-  };
-
-  const validateForm = (errors, values) => {
+  /* const validateForm = (errors, values) => {
     const isValid = Object.keys(errors).length === 0;
     let allFieldsFilled = true;
     for (var key in values) {
@@ -67,6 +67,12 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
       }
     }
     dispatch(validateShippingForm(isValid && allFieldsFilled));
+  }; */
+
+  const validateForm = isValid => {
+    //console.log("selectedAddress",selectedAddress)
+    //return ShippingFormSchema.isValidSync(selectedAddress);
+    dispatch(validateShippingForm(isValid));
   };
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -87,7 +93,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     city: Yup.string()
       .required("City is required")
       .trim(),
-    zipCode: Yup.number()
+    zip: Yup.number()
       .typeError("Zip code must be a number")
       .required("Zip code is required"),
     phone: Yup.string()
@@ -102,23 +108,28 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
 
   const shippingForm = () => (
     <Formik
+      ref={ref => (formFormik = ref)}
       initialValues={{
-        name: name,
+        name: selectedAddress.alias,
         address: selectedAddress.street,
         country: selectedAddress.country,
         state: selectedAddress.state,
         city: selectedAddress.city,
-        zipCode: selectedAddress.zipCode,
-        phone: phone,
-        email: email
+        zip: selectedAddress.zip,
+        phone: selectedAddress.number,
+        email: selectedAddress.email
       }}
       enableReinitialize
       validationSchema={ShippingFormSchema}
+      isInitialValid={ShippingFormSchema.isValidSync(selectedAddress)}
     >
-      {({ errors, touched, values }) => {
-        validateForm(errors, values);
+      {({ errors, touched, values, isValid }) => {
+        //validateForm(errors, values);
+        errors.name = "";
+        validateForm(isValid);
+        //console.log("isValid",isValid);
         return (
-          <Form className="mt-4" name="shippingForm" onChange={handleChange}>
+          <Form className="mt-4" name="shippingForm">
             <div className="form-group">
               <Field
                 type="text"
@@ -205,7 +216,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
               <div className="form-group col">
                 <Field
                   type="text"
-                  name="zipCode"
+                  name="zip"
                   placeholder="Zip Code"
                   className={`form-control ${
                     touched.zipCode && errors.zipCode ? "is-invalid" : ""
@@ -213,7 +224,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
                 />
                 <ErrorMessage
                   component="div"
-                  name="zipCode"
+                  name="zip"
                   className="invalid-feedback"
                 />
               </div>
