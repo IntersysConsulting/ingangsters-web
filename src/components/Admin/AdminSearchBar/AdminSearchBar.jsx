@@ -2,31 +2,20 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdSearch } from "react-icons/md";
-import { searchProducts } from "../../../actions/creators/products";
+import { adminSearchProduct } from "../../../actions/creators/adminProducts";
 import { connect } from "react-redux";
 import "./AdminSearchBar.css";
 import "../../../css/colors.css";
-import { withRouter } from "react-router-dom";
 
-const AdminSearchBar = ({ searchProducts, history, adminOption }) => {
+const AdminSearchBar = ({ adminSearchProduct, adminOption }) => {
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    //slice the first element of the search string due to is the "?" character
-    let querySearch = window.decodeURI(history.location.search.slice(1));
-
-    if (adminOption === "Products") {
-      searchProducts(querySearch);
-    }
-  }, [history.location.search, searchProducts]);
+  useEffect(() => {}, []);
 
   const searchSubmit = event => {
     event.preventDefault();
     if (search) {
-      history.push({
-        pathname: "admin/products/search",
-        search
-      });
+      adminSearchProduct(search);
     }
   };
 
@@ -72,5 +61,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { searchProducts }
-)(withRouter(AdminSearchBar));
+  { adminSearchProduct }
+)(AdminSearchBar);

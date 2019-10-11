@@ -21,6 +21,7 @@ export const ProductsGrid = ({
       </div>
     );
   } else {
+    console.log(items);
     const cards = items.map(item => (
       <Product
         {...item}
