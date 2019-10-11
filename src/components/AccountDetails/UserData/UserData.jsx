@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import "./UserData.css";
 import { FaEdit } from "react-icons/fa";
 import ChangePhoneModal from "./Modals/ChangePhoneModal";
+import ChangePasswordModal from "./Modals/ChangePasswordModal";
 
 const UserData = ({ userData }) => {
   const [showModalPhone, setShowModalPhone] = useState(false);
-  // const [showModalChangePassword, setShowModalChangePassword] = useState(false);
+  const [showModalChangePassword, setShowModalChangePassword] = useState(false);
 
   const changeStatusShowPhoneModal = () => {
     setShowModalPhone(!showModalPhone);
   };
 
-  // const changeStatusShowChangePassword = () => {
-  //   setShowModalPhone(false);
-  // };
+  const changeStatusShowChangePassword = () => {
+    setShowModalChangePassword(!showModalChangePassword);
+  };
 
   return (
     <React.Fragment>
@@ -21,6 +22,11 @@ const UserData = ({ userData }) => {
         showModalStatus={showModalPhone}
         modalStatusChange={changeStatusShowPhoneModal}
         userData={userData}
+      />
+
+      <ChangePasswordModal
+        showModalStatus={showModalChangePassword}
+        modalStatusChange={changeStatusShowChangePassword}
       />
 
       <div className="container pt-3 text-center">
@@ -68,10 +74,9 @@ const UserData = ({ userData }) => {
           <div className="col-8 offset-2 user-data-cell py-1">xxxxxxxxxxxx</div>
           <div
             className="col-1"
-            // onClick={
-            //   () => {
-            //   setShowModalChangePassword(true);
-            // }}
+            onClick={() => {
+              setShowModalChangePassword(true);
+            }}
           >
             <FaEdit size={25} className="icon-edit" />
           </div>

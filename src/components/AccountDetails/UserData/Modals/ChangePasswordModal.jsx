@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { updateUserData } from "../UserDataManager";
+import { changeMyPassword } from "../UserDataManager";
 
 const ChangePasswordModal = ({
   showModalStatus,
@@ -14,9 +14,12 @@ const ChangePasswordModal = ({
   const saveModifiedPassword = () => {
     var newPassword = {};
     newPassword.oldpassword =
-      document.forms.modifyPhoneForm.elements.phone.value;
-    userData.phone = document.forms.modifyPhoneForm.elements.phone.value;
-    updateUserData(userData);
+      document.forms.modifyPasswordForm.elements.oldpassword.value;
+    newPassword.newpassword1 =
+      document.forms.modifyPasswordForm.elements.newpassword1.value;
+    newPassword.newpassword2 =
+      document.forms.modifyPasswordForm.elements.newpassword2.value;
+    changeMyPassword(newPassword);
   };
 
   const validateForm = (errors, values) => {
@@ -32,36 +35,83 @@ const ChangePasswordModal = ({
       : setButtonDisabledState(true);
   };
 
-  const phoneFormSchema = Yup.object().shape({
-    phone: Yup.string()
-      .required("Phone is required")
-      .matches(phoneRegExp, "Phone number is not valid")
-      .trim()
+  const passwordFormSchema = Yup.object().shape({
+    oldpassword: Yup.string().required("Current password is required."),
+    newpassword1: Yup.string()
+      .notOneOf(
+        [Yup.ref("oldpassword")],
+        "Password should not be as current one."
+      )
+      .required("New password is required."),
+    newpassword2: Yup.string()
+      .oneOf([Yup.ref("newpassword1"), null], "Passwords are not the same!")
+      .required("Confirmation of new password is required.")
   });
 
   const modifyPasswordForm = () => (
     <Formik
       initialValues={{
-        phone: userData.phone ? userData.phone : ""
+        oldpassword: "",
+        newpassword1: "",
+        newpassword2: ""
       }}
-      validationSchema={phoneFormSchema}
+      validationSchema={passwordFormSchema}
     >
       {({ errors, touched, values }) => {
         validateForm(errors, values);
         return (
           <Form className="mt-2" name="modifyPasswordForm">
             <div className="form-group">
+              <label className="text-muted">Password</label>
               <Field
-                type="text"
-                name="phone"
-                placeholder="Enter a phone"
+                type="password"
+                name="oldpassword"
+                placeholder="Enter your password"
                 className={`form-control ${
-                  touched.phone && errors.phone ? "is-invalid" : ""
+                  touched.oldpassword && errors.oldpassword ? "is-invalid" : ""
                 }`}
               />
               <ErrorMessage
                 component="div"
-                name="phone"
+                name="oldpassword"
+                className="invalid-feedback"
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="text-muted">New password</label>
+              <Field
+                type="password"
+                name="newpassword1"
+                placeholder="Enter your new password"
+                className={`form-control ${
+                  touched.newpassword1 && errors.newpassword1
+                    ? "is-invalid"
+                    : ""
+                }`}
+              />
+              <ErrorMessage
+                component="div"
+                name="newpassword1"
+                className="invalid-feedback"
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="text-muted">Confirm password</label>
+              <Field
+                type="password"
+                name="newpassword2"
+                placeholder="Confirm your new password"
+                className={`form-control ${
+                  touched.newpassword2 && errors.newpassword2
+                    ? "is-invalid"
+                    : ""
+                }`}
+              />
+              <ErrorMessage
+                component="div"
+                name="newpassword2"
                 className="invalid-feedback"
               />
             </div>
@@ -90,4 +140,4 @@ const ChangePasswordModal = ({
   );
 };
 
-export default ChangePhoneModal;
+export default ChangePasswordModal;

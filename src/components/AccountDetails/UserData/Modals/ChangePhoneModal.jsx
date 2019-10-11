@@ -46,6 +46,7 @@ const ChangePhoneModal = ({ showModalStatus, modalStatusChange, userData }) => {
         return (
           <Form className="mt-2" name="modifyPhoneForm">
             <div className="form-group">
+              <label className="text-muted">Phone number</label>
               <Field
                 type="text"
                 name="phone"
