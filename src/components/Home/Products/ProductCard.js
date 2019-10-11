@@ -33,7 +33,7 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
             <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
               <button
                 type="button"
-                className="btn btn-success btn-block"
+                className="btn btn-product-card btn-block"
                 onClick={() => {
                   //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
                   addProductToCart(product, product._id, uploadAndUpdateCart);

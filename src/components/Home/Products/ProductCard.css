@@ -61,6 +61,12 @@
   display: flex;
 }
 
+.btn-product-card {
+  color: #fff;
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
 @media screen and (max-width: 767px) {
   .row-eq-height {
     flex-direction: column;

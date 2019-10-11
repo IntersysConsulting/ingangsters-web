@@ -8,10 +8,7 @@ const SearchedProducts = ({ results }) => {
   const searchMessage = results => {
     if (results.length > 0) {
       return (
-        <div
-          className="container-fluid text-center mt-5 alert alert-info-search"
-          role="alert"
-        >
+        <div className=" text-center mt-5 alert alert-info-search" role="alert">
           <p className="result-text my-auto">{`Found ${results.length} related products`}</p>
         </div>
       );
@@ -27,7 +24,7 @@ const SearchedProducts = ({ results }) => {
   };
 
   return (
-    <div className="container-fluid">
+    <div>
       {searchMessage(results)}
       <div className="row">
         {results.map(product => (

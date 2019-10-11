@@ -1,0 +1,5 @@
+.side-bar-products-filters {
+  background-color: var(--dark-grey);
+  border-right: 4px solid var(--light-blue);
+  color: white;
+}
