@@ -9,7 +9,6 @@ import { validateShippingForm } from "../../../actions/creators/checkoutForms";
 const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
   const [selectedAddress, setSelectedAddress] = useState({
     alias: "",
-    name: "",
     city: "",
     country: "",
     number: "",
@@ -17,6 +16,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     street: "",
     type: "",
     zip: "",
+    name: "",
     email: "",
     phone: ""
   });
@@ -146,7 +146,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
                 />
                 <ErrorMessage
                   component="div"
-                  name="number"
+                  name="street"
                   className="invalid-feedback"
                 />
               </div>
