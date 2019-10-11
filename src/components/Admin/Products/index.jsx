@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./AdminProducts.css";
 import Filters from "./Filters/Filters";
+import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
 
 const AdminProducts = ({
   currentPage,
@@ -17,8 +18,10 @@ const AdminProducts = ({
   return (
     <div>
       <br />
+      <AdminSearchBar />
       <Filters />
       <Grid />
+
       <div className="bottomWrapper">
         <Paginator
           currentPage={currentPage}
