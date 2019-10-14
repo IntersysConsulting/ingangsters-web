@@ -17,7 +17,7 @@
   background-color: white;
 }
 
-.orderSummaryItem > .productQuantity {
+.orderSummaryItem > .removeCard {
   position: absolute;
   float: right;
   z-index: 50;
@@ -30,7 +30,7 @@
   right: -10px;
   border-radius: 15px;
   color: white;
-  cursor: default;
+  cursor: pointer;
 }
 
 .orderSummaryItem > .productImage {
@@ -74,15 +74,15 @@
   font-size: 14px;
 }
 
-.orderSummaryItem > div > .extra > .remove {
-  text-decoration: underline;
-  cursor: pointer;
-  color: var(--orange);
+.orderSummaryItem > div > .extra > .quantity-price {
+  cursor: default;
+  color: var(--light-blue);
 }
 
 .orderSummaryItem > div > .extra > .priceTag,
 .orderSummaryTotal > span {
   color: var(--light-blue);
+  font-weight: bold;
 }
 
 .orderSummaryTotal {
