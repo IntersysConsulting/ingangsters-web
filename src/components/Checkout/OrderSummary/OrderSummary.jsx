@@ -59,23 +59,27 @@ const OrderSummary = ({ total, uploadAndUpdateCart }) => {
   } else {
     const cartItems = cartData.map((item, index) => (
       <div className="orderSummaryItem" key={index}>
-        <div className="productQuantity">{item.quantity}</div>
+        <div
+          className="removeCard"
+          onClick={() => {
+            deleteProductFromCart(item._id, uploadAndUpdateCart);
+            setLoading(true);
+          }}
+        >
+          x
+        </div>
         <div className="productImage">
           <img src={item.image} alt={item.name} />
         </div>
         <div>
           <p className="productName">{item.name}</p>
           <div className="extra">
-            <p
-              className="remove"
-              onClick={() => {
-                deleteProductFromCart(item._id, uploadAndUpdateCart);
-                setLoading(true);
-              }}
-            >
-              Remove
+            <p className="quantity-price">
+              {item.quantity} x {prettifyCents(item.price)}
             </p>
-            <p className="priceTag">{prettifyCents(item.price)}</p>
+            <p className="priceTag">
+              {prettifyCents(item.price * item.quantity)}
+            </p>
           </div>
         </div>
       </div>
