@@ -21,6 +21,7 @@ class IconButton extends React.Component {
   renderContentCart() {
     return (
       <div onClick={this.handleClick} className="iconButton">
+        <div className="productQuantityBadge">{this.props.totalItems}</div>
         <Link to="/cart" style={{ textDecoration: "none" }}>
           <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
           <p
