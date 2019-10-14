@@ -7,7 +7,7 @@ import "../../../css/colors.css";
 import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
-import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
+import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 
 const AdminTabBar = ({ handleClick }) => {
   return (
@@ -69,6 +69,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(setActiveAdminBarButton(e.target.value));
       if (e.target.value === "Products") {
         dispatch(fetchProducts(1));
+      }
+      if (e.target.value === "Users") {
+        dispatch(fetchAdminUsers(1));
       }
     }
   };

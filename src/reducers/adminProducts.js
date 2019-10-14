@@ -46,7 +46,6 @@ export default (state = initialState, action) => {
       });
 
     case types.ADMIN_GET_SEARCH_PRODUCTS:
-      console.log("Size: ", action.payload.length);
       return Object.assign({}, state, {
         list: action.payload,
         totalItems: action.payload.length,
