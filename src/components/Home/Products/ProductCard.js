@@ -5,6 +5,7 @@ import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
+import { prettifyCents } from "../../../utils/utils";
 
 const ProductCard = ({ product, uploadAndUpdateCart }) => {
   return (
@@ -27,7 +28,7 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
           </Link>
           <div className="row">
             <div className="col-lg-3 col-md-12 col-sm-12">
-              <p className="price">${product.price / 100}</p>
+              <p className="price">{prettifyCents(product.price)}</p>
             </div>
             <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
               <button
