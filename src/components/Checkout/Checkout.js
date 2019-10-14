@@ -41,11 +41,12 @@ const Checkout = ({
     const shippingAddressForm = document.forms.shippingForm;
     const shippingFormValues = {
       name: shippingAddressForm.elements.name.value,
-      street: shippingAddressForm.elements.address.value,
+      street: shippingAddressForm.elements.street.value,
       country: shippingAddressForm.elements.country.value,
+      number: shippingAddressForm.elements.number.value,
       state: shippingAddressForm.elements.state.value,
       city: shippingAddressForm.elements.city.value,
-      zipCode: shippingAddressForm.elements.zipCode.value,
+      zip: shippingAddressForm.elements.zip.value,
       phone: shippingAddressForm.elements.phone.value,
       email: shippingAddressForm.elements.email.value
     };
@@ -56,11 +57,12 @@ const Checkout = ({
       const billingAddressForm = document.forms.billingForm;
       billingFormValues = {
         name: billingAddressForm.elements.name.value,
-        street: billingAddressForm.elements.address.value,
+        street: billingAddressForm.elements.street.value,
         country: billingAddressForm.elements.country.value,
+        number: billingAddressForm.elements.number.value,
         state: billingAddressForm.elements.state.value,
         city: billingAddressForm.elements.city.value,
-        zipCode: billingAddressForm.elements.zipCode.value
+        zip: billingAddressForm.elements.zip.value
       };
     }
     console.log("shippingFormValues", shippingFormValues);

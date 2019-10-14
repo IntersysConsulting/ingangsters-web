@@ -15,16 +15,24 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     state: "",
     street: "",
     type: "",
-    zipCode: ""
+    zip: "",
+    name: "",
+    email: "",
+    phone: ""
   });
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  let formFormik;
 
   const handleSelect = evt => {
     const address = JSON.parse(evt);
-    setSelectedAddress(address);
+
+    setSelectedAddress({
+      ...address,
+      email: formFormik.state.values.email,
+      phone: formFormik.state.values.phone,
+      name: formFormik.state.values.name
+    });
+    formFormik.resetForm();
   };
 
   const displayAddressesDropdown = () => {
@@ -52,31 +60,17 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     }
   };
 
-  const handleChange = () => {
-    setName(document.forms.shippingForm.elements.name.value);
-    setPhone(document.forms.shippingForm.elements.phone.value);
-    setEmail(document.forms.shippingForm.elements.email.value);
-  };
-
-  const validateForm = (errors, values) => {
-    const isValid = Object.keys(errors).length === 0;
-    let allFieldsFilled = true;
-    for (var key in values) {
-      if (values[key] === "") {
-        allFieldsFilled = false;
-      }
-    }
-    dispatch(validateShippingForm(isValid && allFieldsFilled));
-  };
-
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const ShippingFormSchema = Yup.object().shape({
     name: Yup.string()
       .required("Name is required")
       .trim(),
-    address: Yup.string()
-      .required("Address is required")
+    street: Yup.string()
+      .required("Street is required")
+      .trim(),
+    number: Yup.string()
+      .required("Street number is required")
       .trim(),
     country: Yup.string()
       .required("Country is required")
@@ -87,7 +81,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
     city: Yup.string()
       .required("City is required")
       .trim(),
-    zipCode: Yup.number()
+    zip: Yup.number()
       .typeError("Zip code must be a number")
       .required("Zip code is required"),
     phone: Yup.string()
@@ -102,24 +96,28 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
 
   const shippingForm = () => (
     <Formik
+      ref={ref => (formFormik = ref)}
       initialValues={{
-        name: name,
-        address: selectedAddress.street,
+        name: selectedAddress.name,
+        street: selectedAddress.street,
+        number: selectedAddress.number,
         country: selectedAddress.country,
         state: selectedAddress.state,
         city: selectedAddress.city,
-        zipCode: selectedAddress.zipCode,
-        phone: phone,
-        email: email
+        zip: selectedAddress.zip,
+        phone: selectedAddress.phone,
+        email: selectedAddress.email
       }}
       enableReinitialize
       validationSchema={ShippingFormSchema}
+      isInitialValid={ShippingFormSchema.isValidSync(selectedAddress)}
     >
-      {({ errors, touched, values }) => {
-        validateForm(errors, values);
+      {({ errors, touched, isValid }) => {
+        dispatch(validateShippingForm(isValid));
         return (
-          <Form className="mt-4" name="shippingForm" onChange={handleChange}>
+          <Form className="mt-4" name="shippingForm">
             <div className="form-group">
+              <label className="text-muted">Name</label>
               <Field
                 type="text"
                 name="name"
@@ -135,24 +133,44 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
               />
             </div>
 
-            <div className="form-group">
-              <Field
-                type="text"
-                name="address"
-                placeholder="Address"
-                className={`form-control ${
-                  touched.address && errors.address ? "is-invalid" : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="address"
-                className="invalid-feedback"
-              />
+            <div className="row">
+              <div className="form-group col">
+                <label className="text-muted">Street</label>
+                <Field
+                  type="text"
+                  name="street"
+                  placeholder="Street"
+                  className={`form-control ${
+                    touched.street && errors.street ? "is-invalid" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  component="div"
+                  name="street"
+                  className="invalid-feedback"
+                />
+              </div>
+              <div className="form-group col">
+                <label className="text-muted">Street Number</label>
+                <Field
+                  type="text"
+                  name="number"
+                  placeholder="Street number"
+                  className={`form-control ${
+                    touched.number && errors.number ? "is-invalid" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  component="div"
+                  name="number"
+                  className="invalid-feedback"
+                />
+              </div>
             </div>
 
             <div className="row">
               <div className="form-group col">
+                <label className="text-muted">Country</label>
                 <Field
                   type="text"
                   name="country"
@@ -169,6 +187,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
               </div>
 
               <div className="form-group col">
+                <label className="text-muted">State</label>
                 <Field
                   type="text"
                   name="state"
@@ -187,6 +206,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
 
             <div className="row">
               <div className="form-group col">
+                <label className="text-muted">City</label>
                 <Field
                   type="text"
                   name="city"
@@ -203,22 +223,24 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
               </div>
 
               <div className="form-group col">
+                <label className="text-muted">ZIP Code</label>
                 <Field
                   type="text"
-                  name="zipCode"
+                  name="zip"
                   placeholder="Zip Code"
                   className={`form-control ${
-                    touched.zipCode && errors.zipCode ? "is-invalid" : ""
+                    touched.zip && errors.zip ? "is-invalid" : ""
                   }`}
                 />
                 <ErrorMessage
                   component="div"
-                  name="zipCode"
+                  name="zip"
                   className="invalid-feedback"
                 />
               </div>
             </div>
             <div className="form-group">
+              <label className="text-muted">Phone</label>
               <Field
                 type="tel"
                 name="phone"
@@ -235,6 +257,7 @@ const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
             </div>
 
             <div className="form-group">
+              <label className="text-muted">Email</label>
               <Field
                 type="email"
                 name="email"
