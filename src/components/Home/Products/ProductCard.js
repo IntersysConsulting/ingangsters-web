@@ -27,7 +27,7 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
           </Link>
           <div className="row">
             <div className="col-lg-3 col-md-12 col-sm-12">
-              <p className="price">${product.price}</p>
+              <p className="price">${product.price / 100}</p>
             </div>
             <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
               <button
