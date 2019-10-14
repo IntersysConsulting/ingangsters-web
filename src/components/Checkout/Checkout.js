@@ -22,12 +22,40 @@ const Checkout = ({
   isBillingFormValid,
   displayPaymentMethods,
   displayAction,
-  saveFormValuesAction
+  saveFormValuesAction,
+  isSaveFormValues,
+  formValues
 }) => {
   const [useBillingAddress, setUseBillingAddress] = useState(true);
   const [step, setStep] = useState(0);
   const [isDisplayOrderSummary, setDisplayOrderSummary] = useState(true);
   const isMobile = window.innerWidth <= 767;
+  let shippingFormValues = {
+    name: "",
+    street: "",
+    country: "",
+    number: "",
+    state: "",
+    city: "",
+    zip: "",
+    phone: "",
+    email: ""
+  };
+  let billingFormValues = {
+    name: "",
+    street: "",
+    country: "",
+    number: "",
+    state: "",
+    city: "",
+    zip: ""
+  };
+
+  if (isSaveFormValues) {
+    console.log("formValues", formValues);
+    shippingFormValues=formValues.shippingFormValues;
+    billingFormValues = formValues.billingFormValues;
+  }
 
   const displayLoginBtn = () => {
     if (!isAuthenticated)
@@ -70,15 +98,13 @@ const Checkout = ({
   };
 
   const changeStep = newStep => {
-    console.log("step recibido ", newStep);
-    console.log("step que ya se tiene ", step);
     if (newStep < step) {
       setStep(newStep);
     }
   };
 
   const displayBillingForm = () =>
-    !useBillingAddress ? <BillingForm /> : null;
+    !useBillingAddress ? <BillingForm  billingFormValues={billingFormValues}/> : null;
 
   const handleCheck = () => {
     setUseBillingAddress(!useBillingAddress);
@@ -86,7 +112,7 @@ const Checkout = ({
 
   const onSubmit = () => {
     const shippingAddressForm = document.forms.shippingForm;
-    const shippingFormValues = {
+    shippingFormValues = {
       name: shippingAddressForm.elements.name.value,
       street: shippingAddressForm.elements.street.value,
       country: shippingAddressForm.elements.country.value,
@@ -97,7 +123,7 @@ const Checkout = ({
       phone: shippingAddressForm.elements.phone.value,
       email: shippingAddressForm.elements.email.value
     };
-    let billingFormValues = {};
+    billingFormValues = {};
     if (useBillingAddress) {
       billingFormValues = { ...shippingFormValues };
     } else {
@@ -115,7 +141,10 @@ const Checkout = ({
     console.log("shippingFormValues", shippingFormValues);
     console.log("billingAddressForm", billingFormValues);
 
-    saveFormValuesAction(true, shippingFormValues);
+    saveFormValuesAction(true, {
+      shippingFormValues: shippingFormValues,
+      billingFormValues: billingFormValues
+    });
 
     if (isMobile) {
       setStep(2);
@@ -162,7 +191,7 @@ const Checkout = ({
                     {!displayPaymentMethods ? (
                       <div>
                         {displayLoginBtn()}
-                        <ShippingForm shippingFormValues={null} />
+                        <ShippingForm shippingFormValues={shippingFormValues} />
                         <div className="custom-control custom-checkbox my-4 ml-3">
                           <input
                             type="checkbox"
@@ -254,7 +283,9 @@ const Checkout = ({
                       {!displayPaymentMethods ? (
                         <div>
                           {displayLoginBtn()}
-                          <ShippingForm />
+                          <ShippingForm
+                            shippingFormValues={shippingFormValues}
+                          />
                           <div className="custom-control custom-checkbox my-4 ml-3">
                             <input
                               type="checkbox"
@@ -313,7 +344,9 @@ const mapStateToProps = state => ({
   loading: state.auth.loading,
   isShippingFormValid: state.checkoutForms.isShippingFormValid,
   isBillingFormValid: state.checkoutForms.isBillingFormValid,
-  displayPaymentMethods: state.checkout.displayPaymentMethods
+  displayPaymentMethods: state.checkout.displayPaymentMethods,
+  isSaveFormValues: state.checkout.isSaveFormValues,
+  formValues: state.checkout.formValues
 });
 function mapDispatchToProps(dispatch) {
   return {

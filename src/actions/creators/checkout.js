@@ -13,9 +13,4 @@ export const saveFormValues = (isSaveFormValues, formValues) => {
     isSaveFormValues: isSaveFormValues,
     formValues: formValues
   };
-  /* dispatch({
-    type: types.SAVE_FORM_VALUES,
-    isSaveFormValues: isSaveFormValues,
-    formValues: formValues
-  }); */
 };
