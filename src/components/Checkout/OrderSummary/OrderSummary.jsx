@@ -34,12 +34,10 @@ const loadCartData = async (currentCart, setLoading, setCartData) => {
             _id: _id
           };
         });
-        console.log(cartData);
         setCartData(cartData);
         setLoading(false);
       })
       .catch(error => {
-        console.log(error);
         setLoading(false);
       });
   } catch (err) {
