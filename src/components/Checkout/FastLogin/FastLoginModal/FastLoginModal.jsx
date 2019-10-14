@@ -51,12 +51,16 @@ function FastLoginModal({ login, isAuthenticated }) {
                   className="form-control-modal"
                 />
               </div>
+              <div className="form-button-modal">
+                <Button
+                  className="fastLoginButtonModal"
+                  type="submit"
+                  onClick={onSubmit}
+                >
+                  Login
+                </Button>
+              </div>
             </form>
-            <div className="form-button-modal">
-              <Button className="fastLoginButtonModal" onClick={onSubmit}>
-                Login
-              </Button>
-            </div>
           </Modal.Body>
         </Modal>
       </React.Fragment>
