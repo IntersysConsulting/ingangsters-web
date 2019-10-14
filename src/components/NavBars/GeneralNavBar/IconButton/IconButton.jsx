@@ -15,6 +15,8 @@ class IconButton extends React.Component {
       if (!this.state.show) {
         this.setState({ show: true });
       }
+    } else {
+      window.location = "/cart";
     }
   }
 
