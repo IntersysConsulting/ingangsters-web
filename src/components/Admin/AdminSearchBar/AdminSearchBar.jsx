@@ -6,8 +6,13 @@ import { adminSearchProduct } from "../../../actions/creators/adminProducts";
 import { connect } from "react-redux";
 import "./AdminSearchBar.css";
 import "../../../css/colors.css";
+import { adminSearchUser } from "../../../actions/creators/adminUsers";
 
-const AdminSearchBar = ({ adminSearchProduct, adminOption }) => {
+const AdminSearchBar = ({
+  adminSearchProduct,
+  adminSearchUser,
+  adminOption
+}) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {}, []);
@@ -16,6 +21,7 @@ const AdminSearchBar = ({ adminSearchProduct, adminOption }) => {
     event.preventDefault();
     if (search) {
       if (adminOption === "Products") adminSearchProduct(search);
+      if (adminOption === "Users") adminSearchUser(search);
     }
   };
 
@@ -62,5 +68,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { adminSearchProduct }
+  { adminSearchProduct, adminSearchUser }
 )(AdminSearchBar);

@@ -25,6 +25,31 @@ export const updatePaginator = (totalUsers, usersPerPage, currentPage) => ({
   currentPage
 });
 
+export const adminSearchUser = params => async dispatch => {
+  const query = params;
+  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+  let config = {
+    headers: { Authorization: AuthStr }
+  };
+
+  try {
+    const res = await axios.get(
+      `${API}/admin/users/search?search=` + query,
+      config
+    );
+
+    dispatch({
+      type: types.ADMIN_GET_SEARCH_USERS,
+      payload: res.data.data
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: types.ADMIN_USER_NO_FOUND,
+      payload: error
+    });
+  }
+};
 export const fetchAdminUsers = pageRequested => async dispatch => {
   const numberOfUsers =
     window.innerWidth <= 550 ? 3 : window.innerWidth <= 1440 ? 9 : 12;
