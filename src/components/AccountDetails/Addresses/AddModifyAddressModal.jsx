@@ -110,6 +110,7 @@ const AddModifyAddressModal = ({
         return (
           <Form className="mt-4" name="newAddressForm">
             <div className="form-group">
+              <label className="text-muted">Alias</label>
               <Field
                 type="text"
                 name="alias"
@@ -127,10 +128,11 @@ const AddModifyAddressModal = ({
 
             <div className="row">
               <div className="form-group col">
+                <label className="text-muted">Street</label>
                 <Field
                   type="text"
                   name="street"
-                  placeholder="Street"
+                  placeholder="Enter your address street"
                   className={`form-control ${
                     touched.street && errors.street ? "is-invalid" : ""
                   }`}
@@ -143,10 +145,11 @@ const AddModifyAddressModal = ({
               </div>
 
               <div className="form-group col-4">
+                <label className="text-muted">Number</label>
                 <Field
                   type="text"
                   name="number"
-                  placeholder="Number"
+                  placeholder="Address number"
                   className={`form-control ${
                     touched.number && errors.number ? "is-invalid" : ""
                   }`}
@@ -161,10 +164,11 @@ const AddModifyAddressModal = ({
 
             <div className="row">
               <div className="form-group col">
+                <label className="text-muted">Country</label>
                 <Field
                   type="text"
                   name="country"
-                  placeholder="Country"
+                  placeholder="Enter your country"
                   className={`form-control ${
                     touched.country && errors.country ? "is-invalid" : ""
                   }`}
@@ -177,10 +181,11 @@ const AddModifyAddressModal = ({
               </div>
 
               <div className="form-group col">
+                <label className="text-muted">State</label>
                 <Field
                   type="text"
                   name="state"
-                  placeholder="State"
+                  placeholder="Enter your state"
                   className={`form-control ${
                     touched.state && errors.state ? "is-invalid" : ""
                   }`}
@@ -195,10 +200,11 @@ const AddModifyAddressModal = ({
 
             <div className="row">
               <div className="form-group col">
+                <label className="text-muted">City</label>
                 <Field
                   type="text"
                   name="city"
-                  placeholder="City"
+                  placeholder="Entr your city"
                   className={`form-control ${
                     touched.city && errors.city ? "is-invalid" : ""
                   }`}
@@ -211,10 +217,11 @@ const AddModifyAddressModal = ({
               </div>
 
               <div className="form-group col">
+                <label className="text-muted">Zip Code</label>
                 <Field
                   type="text"
                   name="zipCode"
-                  placeholder="Zip Code"
+                  placeholder="Enter your zip code"
                   className={`form-control ${
                     touched.zipCode && errors.zipCode ? "is-invalid" : ""
                   }`}

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBars/GeneralNavBar/NavBar";
-import Addresses from "./Addresses/Addresses";
 import { connect } from "react-redux";
 import Loading from "../UI/Loading/Loading";
+import Addresses from "./Addresses/Addresses";
+import UserData from "./UserData/UserData";
 
 const AccountDetails = ({ loading, user }) => {
   if (loading) {
@@ -22,12 +23,14 @@ const AccountDetails = ({ loading, user }) => {
           <NavBar />
           <div className="container my-3">
             <div className="row">
-              <div className="col-12 col-md-6">WIP: user info here</div>
               <div className="col-12 col-md-6">
+                <UserData userData={user} />
+              </div>
+              <div className="col-12 col-md-6 pt-3">
                 <Addresses userData={user} />
               </div>
             </div>
-            <div className="row">
+            <div className="row pt-5">
               <div className="col-12">WIP: My orders here</div>
             </div>
           </div>
