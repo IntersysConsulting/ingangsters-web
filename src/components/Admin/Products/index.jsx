@@ -18,12 +18,12 @@ const AdminProducts = ({
   return (
     <div>
       <br />
-      <AdminSearchBar />
       <Filters
         refreshFunction={() => {
           fetchProducts(1);
         }}
       />
+      <AdminSearchBar />
       <Grid />
       <div className="bottomWrapper">
         <Paginator
