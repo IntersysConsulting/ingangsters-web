@@ -4,6 +4,10 @@ import AdminTabBar from "./AdminTabBar";
 import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
+import { fetchProducts } from "../../../actions/creators/adminProducts";
+import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
+import { FETCHING_ADMIN_USERS } from "../../../actions/types/adminUsers";
+import { FETCHING_PRODUCTS } from "../../../actions/types/adminProducts";
 import * as types from "../../../actions/types/AdminTabBar";
 import reducer from "../../../reducers/AdminTabBar";
 import thunk from "redux-thunk";
@@ -17,7 +21,7 @@ describe("AdminTabBar", () => {
   };
   const middlewares = [thunk];
   const mockStore = configureStore(middlewares);
-  const actions = [setActiveAdminBarButton];
+  const actions = [setActiveAdminBarButton, fetchProducts, fetchAdminUsers];
   const store = mockStore(initialState, actions);
 
   it("renders correctly", () => {
@@ -91,7 +95,8 @@ describe("AdminTabBar", () => {
       .at(0)
       .simulate("click", event);
     expect(store.getActions()).toEqual([
-      { newButton: "Users", type: types.SET_ACTIVE_ADMINBAR_BUTTON }
+      { newButton: "Users", type: types.SET_ACTIVE_ADMINBAR_BUTTON },
+      { type: FETCHING_ADMIN_USERS }
     ]);
 
     event = { target: { value: "Products" } };
@@ -101,7 +106,8 @@ describe("AdminTabBar", () => {
       .at(0)
       .simulate("click", event);
     expect(store.getActions()).toEqual([
-      { newButton: "Products", type: types.SET_ACTIVE_ADMINBAR_BUTTON }
+      { newButton: "Products", type: types.SET_ACTIVE_ADMINBAR_BUTTON },
+      { type: FETCHING_PRODUCTS }
     ]);
 
     event = { target: { value: "Orders" } };

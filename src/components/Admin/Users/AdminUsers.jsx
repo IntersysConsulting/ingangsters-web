@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 import Button from "react-bootstrap/Button";
 import "../Products/AdminProducts.css";
+import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
 
 const AdminUsers = ({
   currentPage_users,
@@ -15,6 +16,7 @@ const AdminUsers = ({
   return (
     <div>
       <br />
+      <AdminSearchBar />
       <UserGrid />
       <div className="bottomWrapper">
         <Paginator

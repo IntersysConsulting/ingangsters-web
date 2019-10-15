@@ -90,6 +90,32 @@ export const clearFilters = () => ({
   type: types.ADMIN_CLEAR_FILTERS
 });
 
+export const adminSearchProduct = params => async dispatch => {
+  const query = params;
+  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
+  let config = {
+    headers: { Authorization: AuthStr }
+  };
+
+  try {
+    const res = await axios.get(
+      `${API}/admin/products/search?search=` + query,
+      config
+    );
+    dispatch({
+      type: types.ADMIN_GET_SEARCH_PRODUCTS,
+      payload: res.data.data
+    });
+  } catch (error) {
+    console.log(error);
+
+    dispatch({
+      type: types.ADMIN_PRODUCT_NO_FOUND,
+      payload: error
+    });
+  }
+};
+
 function getFilterParams() {
   const filtersConfig = store.getState().adminProducts.filtersStatus;
   const params = {

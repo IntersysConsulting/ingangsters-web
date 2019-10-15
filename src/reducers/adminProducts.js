@@ -45,6 +45,13 @@ export default (state = initialState, action) => {
         currentPage: action.currentPage
       });
 
+    case types.ADMIN_GET_SEARCH_PRODUCTS:
+      return Object.assign({}, state, {
+        list: action.payload,
+        totalItems: action.payload.length,
+        currentPage: 1
+      });
+
     case types.ADMIN_ENABLE_PRICE_LTH:
       return Object.assign({}, state, {
         filtersStatus: {
