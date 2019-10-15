@@ -15,8 +15,6 @@ const AdminSearchBar = ({
 }) => {
   const [search, setSearch] = useState("");
 
-  useEffect(() => {}, []);
-
   const searchSubmit = event => {
     event.preventDefault();
     if (search) {
