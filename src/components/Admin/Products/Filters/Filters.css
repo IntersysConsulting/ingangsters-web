@@ -12,19 +12,6 @@
   flex-wrap: wrap;
 }
 
-.filterWrapper > .dropdown {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-
-.filterWrapper > .dropdown > .btn {
-  background-color: var(--light-blue) !important;
-  border-color: var(--light-blue) !important;
-  color: white;
-}
-
 .filterWrapper > .btn-toolbar {
   height: 35px;
 }
@@ -47,12 +34,4 @@
 .filterWrapper > .btn-toolbar > .btn-outline-danger:hover {
   background-color: var(--red);
   color: white;
-}
-
-.dropdown-item.active {
-  background-color: var(--light-blue);
-}
-
-.dropdown-item {
-  font-size: 15px;
 }
