@@ -43,14 +43,12 @@ const AdminSearchBar = ({
               onChange={handleChange("search")}
               value={search}
             ></Form.Control>
-            <InputGroup.Append className="searchIcon-box-adminPage">
-              <MdSearch
-                size="1.8em"
-                color="#55565a"
-                className="rightSearchIcon-AdminPage"
-                onClick={searchSubmit}
-              />
-            </InputGroup.Append>
+            <MdSearch
+              size="1.8em"
+              color="#55565a"
+              className="rightSearchIcon-AdminPage"
+              onClick={searchSubmit}
+            />
           </InputGroup>
         </Form.Group>
       </Form>
