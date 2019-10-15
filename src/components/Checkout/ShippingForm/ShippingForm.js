@@ -6,19 +6,19 @@ import { connect } from "react-redux";
 import "../Forms.css";
 import { validateShippingForm } from "../../../actions/creators/checkoutForms";
 
-const ShippingForm = ({ isAuthenticated, user, dispatch }) => {
+const ShippingForm = ({ isAuthenticated, user, dispatch, shippingFormValues }) => {
   const [selectedAddress, setSelectedAddress] = useState({
     alias: "",
-    city: "",
-    country: "",
-    number: "",
-    state: "",
-    street: "",
-    type: "",
-    zip: "",
-    name: "",
-    email: "",
-    phone: ""
+    city: shippingFormValues.city,
+    country: shippingFormValues.country,
+    number: shippingFormValues.number,
+    state: shippingFormValues.state,
+    street: shippingFormValues.street ,
+    type: shippingFormValues.type,
+    zip: shippingFormValues.zip,
+    name: shippingFormValues.name,
+    email: shippingFormValues.email,
+    phone: shippingFormValues.phone,
   });
 
   let formFormik;

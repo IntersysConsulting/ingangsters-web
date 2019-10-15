@@ -6,17 +6,17 @@ import { connect } from "react-redux";
 import "../Forms.css";
 import { validateBillingForm } from "../../../actions/creators/checkoutForms";
 
-const BillingForm = ({ isAuthenticated, user, dispatch }) => {
+const BillingForm = ({ isAuthenticated, user, dispatch,billingFormValues }) => {
   const [selectedAddress, setSelectedAddress] = useState({
     alias: "",
-    city: "",
-    country: "",
-    number: "",
-    state: "",
-    street: "",
-    type: "",
-    zip: "",
-    name: ""
+    city: billingFormValues.city,
+    country: billingFormValues.country,
+    number: billingFormValues.number,
+    state: billingFormValues.state,
+    street: billingFormValues.street,
+    type: billingFormValues.type,
+    zip: billingFormValues.zip,
+    name: billingFormValues.name,
   });
 
   let formFormik;
