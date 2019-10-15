@@ -9,8 +9,6 @@ import checkoutForms from "./checkoutForms";
 import checkout from "./checkout";
 import filters from "./filters";
 import adminUsers from "./adminUsers";
-import filters from "./filters";
-
 const reducerCombined = combineReducers({
   navBar,
   auth,
