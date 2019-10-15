@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
+import { prettifyCents } from "../../../utils/utils";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, uploadAndUpdateCart }) => {
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -26,7 +28,7 @@ const ProductCard = ({ product }) => {
           </Link>
           <div className="row">
             <div className="col-lg-3 col-md-12 col-sm-12">
-              <p className="price">${product.price}</p>
+              <p className="price">{prettifyCents(product.price)}</p>
             </div>
             <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
               <button
@@ -47,4 +49,7 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default connect(
+  null,
+  { uploadAndUpdateCart }
+)(ProductCard);

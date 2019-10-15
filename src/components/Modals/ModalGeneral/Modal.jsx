@@ -28,7 +28,7 @@ function ModalSchema() {
           className="modal_navbar"
         >
           <Modal.Body className="modalObject">
-            <Link to="/esta_pagina_sera_account_details">
+            <Link to="/account">
               <ModalButton
                 label="Account Details"
                 className="accountButton modalButton"

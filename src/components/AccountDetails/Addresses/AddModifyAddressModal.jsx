@@ -1,69 +1,81 @@
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { DropdownButton, Dropdown } from "react-bootstrap";
-import { connect } from "react-redux";
-import "../Forms.css";
-import { validateBillingForm } from "../../../actions/creators/checkoutForms";
+import { addAddress, modifyAddressAt } from "./AddressesManager";
 
-const BillingForm = ({ isAuthenticated, user, dispatch }) => {
-  const [selectedAddress, setSelectedAddress] = useState({
-    alias: "",
-    city: "",
-    country: "",
-    number: "",
-    state: "",
-    street: "",
-    type: "",
-    zip: "",
-    name: ""
-  });
+const AddModifyAddressModal = ({
+  isModifying,
+  position,
+  title,
+  buttonText,
+  showModalStatus,
+  modalStatusChange,
+  userData
+}) => {
+  const [buttonDisabledState, setButtonDisabledState] = useState(true);
 
-  let formFormik;
+  var aliasG = "";
+  var streetG = "";
+  var numberG = "";
+  var countryG = "";
+  var stateG = "";
+  var cityG = "";
+  var zipCodeG = "";
 
-  const handleSelect = evt => {
-    const address = JSON.parse(evt);
-    setSelectedAddress({
-      ...address,
-      name: formFormik.state.values.name
-    });
-    formFormik.resetForm();
-  };
+  if (isModifying) {
+    aliasG = userData.addresses[position].alias;
+    streetG = userData.addresses[position].street;
+    numberG = userData.addresses[position].number;
+    countryG = userData.addresses[position].country;
+    stateG = userData.addresses[position].state;
+    cityG = userData.addresses[position].city;
+    zipCodeG = userData.addresses[position].zip;
+  }
 
-  const displayAddressesDropdown = () => {
-    if (isAuthenticated) {
-      const { addresses } = user;
-      return (
-        <DropdownButton
-          id="billing-addresses-dropdown"
-          title={
-            selectedAddress.alias === "" ? "Addresses" : selectedAddress.alias
-          }
-          className="dropdown"
-          onSelect={handleSelect}
-        >
-          {addresses.map((address, i) => (
-            <Dropdown.Item
-              key={`billing-addresses-option${i}`}
-              eventKey={JSON.stringify(address)}
-            >
-              {address.alias}
-            </Dropdown.Item>
-          ))}
-        </DropdownButton>
-      );
+  const addModifyAddressMethod = () => {
+    const addressObject = {};
+    addressObject.type = "Both";
+    addressObject.alias = document.forms.newAddressForm.elements.alias.value;
+    addressObject.country =
+      document.forms.newAddressForm.elements.country.value;
+    addressObject.state = document.forms.newAddressForm.elements.state.value;
+    addressObject.city = document.forms.newAddressForm.elements.city.value;
+    addressObject.zip = parseInt(
+      document.forms.newAddressForm.elements.zipCode.value
+    );
+    addressObject.street = document.forms.newAddressForm.elements.street.value;
+    addressObject.number = document.forms.newAddressForm.elements.number.value;
+
+    if (isModifying) {
+      modifyAddressAt(position, addressObject, userData);
+    } else {
+      addAddress(addressObject, userData);
     }
   };
 
-  const BillingFormSchema = Yup.object().shape({
-    name: Yup.string()
-      .required("Name is required")
+  const validateForm = (errors, values) => {
+    const isValid = Object.keys(errors).length === 0;
+    let allFieldsFilled = true;
+    for (var key in values) {
+      if (values[key] === "") {
+        allFieldsFilled = false;
+      }
+    }
+    allFieldsFilled && isValid
+      ? setButtonDisabledState(false)
+      : setButtonDisabledState(true);
+  };
+
+  const ShippingFormSchema = Yup.object().shape({
+    alias: Yup.string()
+      .required("Alias is required")
       .trim(),
     street: Yup.string()
       .required("Street is required")
       .trim(),
     number: Yup.string()
-      .required("Street number is required")
+      .required("Street is required")
       .trim(),
     country: Yup.string()
       .required("Country is required")
@@ -74,44 +86,42 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
     city: Yup.string()
       .required("City is required")
       .trim(),
-    zip: Yup.number()
+    zipCode: Yup.number()
       .typeError("Zip code must be a number")
       .required("Zip code is required")
   });
 
-  const billingForm = () => (
+  const addModifyAddressForm = () => (
     <Formik
-    ref={ref => (formFormik = ref)}
       initialValues={{
-        name: selectedAddress.name,
-        street: selectedAddress.street,
-        number: selectedAddress.number,
-        country: selectedAddress.country,
-        state: selectedAddress.state,
-        city: selectedAddress.city,
-        zip: selectedAddress.zip
+        alias: aliasG,
+        street: streetG,
+        number: numberG,
+        country: countryG,
+        state: stateG,
+        city: cityG,
+        zipCode: zipCodeG
       }}
       enableReinitialize
-      validationSchema={BillingFormSchema}
-      isInitialValid={BillingFormSchema.isValidSync(selectedAddress)}
+      validationSchema={ShippingFormSchema}
     >
-      {({ errors, touched, isValid }) => {
-        dispatch(validateBillingForm(isValid));
+      {({ errors, touched, values }) => {
+        validateForm(errors, values);
         return (
-          <Form className="mt-4" name="billingForm">
+          <Form className="mt-4" name="newAddressForm">
             <div className="form-group">
-              <label className="text-muted">Name</label>
+              <label className="text-muted">Alias</label>
               <Field
                 type="text"
-                name="name"
-                placeholder="Enter your name"
+                name="alias"
+                placeholder="Enter an alias"
                 className={`form-control ${
-                  touched.name && errors.name ? "is-invalid" : ""
+                  touched.alias && errors.alias ? "is-invalid" : ""
                 }`}
               />
               <ErrorMessage
                 component="div"
-                name="name"
+                name="alias"
                 className="invalid-feedback"
               />
             </div>
@@ -122,7 +132,7 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
                 <Field
                   type="text"
                   name="street"
-                  placeholder="Street"
+                  placeholder="Enter your address street"
                   className={`form-control ${
                     touched.street && errors.street ? "is-invalid" : ""
                   }`}
@@ -133,12 +143,13 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
                   className="invalid-feedback"
                 />
               </div>
-              <div className="form-group col">
-                <label className="text-muted">Street Number</label>
+
+              <div className="form-group col-4">
+                <label className="text-muted">Number</label>
                 <Field
                   type="text"
                   name="number"
-                  placeholder="Street number"
+                  placeholder="Address number"
                   className={`form-control ${
                     touched.number && errors.number ? "is-invalid" : ""
                   }`}
@@ -157,7 +168,7 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
                 <Field
                   type="text"
                   name="country"
-                  placeholder="Country"
+                  placeholder="Enter your country"
                   className={`form-control ${
                     touched.country && errors.country ? "is-invalid" : ""
                   }`}
@@ -174,7 +185,7 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
                 <Field
                   type="text"
                   name="state"
-                  placeholder="State"
+                  placeholder="Enter your state"
                   className={`form-control ${
                     touched.state && errors.state ? "is-invalid" : ""
                   }`}
@@ -193,7 +204,7 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
                 <Field
                   type="text"
                   name="city"
-                  placeholder="City"
+                  placeholder="Entr your city"
                   className={`form-control ${
                     touched.city && errors.city ? "is-invalid" : ""
                   }`}
@@ -206,18 +217,18 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
               </div>
 
               <div className="form-group col">
-                <label className="text-muted">ZIP Code</label>
+                <label className="text-muted">Zip Code</label>
                 <Field
                   type="text"
-                  name="zip"
-                  placeholder="Zip Code"
+                  name="zipCode"
+                  placeholder="Enter your zip code"
                   className={`form-control ${
-                    touched.zip && errors.zip ? "is-invalid" : ""
+                    touched.zipCode && errors.zipCode ? "is-invalid" : ""
                   }`}
                 />
                 <ErrorMessage
                   component="div"
-                  name="zip"
+                  name="zipCode"
                   className="invalid-feedback"
                 />
               </div>
@@ -229,21 +240,22 @@ const BillingForm = ({ isAuthenticated, user, dispatch }) => {
   );
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col">
-          <h3>Billing</h3>
-        </div>
-        <div className="col text-right">{displayAddressesDropdown()}</div>
-      </div>
-      {billingForm()}
-    </div>
+    <Modal show={showModalStatus} onHide={modalStatusChange}>
+      <Modal.Header closeButton className="confirmationModalHeader">
+        <Modal.Title>{title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{addModifyAddressForm()}</Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="outline-primary"
+          disabled={buttonDisabledState}
+          onClick={addModifyAddressMethod}
+        >
+          {buttonText}
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
-});
-
-export default connect(mapStateToProps)(BillingForm);
+export default AddModifyAddressModal;

@@ -15,12 +15,15 @@ class IconButton extends React.Component {
       if (!this.state.show) {
         this.setState({ show: true });
       }
+    } else {
+      window.location = "/cart";
     }
   }
 
   renderContentCart() {
     return (
       <div onClick={this.handleClick} className="iconButton">
+        <div className="productQuantityBadge">{this.props.totalItems}</div>
         <Link to="/cart" style={{ textDecoration: "none" }}>
           <this.props.Icon color="#fff" className="mx-auto buttonIcon" />
           <p

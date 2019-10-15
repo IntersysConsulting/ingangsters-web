@@ -15,7 +15,8 @@ import "./NavBar.css";
 
 export const NavBarComponent = ({
   responsiveMenuActive,
-  toggleMenuResponsive
+  toggleMenuResponsive,
+  cartItems
 }) => {
   var navBarClassList = ["navbar-responsive"];
   let ToggleButton;
@@ -54,7 +55,11 @@ export const NavBarComponent = ({
         <div className="iconButtonWrapper">
           <ModalComponent />
           <div className="verticalSeparator" />
-          <IconButton Icon={MdShoppingCart} Label="Cart" />
+          <IconButton
+            totalItems={cartItems}
+            Icon={MdShoppingCart}
+            Label="Cart"
+          />
         </div>
       </NavBar>
     </div>
@@ -62,7 +67,8 @@ export const NavBarComponent = ({
 };
 
 const mapStateToProps = state => ({
-  responsiveMenuActive: state.navBar.responsiveMenuActive
+  responsiveMenuActive: state.navBar.responsiveMenuActive,
+  cartItems: state.cart.cartItems
 });
 
 const mapDispatchToProps = dispatch => ({

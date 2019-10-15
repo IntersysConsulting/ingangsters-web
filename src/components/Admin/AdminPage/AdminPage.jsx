@@ -3,6 +3,7 @@ import AdminTabBar from "../AdminTabBar/AdminTabBar";
 import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
+import UsersGrid from "../Users/AdminUsers";
 
 const AdminPage = ({ adminOption }) => {
   return (
@@ -11,9 +12,7 @@ const AdminPage = ({ adminOption }) => {
       <AdminTabBar />
       {adminOption === "Users" ? (
         <div id="AdminPageContent">
-          <center>
-            <p>Users</p>
-          </center>
+          <UsersGrid />
         </div>
       ) : adminOption === "Products" ? (
         <div id="AdminPageContent">

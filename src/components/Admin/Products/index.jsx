@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./AdminProducts.css";
 import Filters from "./Filters/Filters";
+import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
 
 const AdminProducts = ({
   currentPage,
@@ -22,6 +23,7 @@ const AdminProducts = ({
           fetchProducts(1);
         }}
       />
+      <AdminSearchBar />
       <Grid />
       <div className="bottomWrapper">
         <Paginator
