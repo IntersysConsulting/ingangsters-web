@@ -14,7 +14,6 @@ export async function loadAdmin(id, setData) {
   };
   try {
     const res = await axios.post(endpoint, body, config);
-    console.log(res);
     if (res.status === 200) {
       const fullName = res.data.data.name.split(" ");
       const firstName = fullName.shift();
@@ -25,8 +24,11 @@ export async function loadAdmin(id, setData) {
         name: firstName,
         lastName: fullName.join(" "),
         email: res.data.data.email,
-        submitAction: updateAdmin,
-        isLoading: false
+        submitAction: evt => {
+          updateAdmin(evt, id);
+        },
+        isLoading: false,
+        requirePassword: false
       }));
     }
   } catch (err) {
@@ -96,8 +98,44 @@ export async function createNewAdmin(evt) {
   }
 }
 
-export function updateAdmin(evt) {
-  console.log("Updating...");
+export async function updateAdmin(evt, id) {
+  const password1 = evt.target["merchantPassword"].value,
+    password2 = evt.target["merchantPasswordConfirm"].value;
+
+  if (password1 !== password2) {
+    alert("Passwords must match");
+    evt.target["merchantPasswordConfirm"].focus();
+  } else {
+    console.log("Updating...");
+    const name = [
+        evt.target["merchantName"].value,
+        evt.target["merchantLastName"].value
+      ].join(" "),
+      email = evt.target["merchantEmail"].value,
+      endpoint = `${API}/admin/update`,
+      config = {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json"
+        }
+      };
+    const data = {
+      _id: id,
+      name: name,
+      email: email
+    };
+    if (password1 !== "") data["newPassword"] = password1;
+
+    try {
+      const res = await axios.put(endpoint, data, config);
+      console.log(res);
+      if (res.status === 200) window.location.reload();
+      else alert("An error occurred: ");
+    } catch (err) {
+      console.log(err);
+      alert("An error occurred, try again later");
+    }
+  }
 }
 
 export async function createNewAdmin(evt) {

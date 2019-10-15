@@ -22,7 +22,8 @@ const MerchantView = ({ match }) => {
     passwordConf: "",
     submitAction: createNewAdmin,
     isLoading: id !== "new",
-    showConfirmationModal: false
+    showConfirmationModal: false,
+    requirePassword: true
   });
   let content;
   const toggleConfirmationModal = () => {
@@ -94,7 +95,14 @@ const MerchantView = ({ match }) => {
               name="merchantPassword"
               className="passwordField"
               placeholder="Password"
-              required
+              required={formData.requirePassword}
+              onChange={evt => {
+                const x = evt.target.value;
+                setFormData(prev => ({
+                  ...prev,
+                  requirePassword: x !== ""
+                }));
+              }}
             ></Form.Control>
           </Form.Group>
           <Col xs={3} md={2} lg={1}>
@@ -114,7 +122,7 @@ const MerchantView = ({ match }) => {
               className="passwordField"
               name="merchantPasswordConfirm"
               placeholder="Confirm password"
-              required
+              required={formData.requirePassword}
             ></Form.Control>
           </Form.Group>
           <Col xs={3} md={2} lg={1}>
@@ -141,16 +149,6 @@ const MerchantView = ({ match }) => {
           >
             Delete
           </Button>
-          {/* <Button
-            variant="primary"
-            type="submit"
-            className="backButton"
-            onClick={() => {
-              window.history.back();
-            }}
-          >
-          Back
-          </Button> */}
         </Row>
         <ConfirmationModal
           title="Delete admin"
