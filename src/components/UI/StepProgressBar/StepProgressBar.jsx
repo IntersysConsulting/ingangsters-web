@@ -47,10 +47,7 @@ class StepProgressBar extends React.Component {
   }
 
   onClickStep = event => {
-    //this.props.setState(event.target.id - 1);
-    console.log(this.props);
     this.props.setStep(event.target.id - 1);
-    console.log("clic ", event.target.id);
   };
 
   render() {

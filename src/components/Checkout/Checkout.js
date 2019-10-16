@@ -21,28 +21,30 @@ const Checkout = ({
   isShippingFormValid,
   isBillingFormValid,
   displayPaymentMethods,
-  displayAction,
+  displayPaymentMethodsAction,
   saveFormValuesAction,
-  isSaveFormValues,
-  formValues
+  formValues,
+  user
 }) => {
   const [useBillingAddress, setUseBillingAddress] = useState(true);
   const [step, setStep] = useState(0);
   const [isDisplayOrderSummary, setDisplayOrderSummary] = useState(true);
+  const [addressesDropdown, setAddressesDropdown] = useState("");
   const isMobile = window.innerWidth <= 767;
   let shippingFormValues = {
-    name: "",
+    name: user ? user.name : "",
     street: "",
     country: "",
     number: "",
     state: "",
     city: "",
     zip: "",
-    phone: "",
-    email: ""
+    phone: user ? user.phone : "",
+    email: user ? user.email : "",
+    alias: ""
   };
   let billingFormValues = {
-    name: "",
+    name: user ? user.name : "",
     street: "",
     country: "",
     number: "",
@@ -51,10 +53,10 @@ const Checkout = ({
     zip: ""
   };
 
-  if (isSaveFormValues) {
-    console.log("formValues", formValues);
-    shippingFormValues=formValues.shippingFormValues;
+  if (formValues) {
+    shippingFormValues = formValues.shippingFormValues;
     billingFormValues = formValues.billingFormValues;
+    shippingFormValues.alias = formValues.addressesDropdown;
   }
 
   const displayLoginBtn = () => {
@@ -66,6 +68,7 @@ const Checkout = ({
         </div>
       );
   };
+
   const displayStepProgressBar = () => {
     return (
       <div className="container" style={{ paddingBottom: "30px" }}>
@@ -77,24 +80,144 @@ const Checkout = ({
       </div>
     );
   };
-  const displayOrderSummary = () => {
+
+  const displayOrderSummary = isMobile => {
+    if (isMobile) {
+      return (
+        <div className="col-md-6 col-lg-6">
+          <h3>Your order</h3>
+          <OrderSummary />
+          <div className="text-center mt-5">
+            <button
+              className="btn checkout-btn"
+              onClick={() => {
+                setDisplayOrderSummary(false);
+                setStep(1);
+              }}
+            >
+              Continue to Shipping
+            </button>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="col-md-6 col-lg-6">
+          <h3>Your order</h3>
+          <OrderSummary />
+        </div>
+      );
+    }
+  };
+
+  const displayBaseView = isMobile => {
     return (
-      <div className="col-md-6 col-lg-6">
-        <h3>Your order</h3>
-        <OrderSummary />
-        <div className="text-center mt-5">
-          <button
-            className="btn checkout-btn"
-            onClick={() => {
-              setDisplayOrderSummary(false);
-              setStep(1);
-            }}
-          >
-            Continue to Shipping
-          </button>
+      <div>
+        <SimpleNavBar />
+        <div className="container-fluid mt-5">
+          <div className="row">
+            <div className="col-md-6 col-lg-6">
+              <div className="checkout-form">
+                {displayStepProgressBar()}
+                {!displayPaymentMethods ? (
+                  <div>
+                    {displayLoginBtn()}
+                    <ShippingForm
+                      shippingFormValues={shippingFormValues}
+                      changeAddressesDropdown={changeAddressesDropdown}
+                    />
+                    <div className="custom-control custom-checkbox my-4 ml-3">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="customControlValidation1"
+                        checked={useBillingAddress}
+                        onChange={handleCheck}
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor="customControlValidation1"
+                      >
+                        Use this address for billing
+                      </label>
+                    </div>
+                    {displayBillingForm()}
+                    <div className="text-center mt-5">
+                      <button
+                        className="btn checkout-btn"
+                        onClick={onSubmit}
+                        disabled={disabledPaymentBtn()}
+                      >
+                        Continue to Payment
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <PaymentMethods />
+                    <div className="text-center mt-5">
+                      {/* we'll save the data in the DB in this button, 
+              meanwhile I'll use Link and props until de endpoints are ready*/}
+                      <Link to="/checkout/thankyou">
+                        <button className="btn checkout-btn">
+                          Confirm Order
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            {!isMobile ? displayOrderSummary(false) : null}
+          </div>
         </div>
       </div>
     );
+  };
+
+  const displayDesktopView = () => {
+    if (step === 0) {
+      displayPaymentMethodsAction(false);
+    } else if (step === 1) {
+      if (!displayPaymentMethods) {
+        displayPaymentMethodsAction(true);
+      }
+    }
+    return displayBaseView(isMobile);
+  };
+
+  const displayMobileView = () => {
+    switch (step) {
+      case 0:
+        if (!isDisplayOrderSummary) {
+          displayPaymentMethodsAction(false);
+          setDisplayOrderSummary(true);
+        }
+        break;
+      case 1:
+        displayPaymentMethodsAction(false);
+        break;
+      default:
+    }
+    if (isDisplayOrderSummary) {
+      return (
+        <div>
+          <SimpleNavBar />
+          <div className="container-fluid mt-5">
+            <div className="row">
+              <div className="col-md-6 col-lg-6">
+                <div className="checkout-form">
+                  {displayStepProgressBar()}
+                  {displayOrderSummary(true)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return displayBaseView(isMobile);
+    }
   };
 
   const changeStep = newStep => {
@@ -103,8 +226,14 @@ const Checkout = ({
     }
   };
 
+  const changeAddressesDropdown = newAddressesDropdown => {
+    setAddressesDropdown(newAddressesDropdown);
+  };
+
   const displayBillingForm = () =>
-    !useBillingAddress ? <BillingForm  billingFormValues={billingFormValues}/> : null;
+    !useBillingAddress ? (
+      <BillingForm billingFormValues={billingFormValues} />
+    ) : null;
 
   const handleCheck = () => {
     setUseBillingAddress(!useBillingAddress);
@@ -141,18 +270,18 @@ const Checkout = ({
     console.log("shippingFormValues", shippingFormValues);
     console.log("billingAddressForm", billingFormValues);
 
-    saveFormValuesAction(true, {
-      shippingFormValues: shippingFormValues,
-      billingFormValues: billingFormValues
+    saveFormValuesAction({
+      shippingFormValues,
+      billingFormValues,
+      addressesDropdown
     });
 
     if (isMobile) {
       setStep(2);
-      displayAction(true);
+      displayPaymentMethodsAction(true);
     } else {
       setStep(1);
     }
-    //displayAction(true);
   };
 
   const disabledPaymentBtn = () => {
@@ -172,168 +301,7 @@ const Checkout = ({
         </Fragment>
       );
     } else {
-      if (!isMobile) {
-        if (step === 0) {
-          displayAction(false);
-        } else if (step === 1) {
-          if (!displayPaymentMethods) {
-            displayAction(true);
-          }
-        }
-        return (
-          <div>
-            <SimpleNavBar />
-            <div className="container-fluid mt-5">
-              <div className="row">
-                <div className="col-md-6 col-lg-6">
-                  <div className="checkout-form">
-                    {displayStepProgressBar()}
-                    {!displayPaymentMethods ? (
-                      <div>
-                        {displayLoginBtn()}
-                        <ShippingForm shippingFormValues={shippingFormValues} />
-                        <div className="custom-control custom-checkbox my-4 ml-3">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customControlValidation1"
-                            checked={useBillingAddress}
-                            onChange={handleCheck}
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="customControlValidation1"
-                          >
-                            Use this address for billing
-                          </label>
-                        </div>
-                        {displayBillingForm()}
-                        <div className="text-center mt-5">
-                          <button
-                            className="btn checkout-btn"
-                            onClick={onSubmit}
-                            disabled={disabledPaymentBtn()}
-                          >
-                            Continue to Payment
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <PaymentMethods />
-                        <div className="text-center mt-5">
-                          {/* we'll save the data in the DB in this button, 
-                  meanwhile I'll use Link and props until de endpoints are ready*/}
-                          <Link to="/checkout/thankyou">
-                            <button className="btn checkout-btn">
-                              Confirm Order
-                            </button>
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-6">
-                  <h3>Your order</h3>
-                  <OrderSummary />
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      } else {
-        switch (step) {
-          case 0:
-            if (!isDisplayOrderSummary) {
-              displayAction(false);
-              setDisplayOrderSummary(true);
-            }
-            break;
-          case 1:
-            displayAction(false);
-            break;
-          default:
-        }
-        if (isDisplayOrderSummary) {
-          return (
-            <div>
-              <SimpleNavBar />
-              <div className="container-fluid mt-5">
-                <div className="row">
-                  <div className="col-md-6 col-lg-6">
-                    <div className="checkout-form">
-                      {displayStepProgressBar()}
-                      {displayOrderSummary()}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <div>
-              <SimpleNavBar />
-              <div className="container-fluid mt-5">
-                <div className="row">
-                  <div className="col-md-6 col-lg-6">
-                    <div className="checkout-form">
-                      {displayStepProgressBar()}
-                      {!displayPaymentMethods ? (
-                        <div>
-                          {displayLoginBtn()}
-                          <ShippingForm
-                            shippingFormValues={shippingFormValues}
-                          />
-                          <div className="custom-control custom-checkbox my-4 ml-3">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customControlValidation1"
-                              checked={useBillingAddress}
-                              onChange={handleCheck}
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customControlValidation1"
-                            >
-                              Use this address for billing
-                            </label>
-                          </div>
-                          {displayBillingForm()}
-                          <div className="text-center mt-5">
-                            <button
-                              className="btn checkout-btn"
-                              onClick={onSubmit}
-                              disabled={disabledPaymentBtn()}
-                            >
-                              Continue to Payment
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <PaymentMethods />
-                          <div className="text-center mt-5">
-                            {/* we'll save the data in the DB in this button, 
-                  meanwhile I'll use Link and props until de endpoints are ready*/}
-                            <Link to="/checkout/thankyou">
-                              <button className="btn checkout-btn">
-                                Confirm Order
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        }
-      }
+      return isMobile ? displayMobileView() : displayDesktopView();
     }
   };
   return render();
@@ -345,16 +313,16 @@ const mapStateToProps = state => ({
   isShippingFormValid: state.checkoutForms.isShippingFormValid,
   isBillingFormValid: state.checkoutForms.isBillingFormValid,
   displayPaymentMethods: state.checkout.displayPaymentMethods,
-  isSaveFormValues: state.checkout.isSaveFormValues,
-  formValues: state.checkout.formValues
+  formValues: state.checkout.formValues,
+  user: state.auth.user
 });
 function mapDispatchToProps(dispatch) {
   return {
-    displayAction(value) {
+    displayPaymentMethodsAction(value) {
       dispatch(displayPaymentMethods(value));
     },
-    saveFormValuesAction(isSaveFormValues, formValues) {
-      dispatch(saveFormValues(isSaveFormValues, formValues));
+    saveFormValuesAction(formValues) {
+      dispatch(saveFormValues(formValues));
     }
   };
 }
