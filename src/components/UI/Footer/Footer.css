@@ -1,4 +1,4 @@
-@import "../../css/colors.css";
+@import "../../../css/colors.css";
 
 .footer {
   margin-left: auto;
@@ -21,9 +21,15 @@
   padding-bottom: 4rem;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 500px) {
   .footer {
-    font-size: 2vw;
+    font-size: 2.5vw;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 800px) {
+  .footer {
+    font-size: 2.2vw;
   }
 }
 

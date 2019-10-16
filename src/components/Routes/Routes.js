@@ -19,7 +19,7 @@ import ErrorPage from "../UI/ErrorPage/ErrorPage";
 import ThankYou from "../Checkout/ThankYou/ThankYou";
 import AccountDetails from "../AccountDetails/AccountDetails";
 import Search from "../Search/Search";
-import Footer from "../Footer/Footer";
+import Footer from "../UI/Footer/Footer";
 
 function Routes() {
   return (
