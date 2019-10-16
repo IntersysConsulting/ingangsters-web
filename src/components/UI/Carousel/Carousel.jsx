@@ -12,7 +12,7 @@ function ControlledCarousel() {
 
   return (
     <Carousel activeIndex={index} direction={direction} onSelect={handleSelect}>
-      <Carousel.Item>
+      {/* <Carousel.Item>
         <img
           className="d-block w-100"
           src="/assets/imgOne.jpg"
@@ -22,7 +22,7 @@ function ControlledCarousel() {
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
-      </Carousel.Item>
+      </Carousel.Item> */}
       <Carousel.Item>
         <img
           className="d-block w-100"
