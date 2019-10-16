@@ -124,7 +124,7 @@ export async function updateAdmin(evt, id) {
       name: name,
       email: email
     };
-    if (password1 !== "") data["newPassword"] = password1;
+    if (password1 !== "") data["newpassword"] = password1;
 
     try {
       const res = await axios.put(endpoint, data, config);
