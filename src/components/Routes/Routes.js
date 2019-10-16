@@ -19,6 +19,7 @@ import ErrorPage from "../UI/ErrorPage/ErrorPage";
 import ThankYou from "../Checkout/ThankYou/ThankYou";
 import AccountDetails from "../AccountDetails/AccountDetails";
 import Search from "../Search/Search";
+import Footer from "../Footer/Footer";
 
 function Routes() {
   return (
@@ -42,6 +43,7 @@ function Routes() {
           <Route component={ErrorPage} />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </Provider>
   );
 }

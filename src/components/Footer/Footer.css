@@ -1,0 +1,40 @@
+@import "../../css/colors.css";
+
+.footer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 0;
+  line-height: 3rem;
+  background: var(--dark-grey);
+  color: white;
+  height: 3rem;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 4rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .footer {
+    font-size: 2vw;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .footer {
+    font-size: 1vw;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .footer {
+    font-size: 0.8vw;
+  }
+}
