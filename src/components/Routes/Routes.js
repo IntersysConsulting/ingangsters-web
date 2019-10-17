@@ -17,6 +17,8 @@ import Product from "../Admin/Products/ProductView/ProductView";
 import Logout from "../UI/Logout/Logout";
 import ErrorPage from "../UI/ErrorPage/ErrorPage";
 import ThankYou from "../Checkout/ThankYou/ThankYou";
+import Search from "../Search/Search";
+import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 import AccountDetails from "../AccountDetails/AccountDetails";
 import Search from "../Search/Search";
 import Footer from "../UI/Footer/Footer";
