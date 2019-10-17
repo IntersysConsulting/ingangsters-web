@@ -20,9 +20,7 @@ import ThankYou from "../Checkout/ThankYou/ThankYou";
 import Search from "../Search/Search";
 import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 import AccountDetails from "../AccountDetails/AccountDetails";
-import Search from "../Search/Search";
 import Footer from "../UI/Footer/Footer";
-import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 
 function Routes() {
   return (
