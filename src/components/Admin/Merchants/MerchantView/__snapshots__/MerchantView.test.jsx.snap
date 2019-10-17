@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Merchant View Renders "new admin" form 1`] = `
+<Fragment>
+  <Connect(NavBarComponent) />
+  <Connect(AdminTabBar) />
+  <Form
+    className="merchantForm"
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <h3>
+      Add Administrator
+    </h3>
+    <br />
+    <ForwardRef
+      noGutters={false}
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+      >
+        <FormControl
+          defaultValue=""
+          name="merchantName"
+          placeholder="Name"
+          required={true}
+          type="text"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+      >
+        <FormControl
+          defaultValue=""
+          name="merchantLastName"
+          placeholder="Last name"
+          required={true}
+          type="text"
+        />
+      </FormGroup>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+      >
+        <FormControl
+          defaultValue=""
+          name="merchantEmail"
+          placeholder="Email"
+          required={true}
+          type="email"
+        />
+      </FormGroup>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+      >
+        <FormControl
+          defaultValue=""
+          name="merchantPhone"
+          placeholder="Phone (Optional)"
+          type="phone"
+        />
+      </FormGroup>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        lg={11}
+        md={10}
+        xs={9}
+      >
+        <FormControl
+          className="passwordField"
+          name="merchantPassword"
+          onChange={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+        />
+      </FormGroup>
+      <Col
+        lg={1}
+        md={2}
+        xs={3}
+      >
+        <FaEye
+          className="showPasswordButton"
+          color="#000"
+          onClick={[Function]}
+        />
+      </Col>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        lg={11}
+        md={10}
+        xs={9}
+      >
+        <FormControl
+          className="passwordField"
+          name="merchantPasswordConfirm"
+          placeholder="Confirm password"
+          required={true}
+          type="password"
+        />
+      </FormGroup>
+      <Col
+        lg={1}
+        md={2}
+        xs={3}
+      >
+        <FaEye
+          className="showPasswordButton"
+          color="#000"
+          onClick={[Function]}
+        />
+      </Col>
+    </ForwardRef>
+    <ForwardRef
+      className="bottomButtonBar"
+      noGutters={false}
+    >
+      <Button
+        active={false}
+        className="saveButton"
+        disabled={false}
+        type="submit"
+        variant="primary"
+      >
+        Save
+      </Button>
+      <Button
+        active={false}
+        className="deleteAdmin hide"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Delete
+      </Button>
+    </ForwardRef>
+    <ConfirmationModal
+      affirmativeAction={[Function]}
+      affirmativeText="Confirm"
+      closeAction={[Function]}
+      message="Are you sure you want to delete this administrator? This is a PERMANENT operation"
+      negativeAction={[Function]}
+      negativeText="No"
+      show={false}
+      title="Delete admin"
+    />
+  </Form>
+</Fragment>
+`;

@@ -6,6 +6,7 @@ import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 import Button from "react-bootstrap/Button";
 import "../Products/AdminProducts.css";
 import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
+import { Link } from "react-router-dom";
 
 const AdminUsers = ({
   currentPage_users,
@@ -25,7 +26,9 @@ const AdminUsers = ({
           itemsPerPage={usersPerPage}
           navigateFunction={fetchAdminUsers}
         />
-        <Button variant="primary">Add User</Button>
+        <Link to="/admin/merchant/new">
+          <Button variant="primary">Add User</Button>
+        </Link>
       </div>
     </div>
   );

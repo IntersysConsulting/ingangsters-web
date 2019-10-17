@@ -1,0 +1,48 @@
+.merchantForm {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.showPasswordButton {
+  font-size: 30px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.showPasswordButton:hover,
+.showPasswordButton.active {
+  color: var(--light-blue) !important;
+}
+
+.passwordField[type="text"] {
+  color: #d5d5d5;
+}
+
+.deleteAdmin,
+.deleteAdmin:hover {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+.merchantForm .bottomButtonBar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.merchantForm .bottomButtonBar > .saveButton {
+  color: white;
+  background-color: var(--light-blue);
+  border-color: var(--light-blue);
+}
+
+.merchantForm .bottomButtonBar > .backButton {
+  color: white;
+  background-color: var(--dark-grey);
+  border-color: var(--dark-grey);
+}
+
+.btn.hide {
+  display: none;
+}

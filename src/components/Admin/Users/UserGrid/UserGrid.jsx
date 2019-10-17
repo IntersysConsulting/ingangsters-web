@@ -26,7 +26,7 @@ export const UsersGrid = ({
         name={user.name}
         email={user.email}
         key={user._id}
-        //onClick={"/admin/product/" + item._id}
+        goto={"/admin/merchant/" + user._id}
       />
     ));
     return <div className="row adminProductGrid">{userCards}</div>;
