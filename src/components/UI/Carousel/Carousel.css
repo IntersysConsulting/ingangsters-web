@@ -1,0 +1,36 @@
+@import "../../../css/colors.css";
+
+.img-one-carousel {
+  background: black url("../../../assets/imgOne.jpg") no-repeat center;
+  height: 250px;
+  width: 100%;
+}
+
+.img-two-carousel {
+  background: black url("../../../assets/imgTwo.jpg") no-repeat center;
+  height: 250px;
+  width: 100%;
+}
+
+.img-three-carousel {
+  background: black url("../../../assets/imgThree.jpg") no-repeat center;
+  height: 250px;
+  width: 100%;
+}
+
+@media screen and (max-width: 550px) {
+  .img-one-carousel {
+    background: black url("../../../assets/imgOne.jpg") no-repeat center;
+    height: 150px;
+  }
+
+  .img-two-carousel {
+    background: black url("../../../assets/imgTwo.jpg") no-repeat center;
+    height: 150px;
+  }
+
+  .img-three-carousel {
+    background: black url("../../../assets/imgThree.jpg") no-repeat center;
+    height: 150px;
+  }
+}
