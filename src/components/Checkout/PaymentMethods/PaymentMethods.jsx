@@ -1,20 +1,32 @@
 import React from "react";
 import "./PaymentMethods.css";
 import "../../../css/colors.css";
+import { Elements, StripeProvider } from "react-stripe-elements";
+import CheckoutForm from "./Stripe/StripePayment";
+import StripeScriptLoader from "react-stripe-script-loader";
 
 class PaymentMethods extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: ""
+      selectedOption: "",
+      showCards: false
     };
     this.radioChange = this.radioChange.bind(this);
   }
 
   radioChange(e) {
-    this.setState({
-      selectedOption: e.currentTarget.value
-    });
+    if (e.currentTarget.value === "card") {
+      this.setState({
+        selectedOption: e.currentTarget.value,
+        showCards: true
+      });
+    } else {
+      this.setState({
+        selectedOption: e.currentTarget.value,
+        showCards: false
+      });
+    }
   }
 
   render() {
@@ -87,6 +99,23 @@ class PaymentMethods extends React.Component {
             Card
           </label>
         </div>
+        {this.state.showCards ? (
+          <StripeScriptLoader
+            uniqueId="stripe-js"
+            script="https://js.stripe.com/v3/"
+            async
+          >
+            <StripeProvider apiKey={process.env.STRIPE_TEST_KEY}>
+              <div show="false" className="cardForm">
+                <Elements>
+                  <CheckoutForm />
+                </Elements>
+              </div>
+            </StripeProvider>
+          </StripeScriptLoader>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }
