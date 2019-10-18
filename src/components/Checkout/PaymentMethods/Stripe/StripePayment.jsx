@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
+import { API } from "../../../../config";
+import axios from "axios";
 
 class CheckoutForm extends Component {
   constructor(props) {
