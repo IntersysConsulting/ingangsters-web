@@ -4,3 +4,7 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+.products-title {
+  margin-top: 15px;
+}

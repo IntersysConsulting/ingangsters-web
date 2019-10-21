@@ -18,7 +18,7 @@ const Products = ({ getProducts, product: { products, loading } }) => {
     </Fragment>
   ) : (
     <div className="container-fluid">
-      <h1>Products</h1>
+      <h1 className="products-title">Look our catalog!</h1>
       <div className="row">
         {products.map(product => (
           <div
