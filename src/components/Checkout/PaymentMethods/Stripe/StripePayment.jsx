@@ -11,12 +11,17 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    const endpoint = `${API}/charge`;
+    const endpoint = `http://127.0.0.1:5000/charge`;
     const config = {
       headers: {
         "Content-Type": "application/json"
       },
-      token: token.id
+      amount: 5000,
+      customer: {
+        email: "a@a.com",
+        source: token.id
+      },
+      description: "Payment"
     };
     const result = await axios.get(endpoint, config);
     if (result.ok) console.log("Purchase Complete!");
@@ -26,7 +31,7 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <CardElement />
-        {/* <button onClick={this.submit}>Purchase</button> */}
+        <button onClick={this.submit}>Purchase</button>
       </div>
     );
   }
