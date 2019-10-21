@@ -105,7 +105,7 @@ class PaymentMethods extends React.Component {
             script="https://js.stripe.com/v3/"
             async
           >
-            <StripeProvider apiKey={process.env.STRIPE_TEST_KEY}>
+            <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
               <div show="false" className="cardForm">
                 <Elements>
                   <CheckoutForm />
