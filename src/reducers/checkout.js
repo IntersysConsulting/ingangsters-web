@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const { type, isSaveFormValues, formValues } = action;
+  const { type, formValues } = action;
 
   switch (type) {
     case types.DISPLAY_PAYMENT_METHODS:
@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
     case types.SAVE_FORM_VALUES:
       return {
         ...state,
-        isSaveFormValues: isSaveFormValues,
         formValues: formValues
       };
     default:
