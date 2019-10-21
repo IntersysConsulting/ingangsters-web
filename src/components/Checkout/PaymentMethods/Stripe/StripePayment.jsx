@@ -11,6 +11,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
+    console.log(token);
     const endpoint = `http://127.0.0.1:5000/charge`;
     const config = {
       headers: {
