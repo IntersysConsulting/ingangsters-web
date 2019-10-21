@@ -2,14 +2,29 @@ import React from "react";
 import { connect } from "react-redux";
 import ProductCard from "../Home/Products/ProductCard";
 import { MdSearch } from "react-icons/md";
+import OrderDropdown from "../UI/Filters/OrderDropdown";
+import { getFilteredProducts } from "../../actions/creators/products";
+import { withRouter } from "react-router-dom";
 import "./Search.css";
 
-const SearchedProducts = ({ results }) => {
+const SearchedProducts = ({ results, getFilteredProducts, history }) => {
+  const search = history.location.search.slice(1);
   const searchMessage = results => {
     if (results.length > 0) {
       return (
-        <div className=" text-center mt-5 alert alert-info-search" role="alert">
-          <p className="result-text my-auto">{`Found ${results.length} related products`}</p>
+        <div
+          className="d-flex mt-5 justify-content-between alert alert-info-search"
+          role="alert"
+        >
+          <div className="result-text my-auto">{`Found ${results.length} related products`}</div>
+          <div>
+            <OrderDropdown
+              forAdmin={false}
+              orderProducts={() => {
+                getFilteredProducts(search);
+              }}
+            />
+          </div>
         </div>
       );
     }
@@ -22,7 +37,6 @@ const SearchedProducts = ({ results }) => {
       );
     }
   };
-
   return (
     <div>
       {searchMessage(results)}
@@ -44,4 +58,7 @@ const mapStateToProps = state => ({
   results: state.products.searchProducts
 });
 
-export default connect(mapStateToProps)(SearchedProducts);
+export default connect(
+  mapStateToProps,
+  { getFilteredProducts }
+)(withRouter(SearchedProducts));

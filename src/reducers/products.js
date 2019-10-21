@@ -2,7 +2,8 @@ import {
   GET_PRODUCTS,
   PRODUCTS_ERROR,
   GET_SEARCH_PRODUCTS,
-  PRODUCTS_NOT_FOUND
+  PRODUCTS_NOT_FOUND,
+  GET_FILTERED_PRODUCTS
 } from "../actions/types/products";
 
 const initialState = {
@@ -45,6 +46,13 @@ export default function(state = initialState, action) {
         products: payload,
         loading: false,
         error: payload
+      };
+
+    case GET_FILTERED_PRODUCTS:
+      return {
+        ...state,
+        searchProducts: payload.data.products,
+        loading: false
       };
 
     default:

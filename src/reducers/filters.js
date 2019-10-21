@@ -18,11 +18,16 @@ const initialState = {
     nameZA: false,
     stockLTH: false,
     stockHTL: false
-  }
+  },
+  search: ""
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case types.SEARCH_PRODUCTS:
+      return Object.assign({}, state, {
+        search: action.data
+      });
     case types.ORDER_BY_ENABLE_PRICE_LTH:
       return Object.assign({}, state, {
         orderCriteria: {
@@ -126,7 +131,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         filtersEnabled: {
           ...initialState.filtersEnabled
-        }
+        },
+        search: ""
       });
 
     default:

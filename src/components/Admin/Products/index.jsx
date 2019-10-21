@@ -6,8 +6,8 @@ import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./AdminProducts.css";
-import Filters from "./Filters/Filters";
 import AdminSearchBar from "../AdminSearchBar/AdminSearchBar";
+import OrderDropdown from "../../UI/Filters/OrderDropdown";
 
 const AdminProducts = ({
   currentPage,
@@ -16,14 +16,22 @@ const AdminProducts = ({
   fetchProducts
 }) => {
   return (
-    <div>
+    <div className="container-fluid">
       <br />
-      <Filters
-        refreshFunction={() => {
-          fetchProducts(1);
-        }}
-      />
-      <AdminSearchBar />
+      <div className="row text-center">
+        <div className="col">
+          <AdminSearchBar />
+        </div>
+        <div className="col">
+          <OrderDropdown
+            forAdmin={true}
+            orderProducts={() => {
+              fetchProducts(1);
+            }}
+          />
+        </div>
+      </div>
+
       <Grid />
       <div className="bottomWrapper">
         <Paginator

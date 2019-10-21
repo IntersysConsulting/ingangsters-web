@@ -62,17 +62,27 @@ export const clearFilters = () => ({
   type: types.FILTERS_CLEAR_FILTERS
 });
 
+export const setSearch = search => ({
+  type: types.SEARCH_PRODUCTS,
+  data: search
+});
+
 export function getFilterParams() {
   const filtersConfig = store.getState().filters.filtersEnabled;
   const orderConfig = store.getState().filters.orderCriteria;
+  const adminProductSearch = store.getState().filters.search;
   const params = {
     sortPrice: "NONE",
     sortName: "NONE",
     sortStock: "NONE",
     shippable: "NONE",
     available: "NONE",
-    priceRange: "NONE"
+    priceRange: "NONE",
+    search: "NONE"
   };
+
+  if (adminProductSearch !== "") params.search = adminProductSearch;
+  else delete params.search;
 
   if (orderConfig.priceLTH) params.sortPrice = "ASCENDING";
   else if (orderConfig.priceHTL) params.sortPrice = "DESCENDING";

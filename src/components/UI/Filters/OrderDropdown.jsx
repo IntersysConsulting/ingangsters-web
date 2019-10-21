@@ -8,7 +8,7 @@ const OrderDropdown = ({
   config,
   dispatch,
   forAdmin = true,
-  callback = () => {}
+  orderProducts = () => {}
 }) => {
   let orderByDropdownLabel;
   if (config.orderCriteria.nameAZ) orderByDropdownLabel = "Order by Name (A-Z)";
@@ -22,7 +22,7 @@ const OrderDropdown = ({
     orderByDropdownLabel = "Order by lower stock";
   else if (config.orderCriteria.stockHTL)
     orderByDropdownLabel = "Order by higher stock";
-  else orderByDropdownLabel = "Select order criterium";
+  else orderByDropdownLabel = "Sort by";
 
   let orderByStock = null;
   if (forAdmin)
@@ -35,7 +35,7 @@ const OrderDropdown = ({
           active={config.orderCriteria.stockLTH}
           onClick={() => {
             dispatch(filtersActions.enableOrderByStockLTH());
-            callback();
+            orderProducts();
           }}
         >
           Lower to higher
@@ -45,7 +45,7 @@ const OrderDropdown = ({
           active={config.orderCriteria.stockHTL}
           onClick={() => {
             dispatch(filtersActions.enableOrderByStockHTL());
-            callback();
+            orderProducts();
           }}
         >
           Higher to lower
@@ -65,7 +65,7 @@ const OrderDropdown = ({
         active={config.orderCriteria.nameAZ}
         onClick={() => {
           dispatch(filtersActions.enableOrderByNameAZ());
-          callback();
+          orderProducts();
         }}
       >
         A to Z
@@ -75,7 +75,7 @@ const OrderDropdown = ({
         active={config.orderCriteria.nameZA}
         onClick={() => {
           dispatch(filtersActions.enableOrderByNameZA());
-          callback();
+          orderProducts();
         }}
       >
         Z to A
@@ -88,7 +88,7 @@ const OrderDropdown = ({
         active={config.orderCriteria.priceLTH}
         onClick={() => {
           dispatch(filtersActions.enableOrderByPriceLTH());
-          callback();
+          orderProducts();
         }}
       >
         Lower to higher
@@ -98,7 +98,7 @@ const OrderDropdown = ({
         active={config.orderCriteria.priceHTL}
         onClick={() => {
           dispatch(filtersActions.enableOrderByPriceHTL());
-          callback();
+          orderProducts();
         }}
       >
         Higher to lower

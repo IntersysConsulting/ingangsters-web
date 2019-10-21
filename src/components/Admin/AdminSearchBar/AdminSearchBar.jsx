@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdClose } from "react-icons/md";
 import { adminSearchProduct } from "../../../actions/creators/adminProducts";
 import { connect } from "react-redux";
 import "./AdminSearchBar.css";
@@ -35,20 +35,27 @@ const AdminSearchBar = ({
           <InputGroup className="searchBox-adminPage">
             <Form.Control
               className="searchBox-input-adminPage"
-              type="search"
-              placeholder="Search
-            here"
+              placeholder="Search here"
               aria-describedby="inputGroupPrepend"
               name="searchTerm"
               onChange={handleChange("search")}
               value={search}
             ></Form.Control>
-            <MdSearch
-              size="1.8em"
-              color="#55565a"
-              className="rightSearchIcon-AdminPage"
-              onClick={searchSubmit}
-            />
+            <InputGroup.Append>
+              <MdClose
+                size="1.8em"
+                color="#55565a"
+                className="rightSearchIcon-AdminPage ml-2"
+              />
+            </InputGroup.Append>
+            <InputGroup.Append>
+              <MdSearch
+                size="1.8em"
+                color="#55565a"
+                className="rightSearchIcon-AdminPage ml-2"
+                onClick={searchSubmit}
+              />
+            </InputGroup.Append>
           </InputGroup>
         </Form.Group>
       </Form>

@@ -2,9 +2,13 @@ import {
   GET_PRODUCTS,
   PRODUCTS_ERROR,
   GET_SEARCH_PRODUCTS,
-  PRODUCTS_NOT_FOUND
+  PRODUCTS_NOT_FOUND,
+  GET_FILTERED_PRODUCTS
 } from "../types/products";
+import { SEARCH_PRODUCTS, ORDER_BY_CLEAR_ALL } from "../types/filters";
+import { FETCHING_PRODUCTS, UPDATE_PRODUCTS } from "../types/adminProducts";
 import axios from "axios";
+import { getFilterParams } from "../creators/filters";
 import { API } from "../../config";
 
 export const getProducts = () => async dispatch => {
@@ -26,7 +30,7 @@ export const getProducts = () => async dispatch => {
 export const searchProducts = params => async dispatch => {
   const query = params;
   try {
-    const res = await axios.get(`${API}/products/search`, {
+    const res = await axios.get(`http://127.0.0.1:5000/products/search`, {
       params: {
         search: query
       }
@@ -34,6 +38,47 @@ export const searchProducts = params => async dispatch => {
     dispatch({
       type: GET_SEARCH_PRODUCTS,
       payload: res.data
+    });
+    dispatch({
+      type: SEARCH_PRODUCTS,
+      data: query
+    });
+    dispatch({
+      type: ORDER_BY_CLEAR_ALL
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: PRODUCTS_NOT_FOUND,
+      payload: error
+    });
+  }
+};
+
+export const getFilteredProducts = search => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    params: getFilterParams()
+  };
+  try {
+    console.log(search);
+    dispatch({
+      type: FETCHING_PRODUCTS
+    });
+    dispatch({
+      type: SEARCH_PRODUCTS,
+      data: search
+    });
+    const endpoint = "http://127.0.0.1:5000/products/filter";
+    const res = await axios.get(endpoint, config);
+    const products = res.data;
+    console.log(config.params);
+    console.log(res);
+    dispatch({
+      type: GET_FILTERED_PRODUCTS,
+      payload: products
     });
   } catch (error) {
     console.log(error);

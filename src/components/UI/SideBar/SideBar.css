@@ -1,5 +1,40 @@
-.side-bar-products-filters {
+.admin-products-filters {
+  background-color: transparent;
+  border-right: 1px solid gray;
+}
+
+.admin-products-filters > div > h3 {
+  color: var(--light-blue);
+}
+
+.user-products-filters {
   background-color: var(--dark-grey);
   border-right: 4px solid var(--light-blue);
   color: white;
+}
+
+.user-products-filters > div > h3 {
+  color: white;
+}
+
+.clear-filters-btn {
+  background-color: transparent;
+  color: var(--orange);
+  border-color: var(--orange);
+  width: 85%;
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--orange);
+  color: white;
+  border-color: var(--orange);
+}
+
+@media (max-width: 767px) {
+  .text-xs-center {
+    text-align: center;
+  }
+  .clear-filters-btn {
+    width: 25%;
+  }
 }

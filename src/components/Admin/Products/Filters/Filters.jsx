@@ -2,36 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import * as filtersActions from "../../../../actions/creators/filters";
-import "./Filters.css";
-import OrderDropdown from "../../../UI/Filters/OrderDropdown";
 import ShippableFilter from "../../../UI/Filters/CheckBoxGroups/Shippable";
 import AvailableFilter from "../../../UI/Filters/CheckBoxGroups/Available";
-const Filters = ({ dispatch, refreshFunction }) => {
+const Filters = ({ dispatch, applyFilters }) => {
   return (
-    <div className="filterWrapper">
-      <OrderDropdown forAdmin={true} />
-      <ShippableFilter />
-      <AvailableFilter />
-      <ButtonToolbar>
+    <div>
+      <ShippableFilter applyFilter={applyFilters} />
+      <AvailableFilter applyFilter={applyFilters} />
+      <ButtonToolbar className="justify-content-center">
         <Button
-          variant="success"
           size="sm"
-          onClick={() => {
-            refreshFunction();
-          }}
-        >
-          Apply
-        </Button>
-        <Button
-          variant="outline-danger"
-          size="sm"
+          className="mt-4 clear-filters-btn"
           onClick={() => {
             dispatch(filtersActions.clearFilters());
             dispatch(filtersActions.disableOrderBy());
-            refreshFunction();
+            applyFilters();
           }}
         >
-          Clear
+          Remove filters
         </Button>
       </ButtonToolbar>
     </div>
@@ -40,5 +28,5 @@ const Filters = ({ dispatch, refreshFunction }) => {
 
 export default connect(
   null,
-  dispatch => ({ dispatch: dispatch })
+  dispatch => ({ dispatch })
 )(Filters);

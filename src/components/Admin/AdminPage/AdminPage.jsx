@@ -5,40 +5,41 @@ import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
 import UsersGrid from "../Users/AdminUsers";
 import SideBar from "../../UI/SideBar/SideBar";
+import { fetchProducts } from "../../../actions/creators/adminProducts";
 
-const AdminPage = ({ adminOption }) => {
+const AdminPage = ({ adminOption, fetchProducts }) => {
   return (
     <div className="sidebar-full-height">
       <AdminNavBar />
-      <div className="container-fluid h-100">
-        <div className="row h-100">
-          <SideBar />
-          <div className="col-sm-12 col-md-8 col-lg-10">
-            <AdminTabBar />
-            {adminOption === "Users" ? (
-              <div id="AdminPageContent">
-                <center>
-                  <p>Users</p>
-                </center>
-              </div>
-            ) : adminOption === "Products" ? (
-              <div id="AdminPageContent">
-                <AdminProducts />
-              </div>
-            ) : (
-              <div id="AdminPageContent">
-                <center>
-                  <p>Orders</p>
-                </center>
-              </div>
-            )}
-          </div>
       <AdminTabBar />
       {adminOption === "Users" ? (
-        <div id="AdminPageContent">
+        <div id="AdminUsersContent">
           <UsersGrid />
         </div>
-      </div>
+      ) : adminOption === "Products" ? (
+        <div
+          id="AdminProductsContent"
+          className="container-fluid sidebar-full-height"
+        >
+          <div className="row sidebar-full-height">
+            <SideBar
+              isAdmin={true}
+              filter={() => {
+                fetchProducts(1);
+              }}
+            />
+            <div className="col-sm-12 col-md-9 col-lg-10">
+              <AdminProducts />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div id="AdminOrdersContent">
+          <center>
+            <p>Orders</p>
+          </center>
+        </div>
+      )}
     </div>
   );
 };
@@ -49,4 +50,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AdminPage);
+export default connect(
+  mapStateToProps,
+  { fetchProducts }
+)(AdminPage);

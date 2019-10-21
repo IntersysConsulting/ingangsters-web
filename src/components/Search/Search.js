@@ -14,7 +14,11 @@ const Search = ({ loading }) => {
       ) : (
         <div className="container-fluid h-100">
           <div className="row h-100">
-            <SideBar />
+            <SideBar
+              filter={() => {
+                alert("send request here");
+              }}
+            />
             <div className="col-sm-12 col-md-8 col-lg-10">
               <SearchProducts />
             </div>
