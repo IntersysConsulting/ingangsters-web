@@ -29,3 +29,4 @@ deploy:
   app: "ingangsters-web"
   env: "IngangstersWeb-env"
   bucket_name: "$EBS_DEV_BUCKET_NAME"
+  skip_cleanup: true
