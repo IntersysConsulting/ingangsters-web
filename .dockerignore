@@ -1,0 +1,9 @@
+node_modules/
+.travis.yml
+Dockerfile
+Dockerfile.dev
+.dockerignore
+README.md
+setupDocker.bat
+shareFolder.bat
+.gitignore

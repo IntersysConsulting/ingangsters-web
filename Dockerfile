@@ -4,10 +4,14 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm i
+ENV PORT=8080
 
-RUN source .env
+RUN npm install
 
-ENV CHOKIDAR_USEPOLLING true
+RUN ls -a
 
-CMD ["npm","start"]
+RUN npm run build
+
+EXPOSE 8080
+
+CMD ["npx", "serve", "-s", "build"]
