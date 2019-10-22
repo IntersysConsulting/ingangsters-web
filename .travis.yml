@@ -15,3 +15,17 @@ before_install:
 
 script:
   - docker run -e CI=true ingangsters/react-ecommerce npm test
+  - echo REACT_APP_API_URL="$REACT_APP_API_URL" > .env
+
+deploy:
+  provider: elasticbeanstalk
+  on:
+    branch: development
+  access_key_id:
+    secure: "$EBS_DEV_KEY_ID"
+  secret_access_key:
+    secure: "$EBS_DEV_SECRET_KEY"
+  region: "us-east-2"
+  app: "ingangsters-web"
+  env: "IngangstersWeb-env"
+  bucket_name: "$EBS_DEV_BUCKET_NAME"
