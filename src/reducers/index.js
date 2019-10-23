@@ -9,6 +9,7 @@ import checkoutForms from "./checkoutForms";
 import checkout from "./checkout";
 import filters from "./filters";
 import adminUsers from "./adminUsers";
+import adminOrders from "./adminOrders";
 const reducerCombined = combineReducers({
   navBar,
   auth,
@@ -19,7 +20,8 @@ const reducerCombined = combineReducers({
   cart,
   checkout,
   checkoutForms,
-  filters
+  filters,
+  adminOrders
 });
 
 export const initialState = {

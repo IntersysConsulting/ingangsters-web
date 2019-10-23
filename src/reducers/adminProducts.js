@@ -39,6 +39,7 @@ export default (state = initialState, action) => {
         totalItems: action.payload.length,
         currentPage: 1
       });
+
     default:
       return state;
   }
