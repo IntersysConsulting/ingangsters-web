@@ -17,6 +17,13 @@ script:
   - docker run -e CI=true ingangsters/react-ecommerce npm test
   - echo REACT_APP_API_URL="$REACT_APP_API_URL" > .env
 
+before_deploy:
+  - echo THIS IS ABOUT TO DEPLOY
+  - git add --force .env
+
+after_deploy:
+  - git rm -r --cached .env
+
 deploy:
   provider: elasticbeanstalk
   on:
@@ -26,7 +33,7 @@ deploy:
   secret_access_key:
     secure: "$EBS_DEV_SECRET_KEY"
   region: "us-east-2"
-  app: "ingangsters-web"
-  env: "IngangstersWeb-env"
+  app: "ingangsters-web-dev"
+  env: "IngangstersWebDev-env"
   bucket_name: "$EBS_DEV_BUCKET_NAME"
   skip_cleanup: true
