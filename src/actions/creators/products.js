@@ -6,7 +6,7 @@ import {
   GET_FILTERED_PRODUCTS
 } from "../types/products";
 import { SEARCH_PRODUCTS, ORDER_BY_CLEAR_ALL } from "../types/filters";
-import { FETCHING_PRODUCTS, UPDATE_PRODUCTS } from "../types/adminProducts";
+import { FETCHING_PRODUCTS } from "../types/adminProducts";
 import axios from "axios";
 import { getFilterParams } from "../creators/filters";
 import { API } from "../../config";
@@ -30,7 +30,7 @@ export const getProducts = () => async dispatch => {
 export const searchProducts = params => async dispatch => {
   const query = params;
   try {
-    const res = await axios.get(`http://127.0.0.1:5000/products/search`, {
+    const res = await axios.get(`${API}/products/search`, {
       params: {
         search: query
       }
@@ -63,7 +63,6 @@ export const getFilteredProducts = search => async dispatch => {
     params: getFilterParams()
   };
   try {
-    console.log(search);
     dispatch({
       type: FETCHING_PRODUCTS
     });
@@ -71,11 +70,9 @@ export const getFilteredProducts = search => async dispatch => {
       type: SEARCH_PRODUCTS,
       data: search
     });
-    const endpoint = "http://127.0.0.1:5000/products/filter";
+    const endpoint = `${API}/products/filter`;
     const res = await axios.get(endpoint, config);
     const products = res.data;
-    console.log(config.params);
-    console.log(res);
     dispatch({
       type: GET_FILTERED_PRODUCTS,
       payload: products

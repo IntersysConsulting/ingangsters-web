@@ -59,7 +59,7 @@ export const setPriceRangeFilter = (val, min, max) => ({
 });
 
 export const clearFilters = () => ({
-  type: types.FILTERS_CLEAR_FILTERS
+  type: types.CLEAR_FILTERS
 });
 
 export const setSearch = search => ({

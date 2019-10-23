@@ -3,18 +3,16 @@
   border-right: 1px solid gray;
 }
 
-.admin-products-filters > div > h3 {
+.filters-title {
   color: var(--light-blue);
 }
 
 .user-products-filters {
-  background-color: var(--dark-grey);
-  border-right: 4px solid var(--light-blue);
-  color: white;
+  border-right: 1px solid var(--light-blue);
 }
 
-.user-products-filters > div > h3 {
-  color: white;
+.filters-fixed {
+  position: fixed;
 }
 
 .clear-filters-btn {

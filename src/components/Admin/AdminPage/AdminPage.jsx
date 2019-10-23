@@ -9,7 +9,7 @@ import { fetchProducts } from "../../../actions/creators/adminProducts";
 
 const AdminPage = ({ adminOption, fetchProducts }) => {
   return (
-    <div className="sidebar-full-height">
+    <div>
       <AdminNavBar />
       <AdminTabBar />
       {adminOption === "Users" ? (
@@ -17,11 +17,8 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
           <UsersGrid />
         </div>
       ) : adminOption === "Products" ? (
-        <div
-          id="AdminProductsContent"
-          className="container-fluid sidebar-full-height"
-        >
-          <div className="row sidebar-full-height">
+        <div id="AdminProductsContent" className="container-fluid">
+          <div className="row">
             <SideBar
               isAdmin={true}
               filter={() => {

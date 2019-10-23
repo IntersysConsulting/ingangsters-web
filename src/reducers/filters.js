@@ -127,12 +127,11 @@ export default (state = initialState, action) => {
         }
       });
 
-    case types.FILTERS_CLEAR_FILTERS:
+    case types.CLEAR_FILTERS:
       return Object.assign({}, state, {
         filtersEnabled: {
           ...initialState.filtersEnabled
-        },
-        search: ""
+        }
       });
 
     default:

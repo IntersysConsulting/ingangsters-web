@@ -13,9 +13,9 @@ const SideBar = ({ filter, isAdmin }) => {
         isAdmin
       )}`}
     >
-      <div className="mt-4 ml-2">
-        <h3 className="pb-3">Filters</h3>
-        <Filters applyFilters={filter} />
+      <div className="mt-4 ml-2 filters-fixed">
+        <h3 className="pb-3 filters-title">Filters</h3>
+        <Filters isAdmin={isAdmin} applyFilters={filter} />
       </div>
     </div>
   );

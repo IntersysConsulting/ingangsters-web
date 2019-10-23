@@ -4,6 +4,7 @@
   border: 2px solid #b4d1e7;
   border-radius: 30px;
   background-color: var(--white);
+  width: inherit;
 }
 
 .highlight:hover {

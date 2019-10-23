@@ -1,8 +1,7 @@
 import * as types from "../types/adminProducts";
 import { API } from "../../config";
 import axios from "axios";
-import { getFilterParams } from "../creators/filters";
-import { setSearch } from "../creators/filters";
+import { getFilterParams, setSearch } from "../creators/filters";
 export const updateAdminProducts = newProductList => ({
   type: types.UPDATE_PRODUCTS,
   newProductList
@@ -40,7 +39,7 @@ export const fetchProducts = pageRequested => async dispatch => {
     },
     params: getFilterParams()
   };
-  const endpoint = `http://localhost:5000/products/${numberOfProducts}/${pageRequested}`;
+  const endpoint = `${API}/products/${numberOfProducts}/${pageRequested}`;
   try {
     dispatch(startFetchProducts());
     const result = await axios.get(endpoint, config);

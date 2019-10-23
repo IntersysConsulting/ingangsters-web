@@ -4,11 +4,11 @@ import { Button, ButtonToolbar } from "react-bootstrap";
 import * as filtersActions from "../../../../actions/creators/filters";
 import ShippableFilter from "../../../UI/Filters/CheckBoxGroups/Shippable";
 import AvailableFilter from "../../../UI/Filters/CheckBoxGroups/Available";
-const Filters = ({ dispatch, applyFilters }) => {
+const Filters = ({ dispatch, applyFilters, isAdmin }) => {
   return (
     <div>
       <ShippableFilter applyFilter={applyFilters} />
-      <AvailableFilter applyFilter={applyFilters} />
+      {isAdmin ? <AvailableFilter applyFilter={applyFilters} /> : null}
       <ButtonToolbar className="justify-content-center">
         <Button
           size="sm"
