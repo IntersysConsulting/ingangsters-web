@@ -10,6 +10,7 @@ import checkout from "./checkout";
 import filters from "./filters";
 import adminUsers from "./adminUsers";
 import adminOrders from "./adminOrders";
+import notification from "./notification";
 const reducerCombined = combineReducers({
   navBar,
   auth,
@@ -22,6 +23,7 @@ const reducerCombined = combineReducers({
   checkoutForms,
   filters,
   adminOrders
+  notification
 });
 
 export const initialState = {
@@ -40,6 +42,7 @@ export const initialState = {
   },
   checkout: {
     displayPaymentMethods: false
-  }
+  },
+  notification: []
 };
 export default reducerCombined;

@@ -1,11 +1,13 @@
-export const createNotificationSuccess = (id, message) => {
-  return {
+export const createNotificationSuccess = (id, title, message) => dispatch => {
+  dispatch({
     type: "CREATE_NOTIFICATION_SUCCESS",
     payload: {
       id: id,
-      message: message
+      title: title,
+      message: message,
+      kind: "success-notification"
     }
-  };
+  });
 };
 
 export const createNotificationError = (id, message) => {
@@ -13,7 +15,8 @@ export const createNotificationError = (id, message) => {
     type: "CREATE_NOTIFICATION_ERROR",
     payload: {
       id: id,
-      message: message
+      message: message,
+      kind: "error-notification"
     }
   };
 };
@@ -23,7 +26,8 @@ export const createNotificationInfo = (id, message) => {
     type: "CREATE_NOTIFICATION_INFO",
     payload: {
       id: id,
-      message: message
+      message: message,
+      kind: "info-notification"
     }
   };
 };

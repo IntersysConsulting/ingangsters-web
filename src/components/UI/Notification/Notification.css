@@ -1,0 +1,28 @@
+@import "../../../css/colors.css";
+
+.notification-element {
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  background: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.success-notification {
+  border-radius: 5px 5px 0px 0px;
+  background-color: var(--green);
+  padding-left: 10px;
+  padding-right: 5px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  height: 25px;
+}
+
+.notification-content {
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
+}
+
+.notification-title {
+  margin-left: 5px;
+}

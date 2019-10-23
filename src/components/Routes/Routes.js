@@ -21,6 +21,7 @@ import Search from "../Search/Search";
 import MerchantView from "../Admin/Merchants/MerchantView/MerchantView";
 import AccountDetails from "../AccountDetails/AccountDetails";
 import Footer from "../UI/Footer/Footer";
+import NotificationContainer from "../UI/Notification/NotificationsContainer";
 
 function Routes() {
   return (
@@ -44,6 +45,7 @@ function Routes() {
           <Route component={ErrorPage} />
         </Switch>
       </BrowserRouter>
+      <NotificationContainer />
       <Footer />
     </Provider>
   );

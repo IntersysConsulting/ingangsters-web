@@ -6,8 +6,30 @@ import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 import { prettifyCents } from "../../../utils/utils";
+import { createNotificationSuccess } from "../../../actions/creators/notification";
+import { idGenerator } from "../../../utils/idGenerator";
 
-const ProductCard = ({ product, uploadAndUpdateCart }) => {
+// import { useSelector } from "react-redux";
+
+function executeFunctionsAferAddProduct(
+  product,
+  productID,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+) {
+  addProductToCart(product, productID, uploadAndUpdateCart);
+  createNotificationSuccess(
+    idGenerator(),
+    "Product added",
+    product.name + " added to the cart."
+  );
+}
+
+const ProductCard = ({
+  product,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+}) => {
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -36,7 +58,13 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
                 className="btn btn-product-card btn-block"
                 onClick={() => {
                   //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
-                  addProductToCart(product, product._id, uploadAndUpdateCart);
+                  executeFunctionsAferAddProduct(
+                    product,
+                    product._id,
+                    uploadAndUpdateCart,
+                    createNotificationSuccess
+                  );
+                  //addProductToCart(product, product._id, uploadAndUpdateCart);
                 }}
               >
                 Add <FaCartPlus />
@@ -45,11 +73,12 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
           </div>
         </div>
       </div>
+      {/* {console.log(useSelector(state => state.createNotificationSuccess))} */}
     </div>
   );
 };
 
 export default connect(
   null,
-  { uploadAndUpdateCart }
+  { uploadAndUpdateCart, createNotificationSuccess }
 )(ProductCard);

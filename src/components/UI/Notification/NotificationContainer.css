@@ -1,0 +1,11 @@
+.notify-container {
+  position: fixed;
+  width: 25%;
+  z-index: 100;
+  margin-right: 10px;
+  float: right;
+  left: 74%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
