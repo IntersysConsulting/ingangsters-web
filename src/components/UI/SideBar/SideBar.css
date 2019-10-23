@@ -35,4 +35,7 @@
   .clear-filters-btn {
     width: 25%;
   }
+  .filters-fixed {
+    position: relative;
+  }
 }
