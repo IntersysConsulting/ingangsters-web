@@ -8,6 +8,7 @@ import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 import { FETCHING_ADMIN_USERS } from "../../../actions/types/adminUsers";
 import { FETCHING_PRODUCTS } from "../../../actions/types/adminProducts";
+import { CLEAR_SEARCH } from "../../../actions/types/filters";
 import * as types from "../../../actions/types/AdminTabBar";
 import reducer from "../../../reducers/AdminTabBar";
 import thunk from "redux-thunk";
@@ -107,6 +108,7 @@ describe("AdminTabBar", () => {
       .simulate("click", event);
     expect(store.getActions()).toEqual([
       { newButton: "Products", type: types.SET_ACTIVE_ADMINBAR_BUTTON },
+      { type: CLEAR_SEARCH },
       { type: FETCHING_PRODUCTS }
     ]);
 
