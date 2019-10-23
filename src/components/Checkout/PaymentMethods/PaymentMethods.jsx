@@ -108,7 +108,7 @@ class PaymentMethods extends React.Component {
             <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
               <div show="false" className="cardForm">
                 <Elements>
-                  <CheckoutForm />
+                  <CheckoutForm email={this.props.email} />
                 </Elements>
               </div>
             </StripeProvider>

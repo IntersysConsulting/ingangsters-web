@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { API } from "../../../../config";
 import axios from "axios";
+import "../../Checkout.css";
+import { connect } from "react-redux";
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -11,28 +13,38 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    console.log(token);
-    const endpoint = `http://127.0.0.1:5000/charge`;
+    console.log("Token_ ", token);
+    const endpoint = `${API}/charge`;
+    console.log("Email: ", this.props.email);
+    const currentCart = JSON.parse(localStorage.getItem("cart"));
     const config = {
       headers: {
         "Content-Type": "application/json"
       },
-      amount: 5000,
       customer: {
-        email: "a@a.com",
+        email: this.props.email,
         source: token.id
       },
-      description: "Payment"
+      items: currentCart,
+      description: "Ecomerce Payment"
     };
-    const result = await axios.get(endpoint, config);
-    if (result.ok) console.log("Purchase Complete!");
+    try {
+      const result = await axios.post(endpoint, config);
+      if (result.ok) console.log("Purchase Complete!");
+    } catch (error) {
+      console.error("Problem: ", error);
+    }
   }
 
   render() {
     return (
       <div className="checkout">
         <CardElement />
-        <button onClick={this.submit}>Purchase</button>
+        <div className="text-center mt-5">
+          <button className="btn checkout-btn" onClick={this.submit}>
+            Confirm Order
+          </button>
+        </div>
       </div>
     );
   }
