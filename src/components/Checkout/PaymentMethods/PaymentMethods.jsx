@@ -6,8 +6,8 @@ import CheckoutForm from "./Stripe/StripePayment";
 import StripeScriptLoader from "react-stripe-script-loader";
 
 class PaymentMethods extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedOption: "",
       showCards: false
