@@ -134,6 +134,10 @@ export default (state = initialState, action) => {
         }
       });
 
+    case types.CLEAR_SEARCH:
+      return Object.assign({}, state, {
+        search: ""
+      });
     default:
       return state;
   }

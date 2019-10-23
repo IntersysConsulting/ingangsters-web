@@ -6,7 +6,6 @@ import {
   GET_FILTERED_PRODUCTS
 } from "../types/products";
 import { SEARCH_PRODUCTS, ORDER_BY_CLEAR_ALL } from "../types/filters";
-import { FETCHING_PRODUCTS } from "../types/adminProducts";
 import axios from "axios";
 import { getFilterParams } from "../creators/filters";
 import { API } from "../../config";
@@ -63,9 +62,6 @@ export const getFilteredProducts = search => async dispatch => {
     params: getFilterParams()
   };
   try {
-    dispatch({
-      type: FETCHING_PRODUCTS
-    });
     dispatch({
       type: SEARCH_PRODUCTS,
       data: search

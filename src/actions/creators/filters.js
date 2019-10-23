@@ -67,6 +67,10 @@ export const setSearch = search => ({
   data: search
 });
 
+export const clearSearch = () => ({
+  type: types.CLEAR_SEARCH
+});
+
 export function getFilterParams() {
   const filtersConfig = store.getState().filters.filtersEnabled;
   const orderConfig = store.getState().filters.orderCriteria;

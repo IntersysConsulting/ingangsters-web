@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdSearch, MdClose } from "react-icons/md";
@@ -11,9 +11,14 @@ import { adminSearchUser } from "../../../actions/creators/adminUsers";
 const AdminSearchBar = ({
   adminSearchProduct,
   adminSearchUser,
-  adminOption
+  adminOption,
+  inputSearch
 }) => {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setSearch(inputSearch);
+  }, [inputSearch]);
 
   const searchSubmit = event => {
     event.preventDefault();
@@ -65,7 +70,8 @@ const AdminSearchBar = ({
 
 function mapStateToProps(state) {
   return {
-    adminOption: state.adminTabBar.activeButton
+    adminOption: state.adminTabBar.activeButton,
+    inputSearch: state.filters.search
   };
 }
 
