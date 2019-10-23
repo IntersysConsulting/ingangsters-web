@@ -154,7 +154,8 @@ const Checkout = ({
                   </div>
                 ) : (
                   <div>
-                    <PaymentMethods name={billingFormValues.email} />
+                    <PaymentMethods email={shippingFormValues.email} />
+
                     <div className="text-center mt-5">
                       {/* we'll save the data in the DB in this button, 
               meanwhile I'll use Link and props until de endpoints are ready*/}
