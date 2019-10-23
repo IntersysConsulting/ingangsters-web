@@ -32,8 +32,11 @@ export const createNotificationInfo = (id, message) => {
   };
 };
 
-export const deleteNotification = id => {
-  return {
-    type: "DELETE_NOTIFICATION"
-  };
+export const deleteNotification = id => dispatch => {
+  dispatch({
+    type: "DELETE_NOTIFICATION",
+    payload: {
+      id: id
+    }
+  });
 };

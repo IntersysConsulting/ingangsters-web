@@ -6,7 +6,9 @@ export default function(listOfNotifications = [], action) {
   ) {
     return [...listOfNotifications, action.payload];
   } else if (action.type === "DELETE_NOTIFICATION") {
-    return listOfNotifications.filter(id => id !== action.payload.id);
+    return listOfNotifications.filter(
+      object => object.id !== action.payload.id
+    );
   }
   return listOfNotifications;
 }

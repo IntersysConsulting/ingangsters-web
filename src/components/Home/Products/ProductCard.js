@@ -7,11 +7,11 @@ import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 import { prettifyCents } from "../../../utils/utils";
 import { createNotificationSuccess } from "../../../actions/creators/notification";
-import { idGenerator } from "../../../utils/idGenerator";
+import { idGenerator, charCount } from "../../../utils/idGenerator";
 
 // import { useSelector } from "react-redux";
 
-function executeFunctionsAferAddProduct(
+function executeFunctionsAfterAddProduct(
   product,
   productID,
   uploadAndUpdateCart,
@@ -21,7 +21,7 @@ function executeFunctionsAferAddProduct(
   createNotificationSuccess(
     idGenerator(),
     "Product added",
-    product.name + " added to the cart."
+    charCount(product.name) + " added to the cart."
   );
 }
 
@@ -58,7 +58,7 @@ const ProductCard = ({
                 className="btn btn-product-card btn-block"
                 onClick={() => {
                   //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
-                  executeFunctionsAferAddProduct(
+                  executeFunctionsAfterAddProduct(
                     product,
                     product._id,
                     uploadAndUpdateCart,
