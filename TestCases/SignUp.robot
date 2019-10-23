@@ -16,7 +16,7 @@ TC_001 Main Page
     Click Element  //*[@id="root"]/div/div[1]/nav/div[3]/div[1]/p
     Sleep  ${Sleep2}
     
-TC_02 Signup
+TC_002 Signup
     Go to  http://localhost:3000/signup
     Input Text  //*[@id="validationFirstName"]  Tester
     Sleep  ${Sleep2}
