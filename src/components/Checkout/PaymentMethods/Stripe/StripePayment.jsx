@@ -13,9 +13,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    console.log("Token_ ", token);
     const endpoint = `${API}/charge`;
-    console.log("Email: ", this.props.email);
     const currentCart = JSON.parse(localStorage.getItem("cart"));
     const config = {
       headers: {

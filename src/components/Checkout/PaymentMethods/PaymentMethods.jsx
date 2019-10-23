@@ -4,17 +4,20 @@ import "../../../css/colors.css";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import CheckoutForm from "./Stripe/StripePayment";
 import StripeScriptLoader from "react-stripe-script-loader";
+import Modal from "react-bootstrap/Modal";
 
 class PaymentMethods extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedOption: "",
-      showCards: false
+      showCards: false,
+      show: false
     };
     this.radioChange = this.radioChange.bind(this);
   }
-
+  handleClose = () => this.setState({ showCards: false });
+  handleShow = () => this.setState({ showCards: true });
   radioChange(e) {
     if (e.currentTarget.value === "card") {
       this.setState({
@@ -86,6 +89,7 @@ class PaymentMethods extends React.Component {
             value="card"
             checked={this.state.selectedOption === "card"}
             onChange={this.radioChange}
+            onClick={this.handleShow}
             className="paymentButton"
           />
 
@@ -99,23 +103,29 @@ class PaymentMethods extends React.Component {
             Card
           </label>
         </div>
-        {this.state.showCards ? (
-          <StripeScriptLoader
-            uniqueId="stripe-js"
-            script="https://js.stripe.com/v3/"
-            async
-          >
-            <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
-              <div show="false" className="cardForm">
-                <Elements>
-                  <CheckoutForm email={this.props.email} />
-                </Elements>
-              </div>
-            </StripeProvider>
-          </StripeScriptLoader>
-        ) : (
-          <div></div>
-        )}
+
+        <Modal
+          size="sm"
+          show={this.state.showCards}
+          onHide={this.handleClose}
+          className="modal_stripe"
+        >
+          <Modal.Body>
+            <StripeScriptLoader
+              uniqueId="stripe-js"
+              script="https://js.stripe.com/v3/"
+              async
+            >
+              <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
+                <div show="false" className="cardForm">
+                  <Elements>
+                    <CheckoutForm email={this.props.email} />
+                  </Elements>
+                </div>
+              </StripeProvider>
+            </StripeScriptLoader>
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }
