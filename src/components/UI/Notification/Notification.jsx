@@ -31,7 +31,7 @@ class Notification extends React.PureComponent {
             />
           </div>
           <div className="notification-content">
-            <p>{item.message}</p>
+            <p className="notification-text">{item.message}</p>
           </div>
         </div>
       );
