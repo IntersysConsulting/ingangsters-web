@@ -10,26 +10,28 @@ export const createNotificationSuccess = (id, title, message) => dispatch => {
   });
 };
 
-export const createNotificationError = (id, message) => {
-  return {
+export const createNotificationError = (id, title, message) => dispatch => {
+  dispatch({
     type: "CREATE_NOTIFICATION_ERROR",
     payload: {
       id: id,
+      title: title,
       message: message,
       kind: "error-notification"
     }
-  };
+  });
 };
 
-export const createNotificationInfo = (id, message) => {
-  return {
+export const createNotificationInfo = (id, title, message) => dispatch => {
+  dispatch({
     type: "CREATE_NOTIFICATION_INFO",
     payload: {
       id: id,
+      title: title,
       message: message,
       kind: "info-notification"
     }
-  };
+  });
 };
 
 export const deleteNotification = id => dispatch => {

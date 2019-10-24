@@ -12,6 +12,8 @@ import {
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
+import { createNotificationError } from "./notification";
+import { idNotificationGenerator } from "../../utils/idGenerator";
 
 export const login = (email, password) => async dispatch => {
   const config = {
@@ -27,10 +29,16 @@ export const login = (email, password) => async dispatch => {
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: LOGIN_FAIL
     });
+    dispatch(
+      createNotificationError(
+        idNotificationGenerator(),
+        "Login fail",
+        "Invalid credentials"
+      )
+    );
   }
 };
 

@@ -1,6 +1,6 @@
 var nextItemId = 0;
 
-export function idGenerator() {
+export function idNotificationGenerator() {
   return nextItemId++;
 }
 

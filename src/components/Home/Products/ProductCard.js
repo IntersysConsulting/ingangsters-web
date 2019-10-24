@@ -7,7 +7,7 @@ import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 import { prettifyCents } from "../../../utils/utils";
 import { createNotificationSuccess } from "../../../actions/creators/notification";
-import { idGenerator, charCount } from "../../../utils/idGenerator";
+import { idNotificationGenerator, charCount } from "../../../utils/idGenerator";
 
 // import { useSelector } from "react-redux";
 
@@ -19,7 +19,7 @@ function executeFunctionsAfterAddProduct(
 ) {
   addProductToCart(product, productID, uploadAndUpdateCart);
   createNotificationSuccess(
-    idGenerator(),
+    idNotificationGenerator(),
     "Product added",
     charCount(product.name) + " added to the cart."
   );
