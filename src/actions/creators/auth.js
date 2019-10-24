@@ -79,6 +79,13 @@ export const adminLogin = (email, password) => async dispatch => {
     dispatch({
       type: LOGIN_ADMINFAIL
     });
+    dispatch(
+      createNotificationError(
+        idNotificationGenerator(),
+        "Login fail",
+        "Invalid credentials"
+      )
+    );
   }
 };
 
