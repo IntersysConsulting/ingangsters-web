@@ -38,6 +38,11 @@
   transform: translate(-50%, -50%);
   align-content: center;
 }
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 @media screen and (max-width: 550px) {
   .paymentOption {
     width: 100% !important;
