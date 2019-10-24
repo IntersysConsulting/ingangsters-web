@@ -2,6 +2,6 @@
 
 exports[`ADMIN: Products Grid renders loading animation at start 1`] = `
 <div
-  className="row adminProductGrid"
+  className="row adminProductGrid mt-4"
 />
 `;

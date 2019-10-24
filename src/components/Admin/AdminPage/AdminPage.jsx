@@ -4,22 +4,34 @@ import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
 import UsersGrid from "../Users/AdminUsers";
+import SideBar from "../../UI/SideBar/SideBar";
+import { fetchProducts } from "../../../actions/creators/adminProducts";
 
-const AdminPage = ({ adminOption }) => {
+const AdminPage = ({ adminOption, fetchProducts }) => {
   return (
     <div>
       <AdminNavBar />
       <AdminTabBar />
       {adminOption === "Users" ? (
-        <div id="AdminPageContent">
+        <div id="AdminUsersContent">
           <UsersGrid />
         </div>
       ) : adminOption === "Products" ? (
-        <div id="AdminPageContent">
-          <AdminProducts />
+        <div id="AdminProductsContent" className="container-fluid">
+          <div className="row">
+            <SideBar
+              isAdmin={true}
+              filter={() => {
+                fetchProducts(1);
+              }}
+            />
+            <div className="col-sm-12 col-md-9 col-lg-10">
+              <AdminProducts />
+            </div>
+          </div>
         </div>
       ) : (
-        <div id="AdminPageContent">
+        <div id="AdminOrdersContent">
           <center>
             <p>Orders</p>
           </center>
@@ -35,4 +47,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AdminPage);
+export default connect(
+  mapStateToProps,
+  { fetchProducts }
+)(AdminPage);

@@ -1,11 +1,7 @@
 .searchBox-adminPage {
-  width: 300px !important;
+  width: 400px !important;
   margin: auto;
   background-color: var(--light-grey);
-}
-
-.rightSearchIcon-AdminPage {
-  position: absolute;
 }
 .searchIcon-box-adminPage {
   margin-top: 2%;
@@ -19,11 +15,16 @@
   border-bottom-color: var(--dark-grey);
 }
 .rightSearchIcon-AdminPage {
-  margin-left: 90%;
   margin-top: 2%;
+  cursor: pointer;
 }
 @media screen and (max-width: 550px) {
   .searchBox-adminPage {
     width: 90%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .searchBox-adminPage {
+    width: 300px !important;
   }
 }

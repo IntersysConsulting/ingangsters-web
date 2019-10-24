@@ -1,7 +1,6 @@
 import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
-// import logo from "/assets/button-green.png";
 
 class StepProgressBar extends React.Component {
   constructor(props) {

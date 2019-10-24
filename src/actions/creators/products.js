@@ -2,9 +2,12 @@ import {
   GET_PRODUCTS,
   PRODUCTS_ERROR,
   GET_SEARCH_PRODUCTS,
-  PRODUCTS_NOT_FOUND
+  PRODUCTS_NOT_FOUND,
+  GET_FILTERED_PRODUCTS
 } from "../types/products";
+import { SEARCH_PRODUCTS, ORDER_BY_CLEAR_ALL } from "../types/filters";
 import axios from "axios";
+import { getFilterParams } from "../creators/filters";
 import { API } from "../../config";
 
 export const getProducts = () => async dispatch => {
@@ -34,6 +37,41 @@ export const searchProducts = params => async dispatch => {
     dispatch({
       type: GET_SEARCH_PRODUCTS,
       payload: res.data
+    });
+    dispatch({
+      type: SEARCH_PRODUCTS,
+      data: query
+    });
+    dispatch({
+      type: ORDER_BY_CLEAR_ALL
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: PRODUCTS_NOT_FOUND,
+      payload: error
+    });
+  }
+};
+
+export const getFilteredProducts = search => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    params: getFilterParams()
+  };
+  try {
+    dispatch({
+      type: SEARCH_PRODUCTS,
+      data: search
+    });
+    const endpoint = `${API}/products/filter`;
+    const res = await axios.get(endpoint, config);
+    const products = res.data;
+    dispatch({
+      type: GET_FILTERED_PRODUCTS,
+      payload: products
     });
   } catch (error) {
     console.log(error);

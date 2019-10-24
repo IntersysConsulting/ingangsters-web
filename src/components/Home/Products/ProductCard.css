@@ -4,6 +4,7 @@
   border: 2px solid #b4d1e7;
   border-radius: 30px;
   background-color: var(--white);
+  width: inherit;
 }
 
 .highlight:hover {
@@ -59,6 +60,12 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.btn-product-card {
+  color: #fff;
+  background-color: var(--green);
+  border-color: var(--green);
 }
 
 @media screen and (max-width: 767px) {

@@ -1,8 +1,7 @@
 import * as types from "../types/adminProducts";
 import { API } from "../../config";
 import axios from "axios";
-import { getFilterParams } from "../creators/filters";
-
+import { getFilterParams, setSearch } from "../creators/filters";
 export const updateAdminProducts = newProductList => ({
   type: types.UPDATE_PRODUCTS,
   newProductList
@@ -28,28 +27,8 @@ export const updatePaginator = (totalItems, itemsPerPage, currentPage) => ({
 
 export const adminSearchProduct = params => async dispatch => {
   const query = params;
-  const AuthStr = `Bearer ${localStorage.getItem("token")}`;
-  let config = {
-    headers: { Authorization: AuthStr }
-  };
-
-  try {
-    const res = await axios.get(
-      `${API}/admin/products/search?search=` + query,
-      config
-    );
-    dispatch({
-      type: types.ADMIN_GET_SEARCH_PRODUCTS,
-      payload: res.data.data
-    });
-  } catch (error) {
-    console.log(error);
-
-    dispatch({
-      type: types.ADMIN_PRODUCT_NO_FOUND,
-      payload: error
-    });
-  }
+  dispatch(setSearch(query));
+  fetchProducts(1)(dispatch);
 };
 
 export const fetchProducts = pageRequested => async dispatch => {

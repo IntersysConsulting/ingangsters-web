@@ -1,0 +1,41 @@
+.admin-products-filters {
+  background-color: transparent;
+  border-right: 1px solid gray;
+}
+
+.filters-title {
+  color: var(--light-blue);
+}
+
+.user-products-filters {
+  border-right: 1px solid var(--light-blue);
+}
+
+.filters-fixed {
+  position: fixed;
+}
+
+.clear-filters-btn {
+  background-color: transparent;
+  color: var(--orange);
+  border-color: var(--orange);
+  width: 85%;
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--orange);
+  color: white;
+  border-color: var(--orange);
+}
+
+@media (max-width: 767px) {
+  .text-xs-center {
+    text-align: center;
+  }
+  .clear-filters-btn {
+    width: 25%;
+  }
+  .filters-fixed {
+    position: relative;
+  }
+}

@@ -28,7 +28,7 @@ export const ProductsGrid = ({
         onClick={"/admin/product/" + item._id}
       />
     ));
-    return <div className="row adminProductGrid">{cards}</div>;
+    return <div className="row adminProductGrid mt-4">{cards}</div>;
   }
 };
 

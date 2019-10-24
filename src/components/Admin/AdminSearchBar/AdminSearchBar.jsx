@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdClose } from "react-icons/md";
 import { adminSearchProduct } from "../../../actions/creators/adminProducts";
 import { connect } from "react-redux";
 import "./AdminSearchBar.css";
@@ -11,9 +11,14 @@ import { adminSearchUser } from "../../../actions/creators/adminUsers";
 const AdminSearchBar = ({
   adminSearchProduct,
   adminSearchUser,
-  adminOption
+  adminOption,
+  inputSearch
 }) => {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setSearch(inputSearch);
+  }, [inputSearch]);
 
   const searchSubmit = event => {
     event.preventDefault();
@@ -35,20 +40,27 @@ const AdminSearchBar = ({
           <InputGroup className="searchBox-adminPage">
             <Form.Control
               className="searchBox-input-adminPage"
-              type="search"
-              placeholder="Search
-            here"
+              placeholder="Search here"
               aria-describedby="inputGroupPrepend"
               name="searchTerm"
               onChange={handleChange("search")}
               value={search}
             ></Form.Control>
-            <MdSearch
-              size="1.8em"
-              color="#55565a"
-              className="rightSearchIcon-AdminPage"
-              onClick={searchSubmit}
-            />
+            <InputGroup.Append>
+              <MdClose
+                size="1.8em"
+                color="#55565a"
+                className="rightSearchIcon-AdminPage ml-2"
+              />
+            </InputGroup.Append>
+            <InputGroup.Append>
+              <MdSearch
+                size="1.8em"
+                color="#55565a"
+                className="rightSearchIcon-AdminPage ml-2"
+                onClick={searchSubmit}
+              />
+            </InputGroup.Append>
           </InputGroup>
         </Form.Group>
       </Form>
@@ -58,7 +70,8 @@ const AdminSearchBar = ({
 
 function mapStateToProps(state) {
   return {
-    adminOption: state.adminTabBar.activeButton
+    adminOption: state.adminTabBar.activeButton,
+    inputSearch: state.filters.search
   };
 }
 

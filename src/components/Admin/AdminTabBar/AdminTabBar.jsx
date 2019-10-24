@@ -8,8 +8,10 @@ import { connect } from "react-redux";
 import { setActiveAdminBarButton } from "../../../actions/creators/AdminTabBar";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
+import { clearSearch } from "../../../actions/creators/filters";
 
 const AdminTabBar = ({ handleClick }) => {
+  console.log(handleClick);
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">
@@ -68,6 +70,7 @@ function mapDispatchToProps(dispatch) {
     handleClick(e) {
       dispatch(setActiveAdminBarButton(e.target.value));
       if (e.target.value === "Products") {
+        dispatch(clearSearch());
         dispatch(fetchProducts(1));
       }
       if (e.target.value === "Users") {
