@@ -32,13 +32,15 @@
 }
 
 .modal_stripe {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 35%;
+
   align-content: center;
 }
 
+.modal-content {
+  background-color: var(--light-grey);
+  min-width: 350px;
+}
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: hidden;

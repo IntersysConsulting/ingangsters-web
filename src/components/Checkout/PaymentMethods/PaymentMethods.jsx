@@ -35,6 +35,28 @@ class PaymentMethods extends React.Component {
   render() {
     return (
       <div className="PaymentMethods">
+        <Modal
+          size="sm"
+          show={this.state.showCards}
+          onHide={this.handleClose}
+          className="modal_stripe"
+        >
+          <Modal.Body>
+            <StripeScriptLoader
+              uniqueId="stripe-js"
+              script="https://js.stripe.com/v3/"
+              async
+            >
+              <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
+                <div show="false" className="cardForm">
+                  <Elements>
+                    <CheckoutForm email={this.props.email} />
+                  </Elements>
+                </div>
+              </StripeProvider>
+            </StripeScriptLoader>
+          </Modal.Body>
+        </Modal>
         <h1 className="paymentMethodsTitle">Select Payment Method</h1>
         <br />
 
@@ -103,29 +125,6 @@ class PaymentMethods extends React.Component {
             Card
           </label>
         </div>
-
-        <Modal
-          size="sm"
-          show={this.state.showCards}
-          onHide={this.handleClose}
-          className="modal_stripe"
-        >
-          <Modal.Body>
-            <StripeScriptLoader
-              uniqueId="stripe-js"
-              script="https://js.stripe.com/v3/"
-              async
-            >
-              <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
-                <div show="false" className="cardForm">
-                  <Elements>
-                    <CheckoutForm email={this.props.email} />
-                  </Elements>
-                </div>
-              </StripeProvider>
-            </StripeScriptLoader>
-          </Modal.Body>
-        </Modal>
       </div>
     );
   }
