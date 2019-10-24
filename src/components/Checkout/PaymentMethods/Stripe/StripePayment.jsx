@@ -4,6 +4,7 @@ import { API } from "../../../../config";
 import axios from "axios";
 import "../../Checkout.css";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -28,9 +29,10 @@ class CheckoutForm extends Component {
     };
     try {
       const result = await axios.post(endpoint, config);
-      if (result.ok) console.log("Purchase Complete!");
+      console.log("Success!");
+      return <Redirect to="/checkout/thankyou" />;
     } catch (error) {
-      console.error("Problem: ", error);
+      console.error("Problem: ", error.response.data.message);
     }
   }
 
@@ -40,7 +42,7 @@ class CheckoutForm extends Component {
         <CardElement />
         <div className="text-center mt-5">
           <button className="btn checkout-btn" onClick={this.submit}>
-            Confirm Order
+            Pay
           </button>
         </div>
       </div>
