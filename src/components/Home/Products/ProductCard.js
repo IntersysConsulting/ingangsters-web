@@ -57,7 +57,6 @@ const ProductCard = ({
                 type="button"
                 className="btn btn-product-card btn-block"
                 onClick={() => {
-                  //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
                   executeFunctionsAfterAddProduct(
                     product,
                     product._id,
