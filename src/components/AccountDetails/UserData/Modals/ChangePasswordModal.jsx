@@ -3,15 +3,26 @@ import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { changeMyPassword } from "../UserDataManager";
+import {
+  createNotificationSuccess,
+  createNotificationError
+} from "../../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../../utils/idGenerator";
+import { connect } from "react-redux";
 
 const ChangePasswordModal = ({
   showModalStatus,
   modalStatusChange,
-  userData
+  userData,
+  createNotificationError,
+  createNotificationSuccess
 }) => {
   const [buttonDisabledState, setButtonDisabledState] = useState(true);
 
-  const saveModifiedPassword = () => {
+  const saveModifiedPassword = async (
+    createNotificationError,
+    createNotificationSuccess
+  ) => {
     var newPassword = {};
     newPassword.oldpassword =
       document.forms.modifyPasswordForm.elements.oldpassword.value;
@@ -19,7 +30,25 @@ const ChangePasswordModal = ({
       document.forms.modifyPasswordForm.elements.newpassword1.value;
     newPassword.newpassword2 =
       document.forms.modifyPasswordForm.elements.newpassword2.value;
-    changeMyPassword(newPassword);
+
+    modalStatusChange();
+    if (await changeMyPassword(newPassword)) {
+      createNotificationSuccess(
+        idNotificationGenerator,
+        "Password updated",
+        "Redirecting to Login Page"
+      );
+      setTimeout(function() {
+        localStorage.removeItem("token");
+        window.location.pathname = "login";
+      }, 3000);
+    } else {
+      createNotificationError(
+        idNotificationGenerator,
+        "Password NOT updated",
+        "Check your current password"
+      );
+    }
   };
 
   const validateForm = (errors, values) => {
@@ -131,7 +160,12 @@ const ChangePasswordModal = ({
         <Button
           variant="outline-primary"
           disabled={buttonDisabledState}
-          onClick={saveModifiedPassword}
+          onClick={() => {
+            saveModifiedPassword(
+              createNotificationError,
+              createNotificationSuccess
+            );
+          }}
         >
           Save
         </Button>
@@ -140,4 +174,7 @@ const ChangePasswordModal = ({
   );
 };
 
-export default ChangePasswordModal;
+export default connect(
+  null,
+  { createNotificationError, createNotificationSuccess }
+)(ChangePasswordModal);
