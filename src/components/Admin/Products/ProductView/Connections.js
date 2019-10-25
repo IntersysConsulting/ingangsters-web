@@ -95,8 +95,15 @@ export const newProduct = async (data, form) => {
   try {
     const res = await axios.post(endpoint, body, config);
     if (res.status) {
-      alert("New product created successfully");
-      window.location.pathname = "admin/product/" + res.data.data;
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product added",
+        "New product created successfully"
+      )(store.dispatch);
+      setTimeout(
+        (window.location.pathname = "admin/product/" + res.data.data),
+        5000
+      );
     }
   } catch (err) {
     alert("Product not saved");
