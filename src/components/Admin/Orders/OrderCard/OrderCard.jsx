@@ -58,23 +58,25 @@ const OrderCard = ({ id, date, status, total, nextOptions }) => {
 
   return (
     <React.Fragment>
-      <div className="orderCard">
-        <div className="d-flex align-items-center w100 justify-content-between">
-          <div className="d-flex flex-column align-items-center">
-            <span className="orderId">Order Id: {id.substring(19)}</span>
-            <span>Date {date}</span>
+      <div className="col-xl-3 col-lg-4 col-md-5 col-sm-10">
+        <div className="orderCard">
+          <div className="d-flex align-items-center w100 justify-content-between">
+            <div className="d-flex flex-column">
+              <span className="orderId">Order Id: {id.substring(19)}</span>
+              <span>Date {date}</span>
+            </div>
+            <div className="orderStatus">{prettifyStatus(status)}</div>
           </div>
-          <div className="orderStatus">{prettifyStatus(status)}</div>
-        </div>
-        <div className="d-flex align-items-center w100 justify-content-between">
-          <div className="totalContainer">
-            Total <span className="total">{prettifyCents(total)}</span>
+          <div className="d-flex align-items-center w100 justify-content-between">
+            <div className="totalContainer">
+              Total <span className="total">{prettifyCents(total)}</span>
+            </div>
+            {optionsDropdown}
           </div>
-          {optionsDropdown}
+          <Link className="detailsButton" to={"/order/details/" + id}>
+            Details
+          </Link>
         </div>
-        <Link className="detailsButton" to={"/order/details/" + id}>
-          Details
-        </Link>
       </div>
 
       <ConfirmationModal

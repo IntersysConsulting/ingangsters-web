@@ -43,7 +43,7 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
 
 function mapStateToProps(state) {
   return {
-    adminOption: state.adminTabBar.activeButton + "1"
+    adminOption: state.adminTabBar.activeButton + "!"
   };
 }
 

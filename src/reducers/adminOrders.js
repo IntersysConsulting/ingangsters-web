@@ -8,12 +8,13 @@ const initialState = {
   currentPage: 0
 };
 
-export default function(currentState, action) {
+export default function(currentState = initialState, action) {
   switch (action.type) {
     case types.ADMIN_BEGIN_FETCH_ORDERS:
       return {
         ...currentState,
-        fetching: true
+        fetching: true,
+        list: []
       };
 
     case types.ADMIN_UPDATE_ORDER_LIST:
