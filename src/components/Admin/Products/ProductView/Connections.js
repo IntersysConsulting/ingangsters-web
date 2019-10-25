@@ -106,7 +106,12 @@ export const newProduct = async (data, form) => {
       );
     }
   } catch (err) {
-    alert("Product not saved");
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Product not saved, try again later"
+    )(store.dispatch);
+
     console.log(err);
   }
 };
