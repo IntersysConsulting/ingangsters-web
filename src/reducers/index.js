@@ -9,6 +9,8 @@ import checkoutForms from "./checkoutForms";
 import checkout from "./checkout";
 import filters from "./filters";
 import adminUsers from "./adminUsers";
+import orders from "./orders";
+
 import adminOrders from "./adminOrders";
 import orders from "./orders";
 
@@ -24,6 +26,9 @@ const reducerCombined = combineReducers({
   checkoutForms,
   filters,
   adminOrders,
+  orders
+  adminOrders
+  filters,
   orders
 });
 

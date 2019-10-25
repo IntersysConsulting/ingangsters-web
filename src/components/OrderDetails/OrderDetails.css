@@ -1,0 +1,8 @@
+.order-products-price {
+  color: var(--light-blue);
+}
+
+.order-total-price {
+  color: var(--light-blue);
+  font-weight: bold;
+}

@@ -15,3 +15,32 @@ export default function(currentState = initialState, action) {
       return currentState;
   }
 }
+
+import { GET_ORDER_BY_ID, ORDER_NOT_FOUND } from "../actions/types/orders";
+
+const initialState = {
+  orders: [],
+  order: null,
+  loading: true,
+  error: {}
+};
+
+export default function(state = initialState, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_ORDER_BY_ID:
+      return {
+        ...state,
+        order: payload.data,
+        loading: false
+      };
+    case ORDER_NOT_FOUND:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    default:
+      return state;
+  }
+}
