@@ -2,6 +2,8 @@ import * as types from "../types/adminProducts";
 import { API } from "../../config";
 import axios from "axios";
 import { getFilterParams, setSearch } from "../creators/filters";
+import { createNotificationError } from "./notification";
+import { idNotificationGenerator } from "../../utils/idGenerator";
 export const updateAdminProducts = newProductList => ({
   type: types.UPDATE_PRODUCTS,
   newProductList
