@@ -5,7 +5,7 @@ exports[`Admin Page renders correctly 1`] = `
   value={null}
 >
   <AdminPage
-    adminOption="Users"
+    adminOption="Users!"
     dispatch={null}
     fetchProducts={[Function]}
     store={

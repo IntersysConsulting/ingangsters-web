@@ -5,7 +5,6 @@ import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
 import UsersGrid from "../Users/AdminUsers";
 import OrdersList from "../Orders";
-const AdminPage = ({ adminOption }) => {
 import SideBar from "../../UI/SideBar/SideBar";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
 
