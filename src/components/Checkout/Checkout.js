@@ -154,17 +154,10 @@ const Checkout = ({
                   </div>
                 ) : (
                   <div>
-                    <PaymentMethods email={shippingFormValues.email} />
-
-                    <div className="text-center mt-5">
-                      {/* we'll save the data in the DB in this button, 
-              meanwhile I'll use Link and props until de endpoints are ready*/}
-                      <Link to="/checkout/thankyou">
-                        <button className="btn checkout-btn">
-                          Confirm Order
-                        </button>
-                      </Link>
-                    </div>
+                    <PaymentMethods
+                      email={shippingFormValues.email}
+                      name={shippingFormValues.name}
+                    />
                   </div>
                 )}
               </div>
