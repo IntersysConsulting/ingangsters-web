@@ -1,7 +1,10 @@
 import axios from "axios";
 import { API } from "../../../../config";
 import store from "../../../../store";
-import { createNotificationSuccess } from "../../../../actions/creators/notification";
+import {
+  createNotificationSuccess,
+  createNotificationError
+} from "../../../../actions/creators/notification";
 import { idNotificationGenerator } from "../../../../utils/idGenerator";
 const getToken = () => localStorage.getItem("token");
 
@@ -31,10 +34,18 @@ export const updateProduct = async (data, form) => {
         "Product updated",
         "Saved successfully"
       )(store.dispatch);
-      window.location.pathname = "admin/product/" + data._id;
+      setTimeout(
+        (window.location.pathname = "admin/product/" + data._id),
+        5000
+      );
     }
   } catch (err) {
     console.log(err);
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Try again later"
+    )(store.dispatch);
   }
 };
 
