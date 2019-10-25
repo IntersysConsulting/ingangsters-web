@@ -1,10 +1,10 @@
 import React from "react";
 import "./PaymentMethods.css";
 import "../../../css/colors.css";
-import { Elements, StripeProvider } from "react-stripe-elements";
-import CheckoutForm from "./Stripe/StripePayment";
-import StripeScriptLoader from "react-stripe-script-loader";
-import Modal from "react-bootstrap/Modal";
+import { STRIPE_KEY } from "../../../config";
+import StripeCheckout from "react-stripe-checkout";
+import { API } from "../../../config";
+import axios from "axios";
 
 class PaymentMethods extends React.Component {
   constructor(props) {
@@ -32,31 +32,33 @@ class PaymentMethods extends React.Component {
     }
   }
 
+  async submit(token) {
+    const endpoint = `${API}/charge`;
+    const currentCart = JSON.parse(localStorage.getItem("cart"));
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      customer: {
+        email: token.email,
+        source: token.id
+      },
+      items: currentCart,
+      description: "Ecomerce Payment"
+    };
+    try {
+      await axios.post(endpoint, config);
+      console.log("Success!");
+      localStorage.removeItem("cart");
+      window.location.replace("/checkout/thankyou");
+    } catch (error) {
+      console.error("Problem: ", error.response.data.message);
+    }
+  }
+
   render() {
     return (
       <div className="PaymentMethods">
-        <Modal
-          size="sm"
-          show={this.state.showCards}
-          onHide={this.handleClose}
-          className="modal_stripe"
-        >
-          <Modal.Body>
-            <StripeScriptLoader
-              uniqueId="stripe-js"
-              script="https://js.stripe.com/v3/"
-              async
-            >
-              <StripeProvider apiKey="pk_test_YKhTs9fArUxweiwKlKKTRRtW00NOfguXTq">
-                <div show="false" className="cardForm">
-                  <Elements>
-                    <CheckoutForm email={this.props.email} />
-                  </Elements>
-                </div>
-              </StripeProvider>
-            </StripeScriptLoader>
-          </Modal.Body>
-        </Modal>
         <h1 className="paymentMethodsTitle">Select Payment Method</h1>
         <br />
 
@@ -105,25 +107,35 @@ class PaymentMethods extends React.Component {
         <br />
 
         <div className="paymentOption">
-          <input
-            id="card"
-            type="radio"
-            value="card"
-            checked={this.state.selectedOption === "card"}
-            onChange={this.radioChange}
-            onClick={this.handleShow}
-            className="paymentButton"
-          />
-
-          <label htmlFor="card" className="paymentTag">
-            <img
-              alt="card"
-              src="/assets/card-logo.png"
-              width="65"
-              height="auto"
+          <StripeCheckout
+            image="/assets/logoColor.png"
+            name={this.props.name}
+            email={this.props.email}
+            stripeKey={STRIPE_KEY}
+            token={this.submit}
+            zipCode
+            panelLabel="Pay Now"
+          >
+            <input
+              id="card"
+              type="radio"
+              value="card"
+              checked={this.state.selectedOption === "card"}
+              onChange={this.radioChange}
+              onClick={this.handleShow}
+              className="paymentButton"
             />
-            Card
-          </label>
+
+            <label htmlFor="card" className="paymentTag">
+              <img
+                alt="card"
+                src="/assets/card-logo.png"
+                width="65"
+                height="auto"
+              />
+              Card
+            </label>
+          </StripeCheckout>
         </div>
       </div>
     );
