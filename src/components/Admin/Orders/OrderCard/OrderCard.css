@@ -1,0 +1,89 @@
+.orderCard {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.orderCard .orderId {
+  color: black;
+  font-weight: bold;
+}
+
+.orderCard .orderStatus {
+  color: var(--orange);
+  font-weight: bold;
+  max-width: 100px;
+  text-align: center;
+}
+
+.orderCard > div {
+  min-height: 55px;
+}
+
+.orderCard .totalContainer {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.orderCard .total {
+  font-weight: normal;
+  color: var(--light-blue);
+  font-size: 20px;
+}
+
+.nextOptionsDropdown {
+  padding-left: 4px;
+}
+
+.nextOptionsDropdown > .dropdown-toggle.btn {
+  padding: 0;
+  font-size: 14px;
+  padding-left: 4px;
+  background-color: var(--dark-grey);
+  border-color: var(--dark-grey);
+}
+
+.nextOptionsDropdown > .dropdown-toggle.btn:active {
+  background-color: var(--dark-grey);
+}
+
+.nextOptionsDropdown > .dropdown-menu > .dropdown-item {
+  font-size: 13px;
+}
+
+.nextOptionsDropdown > .dropdown-menu > .dropdown-item:active {
+  background-color: var(--green);
+}
+
+.detailsButton {
+  text-decoration: underline;
+  color: var(--light-blue);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 720px) {
+  .orderCard {
+    flex: 0 0 40%;
+    min-width: 300px;
+  }
+  .orderCard .totalContainer {
+    font-size: 15px;
+  }
+  .orderCard .total {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .orderCard {
+    width: 90%;
+    flex: none;
+  }
+}

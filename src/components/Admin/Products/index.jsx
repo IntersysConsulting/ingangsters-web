@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "./Grid/Grid";
-import Paginator from "./Paginator/Paginator";
+import Paginator from "../../UI/Paginator/Paginator";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
 import { Link } from "react-router-dom";

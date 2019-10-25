@@ -1,6 +1,6 @@
 import React from "react";
 import UserGrid from "./UserGrid/UserGrid";
-import Paginator from "../Products/Paginator/Paginator";
+import Paginator from "../../UI/Paginator/Paginator";
 import { connect } from "react-redux";
 import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 import Button from "react-bootstrap/Button";

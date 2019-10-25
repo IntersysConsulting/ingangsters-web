@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import AdminNavBar from "../../NavBars/AdminNavBar/AdminNavBar";
 import AdminProducts from "../Products/index";
 import UsersGrid from "../Users/AdminUsers";
+import OrdersList from "../Orders";
 import SideBar from "../../UI/SideBar/SideBar";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
 
@@ -31,10 +32,8 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
           </div>
         </div>
       ) : (
-        <div id="AdminOrdersContent">
-          <center>
-            <p>Orders</p>
-          </center>
+        <div id="AdminPageContent">
+          <OrdersList />
         </div>
       )}
     </div>
@@ -43,7 +42,7 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
 
 function mapStateToProps(state) {
   return {
-    adminOption: state.adminTabBar.activeButton
+    adminOption: state.adminTabBar.activeButton + "!"
   };
 }
 
