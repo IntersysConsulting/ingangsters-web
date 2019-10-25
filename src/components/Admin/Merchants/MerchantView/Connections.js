@@ -1,6 +1,5 @@
 import { API } from "../../../../config";
 import axios from "axios";
-
 export async function loadAdmin(id, setData) {
   const config = {
     headers: {

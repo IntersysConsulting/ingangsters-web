@@ -1,6 +1,8 @@
 import axios from "axios";
 import { API } from "../../../../config";
-
+import store from "../../../../store";
+import { createNotificationSuccess } from "../../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../../utils/idGenerator";
 const getToken = () => localStorage.getItem("token");
 
 export const updateProduct = async (data, form) => {
@@ -24,7 +26,11 @@ export const updateProduct = async (data, form) => {
   try {
     const res = await axios.put(endpoint, body, config);
     if (res.status) {
-      alert("Saved successfully");
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product updated",
+        "Saved successfully"
+      )(store.dispatch);
       window.location.pathname = "admin/product/" + data._id;
     }
   } catch (err) {
