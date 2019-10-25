@@ -12,7 +12,10 @@ import {
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
-import { createNotificationError } from "./notification";
+import {
+  createNotificationError,
+  createNotificationSuccess
+} from "./notification";
 import { idNotificationGenerator } from "../../utils/idGenerator";
 
 export const login = (email, password) => async dispatch => {
@@ -28,6 +31,13 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
+    dispatch(
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Valid credentials",
+        "Login successful"
+      )
+    );
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL
