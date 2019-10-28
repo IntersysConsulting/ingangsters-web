@@ -3,7 +3,8 @@ import axios from "axios";
 import store from "../../../../store";
 import {
   createNotificationSuccess,
-  createNotificationError
+  createNotificationError,
+  createNotificationInfo
 } from "../../../../actions/creators/notification";
 import { idNotificationGenerator } from "../../../../utils/idGenerator";
 
@@ -82,7 +83,11 @@ export async function createNewAdmin(evt) {
     password2 = evt.target["merchantPasswordConfirm"].value;
 
   if (password1 !== password2) {
-    alert("Passwords must match");
+    createNotificationInfo(
+      idNotificationGenerator(),
+      "Passwords must match",
+      "Please check the fields"
+    );
     evt.target["merchantPasswordConfirm"].focus();
   } else {
     const endpoint = `${API}/admin/create`;
