@@ -11,36 +11,37 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
     getOrder(match.params.id);
   }, [getOrder, match.params.id]);
 
-  console.log(order);
-
-  const displayProducts = () => (
-    <table className="table">
-      <thead>
-        <tr>
-          <th scope="col">Products</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        {order.items.map(product => (
-          <tr key={`order${order._id}-product-${product._id}`}>
-            <td>{product.name}</td>
-            <td>{product.quantity}</td>
-            <td className="order-products-price">
-              {prettifyCents(product.price)}
-            </td>
+  const displayProducts = text => {
+    console.log("Display products", text);
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Products</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cost</th>
           </tr>
-        ))}
-        <tr>
-          <th scope="row" colSpan="2">
-            Total
-          </th>
-          <td className="order-total-price">{prettifyCents(order.total)}</td>
-        </tr>
-      </tbody>
-    </table>
-  );
+        </thead>
+        <tbody>
+          {order.items.map(product => (
+            <tr key={`order${order._id}-product-${product._id}`}>
+              <td>{product.name}</td>
+              <td>{product.quantity}</td>
+              <td className="order-products-price">
+                {prettifyCents(product.price)}
+              </td>
+            </tr>
+          ))}
+          <tr>
+            <th scope="row" colSpan="2">
+              Total
+            </th>
+            <td className="order-total-price">{prettifyCents(order.total)}</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
 
   return loading ? (
     <Loading />
@@ -83,7 +84,7 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
             <div className="my-4">
               <p>{`Created at: ${order.createdAt}`}</p>
               <p>{`Updated at: ${order.updatedAt}`}</p>
-              {displayProducts()}
+              {displayProducts("hey")}
             </div>
           </div>
         </div>

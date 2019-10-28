@@ -50,7 +50,7 @@ import { API } from "../../config";
 
 export const getOrder = id => async dispatch => {
   try {
-    const res = await axios.get(`http://localhost:5000/order/${id}`);
+    const res = await axios.get(`${API}/order/${id}`);
     dispatch({
       type: GET_ORDER_BY_ID,
       payload: res.data
