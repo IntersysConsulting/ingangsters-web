@@ -22,7 +22,7 @@ const reducerCombined = combineReducers({
   checkout,
   checkoutForms,
   filters,
-  adminOrders
+  adminOrders,
   notification
 });
 
