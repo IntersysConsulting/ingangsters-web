@@ -3,8 +3,10 @@ import "./PaymentMethods.css";
 import "../../../css/colors.css";
 import { STRIPE_KEY } from "../../../config";
 import StripeCheckout from "react-stripe-checkout";
+import { createOrder } from "../../../actions/creators/orders";
 import { API } from "../../../config";
 import axios from "axios";
+import { connect } from "react-redux";
 
 class PaymentMethods extends React.Component {
   constructor(props) {
@@ -15,7 +17,10 @@ class PaymentMethods extends React.Component {
       show: false
     };
     this.radioChange = this.radioChange.bind(this);
+    const { auth } = this.props;
+    const { checkout } = this.props.checkout;
   }
+
   handleClose = () => this.setState({ showCards: false });
   handleShow = () => this.setState({ showCards: true });
   radioChange(e) {
@@ -49,6 +54,16 @@ class PaymentMethods extends React.Component {
     try {
       await axios.post(endpoint, config);
       console.log("Success!");
+
+      if (this.auth.user != null) {
+        createOrder(
+          true,
+          this.auth.user.id,
+          this.checkout.formValues.shippingFormValues,
+          this.checkout.formValues.billingFormValues,
+          currentCart
+        );
+      }
       localStorage.removeItem("cart");
       window.location.replace("/checkout/thankyou");
     } catch (error) {
@@ -141,4 +156,8 @@ class PaymentMethods extends React.Component {
     );
   }
 }
-export default PaymentMethods;
+
+export default connect(({ auth, checkout }) => ({
+  auth: auth,
+  checkout: checkout
+}))(PaymentMethods);

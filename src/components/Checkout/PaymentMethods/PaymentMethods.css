@@ -31,16 +31,6 @@
   margin-top: 20px;
 }
 
-.modal_stripe {
-  top: 35%;
-
-  align-content: center;
-}
-
-.modal-content {
-  background-color: var(--light-grey);
-  min-width: 350px;
-}
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: hidden;
