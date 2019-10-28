@@ -1,5 +1,12 @@
 import { API } from "../../../../config";
 import axios from "axios";
+import store from "../../../../store";
+import {
+  createNotificationSuccess,
+  createNotificationError
+} from "../../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../../utils/idGenerator";
+
 export async function loadAdmin(id, setData) {
   const config = {
     headers: {
@@ -49,11 +56,19 @@ export async function deleteAdmin(id) {
   try {
     const res = await axios.delete(endpoint, config);
     if (res.status === 200) {
-      alert("Successfully deleted");
-      window.location.replace("/admin/dashboard");
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Admin deleted",
+        "Saved successfully"
+      )(store.dispatch);
+      setTimeout((window.location.replace("/admin/dashboard"), 5000));
     }
   } catch (err) {
-    alert("An error occurred. Try again later");
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "The user wasn't deleted, try again later"
+    )(store.dispatch);
   }
 }
 
