@@ -37,11 +37,6 @@ class PaymentMethods extends React.Component {
       });
     }
   }
-  render_redirect() {
-    if (this.state.redirect) {
-      console.log("HELLO");
-    }
-  }
   updateState() {
     this.setState({ redirect: true });
   }
@@ -83,10 +78,9 @@ class PaymentMethods extends React.Component {
         );
       }
       localStorage.removeItem("cart");
-      console.log(this.state.redirect);
       this.updateState();
     } catch (error) {
-      console.error("Problem: ");
+      console.error("Problem: ", error);
     }
   }
 
