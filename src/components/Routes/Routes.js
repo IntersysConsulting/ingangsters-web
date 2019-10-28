@@ -8,7 +8,7 @@ import Signup from "../Sign/Signup";
 import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
 import ProductDetails from "../Home/Products/ProductDetails/ProductsDetails";
-import OrderDetails from "../OrderDetails/OrderDetails";
+import OrderDetails from "../Admin/Orders/OrderDetails/OrderDetails";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import { Provider } from "react-redux";

@@ -25,8 +25,6 @@ const reducerCombined = combineReducers({
   checkout,
   checkoutForms,
   filters,
-  adminOrders,
-  orders
   adminOrders
   filters,
   orders

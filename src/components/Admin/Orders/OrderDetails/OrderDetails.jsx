@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import AdminNavBar from "../NavBars/AdminNavBar/AdminNavBar";
+import AdminNavBar from "../../../NavBars/AdminNavBar/AdminNavBar";
 import { connect } from "react-redux";
-import { getOrder } from "../../actions/creators/orders";
-import Loading from "../UI/Loading/Loading";
-import { prettifyCents } from "../../utils/utils";
+import { getOrder } from "../../../../actions/creators/orders";
+import Loading from "../../../UI/Loading/Loading";
+import { prettifyCents, prettifyStatus } from "../../../../utils/utils";
 import "./OrderDetails.css";
 
 const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
@@ -11,8 +11,10 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
     getOrder(match.params.id);
   }, [getOrder, match.params.id]);
 
-  const displayProducts = text => {
-    console.log("Display products", text);
+  const checkUserRole = () =>
+    order.user.guest == "guest" ? "Unregistered" : "Registered";
+
+  const displayProducts = () => {
     return (
       <table className="table">
         <thead>
@@ -49,7 +51,9 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
     <div>
       <AdminNavBar />
       <div className="container-fluid">
-        <h3 className="mt-4">{`Order ID: #${order._id}`}</h3>
+        <h3 className="mt-4">
+          Order ID:<span className="text-muted">{` #${order._id}`}</span>
+        </h3>
         <hr />
         <div className="row">
           <div className="col">
@@ -58,7 +62,7 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
                 <tr>
                   <th scope="row">Name</th>
                   <td>Mark</td>
-                  <td>Registered</td>
+                  <td className="order-details-user-role">{checkUserRole()}</td>
                 </tr>
                 <tr>
                   <th scope="row">Email</th>
@@ -80,10 +84,15 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
             </div>
           </div>
           <div className="col">
-            <h4>{`Order Status: ${order.status}`}</h4>
+            <h4>
+              Order Status:
+              <span className="order-details-status">{` ${prettifyStatus(
+                order.status
+              )}`}</span>
+            </h4>
             <div className="my-4">
               <p>{`Created at: ${order.createdAt}`}</p>
-              <p>{`Updated at: ${order.updatedAt}`}</p>
+              <p>{`Last update at: ${order.updatedAt}`}</p>
               {displayProducts("hey")}
             </div>
           </div>

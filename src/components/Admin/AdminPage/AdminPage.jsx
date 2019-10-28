@@ -7,7 +7,6 @@ import UsersGrid from "../Users/AdminUsers";
 import OrdersList from "../Orders";
 import SideBar from "../../UI/SideBar/SideBar";
 import { fetchProducts } from "../../../actions/creators/adminProducts";
-import { Link } from "react-router-dom";
 
 const AdminPage = ({ adminOption, fetchProducts }) => {
   return (

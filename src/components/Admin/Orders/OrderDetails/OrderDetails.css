@@ -6,3 +6,11 @@
   color: var(--light-blue);
   font-weight: bold;
 }
+
+.order-details-status {
+  color: var(--orange);
+}
+
+.order-details-user-role {
+  color: var(--green);
+}

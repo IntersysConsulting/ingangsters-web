@@ -22,3 +22,11 @@ function completeZeros(x) {
     else return "0" + x;
   } else return x;
 }
+
+export function prettifyStatus(currentStatus) {
+  const wordsArray = currentStatus.split("_");
+  const uncapitalizedArray = wordsArray.map(word => {
+    return word[0] + word.substring(1).toLowerCase();
+  });
+  return uncapitalizedArray.join(" ");
+}
