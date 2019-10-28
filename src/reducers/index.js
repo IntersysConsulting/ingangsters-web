@@ -10,6 +10,8 @@ import checkout from "./checkout";
 import filters from "./filters";
 import adminUsers from "./adminUsers";
 import adminOrders from "./adminOrders";
+import orders from "./orders";
+
 const reducerCombined = combineReducers({
   navBar,
   auth,
@@ -21,7 +23,8 @@ const reducerCombined = combineReducers({
   checkout,
   checkoutForms,
   filters,
-  adminOrders
+  adminOrders,
+  orders
 });
 
 export const initialState = {

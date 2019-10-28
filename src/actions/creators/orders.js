@@ -15,7 +15,8 @@ export const createOrder = (
       "Content-Type": "application/json"
     }
   };
-  let body = {};
+  billingAddress.zip = parseInt(billingAddress.zip, 10);
+  shippingAddress.zip = parseInt(shippingAddress.zip, 10);
   if (isUser) {
     let body = {
       userId: user,
@@ -23,6 +24,15 @@ export const createOrder = (
       shipping_address: shippingAddress,
       items: itemsList
     };
+    try {
+      const response = await axios.post(`${API}/orders/create`, body, config);
+      dispatch({
+        type: types.CREATE_ORDER,
+        order_id: response.data
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
   } else {
     let body = {
       name: user.name,
@@ -31,11 +41,14 @@ export const createOrder = (
       shipping_address: shippingAddress,
       items: itemsList
     };
-  }
-
-  try {
-    await axios.post(`${API}/orders/create`, body, config);
-  } catch (err) {
-    console.log(err.response);
+    try {
+      const response = await axios.post(`${API}/orders/create`, body, config);
+      dispatch({
+        type: types.CREATE_ORDER,
+        order_id: response.data
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
   }
 };
