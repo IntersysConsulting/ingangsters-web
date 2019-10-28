@@ -1,11 +1,26 @@
-.notify-container {
-  position: fixed;
-  width: 25%;
-  z-index: 100;
-  margin-right: 10px;
-  float: right;
-  left: 74%;
-  bottom: 0;
-  display: flex;
-  flex-direction: column-reverse;
+@media screen and (min-width: 501px) {
+  .notify-container {
+    position: fixed;
+    width: 25%;
+    z-index: 100;
+    margin-right: 10px;
+    float: right;
+    left: 74%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .notify-container {
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 100%;
+  }
+  .notify-container > .content {
+    width: 95%;
+    margin: auto;
+  }
 }
