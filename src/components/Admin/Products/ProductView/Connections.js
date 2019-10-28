@@ -170,11 +170,19 @@ export const removeProduct = async productID => {
     const response = await axios.delete(endpoint, config);
     const { status } = response;
     if (status === 200) {
-      alert("Removed successfully");
-      window.location.pathname = "admin/dashboard";
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product removed",
+        "Removed successfully"
+      )(store.dispatch);
+      setTimeout((window.location.pathname = "admin/dashboard"), 5000);
     }
   } catch (err) {
     console.log(err);
-    alert("An error occurred");
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Product was not removed, try again later"
+    )(store.dispatch);
   }
 };
