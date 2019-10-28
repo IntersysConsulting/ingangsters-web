@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
         ...state,
         formValues: formValues
       };
+
     default:
       return state;
   }

@@ -27,6 +27,14 @@
   margin-left: 10px;
 }
 
+.cardForm {
+  margin-top: 20px;
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 @media screen and (max-width: 550px) {
   .paymentOption {
     width: 100% !important;

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class ThankYou extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: null };
+    console.log(this.props.location.state);
   }
 
   renderContent() {
@@ -19,11 +19,14 @@ class ThankYou extends React.Component {
           <p className="ty-order-sent">Your order was sent to:</p>
           <div className="address-data">
             <p className="address-data-text">
-              Name Lastname <br />
-              Street 0000 <br />
-              City, State, Country <br />
-              ZIP <br />
-              0000000000
+              {this.props.location.state.name} <br />
+              {this.props.location.state.address.street}{" "}
+              {this.props.location.state.address.number} <br />
+              {this.props.location.state.address.city},{" "}
+              {this.props.location.state.address.state},{" "}
+              {this.props.location.state.address.country} <br />
+              {this.props.location.state.address.zip} <br />
+              {this.props.location.state.address.phone}
             </p>
           </div>
           <Link to="/">
