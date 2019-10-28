@@ -105,14 +105,26 @@ export async function createNewAdmin(evt) {
     try {
       const res = await axios.post(endpoint, data, config);
       if (res.status === 200) {
-        alert("Admin created correctly");
-        window.location.pathname = "admin/dashboard";
+        createNotificationSuccess(
+          idNotificationGenerator(),
+          "Admin created",
+          "Admin user created successfully"
+        )(store.dispatch);
+        setTimeout((window.location.pathname = "admin/dashboard"), 5000);
       } else {
-        alert("An error occurred. Try again later");
-        window.location.reload();
+        createNotificationError(
+          idNotificationGenerator(),
+          "Something went wrong",
+          "Admin user was not created, try again later"
+        )(store.dispatch);
+        setTimeout(window.location.reload(), 5000);
       }
     } catch (err) {
-      alert("An error occurred. Try again later");
+      createNotificationError(
+        idNotificationGenerator(),
+        "Something went wrong",
+        "Try again later"
+      )(store.dispatch);
     }
   }
 }
@@ -122,7 +134,11 @@ export async function updateAdmin(evt, id) {
     password2 = evt.target["merchantPasswordConfirm"].value;
 
   if (password1 !== password2) {
-    alert("Passwords must match");
+    createNotificationInfo(
+      idNotificationGenerator(),
+      "Passwords must match",
+      "Please check the fields"
+    );
     evt.target["merchantPasswordConfirm"].focus();
   } else {
     console.log("Updating...");
@@ -149,10 +165,20 @@ export async function updateAdmin(evt, id) {
       const res = await axios.put(endpoint, data, config);
       console.log(res);
       if (res.status === 200) window.location.reload();
-      else alert("An error occurred: ");
+      else {
+        createNotificationError(
+          idNotificationGenerator(),
+          "Something went wrong",
+          "Try again later"
+        )(store.dispatch);
+      }
     } catch (err) {
       console.log(err);
-      alert("An error occurred, try again later");
+      createNotificationError(
+        idNotificationGenerator(),
+        "Something went wrong",
+        "Try again later"
+      )(store.dispatch);
     }
   }
 }
