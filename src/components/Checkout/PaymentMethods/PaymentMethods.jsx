@@ -149,6 +149,7 @@ class PaymentMethods extends React.Component {
             <div className="paymentOption">
               <StripeCheckout
                 image="/assets/logoColor.png"
+                locale="en"
                 name={this.props.name}
                 email={this.props.email}
                 stripeKey={STRIPE_KEY}
@@ -179,7 +180,6 @@ class PaymentMethods extends React.Component {
             </div>
           </div>
         )}
-        ;
       </div>
     );
   }
