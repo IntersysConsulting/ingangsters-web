@@ -11,6 +11,8 @@ import filters from "./filters";
 import adminUsers from "./adminUsers";
 import adminOrders from "./adminOrders";
 import notification from "./notification";
+import orders from "./orders";
+
 const reducerCombined = combineReducers({
   navBar,
   auth,
@@ -23,7 +25,8 @@ const reducerCombined = combineReducers({
   checkoutForms,
   filters,
   adminOrders,
-  notification
+  notification,
+  orders
 });
 
 export const initialState = {
