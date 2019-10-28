@@ -40,7 +40,6 @@ export const updateProduct = async (data, form) => {
       );
     }
   } catch (err) {
-    console.log(err);
     createNotificationError(
       idNotificationGenerator(),
       "Something went wrong",
@@ -71,7 +70,6 @@ export const loadProduct = async (id, setData) => {
       requireImage: false
     }));
   } catch (err) {
-    console.log(err);
     window.location.pathname = "productNotFound";
   }
 };
@@ -111,8 +109,6 @@ export const newProduct = async (data, form) => {
       "Something went wrong",
       "Product not saved, try again later"
     )(store.dispatch);
-
-    console.log(err);
   }
 };
 
@@ -178,7 +174,6 @@ export const removeProduct = async productID => {
       setTimeout((window.location.pathname = "admin/dashboard"), 5000);
     }
   } catch (err) {
-    console.log(err);
     createNotificationError(
       idNotificationGenerator(),
       "Something went wrong",

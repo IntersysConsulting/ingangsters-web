@@ -85,7 +85,6 @@ export const adminLogin = (email, password) => async dispatch => {
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: LOGIN_ADMINFAIL
     });

@@ -28,7 +28,6 @@ const PlusLessButtons = ({
           if (data.stock >= data.quantity + 1) {
             addProductToCart(data, data._id, uploadAndUpdateCart);
           } else {
-            console.log("bark");
             createNotificationInfo(
               idNotificationGenerator(),
               "We are sorry",

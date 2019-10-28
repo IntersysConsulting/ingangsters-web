@@ -63,7 +63,6 @@ const ProductCard = ({
                     uploadAndUpdateCart,
                     createNotificationSuccess
                   );
-                  //addProductToCart(product, product._id, uploadAndUpdateCart);
                 }}
               >
                 Add <FaCartPlus />
@@ -72,7 +71,6 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      {/* {console.log(useSelector(state => state.createNotificationSuccess))} */}
     </div>
   );
 };

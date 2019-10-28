@@ -163,7 +163,7 @@ export async function updateAdmin(evt, id) {
 
     try {
       const res = await axios.put(endpoint, data, config);
-      console.log(res);
+
       if (res.status === 200) window.location.reload();
       else {
         createNotificationError(
@@ -173,7 +173,6 @@ export async function updateAdmin(evt, id) {
         )(store.dispatch);
       }
     } catch (err) {
-      console.log(err);
       createNotificationError(
         idNotificationGenerator(),
         "Something went wrong",

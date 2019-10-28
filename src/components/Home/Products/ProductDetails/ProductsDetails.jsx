@@ -114,7 +114,6 @@ const ProductDetails = ({
                       uploadAndUpdateCart,
                       createNotificationSuccess
                     );
-                    console.log("bark");
                   }}
                 >
                   Add to cart

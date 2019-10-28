@@ -45,7 +45,6 @@ export const adminSearchUser = params => async dispatch => {
       payload: res.data.data
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.ADMIN_USER_NO_FOUND,
       payload: error
