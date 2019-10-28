@@ -32,7 +32,7 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
           </div>
         </div>
       ) : (
-        <div id="AdminPageContent">
+        <div id="AdminOrdersContent">
           <OrdersList />
         </div>
       )}
@@ -42,7 +42,7 @@ const AdminPage = ({ adminOption, fetchProducts }) => {
 
 function mapStateToProps(state) {
   return {
-    adminOption: state.adminTabBar.activeButton + "!"
+    adminOption: state.adminTabBar.activeButton
   };
 }
 
