@@ -20,6 +20,7 @@ function FastLoginModal({ login, isAuthenticated }) {
 
   const onSubmit = async event => {
     event.preventDefault();
+    handleClose();
     login(email, password);
   };
   const [show, setShow] = React.useState(false);

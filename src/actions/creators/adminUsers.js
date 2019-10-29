@@ -1,6 +1,8 @@
 import * as types from "../types/adminUsers";
 import { API } from "../../config";
 import axios from "axios";
+import { createNotificationError } from "./notification";
+import { idNotificationGenerator } from "../../utils/idGenerator";
 
 export const updateAdminUsers = adminUserList => ({
   type: types.UPDATE_ADMIN_USER,
@@ -43,11 +45,17 @@ export const adminSearchUser = params => async dispatch => {
       payload: res.data.data
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: types.ADMIN_USER_NO_FOUND,
       payload: error
     });
+    dispatch(
+      createNotificationError(
+        idNotificationGenerator(),
+        "User not found",
+        "There is not an user with that name/email"
+      )
+    );
   }
 };
 export const fetchAdminUsers = pageRequested => async dispatch => {

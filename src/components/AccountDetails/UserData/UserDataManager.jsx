@@ -25,6 +25,7 @@ export const updateUserData = async userData => {
 };
 
 export const changeMyPassword = async passwordsObject => {
+  var passwordChanged = false;
   try {
     const body = JSON.stringify({
       oldpassword: passwordsObject.oldpassword,
@@ -39,15 +40,10 @@ export const changeMyPassword = async passwordsObject => {
     };
     const res = await axios.put(`${API}/user/changepassword`, body, config);
     if (res.status === 200) {
-      //WIP: Alert password changed correctly, redirecting to login.
-      alert("Updated correctly");
-      setTimeout(function() {
-        localStorage.removeItem("token");
-        window.location.pathname = "login";
-        // window.location.reload();
-      }, 3000);
+      passwordChanged = true;
+      return passwordChanged;
     } else {
-      //WIP: Show alert, error.
+      return passwordChanged;
     }
   } catch (err) {
     console.log(err.response);

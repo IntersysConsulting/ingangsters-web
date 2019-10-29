@@ -2,9 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { addProductToCart, removeProductFromCart } from "../../ProductsManager";
 import { uploadAndUpdateCart } from "../../../../actions/creators/cart";
+import { createNotificationInfo } from "../../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../../utils/idGenerator";
 import "./PlusLessButtons.css";
 
-const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
+const PlusLessButtons = ({
+  data,
+  uploadAndUpdateCart,
+  createNotificationInfo
+}) => {
   return (
     <React.Fragment>
       <button
@@ -22,7 +28,11 @@ const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
           if (data.stock >= data.quantity + 1) {
             addProductToCart(data, data._id, uploadAndUpdateCart);
           } else {
-            //WIP: Set alert, without stock
+            createNotificationInfo(
+              idNotificationGenerator(),
+              "We are sorry",
+              "That is all our stock"
+            );
           }
         }}
       >
@@ -34,5 +44,5 @@ const PlusLessButtons = ({ data, uploadAndUpdateCart }) => {
 
 export default connect(
   null,
-  { uploadAndUpdateCart }
+  { uploadAndUpdateCart, createNotificationInfo }
 )(PlusLessButtons);

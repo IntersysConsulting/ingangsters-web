@@ -12,6 +12,11 @@ import {
 } from "../../actions/types/auth";
 import axios from "axios";
 import { API } from "../../config";
+import {
+  createNotificationError,
+  createNotificationSuccess
+} from "./notification";
+import { idNotificationGenerator } from "../../utils/idGenerator";
 
 export const login = (email, password) => async dispatch => {
   const config = {
@@ -26,11 +31,24 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
+    dispatch(
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Valid credentials",
+        "Login successful"
+      )
+    );
   } catch (err) {
-    console.log(err);
     dispatch({
       type: LOGIN_FAIL
     });
+    dispatch(
+      createNotificationError(
+        idNotificationGenerator(),
+        "Login fail",
+        "Invalid credentials"
+      )
+    );
   }
 };
 
@@ -66,10 +84,16 @@ export const adminLogin = (email, password) => async dispatch => {
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: LOGIN_ADMINFAIL
     });
+    dispatch(
+      createNotificationError(
+        idNotificationGenerator(),
+        "Login fail",
+        "Invalid credentials"
+      )
+    );
   }
 };
 

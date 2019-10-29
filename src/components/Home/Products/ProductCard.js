@@ -6,8 +6,30 @@ import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 import { prettifyCents } from "../../../utils/utils";
+import { createNotificationSuccess } from "../../../actions/creators/notification";
+import { idNotificationGenerator, charCount } from "../../../utils/idGenerator";
 
-const ProductCard = ({ product, uploadAndUpdateCart }) => {
+// import { useSelector } from "react-redux";
+
+function executeFunctionsAfterAddProduct(
+  product,
+  productID,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+) {
+  addProductToCart(product, productID, uploadAndUpdateCart);
+  createNotificationSuccess(
+    idNotificationGenerator(),
+    "Product added",
+    charCount(product.name) + " added to the cart."
+  );
+}
+
+const ProductCard = ({
+  product,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+}) => {
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -35,8 +57,12 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
                 type="button"
                 className="btn btn-product-card btn-block"
                 onClick={() => {
-                  //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
-                  addProductToCart(product, product._id, uploadAndUpdateCart);
+                  executeFunctionsAfterAddProduct(
+                    product,
+                    product._id,
+                    uploadAndUpdateCart,
+                    createNotificationSuccess
+                  );
                 }}
               >
                 Add <FaCartPlus />
@@ -51,5 +77,5 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
 
 export default connect(
   null,
-  { uploadAndUpdateCart }
+  { uploadAndUpdateCart, createNotificationSuccess }
 )(ProductCard);
