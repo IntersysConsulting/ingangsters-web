@@ -12,7 +12,7 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
   }, [getOrder, match.params.id]);
 
   const checkUserRole = () =>
-    order.user.guest == "guest" ? "Unregistered" : "Registered";
+    order.user.guest === "guest" ? "Unregistered" : "Registered";
 
   const displayProducts = () => {
     return (
@@ -61,12 +61,20 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
               <tbody>
                 <tr>
                   <th scope="row">Name</th>
-                  <td>Mark</td>
+                  <td>
+                    {order.user.user !== null
+                      ? order.user.user.name
+                      : order.user.guest.name}
+                  </td>
                   <td className="order-details-user-role">{checkUserRole()}</td>
                 </tr>
                 <tr>
                   <th scope="row">Email</th>
-                  <td>john@hotmail.com</td>
+                  <td>
+                    {order.user.user !== null
+                      ? order.user.user.email
+                      : order.user.guest.email}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -93,7 +101,7 @@ const OrderDetails = ({ getOrder, order: { order, loading }, match }) => {
             <div className="my-4">
               <p>{`Created at: ${order.createdAt}`}</p>
               <p>{`Last update at: ${order.updatedAt}`}</p>
-              {displayProducts("hey")}
+              {displayProducts()}
             </div>
           </div>
         </div>

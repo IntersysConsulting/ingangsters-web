@@ -44,21 +44,17 @@ export const createOrder = (
   }
 };
 
-import axios from "axios";
-import { GET_ORDER_BY_ID, ORDER_NOT_FOUND } from "../types/orders";
-import { API } from "../../config";
-
 export const getOrder = id => async dispatch => {
   try {
     const res = await axios.get(`${API}/order/${id}`);
     dispatch({
-      type: GET_ORDER_BY_ID,
+      type: types.GET_ORDER_BY_ID,
       payload: res.data
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: ORDER_NOT_FOUND,
+      type: types.ORDER_NOT_FOUND,
       payload: error
     });
   }
