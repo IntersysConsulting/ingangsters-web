@@ -49,9 +49,10 @@ TC_002 Checkout card payment
     Input Text                          //input[@placeholder='Card number']                                               42424242424242424242
     Input Text                          //input[@placeholder='MM / YY']                                                   0821
     Input Text                          //input[@placeholder='CVC']                                                       791
-    Input Text  //input[@placeholder='ZIP Code']  795
-    Click Element  //*[@id="container"]/section/span[2]/div/div/main/form/nav/div/div/div/button
-    Unselect Frame  
-    #Close Browser
+    Input Text                          //input[@placeholder='ZIP Code']                                                  795
+    Click Element                       //*[@id="container"]/section/span[2]/div/div/main/form/nav/div/div/div/button
+    Unselect Frame
+    Page should contain                 Thank you for shopping with us!
+    Close Browser
 
 
