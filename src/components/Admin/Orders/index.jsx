@@ -10,7 +10,7 @@ import {
   setActiveStatusFilter,
   clearStatusFilter
 } from "../../../actions/creators/adminOrders";
-import { prettifyStatus } from "./OrderCard/OrderCard";
+import { prettifyStatus } from "../../../utils/utils";
 
 const OrdersManagement = ({
   loading,
