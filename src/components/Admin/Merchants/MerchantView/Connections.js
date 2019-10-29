@@ -106,7 +106,6 @@ export async function updateAdmin(evt, id) {
     alert("Passwords must match");
     evt.target["merchantPasswordConfirm"].focus();
   } else {
-    console.log("Updating...");
     const name = [
         evt.target["merchantName"].value,
         evt.target["merchantLastName"].value
@@ -128,7 +127,6 @@ export async function updateAdmin(evt, id) {
 
     try {
       const res = await axios.put(endpoint, data, config);
-      console.log(res);
       if (res.status === 200) window.location.reload();
       else alert("An error occurred: ");
     } catch (err) {

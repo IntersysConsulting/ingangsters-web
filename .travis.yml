@@ -16,6 +16,7 @@ before_install:
 script:
   - docker run -e CI=true ingangsters/react-ecommerce npm test
   - echo REACT_APP_API_URL="$REACT_APP_API_URL" > .env
+  - echo REACT_APP_STRIPE_TEST_KEY="$REACT_APP_STRIPE_TEST_KEY" >> .env
 
 before_deploy:
   - echo THIS IS ABOUT TO DEPLOY

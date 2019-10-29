@@ -10,14 +10,4 @@ describe("SignUp Form", () => {
     const component = shallow(<Signup />);
     expect(component).toMatchSnapshot();
   });
-
-  /* it("it", () => {
-    const wrapper = shallow(<Signup />);
-    //wrapper.find('form').simulate('submit');
-    const signUpForm = wrapper.find("#form").simulate("submit", {
-      preventDefault: () => {
-        console.log("hola mundo");
-      }
-    });
-  }); */
 });

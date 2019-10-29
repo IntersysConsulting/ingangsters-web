@@ -114,7 +114,6 @@ class SignUp extends Component {
               setTimeout(() => {
                 this.setRedirect();
               }, 1500);
-              console.log("Register success");
             } else if (response.type === SIGNUP_FAIL) {
               if (response.status === 409) {
                 this.alertVariant = "danger";
@@ -298,7 +297,10 @@ class SignUp extends Component {
                               className="col-1 text-center icon"
                               onClick={this.toggleShowConfirm}
                             >
-                              <FaEye id="signup-icon-eye-passwordConfirm" size={32} />
+                              <FaEye
+                                id="signup-icon-eye-passwordConfirm"
+                                size={32}
+                              />
                             </div>
                           </InputGroup.Prepend>
                           <Form.Control.Feedback
