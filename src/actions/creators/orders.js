@@ -43,3 +43,19 @@ export const createOrder = (
     console.log(err.response);
   }
 };
+
+export const getOrder = id => async dispatch => {
+  try {
+    const res = await axios.get(`${API}/order/${id}`);
+    dispatch({
+      type: types.GET_ORDER_BY_ID,
+      payload: res.data
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.ORDER_NOT_FOUND,
+      payload: error
+    });
+  }
+};
