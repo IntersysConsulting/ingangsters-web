@@ -8,6 +8,7 @@ import Signup from "../Sign/Signup";
 import Checkout from "../Checkout/Checkout";
 import Cart from "../Cart/Cart";
 import ProductDetails from "../Home/Products/ProductDetails/ProductsDetails";
+import OrderDetails from "../Admin/Orders/OrderDetails/OrderDetails";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import { Provider } from "react-redux";
@@ -38,6 +39,7 @@ function Routes() {
           <AdminRoute path="/admin/merchant/:id" component={MerchantView} />
           <AdminRoute path="/admin/dashboard" exact component={AdminPage} />
           <AdminRoute path="/admin/product/:id" component={Product} />
+          <AdminRoute path="/admin/order/:id" component={OrderDetails} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/admin/login" exact component={LoginAdmin} />

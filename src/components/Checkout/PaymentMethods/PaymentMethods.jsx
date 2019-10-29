@@ -58,9 +58,9 @@ class PaymentMethods extends React.Component {
       await axios.post(endpoint, config);
 
       if (this.props.auth.user != null) {
-        createOrder(
+        this.props.createOrder(
           true,
-          this.props.auth.user.id,
+          this.props.auth.user._id,
           this.props.checkout.formValues.shippingFormValues,
           this.props.checkout.formValues.billingFormValues,
           currentCart
@@ -188,16 +188,8 @@ class PaymentMethods extends React.Component {
 function mapStateToProps(state) {
   return { auth: state.auth, checkout: state.checkout };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    createOrder(isUser, user, billingAddress, shippingAddress, itemsList) {
-      dispatch(
-        createOrder(isUser, user, billingAddress, shippingAddress, itemsList)
-      );
-    }
-  };
-}
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { createOrder }
 )(PaymentMethods);

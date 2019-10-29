@@ -13,7 +13,6 @@ import {
   saveFormValues
 } from "../../actions/creators/checkout";
 import StepProgressBar from "../UI/StepProgressBar/StepProgressBar";
-import { Link } from "react-router-dom";
 
 const Checkout = ({
   isAuthenticated,
@@ -261,9 +260,6 @@ const Checkout = ({
         zip: billingAddressForm.elements.zip.value
       };
     }
-    console.log("shippingFormValues", shippingFormValues);
-    console.log("billingAddressForm", billingFormValues);
-
     saveFormValuesAction({
       shippingFormValues,
       billingFormValues,

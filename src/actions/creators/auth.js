@@ -55,7 +55,6 @@ export const login = (email, password) => async dispatch => {
 export const checkPassword = password => async dispatch => {
   const AuthStr = `Bearer ${localStorage.getItem("token")}`;
   const body = JSON.stringify({ password });
-  console.log(body);
   try {
     const res = await axios.post(`${API}/admin/confirm`, body, {
       headers: { "Content-Type": "application/json", Authorization: AuthStr }
