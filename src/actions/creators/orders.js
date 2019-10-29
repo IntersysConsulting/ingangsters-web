@@ -1,5 +1,4 @@
 import * as types from "../types/orders";
-import { async } from "q";
 import axios from "axios";
 import { API } from "../../config";
 
@@ -17,38 +16,30 @@ export const createOrder = (
   };
   billingAddress.zip = parseInt(billingAddress.zip, 10);
   shippingAddress.zip = parseInt(shippingAddress.zip, 10);
+  let body = {};
   if (isUser) {
-    let body = {
+    body = {
       userId: user,
       billing_address: billingAddress,
       shipping_address: shippingAddress,
       items: itemsList
     };
-    try {
-      const response = await axios.post(`${API}/orders/create`, body, config);
-      dispatch({
-        type: types.CREATE_ORDER,
-        order_id: response.data
-      });
-    } catch (err) {
-      console.log(err.response);
-    }
   } else {
-    let body = {
+    body = {
       name: user.name,
       email: user.email,
       billing_address: billingAddress,
       shipping_address: shippingAddress,
       items: itemsList
     };
-    try {
-      const response = await axios.post(`${API}/orders/create`, body, config);
-      dispatch({
-        type: types.CREATE_ORDER,
-        order_id: response.data
-      });
-    } catch (err) {
-      console.log(err.response);
-    }
+  }
+  try {
+    const response = await axios.post(`${API}/orders/create`, body, config);
+    dispatch({
+      type: types.CREATE_ORDER,
+      order_id: response.data
+    });
+  } catch (err) {
+    console.log(err.response);
   }
 };
