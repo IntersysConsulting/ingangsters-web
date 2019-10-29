@@ -6,6 +6,11 @@ import { API } from "../../../../config";
 import { addProductToCart } from "../../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../../actions/creators/cart";
 import Loading from "../../../UI/Loading/Loading";
+import { createNotificationSuccess } from "../../../../actions/creators/notification";
+import {
+  idNotificationGenerator,
+  charCount
+} from "../../../../utils/idGenerator";
 
 import "./ProductDetails.css";
 
@@ -33,7 +38,25 @@ const loadProductData = async (productId, setProductData, setLoading) => {
   }
 };
 
-const ProductDetails = ({ match, uploadAndUpdateCart }) => {
+function executeFunctionsAfterAddProduct(
+  productData,
+  productId,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+) {
+  addProductToCart(productData.name, productId, uploadAndUpdateCart);
+  createNotificationSuccess(
+    idNotificationGenerator(),
+    "Product added",
+    charCount(productData.name) + " added to the cart."
+  );
+}
+
+const ProductDetails = ({
+  match,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+}) => {
   const productId = match.params.id;
   const [productData, setProductData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -85,11 +108,11 @@ const ProductDetails = ({ match, uploadAndUpdateCart }) => {
                 <button
                   className="btn-lg btn-intersys btn-block"
                   onClick={() => {
-                    //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
-                    addProductToCart(
+                    executeFunctionsAfterAddProduct(
                       productData,
                       productId,
-                      uploadAndUpdateCart
+                      uploadAndUpdateCart,
+                      createNotificationSuccess
                     );
                   }}
                 >
@@ -106,5 +129,5 @@ const ProductDetails = ({ match, uploadAndUpdateCart }) => {
 
 export default connect(
   null,
-  { uploadAndUpdateCart }
+  { uploadAndUpdateCart, createNotificationSuccess }
 )(ProductDetails);

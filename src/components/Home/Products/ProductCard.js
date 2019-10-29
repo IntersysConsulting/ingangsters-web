@@ -6,8 +6,30 @@ import "./ProductCard.css";
 import { addProductToCart } from "../../Cart/ProductsManager";
 import { uploadAndUpdateCart } from "../../../actions/creators/cart";
 import { prettifyCents } from "../../../utils/utils";
+import { createNotificationSuccess } from "../../../actions/creators/notification";
+import { idNotificationGenerator, charCount } from "../../../utils/idGenerator";
 
-const ProductCard = ({ product, uploadAndUpdateCart }) => {
+// import { useSelector } from "react-redux";
+
+function executeFunctionsAfterAddProduct(
+  product,
+  productID,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+) {
+  addProductToCart(product, productID, uploadAndUpdateCart);
+  createNotificationSuccess(
+    idNotificationGenerator(),
+    "Product added",
+    charCount(product.name) + " added to the cart."
+  );
+}
+
+const ProductCard = ({
+  product,
+  uploadAndUpdateCart,
+  createNotificationSuccess
+}) => {
   return (
     <div className="container-fluid row-eq-height">
       <div className="row my-1 product-card highlight">
@@ -20,23 +42,27 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
             />
           </Link>
         </div>
-        <div className="col-12 col-sm-12 col-md-8 col-lg-7 content-center">
+        <div className="col-12 col-sm-12 col-md-8 col-lg-7 mb-md-3 content-center">
           <Link to={`/details/${product._id}`} className="title-link">
-            <div className="product-title">
+            <div className="product-title mb-md-2">
               <p className="line-clamp title-link">{product.name}</p>
             </div>
           </Link>
           <div className="row">
-            <div className="col-lg-3 col-md-12 col-sm-12">
+            <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12">
               <p className="price">{prettifyCents(product.price)}</p>
             </div>
-            <div className="col-lg-8 offset-lg-1 col-md-12 col-sm-12">
+            <div className="col-xl-8 col-lg-12 offset-xl-1 col-md-12 col-sm-12">
               <button
                 type="button"
                 className="btn btn-product-card btn-block"
                 onClick={() => {
-                  //WIP: Show animation or alerto to user, "Product added", it can happend in uploadAndUpdateCart
-                  addProductToCart(product, product._id, uploadAndUpdateCart);
+                  executeFunctionsAfterAddProduct(
+                    product,
+                    product._id,
+                    uploadAndUpdateCart,
+                    createNotificationSuccess
+                  );
                 }}
               >
                 Add <FaCartPlus />
@@ -51,5 +77,5 @@ const ProductCard = ({ product, uploadAndUpdateCart }) => {
 
 export default connect(
   null,
-  { uploadAndUpdateCart }
+  { uploadAndUpdateCart, createNotificationSuccess }
 )(ProductCard);

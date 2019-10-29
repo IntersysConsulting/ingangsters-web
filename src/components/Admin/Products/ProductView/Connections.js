@@ -1,6 +1,11 @@
 import axios from "axios";
 import { API } from "../../../../config";
-
+import store from "../../../../store";
+import {
+  createNotificationSuccess,
+  createNotificationError
+} from "../../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../../utils/idGenerator";
 const getToken = () => localStorage.getItem("token");
 
 export const updateProduct = async (data, form) => {
@@ -24,11 +29,22 @@ export const updateProduct = async (data, form) => {
   try {
     const res = await axios.put(endpoint, body, config);
     if (res.status) {
-      alert("Saved successfully");
-      window.location.pathname = "admin/product/" + data._id;
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product updated",
+        "Saved successfully"
+      )(store.dispatch);
+      setTimeout(
+        (window.location.pathname = "admin/product/" + data._id),
+        5000
+      );
     }
   } catch (err) {
-    console.log(err);
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Try again later"
+    )(store.dispatch);
   }
 };
 
@@ -54,7 +70,6 @@ export const loadProduct = async (id, setData) => {
       requireImage: false
     }));
   } catch (err) {
-    console.log(err);
     window.location.pathname = "productNotFound";
   }
 };
@@ -78,12 +93,22 @@ export const newProduct = async (data, form) => {
   try {
     const res = await axios.post(endpoint, body, config);
     if (res.status) {
-      alert("New product created successfully");
-      window.location.pathname = "admin/product/" + res.data.data;
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product added",
+        "New product created successfully"
+      )(store.dispatch);
+      setTimeout(
+        (window.location.pathname = "admin/product/" + res.data.data),
+        5000
+      );
     }
   } catch (err) {
-    alert("Product not saved");
-    console.log(err);
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Product not saved, try again later"
+    )(store.dispatch);
   }
 };
 
@@ -141,11 +166,18 @@ export const removeProduct = async productID => {
     const response = await axios.delete(endpoint, config);
     const { status } = response;
     if (status === 200) {
-      alert("Removed successfully");
-      window.location.pathname = "admin/dashboard";
+      createNotificationSuccess(
+        idNotificationGenerator(),
+        "Product removed",
+        "Removed successfully"
+      )(store.dispatch);
+      setTimeout((window.location.pathname = "admin/dashboard"), 5000);
     }
   } catch (err) {
-    console.log(err);
-    alert("An error occurred");
+    createNotificationError(
+      idNotificationGenerator(),
+      "Something went wrong",
+      "Product was not removed, try again later"
+    )(store.dispatch);
   }
 };

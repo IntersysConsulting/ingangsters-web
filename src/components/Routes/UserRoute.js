@@ -25,7 +25,6 @@ export const getCart = async setLoading => {
         }
       });
     } catch (err) {
-      // console.log(err.response);
       setLoading(false);
     }
   }

@@ -13,7 +13,6 @@ import {
   saveFormValues
 } from "../../actions/creators/checkout";
 import StepProgressBar from "../UI/StepProgressBar/StepProgressBar";
-import { Link } from "react-router-dom";
 
 const Checkout = ({
   isAuthenticated,
@@ -154,16 +153,10 @@ const Checkout = ({
                   </div>
                 ) : (
                   <div>
-                    <PaymentMethods />
-                    <div className="text-center mt-5">
-                      {/* we'll save the data in the DB in this button, 
-              meanwhile I'll use Link and props until de endpoints are ready*/}
-                      <Link to="/checkout/thankyou">
-                        <button className="btn checkout-btn">
-                          Confirm Order
-                        </button>
-                      </Link>
-                    </div>
+                    <PaymentMethods
+                      email={shippingFormValues.email}
+                      name={shippingFormValues.name}
+                    />
                   </div>
                 )}
               </div>
@@ -267,9 +260,6 @@ const Checkout = ({
         zip: billingAddressForm.elements.zip.value
       };
     }
-    console.log("shippingFormValues", shippingFormValues);
-    console.log("billingAddressForm", billingFormValues);
-
     saveFormValuesAction({
       shippingFormValues,
       billingFormValues,

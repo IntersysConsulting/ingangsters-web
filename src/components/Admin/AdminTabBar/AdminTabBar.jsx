@@ -11,7 +11,6 @@ import { fetchAdminUsers } from "../../../actions/creators/adminUsers";
 import { clearSearch } from "../../../actions/creators/filters";
 
 const AdminTabBar = ({ handleClick }) => {
-  console.log(handleClick);
   return (
     <div className="AdminTabBar">
       <ButtonGroup className="buttonGroupAdmin" size="lg">

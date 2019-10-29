@@ -1,20 +1,12 @@
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { prettifyCents } from "../../../../utils/utils";
+import { prettifyCents, prettifyStatus } from "../../../../utils/utils";
 import "./OrderCard.css";
 import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 import { updateOrderStatus } from "../Connections";
 
-export function prettifyStatus(currentStatus) {
-  const wordsArray = currentStatus.split("_");
-  const uncapitalizedArray = wordsArray.map(word => {
-    return word[0] + word.substring(1).toLowerCase();
-  });
-  return uncapitalizedArray.join(" ");
-}
-
-const OrderCard = ({ id, date, status, total, nextOptions, reload }) => {
+const OrderCard = ({ id, date, status, total, nextOptions }) => {
   const [modalData, setModalData] = React.useState({
     message: "Message goes here",
     targetStatus: null,
@@ -73,7 +65,7 @@ const OrderCard = ({ id, date, status, total, nextOptions, reload }) => {
             </div>
             {optionsDropdown}
           </div>
-          <Link className="detailsButton" to={"/order/details/" + id}>
+          <Link className="detailsButton" to={"/admin/order/" + id}>
             Details
           </Link>
         </div>
