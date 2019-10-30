@@ -28,7 +28,6 @@ const ProductView = ({ match, history, location }) => {
       window.location.reload();
       window.history.back();
     };
-  console.log(refresh);
   const { id } = match.params;
   const [data, setData] = useState({
     showDelete: false,
