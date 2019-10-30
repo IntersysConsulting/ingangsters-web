@@ -24,7 +24,11 @@ export const login = (email, password) => async dispatch => {
       "Content-Type": "application/json"
     }
   };
-  const body = JSON.stringify({ email, password });
+  var cart = [];
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+  const body = JSON.stringify({ email, password, cart });
   try {
     const res = await axios.post(`${API}/user/login`, body, config);
     dispatch({
