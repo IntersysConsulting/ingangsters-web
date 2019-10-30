@@ -5,6 +5,9 @@ import {
   updateOrdersList,
   setStatusList
 } from "../../../actions/creators/adminOrders";
+import store from "../../../store";
+import { createNotificationError } from "../../../actions/creators/notification";
+import { idNotificationGenerator } from "../../../utils/idGenerator";
 
 export async function updateOrderStatus(orderId, newStatus, reload) {
   const endpoint = `${API}/orders/change/${orderId}/to/${newStatus}`;
@@ -18,10 +21,18 @@ export async function updateOrderStatus(orderId, newStatus, reload) {
     if (res.status === 200) {
       reload();
     } else {
-      alert("Something was wrong");
+      createNotificationError(
+        idNotificationGenerator(),
+        "We are sorry",
+        "Something went wrong"
+      )(store.dispatch);
     }
   } catch (err) {
-    alert("An error occurred, try again later.");
+    createNotificationError(
+      idNotificationGenerator(),
+      "An error ocurred",
+      "Try again later"
+    )(store.dispatch);
   }
 }
 
@@ -57,10 +68,18 @@ export const fetchOrders = async (
       );
       dispatch(setStatusList(statusList));
     } else {
-      alert("Something happened");
+      createNotificationError(
+        idNotificationGenerator(),
+        "We are sorry",
+        "Something went wrong"
+      )(store.dispatch);
     }
   } catch (err) {
-    alert("An error occurred...");
+    createNotificationError(
+      idNotificationGenerator(),
+      "An error ocurred",
+      "Try again later"
+    )(store.dispatch);
   }
 };
 
@@ -75,7 +94,11 @@ const getStatusList = async () => {
     const res = await axios.get(endpoint, config);
     return res.data.data;
   } catch (err) {
-    alert("An error occurred");
+    createNotificationError(
+      idNotificationGenerator(),
+      "An error ocurred",
+      "Try again later"
+    )(store.dispatch);
     return [];
   }
 };
