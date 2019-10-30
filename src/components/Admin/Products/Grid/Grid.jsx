@@ -9,7 +9,8 @@ export const ProductsGrid = ({
   items,
   loading,
   finishedFetch,
-  fetchProducts
+  fetchProducts,
+  reload
 }) => {
   if (items.length === 0 && !loading && !finishedFetch) {
     fetchProducts(1);
@@ -25,7 +26,8 @@ export const ProductsGrid = ({
       <Product
         {...item}
         key={item._id}
-        onClick={"/admin/product/" + item._id}
+        path={"/admin/product/" + item._id}
+        reload={reload}
       />
     ));
     return <div className="row adminProductGrid mt-4">{cards}</div>;

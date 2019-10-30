@@ -8,7 +8,7 @@ import {
 import { idNotificationGenerator } from "../../../../utils/idGenerator";
 const getToken = () => localStorage.getItem("token");
 
-export const updateProduct = async (data, form) => {
+export const updateProduct = async (data, form, refresh) => {
   const body = {
     _id: data._id,
     name: form.target.name.value,
@@ -34,10 +34,7 @@ export const updateProduct = async (data, form) => {
         "Product updated",
         "Saved successfully"
       )(store.dispatch);
-      setTimeout(
-        (window.location.pathname = "admin/product/" + data._id),
-        5000
-      );
+      refresh();
     }
   } catch (err) {
     createNotificationError(
@@ -74,7 +71,7 @@ export const loadProduct = async (id, setData) => {
   }
 };
 
-export const newProduct = async (data, form) => {
+export const newProduct = async (data, form, reload) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -98,10 +95,7 @@ export const newProduct = async (data, form) => {
         "Product added",
         "New product created successfully"
       )(store.dispatch);
-      setTimeout(
-        (window.location.pathname = "admin/product/" + res.data.data),
-        5000
-      );
+      reload();
     }
   } catch (err) {
     createNotificationError(
@@ -109,6 +103,7 @@ export const newProduct = async (data, form) => {
       "Something went wrong",
       "Product not saved, try again later"
     )(store.dispatch);
+    window.history.back();
   }
 };
 
@@ -149,7 +144,7 @@ export const imageChange = setData => async evt => {
   }
 };
 
-export const removeProduct = async productID => {
+export const removeProduct = async (productID, reload) => {
   // Logic removal
   const config = {
     headers: {
@@ -171,7 +166,8 @@ export const removeProduct = async productID => {
         "Product removed",
         "Removed successfully"
       )(store.dispatch);
-      setTimeout((window.location.pathname = "admin/dashboard"), 5000);
+      reload();
+      window.history.back();
     }
   } catch (err) {
     createNotificationError(

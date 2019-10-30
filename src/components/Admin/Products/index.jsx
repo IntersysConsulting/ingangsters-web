@@ -32,7 +32,7 @@ const AdminProducts = ({
         </div>
       </div>
 
-      <Grid />
+      <Grid reload={() => fetchProducts(currentPage)} />
       <div className="bottomWrapper">
         <Paginator
           currentPage={currentPage}
@@ -40,7 +40,13 @@ const AdminProducts = ({
           itemsPerPage={itemsPerPage}
           navigateFunction={fetchProducts}
         />
-        <Link to="/admin/product/new" className="newProductWrapper">
+        <Link
+          className="newProductWrapper"
+          to={{
+            pathname: "/admin/product/new",
+            reload: () => fetchProducts(currentPage)
+          }}
+        >
           <Button variant="primary">New product</Button>
         </Link>
       </div>
