@@ -3,7 +3,12 @@
 exports[`ADMIN: Product Card renders with random props 1`] = `
 <Link
   className="productCard unavailable"
-  to="/random/Path"
+  to={
+    Object {
+      "pathname": undefined,
+      "reload": undefined,
+    }
+  }
 >
   <div
     className="productImage"

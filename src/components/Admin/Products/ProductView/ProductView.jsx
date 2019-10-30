@@ -18,7 +18,7 @@ import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 
 const ProductView = ({ match, history, location }) => {
   let refresh;
-  if (location.reload)
+  if (location && location.reload)
     refresh = () => {
       location.reload();
       window.history.back();
