@@ -16,7 +16,18 @@ import {
 } from "./Connections";
 import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 
-const ProductView = ({ match, history }) => {
+const ProductView = ({ match, history, location }) => {
+  let refresh;
+  if (location && location.reload)
+    refresh = () => {
+      location.reload();
+      window.history.back();
+    };
+  else
+    refresh = refresh = () => {
+      window.location.reload();
+      window.history.back();
+    };
   const { id } = match.params;
   const [data, setData] = useState({
     showDelete: false,
@@ -70,7 +81,7 @@ const ProductView = ({ match, history }) => {
           }}
           affirmativeText="Delete"
           affirmativeAction={() => {
-            removeProduct(id);
+            removeProduct(id, refresh);
             setShowModal(false);
           }}
           closeAction={() => {
@@ -84,7 +95,7 @@ const ProductView = ({ match, history }) => {
             className="productForm"
             onSubmit={event => {
               event.preventDefault();
-              data.submit(data, event);
+              data.submit(data, event, refresh);
             }}
             encType="multipart/form-data"
           >
