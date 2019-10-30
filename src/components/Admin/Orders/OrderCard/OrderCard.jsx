@@ -6,7 +6,7 @@ import "./OrderCard.css";
 import ConfirmationModal from "../../../UI/ConfirmationModal/ConfirmationModal";
 import { updateOrderStatus } from "../Connections";
 
-const OrderCard = ({ id, date, status, total, nextOptions }) => {
+const OrderCard = ({ id, date, status, total, nextOptions, reload }) => {
   const [modalData, setModalData] = React.useState({
     message: "Message goes here",
     targetStatus: null,
@@ -80,7 +80,7 @@ const OrderCard = ({ id, date, status, total, nextOptions }) => {
         negativeAction={hideModal}
         show={modalData.show}
         affirmativeAction={() => {
-          updateOrderStatus(id, modalData.targetStatus);
+          updateOrderStatus(id, modalData.targetStatus, reload);
           hideModal();
         }}
       />

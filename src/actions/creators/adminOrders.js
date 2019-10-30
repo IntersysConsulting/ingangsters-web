@@ -20,3 +20,17 @@ export function updateOrdersList(
     currentPage: currentPage
   };
 }
+
+export const setStatusList = newList => ({
+  type: types.ADMIN_SET_STATUS_LIST,
+  newList: newList
+});
+
+export const setActiveStatusFilter = status => ({
+  type: types.ADMIN_SET_ACTIVE_STATUS_FILTER,
+  newStatus: status
+});
+
+export const clearStatusFilter = () => ({
+  type: types.ADMIN_CLEAR_STATUS_FILTER
+});
