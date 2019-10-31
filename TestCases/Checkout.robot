@@ -53,6 +53,7 @@ TC_002 Checkout card payment
     Click Element                       //*[@id="container"]/section/span[2]/div/div/main/form/nav/div/div/div/button
     Unselect Frame
     Page should contain                 Thank you for shopping with us!
+    Sleep                               ${Sleep2}
     Close Browser
 
 
