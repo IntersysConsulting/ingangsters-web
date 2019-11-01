@@ -6,8 +6,9 @@ import { MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
 import ModalButton from "./ModalButton/ModalButton";
 import { isAuthenticated } from "../../../utils/auth";
+import { connect } from "react-redux";
 
-function ModalSchema() {
+const ModalSchema = ({ userName }) => {
   const [show, setShow] = React.useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,7 +18,7 @@ function ModalSchema() {
       <React.Fragment>
         <IconButton
           Icon={MdPerson}
-          Label="Account"
+          Label={userName}
           onClick={handleShow}
         ></IconButton>
 
@@ -77,6 +78,9 @@ function ModalSchema() {
       </React.Fragment>
     );
   }
-}
+};
+const mapStateToProps = state => ({
+  userName: state.auth.user ? state.auth.user.name.split(" ", 1) : ""
+});
 
-export default ModalSchema;
+export default connect(mapStateToProps)(ModalSchema);

@@ -31,7 +31,7 @@ const AccountDetails = ({ loading, user }) => {
               </div>
             </div>
             <div className="row pt-5">
-              <div className="col-12">WIP: My orders here</div>
+              <div className="col-12"></div>
             </div>
           </div>
         </React.Fragment>

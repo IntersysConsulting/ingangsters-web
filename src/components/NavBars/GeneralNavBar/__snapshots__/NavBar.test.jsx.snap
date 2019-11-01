@@ -48,7 +48,7 @@ exports[`General Navbar renders correctly 1`] = `
     <div
       className="iconButtonWrapper"
     >
-      <ModalSchema />
+      <Connect(ModalSchema) />
       <div
         className="verticalSeparator"
       />
