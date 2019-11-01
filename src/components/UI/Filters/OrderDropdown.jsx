@@ -58,6 +58,7 @@ const OrderDropdown = ({
       id="sortingRules"
       key="sortingRules"
       className="filtersDropdown"
+      alignRight
     >
       <Dropdown.Header>Sort by name</Dropdown.Header>
       <Dropdown.Item
