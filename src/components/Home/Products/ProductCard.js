@@ -49,10 +49,10 @@ const ProductCard = ({
             </div>
           </Link>
           <div className="row">
-            <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <p className="price">{prettifyCents(product.price)}</p>
             </div>
-            <div className="col-xl-8 col-lg-12 offset-xl-1 col-md-12 col-sm-12">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <button
                 type="button"
                 className="btn btn-product-card btn-block"
