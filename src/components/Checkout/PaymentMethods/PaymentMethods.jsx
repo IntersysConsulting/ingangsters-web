@@ -102,28 +102,6 @@ class PaymentMethods extends React.Component {
             <h1 className="paymentMethodsTitle">Select Payment Method</h1>
             <br />
 
-            <div className="paymentOption">
-              <input
-                id="oxxoPay"
-                type="radio"
-                value="oxxoPay"
-                checked={this.state.selectedOption === "oxxoPay"}
-                onChange={this.radioChange}
-                className="paymentButton"
-              />
-
-              {/* <label htmlFor="oxxoPay" className="paymentTag">
-                <img
-                  alt="oxxo-pay"
-                  src="/assets/Oxxo_logo.svg"
-                  width="55"
-                  height="auto"
-                />
-                Oxxo Pay
-              </label> */}
-            </div>
-            <br />
-
             <div className="paymentOption" onClick={this.radioChange}>
               <input
                 id="payPal"
