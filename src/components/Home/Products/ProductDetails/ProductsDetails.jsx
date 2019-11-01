@@ -11,6 +11,7 @@ import {
   idNotificationGenerator,
   charCount
 } from "../../../../utils/idGenerator";
+import { prettifyCents } from "../../../../utils/utils";
 
 import "./ProductDetails.css";
 
@@ -92,7 +93,7 @@ const ProductDetails = ({
                   </div>
                   <div className="pt-3 col-12 col-sm-12 col-lg-3">
                     <h5 className="price text-center">
-                      ${productData.price / 100}
+                      {prettifyCents(productData.price)}
                     </h5>
                   </div>
                 </div>
