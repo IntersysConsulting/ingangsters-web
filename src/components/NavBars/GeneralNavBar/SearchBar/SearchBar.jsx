@@ -40,6 +40,7 @@ const SearchBar = ({ searchProducts, history }) => {
             <MdSearch
               size="1.8em"
               color="#353535"
+              onClick={searchSubmit}
               style={{
                 position: "relative",
                 left: "50%",
@@ -66,6 +67,7 @@ const SearchBar = ({ searchProducts, history }) => {
               Search
             </Button>
             <MdSearch
+              onClick={searchSubmit}
               size="1.8em"
               color="#353535"
               className="rightSearchIcon"
