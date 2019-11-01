@@ -112,7 +112,7 @@ class PaymentMethods extends React.Component {
                 className="paymentButton"
               />
 
-              <label htmlFor="oxxoPay" className="paymentTag">
+              {/* <label htmlFor="oxxoPay" className="paymentTag">
                 <img
                   alt="oxxo-pay"
                   src="/assets/Oxxo_logo.svg"
@@ -120,7 +120,7 @@ class PaymentMethods extends React.Component {
                   height="auto"
                 />
                 Oxxo Pay
-              </label>
+              </label> */}
             </div>
             <br />
 
